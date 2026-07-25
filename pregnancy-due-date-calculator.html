@@ -192,32 +192,16 @@
   </div>
 </div>
 
-<div class="wrap tool-section">
+<div class="wrap tool-section" style="border-bottom:1px solid var(--border);">
   <h2>Comments</h2>
-  <div class="comments-placeholder">💬 Comments are coming soon — you'll be able to ask questions and share feedback here.</div>
-</div>
-
-<footer class="site">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo" style="font-size:17px;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#146356"/><path d="M6 12.5L10 16.5L18 8" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          TickmarkTools
-        </div>
-        <p>500+ free online tools — calculators, converters, PDF, image and text tools. Fast, private, no sign-up ever.</p>
-      </div>
-      <div class="footer-col"><h5>Company</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="blog.html">Blog</a></div>
-      <div class="footer-col"><h5>Legal</h5><a href="privacy-policy.html">Privacy Policy</a><a href="terms-of-service.html">Terms of Service</a><a href="sitemap.html">Sitemap</a></div>
-      <div class="footer-col"><h5>Categories</h5><a href="calculators.html">Calculators</a><a href="pdf-tools.html">PDF Tools</a><a href="image-tools.html">Image Tools</a></div>
-      <div class="footer-col"><h5>More</h5><a href="text-tools.html">Text Tools</a><a href="developer-tools.html">Developer Tools</a><a href="ai-tools.html">AI Tools</a></div>
+  <div class="comment-box">
+    <div class="comment-input-row">
+      <input type="text" id="commentInput" class="field" placeholder="Write a comment or ask a question...">
+      <button class="btn btn-primary" id="commentPostBtn">Post</button>
     </div>
-    <div class="footer-bottom">
-      <div>© 2026 TickmarkTools. All rights reserved.</div>
-      <div>Every Tool. One Place.</div>
-    </div>
+    <div id="commentList" class="comment-list"></div>
   </div>
-</footer>
+</div>
 
 <script src="assets/main.js"></script>
 <script>
@@ -233,6 +217,23 @@ document.getElementById('dueDateBtn').addEventListener('click',()=>{
   document.getElementById('dueResult').classList.add('show');
 });
 window.resetTool=function(){document.getElementById('lmpDate').value='';document.getElementById('dueResult').classList.remove('show');};
+</script>
+<script>
+document.getElementById('commentPostBtn').addEventListener('click', ()=>{
+  const input = document.getElementById('commentInput');
+  const text = input.value.trim();
+  if(!text) return;
+  const list = document.getElementById('commentList');
+  const item = document.createElement('div');
+  item.className = 'comment-item';
+  item.innerHTML = `<div class="comment-avatar">🙂</div><div><div class="comment-meta">Guest • just now</div><div class="comment-text"></div></div>`;
+  item.querySelector('.comment-text').textContent = text;
+  list.prepend(item);
+  input.value = '';
+});
+document.getElementById('commentInput').addEventListener('keydown', (e)=>{
+  if(e.key === 'Enter') document.getElementById('commentPostBtn').click();
+});
 </script>
 </body>
 </html>
