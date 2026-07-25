@@ -197,8 +197,7 @@
   <h2>Comments</h2>
   <div class="comment-box">
     <div class="comment-input-row">
-      <input type="text" id="commentInput" class="field" placeholder="Write a comment or ask a question...">
-      <button class="btn btn-primary" id="commentPostBtn">Post</button>
+      <input type="text" id="commentInput" class="field" placeholder="Write a comment and press Enter...">
     </div>
     <div id="commentList" class="comment-list"></div>
   </div>
@@ -228,7 +227,7 @@ document.getElementById('taxBtn').addEventListener('click',()=>{
 window.resetTool=function(){document.getElementById('taxIncome').value='';document.getElementById('taxResult').classList.remove('show');};
 </script>
 <script>
-document.getElementById('commentPostBtn').addEventListener('click', ()=>{
+function postComment(){
   const input = document.getElementById('commentInput');
   const text = input.value.trim();
   if(!text) return;
@@ -239,9 +238,9 @@ document.getElementById('commentPostBtn').addEventListener('click', ()=>{
   item.querySelector('.comment-text').textContent = text;
   list.prepend(item);
   input.value = '';
-});
+}
 document.getElementById('commentInput').addEventListener('keydown', (e)=>{
-  if(e.key === 'Enter') document.getElementById('commentPostBtn').click();
+  if(e.key === 'Enter') postComment();
 });
 </script>
 </body>

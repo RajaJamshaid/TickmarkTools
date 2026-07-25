@@ -12,7 +12,7 @@
     --bg:#ffffff;
     --surface:#F3F5F4;
     --ink:#12181A;
-    --ink-soft:#4B5563;
+    --ink-soft:#2B3138;
     --primary:#146356;
     --primary-dark:#0E4A40;
     --accent:#FF6A4D;
@@ -85,10 +85,11 @@
   /* HERO */
   .hero{padding:40px 0 56px;}
   @media (max-width:560px){.hero{padding:20px 0 40px;}}
-  .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center;}
+  .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center;position:relative;z-index:1;}
+  .tick-panel{position:relative;z-index:1;}
   @media (max-width:900px){.hero-grid{grid-template-columns:1fr;}}
   @keyframes heroFadeIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
-  .hero-fade{animation:heroFadeIn 0.6s ease both;}
+  .hero-fade{animation:heroFadeIn 0.6s ease both;position:relative;z-index:2;}
   .hero-fade:nth-child(2){animation-delay:0.08s;}
   .eyebrow{
     display:inline-flex;align-items:center;gap:6px;
@@ -108,12 +109,16 @@
     transition:border-color 0.2s ease, box-shadow 0.2s ease;
   }
   .search-box:focus-within{border-color:var(--primary);box-shadow:0 4px 16px -4px color-mix(in srgb, var(--primary) 30%, transparent);}
+  .ai-search-box{border-image:none;position:relative;}
+  .ai-search-box::before{content:'';position:absolute;inset:-1.5px;border-radius:15px;padding:1.5px;background:linear-gradient(120deg,#146356,#2FA98D,#146356);-webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity 0.25s ease;pointer-events:none;}
+  .ai-search-box:focus-within::before{opacity:1;}
+  .ai-badge{flex-shrink:0;font-size:10.5px;font-weight:700;letter-spacing:0.03em;color:#fff;background:linear-gradient(120deg,#146356,#2FA98D);padding:3px 8px;border-radius:999px;}
   .search-box input{border:none;outline:none;font-size:15px;width:100%;font-family:'Inter',sans-serif;background:transparent;color:var(--ink);}
   .search-box svg{flex-shrink:0;color:var(--ink-soft);}
   .autocomplete{
     position:absolute;top:calc(100% + 8px);left:0;right:0;max-width:480px;
     background:var(--card-bg);border:1px solid var(--border);border-radius:12px;
-    box-shadow:0 16px 40px -12px rgba(0,0,0,0.2);overflow:hidden;display:none;z-index:40;
+    box-shadow:0 16px 40px -12px rgba(0,0,0,0.2);overflow:hidden;display:none;z-index:200;
   }
   .autocomplete.show{display:block;}
   .autocomplete .ac-item{
@@ -287,9 +292,13 @@
       <h1>500+ Free Online <span class="highlight">Tools</span></h1>
       <p class="sub">Fast. Private. No Sign-up Required.</p>
 
-      <div class="search-box">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
-        <input type="text" id="search-input" placeholder="Search calculators, converters, AI tools..." autocomplete="off" />
+      <div class="search-box ai-search-box">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="url(#aiGrad)" stroke-width="2">
+          <defs><linearGradient id="aiGrad" x1="0" y1="0" x2="24" y2="24"><stop offset="0%" stop-color="#146356"/><stop offset="100%" stop-color="#2FA98D"/></linearGradient></defs>
+          <path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4L12 3z"/><path d="M19 14l.9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9L19 14z"/>
+        </svg>
+        <input type="text" id="search-input" placeholder="Ask AI to find a tool — try 'compress a pdf'" autocomplete="off" />
+        <span class="ai-badge">AI</span>
         <div class="autocomplete" id="autocomplete"></div>
       </div>
 
@@ -617,28 +626,58 @@
       : '<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/>';
   });
 
-  // Search autocomplete
+  // AI-powered search — full tool index with working navigation
   const toolIndex = [
-    {name:'PDF Merge', cat:'PDF Tools'},
-    {name:'PDF Split', cat:'PDF Tools'},
-    {name:'PDF Compress', cat:'PDF Tools'},
-    {name:'PDF to Word', cat:'PDF Tools'},
-    {name:'PDF to JPG', cat:'PDF Tools'},
-    {name:'Age Calculator', cat:'Calculators'},
-    {name:'BMI Calculator', cat:'Calculators'},
-    {name:'Loan Calculator', cat:'Calculators'},
-    {name:'Percentage Calculator', cat:'Calculators'},
-    {name:'Word Counter', cat:'Text Tools'},
-    {name:'Case Converter', cat:'Text Tools'},
-    {name:'Image Compressor', cat:'Image Tools'},
-    {name:'Image Resizer', cat:'Image Tools'},
-    {name:'Image to PDF', cat:'Image Tools'},
-    {name:'QR Code Generator', cat:'Productivity Tools'},
-    {name:'Password Generator', cat:'Developer Tools'},
-    {name:'JSON Formatter', cat:'Developer Tools'},
-    {name:'Currency Converter', cat:'Finance Tools'},
-    {name:'Unit Converter', cat:'Unit Converters'},
-    {name:'Invoice Generator', cat:'Finance Tools'}
+    {name:'Age Calculator', cat:'Calculators', slug:'age-calculator'},
+    {name:'Percentage Calculator', cat:'Calculators', slug:'percentage-calculator'},
+    {name:'BMI Calculator', cat:'Calculators', slug:'bmi-calculator'},
+    {name:'EMI / Loan Calculator', cat:'Calculators', slug:'emi-loan-calculator'},
+    {name:'Mortgage Calculator', cat:'Calculators', slug:'mortgage-calculator'},
+    {name:'Compound Interest Calculator', cat:'Calculators', slug:'compound-interest-calculator'},
+    {name:'Simple Interest Calculator', cat:'Calculators', slug:'simple-interest-calculator'},
+    {name:'SIP Investment Calculator', cat:'Calculators', slug:'sip-investment-calculator'},
+    {name:'Discount Calculator', cat:'Calculators', slug:'discount-calculator'},
+    {name:'Date Difference Calculator', cat:'Calculators', slug:'date-difference-calculator'},
+    {name:'Time Calculator', cat:'Calculators', slug:'time-calculator'},
+    {name:'Calorie Calculator', cat:'Calculators', slug:'calorie-calculator'},
+    {name:'Pregnancy Due Date Calculator', cat:'Calculators', slug:'pregnancy-due-date-calculator'},
+    {name:'Fuel Cost Calculator', cat:'Calculators', slug:'fuel-cost-calculator'},
+    {name:'Electricity Bill Calculator', cat:'Calculators', slug:'electricity-bill-calculator'},
+    {name:'GPA / CGPA Calculator', cat:'Calculators', slug:'gpa-cgpa-calculator'},
+    {name:'Retirement Calculator', cat:'Calculators', slug:'retirement-calculator'},
+    {name:'Currency Converter', cat:'Finance Tools', slug:'currency-converter'},
+    {name:'GST / VAT Calculator', cat:'Finance Tools', slug:'gst-vat-calculator'},
+    {name:'Income Tax Calculator', cat:'Finance Tools', slug:'income-tax-calculator'},
+    {name:'PDF Merge', cat:'PDF Tools', slug:'pdf-merge'},
+    {name:'PDF Split', cat:'PDF Tools', slug:'pdf-split'},
+    {name:'PDF Compress', cat:'PDF Tools', slug:'pdf-compress'},
+    {name:'PDF to Word', cat:'PDF Tools', slug:'pdf-to-word'},
+    {name:'PDF to JPG', cat:'PDF Tools', slug:'pdf-to-jpg'},
+    {name:'Word to PDF', cat:'PDF Tools', slug:'word-to-pdf'},
+    {name:'Image Compressor', cat:'Image Tools', slug:'image-compressor'},
+    {name:'Image Resizer', cat:'Image Tools', slug:'image-resizer'},
+    {name:'JPG to PNG', cat:'Image Tools', slug:'jpg-to-png'},
+    {name:'PNG to JPG', cat:'Image Tools', slug:'png-to-jpg'},
+    {name:'Image Cropper', cat:'Image Tools', slug:'image-cropper'},
+    {name:'Image Converter', cat:'Image Tools', slug:'image-converter'},
+    {name:'Word Counter', cat:'Text Tools', slug:'word-counter'},
+    {name:'Character Counter', cat:'Text Tools', slug:'character-counter'},
+    {name:'Case Converter', cat:'Text Tools', slug:'case-converter'},
+    {name:'Remove Duplicate Lines', cat:'Text Tools', slug:'remove-duplicate-lines'},
+    {name:'Text Compare (Diff Checker)', cat:'Text Tools', slug:'text-compare-diff-checker'},
+    {name:'Lorem Ipsum Generator', cat:'Text Tools', slug:'lorem-ipsum-generator'},
+    {name:'Password Generator', cat:'Developer Tools', slug:'password-generator'},
+    {name:'JSON Formatter', cat:'Developer Tools', slug:'json-formatter'},
+    {name:'JSON Validator', cat:'Developer Tools', slug:'json-validator'},
+    {name:'Base64 Encoder/Decoder', cat:'Developer Tools', slug:'base64-encoder-decoder'},
+    {name:'URL Encoder/Decoder', cat:'Developer Tools', slug:'url-encoder-decoder'},
+    {name:'HTML Minifier', cat:'Developer Tools', slug:'html-minifier'},
+    {name:'CSS Minifier', cat:'Developer Tools', slug:'css-minifier'},
+    {name:'Password Strength Checker', cat:'Developer Tools', slug:'password-strength-checker'},
+    {name:'UUID Generator', cat:'Developer Tools', slug:'uuid-generator'},
+    {name:'Color Picker', cat:'Developer Tools', slug:'color-picker'},
+    {name:'QR Code Generator', cat:'Productivity Tools', slug:'qr-code-generator'},
+    {name:'Barcode Generator', cat:'Productivity Tools', slug:'barcode-generator'}
   ];
 
   const searchInput = document.getElementById('search-input');
@@ -650,9 +689,14 @@
     const matches = toolIndex.filter(t => t.name.toLowerCase().includes(q)).slice(0,6);
     if(matches.length === 0){ autocomplete.classList.remove('show'); autocomplete.innerHTML=''; return; }
     autocomplete.innerHTML = matches.map(t =>
-      `<div class="ac-item"><span>${t.name}</span><span class="cat">${t.cat}</span></div>`
+      `<div class="ac-item" data-slug="${t.slug}"><span>${t.name}</span><span class="cat">${t.cat}</span></div>`
     ).join('');
     autocomplete.classList.add('show');
+    autocomplete.querySelectorAll('.ac-item').forEach(el => {
+      el.addEventListener('click', () => {
+        window.location.href = el.getAttribute('data-slug') + '.html';
+      });
+    });
   });
 
   document.addEventListener('click', (e) => {
