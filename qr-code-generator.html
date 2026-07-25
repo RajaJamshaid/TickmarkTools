@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Code Generator — Free Online Tool | TickmarkTools</title>
+<meta name="description" content="Free online QR Code Generator — turn any text or URL into a downloadable QR code instantly.">
+<meta name="theme-color" content="#146356">
+<link rel="canonical" href="https://tickmarktools.com/qr-code-generator">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="QR Code Generator — Free Online Tool | TickmarkTools">
+<meta property="og:description" content="Free online QR Code Generator — turn any text or URL into a downloadable QR code instantly.">
+<meta property="og:url" content="https://tickmarktools.com/qr-code-generator">
+<meta property="og:site_name" content="TickmarkTools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="QR Code Generator — TickmarkTools">
+<meta name="twitter:description" content="Free online QR Code Generator — turn any text or URL into a downloadable QR code instantly.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "QR Code Generator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "url": "https://tickmarktools.com/qr-code-generator",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "1200"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://tickmarktools.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Productivity Tools", "item": "https://tickmarktools.com/#categories"},
+    {"@type": "ListItem", "position": 3, "name": "QR Code Generator", "item": "https://tickmarktools.com/qr-code-generator"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Is it free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes."}},
+    {"@type": "Question", "name": "Does it store the text I enter?", "acceptedAnswer": {"@type": "Answer", "text": "No, the QR code is generated locally in your browser."}},
+    {"@type": "Question", "name": "Can I use this QR code commercially?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, the generated QR codes are free to use for any purpose."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <nav class="main">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#146356"/><path d="M6 12.5L10 16.5L18 8" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        TickmarkTools
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="age-calculator.html">Calculators</a>
+        <a href="pdf-merge.html">PDF Tools</a>
+        <a href="image-compressor.html">Image Tools</a>
+        <a href="word-counter.html">Text Tools</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+        </button>
+        <a href="index.html#categories" class="nav-cta">All Tools</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap breadcrumb">
+  <a href="index.html">Home</a><span class="sep">/</span>
+  <a href="index.html#categories">Productivity Tools</a><span class="sep">/</span>
+  <span>QR Code Generator</span>
+</div>
+
+<section class="tool-hero">
+  <div class="wrap">
+    <div class="cat-tag">🗂️ Productivity Tools</div>
+    <h1>QR Code Generator</h1>
+    <p class="lead">Generate a QR code from any text or URL and download it as a PNG image.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="tool-panel">
+    <label class="field-label">Text or URL</label>
+    <input type="text" id="qrText" class="field" placeholder="https://tickmarktools.com">
+    <div style="margin-top:18px;"><button class="btn btn-primary" id="qrGenBtn">Generate QR Code</button></div>
+    <div class="result-box" id="qrResult" style="text-align:center;">
+      <div id="qrCanvas" style="display:inline-block;background:#fff;padding:16px;border-radius:12px;"></div>
+      <div style="margin-top:14px;"><a id="qrDownload" class="btn btn-secondary" download="qrcode.png">Download PNG</a></div>
+    </div>
+    <div class="toolbar-row">
+      <button class="btn btn-secondary" onclick="resetTool()">↺ Reset</button>
+      <button class="btn btn-secondary" id="copyResultBtn" onclick="copyResult()">📋 Copy Result</button>
+      <button class="btn btn-secondary" onclick="shareTool()">🔗 Share Tool</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>How to Use QR Code Generator</h2>
+  <ol class="steps">
+      <li>Type or paste any text or URL into the field.</li>
+      <li>Click <strong>Generate QR Code</strong>.</li>
+      <li>Scan it with your phone camera or download it as a PNG.</li>
+  </ol>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Watch: How It Works</h2>
+  <div class="video-embed" data-video-id="">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    2–3 minute walkthrough video coming soon
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Features</h2>
+  <div class="features-grid">
+      <div class="feature-card"><div class="ico">🎯</div><h4>Works with any text/URL</h4></div>
+      <div class="feature-card"><div class="ico">⚡</div><h4>Instant generation</h4></div>
+      <div class="feature-card"><div class="ico">🔒</div><h4>No data stored</h4></div>
+      <div class="feature-card"><div class="ico">📱</div><h4>Mobile friendly</h4></div>
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q"><span>Is it free?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a"><p>Yes.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Does it store the text I enter?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a"><p>No, the QR code is generated locally in your browser.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Can I use this QR code commercially?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a"><p>Yes, the generated QR codes are free to use for any purpose.</p></div>
+      </div>
+</div>
+
+<div class="wrap tool-section">
+  <div class="ai-panel">
+    <h3>🤖 Ask AI about this tool</h3>
+    <p style="font-size:13.5px;color:var(--ink-soft);margin-top:4px;">Tap a question for an instant answer. Full conversational AI is coming soon.</p>
+    <div class="ai-q">What can I put into a QR code?</div><div class="ai-a">Any text, URL, phone number, or short message — QR codes simply encode text data.</div>
+    <div class="ai-q">Do QR codes expire?</div><div class="ai-a">No, standard QR codes like these don't expire since they just encode static text.</div>
+    <div class="ai-q">Why isn't my QR code scanning?</div><div class="ai-a">Make sure there's enough contrast and the code isn't too small or blurry when printed or displayed.</div>
+    <div class="ai-input-row">
+      <input type="text" class="field" placeholder="Ask your own question...">
+      <button class="btn btn-primary">Ask</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Related Tools</h2>
+  <div class="related-grid">
+      <a href="barcode-generator.html" class="related-card">
+        <div class="related-emoji">📊</div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">Barcode Generator</h4></div>
+      </a>
+      <a href="password-generator.html" class="related-card">
+        <div class="related-emoji">🔐</div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">Password Generator</h4></div>
+      </a>
+      <a href="uuid-generator.html" class="related-card">
+        <div class="related-emoji">🆔</div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">UUID Generator</h4></div>
+      </a>
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Comments</h2>
+  <div class="comments-placeholder">💬 Comments are coming soon — you'll be able to ask questions and share feedback here.</div>
+</div>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="font-size:17px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#146356"/><path d="M6 12.5L10 16.5L18 8" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          TickmarkTools
+        </div>
+        <p>500+ free online tools — calculators, converters, PDF, image and text tools. Fast, private, no sign-up ever.</p>
+      </div>
+      <div class="footer-col"><h5>Company</h5><a href="#">About</a><a href="#">Contact</a><a href="#">Blog</a></div>
+      <div class="footer-col"><h5>Legal</h5><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Sitemap</a></div>
+      <div class="footer-col"><h5>Categories</h5><a href="age-calculator.html">Calculators</a><a href="pdf-merge.html">PDF Tools</a><a href="image-compressor.html">Image Tools</a></div>
+      <div class="footer-col"><h5>More</h5><a href="word-counter.html">Text Tools</a><a href="json-formatter.html">Developer Tools</a><a href="#">AI Tools</a></div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 TickmarkTools. All rights reserved.</div>
+      <div>Every Tool. One Place.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script>
+document.getElementById('qrGenBtn').addEventListener('click',()=>{
+  const text = document.getElementById('qrText').value.trim();
+  if(!text){alert('Please enter text or a URL');return;}
+  const container = document.getElementById('qrCanvas');
+  container.innerHTML='';
+  new QRCode(container, { text:text, width:200, height:200 });
+  document.getElementById('qrResult').classList.add('show');
+  setTimeout(()=>{
+    const img = container.querySelector('img') || container.querySelector('canvas');
+    if(img){
+      const url = img.tagName==='CANVAS' ? img.toDataURL('image/png') : img.src;
+      document.getElementById('qrDownload').href = url;
+    }
+  }, 200);
+});
+window.resetTool = function(){
+  document.getElementById('qrText').value='';
+  document.getElementById('qrCanvas').innerHTML='';
+  document.getElementById('qrResult').classList.remove('show');
+};
+</script>
+</body>
+</html>

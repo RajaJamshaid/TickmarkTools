@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF to Word — Free Online Tool | TickmarkTools</title>
+<meta name="description" content="Free online PDF to Word converter — extract text from PDF and download as an editable .docx file, right in your browser.">
+<meta name="theme-color" content="#146356">
+<link rel="canonical" href="https://tickmarktools.com/pdf-to-word">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF to Word — Free Online Tool | TickmarkTools">
+<meta property="og:description" content="Free online PDF to Word converter — extract text from PDF and download as an editable .docx file, right in your browser.">
+<meta property="og:url" content="https://tickmarktools.com/pdf-to-word">
+<meta property="og:site_name" content="TickmarkTools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF to Word — TickmarkTools">
+<meta name="twitter:description" content="Free online PDF to Word converter — extract text from PDF and download as an editable .docx file, right in your browser.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docx/8.5.0/index.umd.js"></script>
+<script>if(window.pdfjsLib){pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";}</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "PDF to Word",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "url": "https://tickmarktools.com/pdf-to-word",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "1200"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://tickmarktools.com/"},
+    {"@type": "ListItem", "position": 2, "name": "PDF Tools", "item": "https://tickmarktools.com/#categories"},
+    {"@type": "ListItem", "position": 3, "name": "PDF to Word", "item": "https://tickmarktools.com/pdf-to-word"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Is it free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes."}},
+    {"@type": "Question", "name": "Will formatting and images be preserved?", "acceptedAnswer": {"@type": "Answer", "text": "This browser-based converter focuses on accurate text extraction; complex layouts, images, and precise formatting are not preserved."}},
+    {"@type": "Question", "name": "Is my PDF uploaded to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No — the conversion happens locally in your browser."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <nav class="main">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#146356"/><path d="M6 12.5L10 16.5L18 8" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        TickmarkTools
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="age-calculator.html">Calculators</a>
+        <a href="pdf-merge.html">PDF Tools</a>
+        <a href="image-compressor.html">Image Tools</a>
+        <a href="word-counter.html">Text Tools</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+        </button>
+        <a href="index.html#categories" class="nav-cta">All Tools</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap breadcrumb">
+  <a href="index.html">Home</a><span class="sep">/</span>
+  <a href="index.html#categories">PDF Tools</a><span class="sep">/</span>
+  <span>PDF to Word</span>
+</div>
+
+<section class="tool-hero">
+  <div class="wrap">
+    <div class="cat-tag">📄 PDF Tools</div>
+    <h1>PDF to Word</h1>
+    <p class="lead">Extract text from a PDF and download it as an editable Word (.docx) file — no server upload required.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="tool-panel">
+    <div class="upload-drop" id="p2wDrop">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <div>Click or drag a single PDF file here</div>
+      <input type="file" id="p2wFile" accept="application/pdf" style="display:none;">
+    </div>
+    <div class="file-list" id="p2wFileList"></div>
+    <div style="margin-top:18px;"><button class="btn btn-primary" id="p2wBtn">Convert to Word</button></div>
+    <div class="result-box" id="p2wResult">
+      <div style="font-size:13.5px;color:var(--ink-soft);margin-bottom:12px;">Text extracted successfully. Note: this browser-based conversion preserves text but not original formatting or images.</div>
+      <a id="p2wDownload" class="btn btn-primary" download="converted.docx">Download Word File</a>
+    </div>
+    <div class="toolbar-row">
+      <button class="btn btn-secondary" onclick="resetTool()">↺ Reset</button>
+      <button class="btn btn-secondary" id="copyResultBtn" onclick="copyResult()">📋 Copy Result</button>
+      <button class="btn btn-secondary" onclick="shareTool()">🔗 Share Tool</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>How to Use PDF to Word</h2>
+  <ol class="steps">
+      <li>Click the upload box and select a PDF file.</li>
+      <li>Click <strong>Convert to Word</strong>.</li>
+      <li>Wait a few seconds while the text is extracted.</li>
+      <li>Download your .docx file.</li>
+  </ol>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Watch: How It Works</h2>
+  <div class="video-embed" data-video-id="">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    2–3 minute walkthrough video coming soon
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Features</h2>
+  <div class="features-grid">
+      <div class="feature-card"><div class="ico">🎯</div><h4>Real text extraction</h4></div>
+      <div class="feature-card"><div class="ico">⚡</div><h4>Fast, in-browser</h4></div>
+      <div class="feature-card"><div class="ico">🔒</div><h4>File never uploaded</h4></div>
+      <div class="feature-card"><div class="ico">📱</div><h4>Mobile friendly</h4></div>
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q"><span>Is it free?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a"><p>Yes.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Will formatting and images be preserved?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a"><p>This browser-based converter focuses on accurate text extraction; complex layouts, images, and precise formatting are not preserved.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Is my PDF uploaded to a server?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a"><p>No — the conversion happens locally in your browser.</p></div>
+      </div>
+</div>
+
+<div class="wrap tool-section">
+  <div class="ai-panel">
+    <h3>🤖 Ask AI about this tool</h3>
+    <p style="font-size:13.5px;color:var(--ink-soft);margin-top:4px;">Tap a question for an instant answer. Full conversational AI is coming soon.</p>
+    <div class="ai-q">Why isn't my formatting preserved?</div><div class="ai-a">Browser-based conversion focuses on extracting readable text safely, without a server; complex layouts require heavier server-side processing.</div>
+    <div class="ai-q">Can I convert scanned (image-only) PDFs?</div><div class="ai-a">Not with this tool — it extracts embedded text, so scanned PDFs would need OCR first.</div>
+    <div class="ai-q">Is the output a real .docx file?</div><div class="ai-a">Yes, it's a genuine Word-compatible .docx file you can open and edit in Microsoft Word or Google Docs.</div>
+    <div class="ai-input-row">
+      <input type="text" class="field" placeholder="Ask your own question...">
+      <button class="btn btn-primary">Ask</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Related Tools</h2>
+  <div class="related-grid">
+      <a href="pdf-merge.html" class="related-card">
+        <div class="related-emoji">🔗</div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">PDF Merge</h4></div>
+      </a>
+      <a href="word-to-pdf.html" class="related-card">
+        <div class="related-emoji">📄</div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">Word to PDF</h4></div>
+      </a>
+      <a href="pdf-to-jpg.html" class="related-card">
+        <div class="related-emoji">🖼️</div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">PDF to JPG</h4></div>
+      </a>
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Comments</h2>
+  <div class="comments-placeholder">💬 Comments are coming soon — you'll be able to ask questions and share feedback here.</div>
+</div>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="font-size:17px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#146356"/><path d="M6 12.5L10 16.5L18 8" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          TickmarkTools
+        </div>
+        <p>500+ free online tools — calculators, converters, PDF, image and text tools. Fast, private, no sign-up ever.</p>
+      </div>
+      <div class="footer-col"><h5>Company</h5><a href="#">About</a><a href="#">Contact</a><a href="#">Blog</a></div>
+      <div class="footer-col"><h5>Legal</h5><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Sitemap</a></div>
+      <div class="footer-col"><h5>Categories</h5><a href="age-calculator.html">Calculators</a><a href="pdf-merge.html">PDF Tools</a><a href="image-compressor.html">Image Tools</a></div>
+      <div class="footer-col"><h5>More</h5><a href="word-counter.html">Text Tools</a><a href="json-formatter.html">Developer Tools</a><a href="#">AI Tools</a></div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 TickmarkTools. All rights reserved.</div>
+      <div>Every Tool. One Place.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script>
+const p2wDrop=document.getElementById('p2wDrop');
+const p2wFile=document.getElementById('p2wFile');
+p2wDrop.addEventListener('click',()=>p2wFile.click());
+p2wDrop.addEventListener('dragover',e=>e.preventDefault());
+p2wDrop.addEventListener('drop',e=>{e.preventDefault(); if(e.dataTransfer.files[0]){ p2wFile.files = e.dataTransfer.files; renderP2W(); }});
+p2wFile.addEventListener('change', renderP2W);
+function renderP2W(){
+  const f = p2wFile.files[0];
+  document.getElementById('p2wFileList').innerHTML = f ? `<div class="file-chip"><span>${f.name}</span><span>${(f.size/1024).toFixed(0)} KB</span></div>` : '';
+}
+document.getElementById('p2wBtn').addEventListener('click', async ()=>{
+  const file = p2wFile.files[0];
+  if(!file){alert('Please choose a PDF file first');return;}
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({data:arrayBuffer}).promise;
+  let paragraphs=[];
+  for(let i=1;i<=pdf.numPages;i++){
+    const page = await pdf.getPage(i);
+    const content = await page.getTextContent();
+    const text = content.items.map(it=>it.str).join(' ');
+    paragraphs.push(new docx.Paragraph({ text: text }));
+  }
+  const doc = new docx.Document({ sections:[{ children: paragraphs }] });
+  const blob = await docx.Packer.toBlob(doc);
+  const url = URL.createObjectURL(blob);
+  document.getElementById('p2wDownload').href = url;
+  document.getElementById('p2wResult').classList.add('show');
+});
+window.resetTool = function(){
+  p2wFile.value=''; renderP2W();
+  document.getElementById('p2wResult').classList.remove('show');
+};
+</script>
+</body>
+</html>

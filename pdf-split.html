@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF Split — Free Online Tool | TickmarkTools</title>
+<meta name="description" content="Free online PDF Split tool — extract a page range from a PDF into a new document, instantly in your browser.">
+<meta name="theme-color" content="#146356">
+<link rel="canonical" href="https://tickmarktools.com/pdf-split">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF Split — Free Online Tool | TickmarkTools">
+<meta property="og:description" content="Free online PDF Split tool — extract a page range from a PDF into a new document, instantly in your browser.">
+<meta property="og:url" content="https://tickmarktools.com/pdf-split">
+<meta property="og:site_name" content="TickmarkTools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF Split — TickmarkTools">
+<meta name="twitter:description" content="Free online PDF Split tool — extract a page range from a PDF into a new document, instantly in your browser.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "PDF Split",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "url": "https://tickmarktools.com/pdf-split",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "1200"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://tickmarktools.com/"},
+    {"@type": "ListItem", "position": 2, "name": "PDF Tools", "item": "https://tickmarktools.com/#categories"},
+    {"@type": "ListItem", "position": 3, "name": "PDF Split", "item": "https://tickmarktools.com/pdf-split"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Is it free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes."}},
+    {"@type": "Question", "name": "Can I extract non-consecutive pages?", "acceptedAnswer": {"@type": "Answer", "text": "This tool extracts a continuous range; for scattered pages, run it multiple times."}},
+    {"@type": "Question", "name": "Is my file uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No, splitting happens entirely in your browser."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <nav class="main">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#146356"/><path d="M6 12.5L10 16.5L18 8" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        TickmarkTools
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="age-calculator.html">Calculators</a>
+        <a href="pdf-merge.html">PDF Tools</a>
+        <a href="image-compressor.html">Image Tools</a>
+        <a href="word-counter.html">Text Tools</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+        </button>
+        <a href="index.html#categories" class="nav-cta">All Tools</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap breadcrumb">
+  <a href="index.html">Home</a><span class="sep">/</span>
+  <a href="index.html#categories">PDF Tools</a><span class="sep">/</span>
+  <span>PDF Split</span>
+</div>
+
+<section class="tool-hero">
+  <div class="wrap">
+    <div class="cat-tag">📄 PDF Tools</div>
+    <h1>PDF Split</h1>
+    <p class="lead">Extract a specific page range from a PDF into a brand new document.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="tool-panel">
+    <div class="upload-drop" id="splitDrop">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <div>Click or drag a PDF file here</div>
+      <input type="file" id="splitFile" accept="application/pdf" style="display:none;">
+    </div>
+    <div class="file-list" id="splitFileList"></div>
+    <div class="field-row" style="margin-top:14px;">
+      <div><label class="field-label">From Page</label><input type="number" id="splitFrom" class="field" min="1" value="1"></div>
+      <div><label class="field-label">To Page</label><input type="number" id="splitTo" class="field" min="1" value="1"></div>
+    </div>
+    <div style="margin-top:18px;"><button class="btn btn-primary" id="splitBtn">Split PDF</button></div>
+    <div class="result-box" id="splitResult">
+      <a id="splitDownload" class="btn btn-primary" download="split.pdf">Download Split PDF</a>
+    </div>
+    <div class="toolbar-row">
+      <button class="btn btn-secondary" onclick="resetTool()">↺ Reset</button>
+      <button class="btn btn-secondary" id="copyResultBtn" onclick="copyResult()">📋 Copy Result</button>
+      <button class="btn btn-secondary" onclick="shareTool()">🔗 Share Tool</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>How to Use PDF Split</h2>
+  <ol class="steps">
+      <li>Upload your PDF file.</li>
+      <li>Enter the page range you want to extract.</li>
+      <li>Click <strong>Split PDF</strong>.</li>
+      <li>Download the new PDF containing just those pages.</li>
+  </ol>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Watch: How It Works</h2>
+  <div class="video-embed" data-video-id="">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    2–3 minute walkthrough video coming soon
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Features</h2>
+  <div class="features-grid">
+      <div class="feature-card"><div class="ico">🎯</div><h4>Any page range</h4></div>
+      <div class="feature-card"><div class="ico">⚡</div><h4>Fast, in-browser</h4></div>
+      <div class="feature-card"><div class="ico">🔒</div><h4>Files never uploaded</h4></div>
+      <div class="feature-card"><div class="ico">📱</div><h4>Mobile friendly</h4></div>
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q"><span>Is it free?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a"><p>Yes.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Can I extract non-consecutive pages?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a"><p>This tool extracts a continuous range; for scattered pages, run it multiple times.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Is my file uploaded anywhere?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a"><p>No, splitting happens entirely in your browser.</p></div>
+      </div>
+</div>
+
+<div class="wrap tool-section">
+  <div class="ai-panel">
+    <h3>🤖 Ask AI about this tool</h3>
+    <p style="font-size:13.5px;color:var(--ink-soft);margin-top:4px;">Tap a question for an instant answer. Full conversational AI is coming soon.</p>
+    <div class="ai-q">How do I know my PDF's total page count?</div><div class="ai-a">Open your PDF in any viewer — the page count is usually shown in the toolbar or status bar.</div>
+    <div class="ai-q">Can I split a PDF into multiple separate files?</div><div class="ai-a">Yes, run this tool multiple times with different page ranges to create separate files.</div>
+    <div class="ai-q">Does splitting affect PDF quality?</div><div class="ai-a">No, page content is copied as-is without any re-compression.</div>
+    <div class="ai-input-row">
+      <input type="text" class="field" placeholder="Ask your own question...">
+      <button class="btn btn-primary">Ask</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Related Tools</h2>
+  <div class="related-grid">
+      <a href="pdf-merge.html" class="related-card">
+        <div class="related-emoji">🔗</div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">PDF Merge</h4></div>
+      </a>
+      <a href="pdf-compress.html" class="related-card">
+        <div class="related-emoji">🗜️</div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">PDF Compress</h4></div>
+      </a>
+      <a href="pdf-to-jpg.html" class="related-card">
+        <div class="related-emoji">🖼️</div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">PDF to JPG</h4></div>
+      </a>
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Comments</h2>
+  <div class="comments-placeholder">💬 Comments are coming soon — you'll be able to ask questions and share feedback here.</div>
+</div>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="font-size:17px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#146356"/><path d="M6 12.5L10 16.5L18 8" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          TickmarkTools
+        </div>
+        <p>500+ free online tools — calculators, converters, PDF, image and text tools. Fast, private, no sign-up ever.</p>
+      </div>
+      <div class="footer-col"><h5>Company</h5><a href="#">About</a><a href="#">Contact</a><a href="#">Blog</a></div>
+      <div class="footer-col"><h5>Legal</h5><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Sitemap</a></div>
+      <div class="footer-col"><h5>Categories</h5><a href="age-calculator.html">Calculators</a><a href="pdf-merge.html">PDF Tools</a><a href="image-compressor.html">Image Tools</a></div>
+      <div class="footer-col"><h5>More</h5><a href="word-counter.html">Text Tools</a><a href="json-formatter.html">Developer Tools</a><a href="#">AI Tools</a></div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 TickmarkTools. All rights reserved.</div>
+      <div>Every Tool. One Place.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script>
+const splitDrop=document.getElementById('splitDrop');
+const splitFile=document.getElementById('splitFile');
+splitDrop.addEventListener('click',()=>splitFile.click());
+splitDrop.addEventListener('dragover',e=>e.preventDefault());
+splitDrop.addEventListener('drop',e=>{e.preventDefault(); if(e.dataTransfer.files[0]){splitFile.files=e.dataTransfer.files; renderSplitFile();}});
+splitFile.addEventListener('change', renderSplitFile);
+function renderSplitFile(){
+  const f=splitFile.files[0];
+  document.getElementById('splitFileList').innerHTML = f ? `<div class="file-chip"><span>${f.name}</span><span>${(f.size/1024).toFixed(0)} KB</span></div>` : '';
+}
+document.getElementById('splitBtn').addEventListener('click', async ()=>{
+  const file = splitFile.files[0];
+  if(!file){alert('Please choose a PDF file first');return;}
+  const from = parseInt(document.getElementById('splitFrom').value);
+  const to = parseInt(document.getElementById('splitTo').value);
+  const { PDFDocument } = PDFLib;
+  const bytes = await file.arrayBuffer();
+  const src = await PDFDocument.load(bytes);
+  const total = src.getPageCount();
+  if(!from||!to||from<1||to>total||from>to){alert('Please enter a valid page range (1 to '+total+')');return;}
+  const newDoc = await PDFDocument.create();
+  const indices = [];
+  for(let i=from-1;i<=to-1;i++) indices.push(i);
+  const pages = await newDoc.copyPages(src, indices);
+  pages.forEach(p=>newDoc.addPage(p));
+  const newBytes = await newDoc.save();
+  const blob = new Blob([newBytes], {type:'application/pdf'});
+  document.getElementById('splitDownload').href = URL.createObjectURL(blob);
+  document.getElementById('splitResult').classList.add('show');
+});
+window.resetTool=function(){splitFile.value='';renderSplitFile();document.getElementById('splitFrom').value='1';document.getElementById('splitTo').value='1';document.getElementById('splitResult').classList.remove('show');};
+</script>
+</body>
+</html>

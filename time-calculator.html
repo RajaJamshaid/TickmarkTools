@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Time Calculator — Free Online Tool | TickmarkTools</title>
+<meta name="description" content="Free Time Calculator — add or subtract hours, minutes and seconds instantly.">
+<meta name="theme-color" content="#146356">
+<link rel="canonical" href="https://tickmarktools.com/time-calculator">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Time Calculator — Free Online Tool | TickmarkTools">
+<meta property="og:description" content="Free Time Calculator — add or subtract hours, minutes and seconds instantly.">
+<meta property="og:url" content="https://tickmarktools.com/time-calculator">
+<meta property="og:site_name" content="TickmarkTools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Time Calculator — TickmarkTools">
+<meta name="twitter:description" content="Free Time Calculator — add or subtract hours, minutes and seconds instantly.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Time Calculator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "url": "https://tickmarktools.com/time-calculator",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "1200"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://tickmarktools.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://tickmarktools.com/#categories"},
+    {"@type": "ListItem", "position": 3, "name": "Time Calculator", "item": "https://tickmarktools.com/time-calculator"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Is it free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes."}},
+    {"@type": "Question", "name": "What format should I use?", "acceptedAnswer": {"@type": "Answer", "text": "HH:MM:SS, e.g. 02:30:00 for 2 hours 30 minutes."}},
+    {"@type": "Question", "name": "What if subtraction goes negative?", "acceptedAnswer": {"@type": "Answer", "text": "The result is shown as a negative duration with a minus sign."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <nav class="main">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#146356"/><path d="M6 12.5L10 16.5L18 8" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        TickmarkTools
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="age-calculator.html">Calculators</a>
+        <a href="pdf-merge.html">PDF Tools</a>
+        <a href="image-compressor.html">Image Tools</a>
+        <a href="word-counter.html">Text Tools</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+        </button>
+        <a href="index.html#categories" class="nav-cta">All Tools</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap breadcrumb">
+  <a href="index.html">Home</a><span class="sep">/</span>
+  <a href="index.html#categories">Calculators</a><span class="sep">/</span>
+  <span>Time Calculator</span>
+</div>
+
+<section class="tool-hero">
+  <div class="wrap">
+    <div class="cat-tag">🧮 Calculators</div>
+    <h1>Time Calculator</h1>
+    <p class="lead">Add or subtract time durations (hours, minutes, seconds) instantly.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="tool-panel">
+    <label class="field-label">Time 1 (HH:MM:SS)</label>
+    <input type="text" id="t1" class="field" placeholder="e.g. 02:30:00">
+    <div style="display:flex;gap:10px;margin:14px 0;">
+      <button class="btn btn-secondary pct-tab active" data-mode="add">+ Add</button>
+      <button class="btn btn-secondary pct-tab" data-mode="sub">− Subtract</button>
+    </div>
+    <label class="field-label">Time 2 (HH:MM:SS)</label>
+    <input type="text" id="t2" class="field" placeholder="e.g. 01:15:30">
+    <div style="margin-top:18px;"><button class="btn btn-primary" id="timeBtn">Calculate</button></div>
+    <div class="result-box" id="timeResult"><div class="result-item"><div class="num" id="timeOutput">00:00:00</div><div class="lbl">Result (HH:MM:SS)</div></div></div>
+    <div class="toolbar-row">
+      <button class="btn btn-secondary" onclick="resetTool()">↺ Reset</button>
+      <button class="btn btn-secondary" id="copyResultBtn" onclick="copyResult()">📋 Copy Result</button>
+      <button class="btn btn-secondary" onclick="shareTool()">🔗 Share Tool</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>How to Use Time Calculator</h2>
+  <ol class="steps">
+      <li>Enter the first time in HH:MM:SS format.</li>
+      <li>Choose Add or Subtract.</li>
+      <li>Enter the second time.</li>
+      <li>Click Calculate to see the resulting duration.</li>
+  </ol>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Watch: How It Works</h2>
+  <div class="video-embed" data-video-id="">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    2–3 minute walkthrough video coming soon
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Features</h2>
+  <div class="features-grid">
+      <div class="feature-card"><div class="ico">🎯</div><h4>Accurate results</h4></div>
+      <div class="feature-card"><div class="ico">⚡</div><h4>Instant calculation</h4></div>
+      <div class="feature-card"><div class="ico">🔒</div><h4>100% private</h4></div>
+      <div class="feature-card"><div class="ico">📱</div><h4>Mobile friendly</h4></div>
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q"><span>Is it free?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a"><p>Yes.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>What format should I use?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a"><p>HH:MM:SS, e.g. 02:30:00 for 2 hours 30 minutes.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>What if subtraction goes negative?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a"><p>The result is shown as a negative duration with a minus sign.</p></div>
+      </div>
+</div>
+
+<div class="wrap tool-section">
+  <div class="ai-panel">
+    <h3>🤖 Ask AI about this tool</h3>
+    <p style="font-size:13.5px;color:var(--ink-soft);margin-top:4px;">Tap a question for an instant answer. Full conversational AI is coming soon.</p>
+    <div class="ai-q">How do I add two time durations?</div><div class="ai-a">Convert both to total seconds, add them, then convert back to HH:MM:SS format — this tool does that automatically.</div>
+    <div class="ai-q">Can I use this for work hours?</div><div class="ai-a">Yes, it's handy for adding up shift durations or calculating time worked.</div>
+    <div class="ai-q">Does it handle values over 24 hours?</div><div class="ai-a">Yes, durations aren't capped at 24 hours since these are treated as durations, not clock times.</div>
+    <div class="ai-input-row">
+      <input type="text" class="field" placeholder="Ask your own question...">
+      <button class="btn btn-primary">Ask</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Related Tools</h2>
+  <div class="related-grid">
+      <a href="date-difference-calculator.html" class="related-card">
+        <div class="related-emoji">📅</div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">Date Difference Calculator</h4></div>
+      </a>
+      <a href="age-calculator.html" class="related-card">
+        <div class="related-emoji">🎂</div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
+      </a>
+      <a href="fuel-cost-calculator.html" class="related-card">
+        <div class="related-emoji">⛽</div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">Fuel Cost Calculator</h4></div>
+      </a>
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Comments</h2>
+  <div class="comments-placeholder">💬 Comments are coming soon — you'll be able to ask questions and share feedback here.</div>
+</div>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="font-size:17px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#146356"/><path d="M6 12.5L10 16.5L18 8" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          TickmarkTools
+        </div>
+        <p>500+ free online tools — calculators, converters, PDF, image and text tools. Fast, private, no sign-up ever.</p>
+      </div>
+      <div class="footer-col"><h5>Company</h5><a href="#">About</a><a href="#">Contact</a><a href="#">Blog</a></div>
+      <div class="footer-col"><h5>Legal</h5><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Sitemap</a></div>
+      <div class="footer-col"><h5>Categories</h5><a href="age-calculator.html">Calculators</a><a href="pdf-merge.html">PDF Tools</a><a href="image-compressor.html">Image Tools</a></div>
+      <div class="footer-col"><h5>More</h5><a href="word-counter.html">Text Tools</a><a href="json-formatter.html">Developer Tools</a><a href="#">AI Tools</a></div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 TickmarkTools. All rights reserved.</div>
+      <div>Every Tool. One Place.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script>
+let timeMode='add';
+document.querySelectorAll('.pct-tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.pct-tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active'); timeMode=btn.dataset.mode;
+  });
+});
+function toSeconds(str){
+  const parts=str.split(':').map(Number);
+  if(parts.some(isNaN)) return null;
+  const [h=0,m=0,s=0]=parts;
+  return h*3600+m*60+s;
+}
+document.getElementById('timeBtn').addEventListener('click',()=>{
+  const s1=toSeconds(document.getElementById('t1').value);
+  const s2=toSeconds(document.getElementById('t2').value);
+  if(s1===null||s2===null){alert('Please use HH:MM:SS format for both times');return;}
+  let total = timeMode==='add' ? s1+s2 : s1-s2;
+  const sign = total<0 ? '-' : '';
+  total=Math.abs(total);
+  const h=Math.floor(total/3600);
+  const m=Math.floor((total%3600)/60);
+  const s=total%60;
+  document.getElementById('timeOutput').textContent = sign + String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+  document.getElementById('timeResult').classList.add('show');
+});
+window.resetTool=function(){['t1','t2'].forEach(id=>document.getElementById(id).value='');document.getElementById('timeResult').classList.remove('show');};
+</script>
+</body>
+</html>

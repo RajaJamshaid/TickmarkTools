@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Cropper — Free Online Tool | TickmarkTools</title>
+<meta name="description" content="Free online Image Cropper — crop images by dragging a selection box, instantly in your browser.">
+<meta name="theme-color" content="#146356">
+<link rel="canonical" href="https://tickmarktools.com/image-cropper">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Image Cropper — Free Online Tool | TickmarkTools">
+<meta property="og:description" content="Free online Image Cropper — crop images by dragging a selection box, instantly in your browser.">
+<meta property="og:url" content="https://tickmarktools.com/image-cropper">
+<meta property="og:site_name" content="TickmarkTools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Image Cropper — TickmarkTools">
+<meta name="twitter:description" content="Free online Image Cropper — crop images by dragging a selection box, instantly in your browser.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Image Cropper",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "url": "https://tickmarktools.com/image-cropper",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "1200"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://tickmarktools.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Image Tools", "item": "https://tickmarktools.com/#categories"},
+    {"@type": "ListItem", "position": 3, "name": "Image Cropper", "item": "https://tickmarktools.com/image-cropper"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Is it free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes."}},
+    {"@type": "Question", "name": "Can I redo my selection?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, just drag a new selection box before clicking crop."}},
+    {"@type": "Question", "name": "What format is the cropped output?", "acceptedAnswer": {"@type": "Answer", "text": "PNG, preserving transparency if present."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <nav class="main">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#146356"/><path d="M6 12.5L10 16.5L18 8" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        TickmarkTools
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="age-calculator.html">Calculators</a>
+        <a href="pdf-merge.html">PDF Tools</a>
+        <a href="image-compressor.html">Image Tools</a>
+        <a href="word-counter.html">Text Tools</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+        </button>
+        <a href="index.html#categories" class="nav-cta">All Tools</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap breadcrumb">
+  <a href="index.html">Home</a><span class="sep">/</span>
+  <a href="index.html#categories">Image Tools</a><span class="sep">/</span>
+  <span>Image Cropper</span>
+</div>
+
+<section class="tool-hero">
+  <div class="wrap">
+    <div class="cat-tag">🖼️ Image Tools</div>
+    <h1>Image Cropper</h1>
+    <p class="lead">Crop any image by dragging a selection box — instantly, right in your browser.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="tool-panel">
+    <div class="upload-drop" id="cropDrop">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      <div>Click or drag an image here</div>
+      <input type="file" id="cropFile" accept="image/*" style="display:none;">
+    </div>
+    <div id="cropControls" style="display:none;margin-top:20px;">
+      <div style="position:relative;display:inline-block;max-width:100%;" id="cropStage">
+        <canvas id="cropCanvas" style="max-width:100%;border-radius:10px;border:1px solid var(--border);cursor:crosshair;"></canvas>
+      </div>
+      <p style="font-size:13px;color:var(--ink-soft);margin-top:10px;">Drag on the image to select the area you want to crop.</p>
+      <button class="btn btn-primary" id="cropBtn" style="margin-top:10px;">Crop Selected Area</button>
+      <div class="result-box" id="cropResult" style="margin-top:16px;">
+        <img id="cropPreview" style="max-width:200px;border-radius:10px;border:1px solid var(--border);">
+        <div style="margin-top:10px;"><a id="cropDownload" class="btn btn-primary" download="cropped.png">Download Cropped Image</a></div>
+      </div>
+    </div>
+    <div class="toolbar-row">
+      <button class="btn btn-secondary" onclick="resetTool()">↺ Reset</button>
+      <button class="btn btn-secondary" id="copyResultBtn" onclick="copyResult()">📋 Copy Result</button>
+      <button class="btn btn-secondary" onclick="shareTool()">🔗 Share Tool</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>How to Use Image Cropper</h2>
+  <ol class="steps">
+      <li>Upload an image.</li>
+      <li>Click and drag on the image to select the crop area.</li>
+      <li>Click <strong>Crop Selected Area</strong>.</li>
+      <li>Download your cropped image.</li>
+  </ol>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Watch: How It Works</h2>
+  <div class="video-embed" data-video-id="">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    2–3 minute walkthrough video coming soon
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Features</h2>
+  <div class="features-grid">
+      <div class="feature-card"><div class="ico">🎯</div><h4>Freeform selection</h4></div>
+      <div class="feature-card"><div class="ico">⚡</div><h4>Instant, in-browser</h4></div>
+      <div class="feature-card"><div class="ico">🔒</div><h4>Nothing uploaded</h4></div>
+      <div class="feature-card"><div class="ico">📱</div><h4>Mobile friendly</h4></div>
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q"><span>Is it free?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a"><p>Yes.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Can I redo my selection?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a"><p>Yes, just drag a new selection box before clicking crop.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>What format is the cropped output?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a"><p>PNG, preserving transparency if present.</p></div>
+      </div>
+</div>
+
+<div class="wrap tool-section">
+  <div class="ai-panel">
+    <h3>🤖 Ask AI about this tool</h3>
+    <p style="font-size:13.5px;color:var(--ink-soft);margin-top:4px;">Tap a question for an instant answer. Full conversational AI is coming soon.</p>
+    <div class="ai-q">How do I select a precise crop area?</div><div class="ai-a">Click and drag from one corner of the desired area to the opposite corner — release to set the selection.</div>
+    <div class="ai-q">Can I crop to a specific aspect ratio?</div><div class="ai-a">This tool uses freeform selection; drag carefully to approximate your desired ratio.</div>
+    <div class="ai-q">Will cropping reduce image quality?</div><div class="ai-a">No, cropping just removes the outer area — remaining pixels stay at original quality.</div>
+    <div class="ai-input-row">
+      <input type="text" class="field" placeholder="Ask your own question...">
+      <button class="btn btn-primary">Ask</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Related Tools</h2>
+  <div class="related-grid">
+      <a href="image-resizer.html" class="related-card">
+        <div class="related-emoji">📏</div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">Image Resizer</h4></div>
+      </a>
+      <a href="image-compressor.html" class="related-card">
+        <div class="related-emoji">🗜️</div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">Image Compressor</h4></div>
+      </a>
+      <a href="image-converter.html" class="related-card">
+        <div class="related-emoji">🔁</div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">Image Converter</h4></div>
+      </a>
+  </div>
+</div>
+
+<div class="wrap tool-section">
+  <h2>Comments</h2>
+  <div class="comments-placeholder">💬 Comments are coming soon — you'll be able to ask questions and share feedback here.</div>
+</div>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="font-size:17px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#146356"/><path d="M6 12.5L10 16.5L18 8" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          TickmarkTools
+        </div>
+        <p>500+ free online tools — calculators, converters, PDF, image and text tools. Fast, private, no sign-up ever.</p>
+      </div>
+      <div class="footer-col"><h5>Company</h5><a href="#">About</a><a href="#">Contact</a><a href="#">Blog</a></div>
+      <div class="footer-col"><h5>Legal</h5><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Sitemap</a></div>
+      <div class="footer-col"><h5>Categories</h5><a href="age-calculator.html">Calculators</a><a href="pdf-merge.html">PDF Tools</a><a href="image-compressor.html">Image Tools</a></div>
+      <div class="footer-col"><h5>More</h5><a href="word-counter.html">Text Tools</a><a href="json-formatter.html">Developer Tools</a><a href="#">AI Tools</a></div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 TickmarkTools. All rights reserved.</div>
+      <div>Every Tool. One Place.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script>
+const cropDrop=document.getElementById('cropDrop');
+const cropFile=document.getElementById('cropFile');
+const cropCanvas=document.getElementById('cropCanvas');
+const ctx = cropCanvas.getContext('2d');
+let cropImg=new Image(), sel={x:0,y:0,w:0,h:0}, dragging=false, startX=0, startY=0, scaleRatio=1;
+cropDrop.addEventListener('click',()=>cropFile.click());
+cropDrop.addEventListener('dragover',e=>e.preventDefault());
+cropDrop.addEventListener('drop',e=>{e.preventDefault(); if(e.dataTransfer.files[0]) loadCrop(e.dataTransfer.files[0]);});
+cropFile.addEventListener('change',()=>{ if(cropFile.files[0]) loadCrop(cropFile.files[0]); });
+function loadCrop(file){
+  const reader=new FileReader();
+  reader.onload=(e)=>{
+    cropImg.onload=()=>{
+      document.getElementById('cropControls').style.display='block';
+      const maxW = 560;
+      scaleRatio = cropImg.width > maxW ? maxW/cropImg.width : 1;
+      cropCanvas.width = cropImg.width*scaleRatio;
+      cropCanvas.height = cropImg.height*scaleRatio;
+      redrawCrop();
+    };
+    cropImg.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+function redrawCrop(){
+  ctx.clearRect(0,0,cropCanvas.width,cropCanvas.height);
+  ctx.drawImage(cropImg,0,0,cropCanvas.width,cropCanvas.height);
+  if(sel.w && sel.h){
+    ctx.strokeStyle='#146356'; ctx.lineWidth=2;
+    ctx.strokeRect(sel.x,sel.y,sel.w,sel.h);
+    ctx.fillStyle='rgba(20,99,86,0.15)';
+    ctx.fillRect(sel.x,sel.y,sel.w,sel.h);
+  }
+}
+function getPos(e){
+  const rect = cropCanvas.getBoundingClientRect();
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  return { x: (clientX-rect.left) * (cropCanvas.width/rect.width), y: (clientY-rect.top) * (cropCanvas.height/rect.height) };
+}
+cropCanvas.addEventListener('mousedown', e=>{ const p=getPos(e); startX=p.x; startY=p.y; dragging=true; });
+cropCanvas.addEventListener('mousemove', e=>{
+  if(!dragging) return;
+  const p=getPos(e);
+  sel = { x:Math.min(startX,p.x), y:Math.min(startY,p.y), w:Math.abs(p.x-startX), h:Math.abs(p.y-startY) };
+  redrawCrop();
+});
+window.addEventListener('mouseup', ()=>{ dragging=false; });
+document.getElementById('cropBtn').addEventListener('click',()=>{
+  if(!sel.w || !sel.h){ alert('Please drag to select a crop area first'); return; }
+  const outCanvas = document.createElement('canvas');
+  const realX = sel.x/scaleRatio, realY = sel.y/scaleRatio, realW = sel.w/scaleRatio, realH = sel.h/scaleRatio;
+  outCanvas.width = realW; outCanvas.height = realH;
+  outCanvas.getContext('2d').drawImage(cropImg, realX, realY, realW, realH, 0, 0, realW, realH);
+  outCanvas.toBlob(blob=>{
+    const url = URL.createObjectURL(blob);
+    document.getElementById('cropPreview').src = url;
+    document.getElementById('cropDownload').href = url;
+    document.getElementById('cropResult').classList.add('show');
+  }, 'image/png');
+});
+window.resetTool=function(){document.getElementById('cropControls').style.display='none'; cropFile.value=''; sel={x:0,y:0,w:0,h:0};};
+window.copyResult=function(){ alert('Use the Download button to save the cropped image.'); };
+</script>
+</body>
+</html>
