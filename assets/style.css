@@ -2,7 +2,7 @@
   --bg:#ffffff;
   --surface:#F3F5F4;
   --ink:#12181A;
-  --ink-soft:#4B5563;
+  --ink-soft:#1E2328;
   --primary:#146356;
   --primary-dark:#0E4A40;
   --accent:#FF6A4D;
@@ -21,7 +21,7 @@ body{margin:0;font-family:'Inter',sans-serif;color:var(--ink);background:var(--b
 h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.02em;margin:0;}
 .mono{font-family:'IBM Plex Mono',monospace;}
 a{color:inherit;text-decoration:none;}
-.wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px;}
 
 /* NAV */
 header.site{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--bg) 92%, transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
@@ -38,7 +38,8 @@ nav.main{display:flex;align-items:center;justify-content:space-between;padding:1
 @media (max-width:860px){.nav-links{display:none;}}
 
 /* BREADCRUMB */
-.breadcrumb{padding:16px 0;font-size:13.5px;color:var(--ink-soft);}
+.breadcrumb{padding-top:16px;padding-bottom:16px;font-size:13.5px;color:var(--ink-soft);}
+.breadcrumb a{margin-right:2px;}
 .breadcrumb a:hover{color:var(--primary);}
 .breadcrumb .sep{margin:0 6px;opacity:0.5;}
 
@@ -71,7 +72,9 @@ nav.main{display:flex;align-items:center;justify-content:space-between;padding:1
 .pct-tab.active{background:var(--primary);color:#fff;border-color:var(--primary);}
 
 /* ARTICLE / SECTIONS */
-.tool-section{padding:32px 0;border-top:1px solid var(--border);}
+.tool-section{padding-top:32px;padding-bottom:32px;border-top:1px solid var(--border);}
+.tool-section p{line-height:1.75;margin-bottom:14px;}
+.tool-section p:last-child{margin-bottom:0;}
 .tool-section h2{font-size:22px;font-weight:700;margin-bottom:16px;}
 .steps{counter-reset:step;list-style:none;padding:0;margin:0;}
 .steps li{position:relative;padding-left:44px;margin-bottom:16px;font-size:15px;color:var(--ink-soft);line-height:1.6;}
@@ -113,9 +116,26 @@ nav.main{display:flex;align-items:center;justify-content:space-between;padding:1
 
 /* COMMENTS PLACEHOLDER */
 .comments-placeholder{border:1px dashed var(--border);border-radius:14px;padding:28px;text-align:center;color:var(--ink-soft);font-size:14px;}
+.comment-box{margin-top:6px;}
+.comment-input-row{display:flex;gap:10px;flex-wrap:wrap;}
+.comment-input-row .field{flex:1;min-width:200px;}
+.comment-list{margin-top:18px;}
+.comment-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--border);}
+.comment-item:last-child{border-bottom:none;}
+.comment-avatar{width:36px;height:36px;border-radius:50%;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.comment-meta{font-size:12px;color:var(--ink-soft);margin-bottom:4px;}
+.comment-text{font-size:14px;line-height:1.5;}
 
 /* FOOTER */
 footer.site{border-top:1px solid var(--border);padding:56px 0 28px;margin-top:20px;background:var(--surface);}
+
+/* Compact tool-page footer */
+.compact-footer{max-width:1200px;margin:0 auto;padding:26px 32px 14px;border-top:1px solid var(--border);margin-top:20px;text-align:center;background:var(--surface);}
+.compact-footer-links{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;}
+.compact-footer-links a{font-size:13px;color:var(--ink-soft);text-decoration:underline;}
+.compact-footer-links a:hover{color:var(--primary);}
+.compact-footer-links .sep{color:var(--border);font-size:13px;}
+.compact-footer-copy{text-align:center;font-size:12px;color:var(--ink-soft);padding:14px 32px 24px;background:var(--surface);}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:32px;margin-bottom:36px;}
 @media (max-width:900px){.footer-grid{grid-template-columns:repeat(2,1fr);}}
 @media (max-width:560px){.footer-grid{grid-template-columns:1fr;}}
@@ -138,3 +158,6 @@ input[type=range]{accent-color:var(--primary);width:100%;}
 .strength-bar div{height:100%;transition:all .3s ease;}
 .copy-btn{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:13px;font-weight:600;cursor:pointer;}
 .copy-btn:hover{border-color:var(--primary);color:var(--primary);}
+table{width:100%;border-collapse:collapse;}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+@media (max-width:560px){.btn{min-height:44px;}}
