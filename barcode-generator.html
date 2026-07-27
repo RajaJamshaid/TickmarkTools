@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/JsBarcode/3.11.5/JsBarcode.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.12.3/JsBarcode.all.min.js"></script>
 
 <script type="application/ld+json">
 {
@@ -259,7 +259,7 @@ document.getElementById('bcGenBtn').addEventListener('click',()=>{
       };
       img.src = url;
     }, 100);
-  }catch(e){ alert('Could not generate barcode for this input/format combination.'); }
+  }catch(e){ console.error('Barcode generation error:', e); alert('Could not generate barcode: ' + e.message); }
 });
 window.resetTool=function(){document.getElementById('bcText').value='';document.getElementById('bcSvg').innerHTML='';document.getElementById('bcResult').classList.remove('show');};
 </script>
