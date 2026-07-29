@@ -36,9 +36,21 @@ window.resetTool = function(){
   document.querySelectorAll('.tool-panel input, .tool-panel textarea').forEach(el => {
     if(el.type === 'checkbox' || el.type === 'range') return;
     el.value = '';
+    // If tool-localization.js had marked this field as "user edited"
+    // (so it would stop overwriting it), clear that flag on Reset so
+    // it becomes eligible again for its country-based default value.
+    if(el.dataset.ttoolsUserEdited) delete el.dataset.ttoolsUserEdited;
   });
   document.querySelectorAll('.result-box').forEach(r => r.classList.remove('show'));
   document.querySelectorAll('.file-list').forEach(f => f.innerHTML = '');
+
+  // Re-run country-aware defaults (currency selection, country-specific
+  // default values, etc.) so Reset restores localized values instead of
+  // leaving them blank. Guarded in case a page doesn't load
+  // tool-localization.js.
+  if(window.TickmarkLocalization){
+    window.TickmarkLocalization.apply();
+  }
 };
 
 window.copyResult = function(){
