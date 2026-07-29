@@ -256,10 +256,148 @@
   .footer-col a{display:block;font-size:14px;color:var(--ink);margin-bottom:10px;}
   .footer-col a:hover{color:var(--primary);}
   .footer-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--ink-soft);}
+
+  /* ==========================================================
+     PREMIUM MOTION SYSTEM — homepage only
+     GPU-friendly (transform/opacity only), reveal on scroll,
+     reduced-motion aware, mobile-lightened.
+  ========================================================== */
+
+  body.motion-ready{ animation:pageFadeIn .5s ease both; }
+  @keyframes pageFadeIn{ from{opacity:0;} to{opacity:1;} }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(22px);
+    transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
+    will-change:opacity, transform;
+  }
+  .reveal.in-view{ opacity:1; transform:translateY(0); }
+
+  #scrollProgress{
+    position:fixed; top:0; left:0; height:3px; width:0%;
+    background:linear-gradient(90deg, var(--primary), #2FA98D);
+    z-index:999; transition:width .1s linear; pointer-events:none;
+  }
+
+  header{ transition:box-shadow .35s ease, padding .35s ease; }
+  header.scrolled{ box-shadow:0 8px 24px -16px rgba(20,24,26,0.18); }
+  header.scrolled nav{ padding:9px 0; }
+  .logo svg{ transition:transform .3s cubic-bezier(.34,1.56,.64,1); }
+  .logo:hover svg{ transform:scale(1.12) rotate(-3deg); }
+
+  .nav-links a{ position:relative; padding-bottom:2px; }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:-2px; height:2px; width:0%;
+    background:var(--primary); transition:width .3s cubic-bezier(.16,1,.3,1);
+  }
+  .nav-links a:hover::after{ width:100%; }
+
+  .hero{ position:relative; overflow:hidden; }
+  .hero-blob{
+    position:absolute; border-radius:50%; filter:blur(60px);
+    opacity:.35; z-index:0; pointer-events:none;
+    transform:translate3d(var(--px,0),var(--py,0),0);
+    transition:transform .6s cubic-bezier(.16,1,.3,1);
+    will-change:transform;
+  }
+  .hero-blob.b1{ width:380px; height:380px; top:-120px; right:-60px; background:radial-gradient(circle at 30% 30%, #2FA98D, transparent 70%); animation:floatBlob1 16s ease-in-out infinite; }
+  .hero-blob.b2{ width:300px; height:300px; bottom:-100px; left:10%; background:radial-gradient(circle at 60% 40%, #FF6A4D, transparent 70%); animation:floatBlob2 20s ease-in-out infinite; }
+  @keyframes floatBlob1{ 0%,100%{ transform:translate3d(var(--px,0),var(--py,0),0) translate(0,0) scale(1);} 50%{ transform:translate3d(var(--px,0),var(--py,0),0) translate(-24px,30px) scale(1.06);} }
+  @keyframes floatBlob2{ 0%,100%{ transform:translate3d(var(--px,0),var(--py,0),0) translate(0,0) scale(1);} 50%{ transform:translate3d(var(--px,0),var(--py,0),0) translate(20px,-24px) scale(1.08);} }
+
+  .hero-fade{ animation:heroFadeIn .7s cubic-bezier(.16,1,.3,1) both; }
+  .hero-fade:nth-child(2){ animation-delay:.12s; }
+  .hero h1{ animation:heroFadeIn .75s cubic-bezier(.16,1,.3,1) both, letterIn 1s ease both; }
+  @keyframes heroFadeIn{ from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);} }
+  @keyframes letterIn{ from{ letter-spacing:-0.01em; } to{ letter-spacing:-0.03em; } }
+  .hero p.sub{ animation:heroFadeIn .8s .1s cubic-bezier(.16,1,.3,1) both; }
+  .cta-row{ animation:heroFadeIn .8s .18s cubic-bezier(.16,1,.3,1) both; }
+  .trust-row{ animation:heroFadeIn .8s .26s cubic-bezier(.16,1,.3,1) both; }
+  .eyebrow{ animation:heroFadeIn .6s cubic-bezier(.16,1,.3,1) both; }
+
+  .search-box{ animation:searchExpand .6s .15s cubic-bezier(.16,1,.3,1) both; }
+  @keyframes searchExpand{ from{opacity:0; transform:scaleX(.92); transform-origin:left center;} to{opacity:1; transform:scaleX(1);} }
+  .search-box svg{ transition:transform .3s ease, color .3s ease; }
+  .search-box:focus-within svg{ transform:scale(1.1); color:var(--primary); }
+
+  /* NOTE: intentionally no overflow:hidden on .btn — it would clip the
+     existing hover box-shadow. Ripple is contained in its own layer instead. */
+  .btn{ position:relative; -webkit-tap-highlight-color:transparent; }
+  .btn:active{ transform:translateY(0) scale(.97); }
+  .btn::before{
+    content:''; position:absolute; inset:0; border-radius:inherit;
+    background:linear-gradient(120deg, transparent 30%, rgba(255,255,255,.35) 50%, transparent 70%);
+    transform:translateX(-120%); transition:transform .6s ease;
+    pointer-events:none;
+  }
+  .btn:hover::before{ transform:translateX(120%); }
+  .btn-ripple-layer{
+    position:absolute; inset:0; border-radius:inherit; overflow:hidden; pointer-events:none;
+  }
+  .ripple{
+    position:absolute; border-radius:50%; background:rgba(255,255,255,.55);
+    transform:scale(0); animation:rippleAnim .6s ease-out forwards; pointer-events:none;
+  }
+  html[data-theme="dark"] .btn-secondary .ripple{ background:rgba(255,255,255,.18); }
+  @keyframes rippleAnim{ to{ transform:scale(2.6); opacity:0; } }
+
+  .cat-card, .tool-card{ position:relative; }
+  .cat-card::before, .tool-card::before{
+    content:''; position:absolute; inset:-1px; border-radius:inherit;
+    padding:1px; background:linear-gradient(120deg, var(--primary), transparent 40%, transparent 60%, var(--primary));
+    -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    opacity:0; transition:opacity .35s ease; pointer-events:none;
+  }
+  .cat-card:hover::before, .tool-card:hover::before{ opacity:.55; }
+  .tool-emoji{ transition:transform .3s cubic-bezier(.34,1.56,.64,1); }
+  .tool-card:hover .tool-emoji{ transform:scale(1.12) rotate(-6deg); }
+
+  .stagger-child{ transition-delay:calc(var(--stagger-i, 0) * 70ms); }
+
+  .count-target{ font-variant-numeric:tabular-nums; }
+
+  #scrollTopBtn{
+    position:fixed; right:20px; bottom:20px; width:46px; height:46px; border-radius:50%;
+    background:var(--primary); color:#fff; border:none; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 24px -8px color-mix(in srgb, var(--primary) 55%, transparent);
+    opacity:0; transform:translateY(12px) scale(.9); pointer-events:none;
+    transition:opacity .3s ease, transform .3s cubic-bezier(.34,1.56,.64,1), background .2s ease;
+    z-index:60;
+  }
+  #scrollTopBtn.show{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+  #scrollTopBtn:hover{ background:var(--primary-dark); transform:translateY(-3px) scale(1.05); }
+  #scrollTopBtn:active{ transform:translateY(0) scale(.95); }
+
+  .footer-col a{ position:relative; width:fit-content; transition:color .2s ease; }
+  .footer-col a::after{
+    content:''; position:absolute; left:0; bottom:-2px; height:1px; width:0%;
+    background:var(--primary); transition:width .3s cubic-bezier(.16,1,.3,1);
+  }
+  .footer-col a:hover::after{ width:100%; }
+
+  @media (max-width:640px){
+    .hero-blob{ display:none; }
+    .cat-card::before, .tool-card::before{ display:none; }
+    .btn::before{ display:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+      animation-duration:.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.001ms !important;
+      scroll-behavior:auto !important;
+    }
+    .reveal{ opacity:1 !important; transform:none !important; }
+    .hero-blob{ display:none !important; }
+  }
 </style>
 </head>
 <body>
-
+<div id="scrollProgress" aria-hidden="true"></div>
 <header>
   <div class="wrap">
     <nav>
@@ -293,11 +431,13 @@
 </header>
 
 <section class="hero">
+  <div class="hero-blob b1" aria-hidden="true"></div>
+  <div class="hero-blob b2" aria-hidden="true"></div>
   <div class="wrap hero-grid">
     <div class="hero-fade">
       <div class="eyebrow">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 12.5L10 16.5L18 8" stroke="#146356" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        500+ tools, always free
+        <span class="count-target">500+ tools, always free</span>
       </div>
       <h1>500+ Free Online <span class="highlight">Tools</span></h1>
       <p class="sub">Fast. Private. No Sign-up Required.</p>
@@ -575,8 +715,10 @@
   </div>
 </footer>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
+<button id="scrollTopBtn" aria-label="Scroll back to top" title="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
 <script>
   // Signature ticking-checklist animation
   const items = document.querySelectorAll('#tick-list .tick-item');
@@ -707,6 +849,182 @@
       autocomplete.classList.remove('show');
     }
   });
+</script>
+
+<script>
+/* ==========================================================
+   PREMIUM MOTION ENGINE — homepage only.
+   - Reveal-on-scroll, staggered entrances
+   - Scroll progress + scroll-to-top
+   - Header scrolled state
+   - Button ripple + magnetic hover (desktop only)
+   - Hero blob mouse parallax (desktop only)
+   - One-time count-up for the "500+" hero stat
+   All effects are no-ops (or auto-disabled) when the user
+   prefers reduced motion, or on touch/mobile devices.
+========================================================== */
+(function(){
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+  var isSmallScreen = window.innerWidth <= 640;
+  var lightMode = prefersReduced || isCoarsePointer; // disable glow/parallax/magnetic
+
+  // 1) Reveal page once fonts/layout are ready (avoids FOUC of the fade)
+  document.body.classList.add('motion-ready');
+
+  // 2) Scroll-reveal via IntersectionObserver, with stagger for grouped items
+  function markReveal(el, index){
+    el.classList.add('reveal');
+    if(!prefersReduced){ el.style.transitionDelay = (Math.min(index,8) * 70) + 'ms'; }
+  }
+
+  // Each .tool-grid / .cat-grid is treated as its own stagger group,
+  // so every row of cards fades in together as it enters view.
+  document.querySelectorAll('.tool-grid, .acc-grid').forEach(function(grid){
+    Array.prototype.forEach.call(grid.children, function(card, i){ markReveal(card, i); });
+  });
+  document.querySelectorAll('#categories .cat-grid').forEach(function(grid){
+    Array.prototype.forEach.call(grid.children, function(card, i){ markReveal(card, i); });
+  });
+  document.querySelectorAll('.demo-card').forEach(function(el){ markReveal(el, 0); });
+  document.querySelectorAll('.footer-col, .footer-brand').forEach(function(el, i){ markReveal(el, i); });
+
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.12, rootMargin:'0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in-view'); });
+  }
+
+  // 3) Scroll progress bar + header scrolled state + scroll-to-top (rAF-throttled)
+  var progressEl = document.getElementById('scrollProgress');
+  var headerEl = document.querySelector('header');
+  var topBtn = document.getElementById('scrollTopBtn');
+  var ticking = false;
+
+  function onScrollFrame(){
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    if(progressEl) progressEl.style.width = pct + '%';
+    if(headerEl) headerEl.classList.toggle('scrolled', scrollTop > 8);
+    if(topBtn) topBtn.classList.toggle('show', scrollTop > 480);
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if(!ticking){ window.requestAnimationFrame(onScrollFrame); ticking = true; }
+  }, { passive:true });
+  onScrollFrame();
+
+  if(topBtn){
+    topBtn.addEventListener('click', function(){
+      window.scrollTo({ top:0, behavior: prefersReduced ? 'auto' : 'smooth' });
+    });
+  }
+
+  // 4) Button ripple (all buttons) — cheap, GPU-friendly, works on touch too.
+  // Ripple lives in its own absolutely-positioned, overflow:hidden layer so
+  // the button itself keeps its normal (unclipped) hover box-shadow.
+  document.querySelectorAll('.btn').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      if(prefersReduced) return;
+      var layer = btn.querySelector('.btn-ripple-layer');
+      if(!layer){
+        layer = document.createElement('span');
+        layer.className = 'btn-ripple-layer';
+        btn.appendChild(layer);
+      }
+      var rect = btn.getBoundingClientRect();
+      var size = Math.max(rect.width, rect.height) * 1.2;
+      var span = document.createElement('span');
+      span.className = 'ripple';
+      span.style.width = span.style.height = size + 'px';
+      span.style.left = ((e.clientX || rect.left + rect.width/2) - rect.left - size/2) + 'px';
+      span.style.top = ((e.clientY || rect.top + rect.height/2) - rect.top - size/2) + 'px';
+      layer.appendChild(span);
+      span.addEventListener('animationend', function(){ span.remove(); });
+    });
+  });
+
+  // 5) Magnetic hover for primary CTA buttons — desktop, fine-pointer only
+  if(!lightMode){
+    document.querySelectorAll('.btn-primary, .btn-secondary').forEach(function(btn){
+      btn.addEventListener('mousemove', function(e){
+        var rect = btn.getBoundingClientRect();
+        var relX = (e.clientX - rect.left - rect.width/2) * 0.18;
+        var relY = (e.clientY - rect.top - rect.height/2) * 0.35;
+        btn.style.transform = 'translate(' + relX.toFixed(1) + 'px,' + relY.toFixed(1) + 'px)';
+      });
+      btn.addEventListener('mouseleave', function(){ btn.style.transform = ''; });
+    });
+  }
+
+  // 6) Hero blob mouse-parallax — desktop only, disabled on touch/mobile/reduced-motion
+  if(!lightMode && !isSmallScreen){
+    var blobs = document.querySelectorAll('.hero-blob');
+    var heroEl = document.querySelector('.hero');
+    if(heroEl && blobs.length){
+      heroEl.addEventListener('mousemove', function(e){
+        var rect = heroEl.getBoundingClientRect();
+        var x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+        var y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+        blobs.forEach(function(blob, i){
+          var strength = i === 0 ? 14 : 20;
+          blob.style.setProperty('--px', (x * strength) + 'px');
+          blob.style.setProperty('--py', (y * strength) + 'px');
+        });
+      });
+      heroEl.addEventListener('mouseleave', function(){
+        blobs.forEach(function(blob){
+          blob.style.setProperty('--px', '0px');
+          blob.style.setProperty('--py', '0px');
+        });
+      });
+    }
+  }
+
+  // 7) One-time count-up for the "500+" hero eyebrow stat
+  var eyebrow = document.querySelector('.hero .eyebrow .count-target');
+  if(eyebrow && !prefersReduced){
+    var original = eyebrow.textContent.trim(); // e.g. "500+ tools, always free"
+    var match = original.match(/(\d+)(\+?)/);
+    if(match){
+      var target = parseInt(match[1], 10);
+      var suffix = match[2] || '';
+      var before = original.slice(0, match.index);
+      var after = original.slice(match.index + match[0].length);
+      var counted = false;
+      var countObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting && !counted){
+            counted = true;
+            var start = null;
+            var duration = 900;
+            function step(ts){
+              if(!start) start = ts;
+              var progress = Math.min((ts - start) / duration, 1);
+              var eased = 1 - Math.pow(1 - progress, 3);
+              var current = Math.round(target * eased);
+              eyebrow.textContent = before + current + suffix + after;
+              if(progress < 1){ requestAnimationFrame(step); }
+              else { eyebrow.textContent = original; }
+            }
+            requestAnimationFrame(step);
+            countObserver.disconnect();
+          }
+        });
+      }, { threshold:0.5 });
+      countObserver.observe(eyebrow);
+    }
+  }
+})();
 </script>
 
 </body>
