@@ -6,9 +6,17 @@
  * formatting, and country-specific default values purely by adding
  * data-attributes to their HTML — no per-tool JavaScript needed.
  *
- * LOAD ORDER (both once, in your global layout):
- *   <script src="/assets/js/country-detector.js"></script>
- *   <script src="/assets/js/tool-localization.js"></script>
+ * LOAD ORDER (both once, in your global layout, relative paths):
+ *   <script src="assets/country-detector.js"></script>
+ *   <script src="assets/tool-localization.js"></script>
+ *   <script src="assets/main.js"></script>
+ *
+ * This file is defensive about load order: if for any reason it runs
+ * before country-detector.js has defined window.TickmarkCountry (wrong
+ * script order, a page missing the include, a slow/blocked CDN, etc.),
+ * it POLLS for it for a few seconds instead of silently doing nothing.
+ * If it still never appears, it falls back to safe metric/USD defaults
+ * so tools never crash with "TickmarkCountry is not defined".
  *
  * ============================================================
  * CONVENTIONS — add these attributes to any tool's HTML
@@ -16,90 +24,80 @@
  *
  * 1) CURRENCY DROPDOWN
  *    <select data-ttools-currency></select>
- *    → Auto-filled with common currencies, visitor's currency pre-selected.
- *    Read the chosen value anytime with:
- *      TickmarkLocalization.getCurrency()  // e.g. "PKR"
  *
  * 2) METRIC / IMPERIAL UNIT TOGGLE
  *    <div data-ttools-unit-toggle>
  *      <button data-unit="metric">cm</button>
  *      <button data-unit="imperial">ft/in</button>
  *    </div>
- *    → "active" class auto-applied to the button matching the visitor's
- *    country. Clicking a button overrides it (remembered for the session).
- *    Read anytime with:
- *      TickmarkLocalization.getUnitSystem()  // "metric" | "imperial"
- *    Listen for changes (e.g. to re-render a calculator):
- *      document.addEventListener('ttools:unitChanged', (e) => { e.detail.unitSystem })
  *
  * 3) DATE FORMAT DISPLAY
  *    <span data-ttools-date="2026-07-27"></span>
- *    → Rendered in the visitor's local date format automatically
- *    (e.g. 7/27/2026 in the US, 27/07/2026 elsewhere).
  *
  * 4) COUNTRY-SPECIFIC DEFAULT VALUES
- *    <input data-ttools-country-default='{"US":"7.5","PK":"17","IN":"18","GB":"20"}'
+ *    <input data-ttools-country-default='{"US":"7.5","PK":"17","IN":"18"}'
  *           data-ttools-default-fallback="0">
- *    → Pre-fills the input's value with the entry matching the visitor's
- *    country code, or the fallback if there's no match. Useful for tax
- *    rates, shipping fees, minimum wage, etc. Works on <input>, <select>,
- *    and plain text elements (uses textContent for non-form elements).
  *
  * 5) CURRENCY SYMBOL / COUNTRY NAME TEXT
- *    <span data-ttools-currency-symbol></span>   → "₨", "$", "€"...
- *    <span data-ttools-country-name></span>      → "Pakistan", "United States"...
+ *    <span data-ttools-currency-symbol></span>
+ *    <span data-ttools-country-name></span>
  *
- * All bindings re-run automatically if new matching elements are added to
- * the page later (e.g. a calculator that renders its form dynamically),
- * via a lightweight MutationObserver. You can also trigger it manually
- * after injecting HTML:
- *      TickmarkLocalization.apply();
+ * PUBLIC API:
+ *   TickmarkLocalization.apply()          // re-run after injecting HTML
+ *   TickmarkLocalization.getUnitSystem()  // "metric" | "imperial"
+ *   TickmarkLocalization.getCurrency()    // e.g. "PKR"
+ *   TickmarkLocalization.getCountryInfo() // full info object or null
+ *   TickmarkLocalization.formatDate(x)
  */
 (function (window, document) {
   "use strict";
 
-  if (!window.TickmarkCountry) {
-    console.warn(
-      "[TickmarkTools] tool-localization.js requires country-detector.js to be loaded first."
-    );
-    return;
-  }
-
   const UNIT_OVERRIDE_KEY = "ttools_unit_override";
+  const SAFE_DEFAULT_INFO = {
+    countryCode: "UNKNOWN",
+    countryName: "Unknown",
+    currency: "USD",
+    currencySymbol: "$",
+    unitSystem: "metric",
+    source: "no-country-detector",
+  };
 
   const COMMON_CURRENCIES = [
     "USD", "EUR", "GBP", "PKR", "INR", "AED", "SAR", "CAD",
     "AUD", "JPY", "CNY", "BDT", "NGN", "ZAR", "TRY",
   ];
 
+  const SELECTOR_LIST =
+    "[data-ttools-currency],[data-ttools-unit-toggle],[data-ttools-date]," +
+    "[data-ttools-country-default],[data-ttools-currency-symbol],[data-ttools-country-name]";
+
   let currentInfo = null;
 
   // ---------- helpers ----------
 
-  function getUnitOverride() {
+  function safe(fn, fallback) {
     try {
-      return sessionStorage.getItem(UNIT_OVERRIDE_KEY);
+      return fn();
     } catch (e) {
-      return null;
+      return fallback;
     }
   }
 
+  function getUnitOverride() {
+    return safe(() => sessionStorage.getItem(UNIT_OVERRIDE_KEY), null);
+  }
+
   function setUnitOverride(unit) {
-    try {
-      sessionStorage.setItem(UNIT_OVERRIDE_KEY, unit);
-    } catch (e) {
-      /* ignore */
-    }
+    safe(() => sessionStorage.setItem(UNIT_OVERRIDE_KEY, unit));
   }
 
   function formatDate(dateInput) {
     const d = new Date(dateInput);
     if (isNaN(d.getTime())) return String(dateInput);
-    try {
-      return new Intl.DateTimeFormat(navigator.language || "en-US").format(d);
-    } catch (e) {
-      return d.toLocaleDateString();
-    }
+    return safe(
+      () => new Intl.DateTimeFormat(navigator.language || "en-US").format(d),
+      d.toLocaleDateString()
+    );
   }
 
   function setFieldValue(el, value) {
@@ -116,8 +114,6 @@
   function bindCurrencyDropdowns(info) {
     document.querySelectorAll("[data-ttools-currency]").forEach((select) => {
       if (select.dataset.ttoolsBound) {
-        // Already built — just make sure the right option is selected,
-        // unless the visitor already changed it themselves.
         if (!select.dataset.ttoolsUserEdited) select.value = info.currency;
         return;
       }
@@ -127,15 +123,15 @@
         opt.textContent = code;
         select.appendChild(opt);
       });
-      select.value = COMMON_CURRENCIES.includes(info.currency)
-        ? info.currency
-        : (() => {
-            const opt = document.createElement("option");
-            opt.value = info.currency;
-            opt.textContent = info.currency;
-            select.insertBefore(opt, select.firstChild);
-            return info.currency;
-          })();
+      if (COMMON_CURRENCIES.includes(info.currency)) {
+        select.value = info.currency;
+      } else {
+        const opt = document.createElement("option");
+        opt.value = info.currency;
+        opt.textContent = info.currency;
+        select.insertBefore(opt, select.firstChild);
+        select.value = info.currency;
+      }
       select.addEventListener("change", () => {
         select.dataset.ttoolsUserEdited = "true";
       });
@@ -164,8 +160,10 @@
         document.querySelectorAll("[data-ttools-unit-toggle]").forEach((t) =>
           applyUnitToggle(t, unit)
         );
-        document.dispatchEvent(
-          new CustomEvent("ttools:unitChanged", { detail: { unitSystem: unit } })
+        safe(() =>
+          document.dispatchEvent(
+            new CustomEvent("ttools:unitChanged", { detail: { unitSystem: unit } })
+          )
         );
       });
       toggle.dataset.ttoolsBound = "true";
@@ -184,12 +182,8 @@
   function bindCountryDefaults(info) {
     document.querySelectorAll("[data-ttools-country-default]").forEach((el) => {
       if (el.dataset.ttoolsUserEdited) return;
-      let map = {};
-      try {
-        map = JSON.parse(el.getAttribute("data-ttools-country-default"));
-      } catch (e) {
-        return;
-      }
+      const map = safe(() => JSON.parse(el.getAttribute("data-ttools-country-default")), null);
+      if (!map) return;
       const fallback = el.getAttribute("data-ttools-default-fallback") ?? "";
       const value = Object.prototype.hasOwnProperty.call(map, info.countryCode)
         ? map[info.countryCode]
@@ -222,27 +216,20 @@
   function applyAll() {
     if (!currentInfo) return;
     bindCurrencyDropdowns(currentInfo);
-    const unitSystem = bindUnitToggles(currentInfo);
+    bindUnitToggles(currentInfo);
     bindDates();
     bindCountryDefaults(currentInfo);
     bindCurrencySymbolAndCountryName(currentInfo);
-    return unitSystem;
   }
 
-  // Watch for tools that render their markup dynamically (after data
-  // loads, after a template renders, etc.) and re-apply automatically.
   function observeDom() {
     const observer = new MutationObserver((mutations) => {
       const hasRelevantAddition = mutations.some((m) =>
         Array.from(m.addedNodes).some(
           (node) =>
             node.nodeType === 1 &&
-            (node.matches?.(
-              "[data-ttools-currency],[data-ttools-unit-toggle],[data-ttools-date],[data-ttools-country-default],[data-ttools-currency-symbol],[data-ttools-country-name]"
-            ) ||
-              node.querySelector?.(
-                "[data-ttools-currency],[data-ttools-unit-toggle],[data-ttools-date],[data-ttools-country-default],[data-ttools-currency-symbol],[data-ttools-country-name]"
-              ))
+            (safe(() => node.matches(SELECTOR_LIST), false) ||
+              safe(() => !!node.querySelector(SELECTOR_LIST), false))
         )
       );
       if (hasRelevantAddition) applyAll();
@@ -250,12 +237,44 @@
     observer.observe(document.body, { childList: true, subtree: true });
   }
 
-  window.TickmarkCountry.onReady((info) => {
+  function startObservingWhenReady() {
+    if (document.body) {
+      observeDom();
+    } else {
+      document.addEventListener("DOMContentLoaded", observeDom);
+    }
+  }
+
+  function init(info) {
     currentInfo = info;
     applyAll();
-    if (document.body) observeDom();
-    else document.addEventListener("DOMContentLoaded", observeDom);
-  });
+    startObservingWhenReady();
+  }
+
+  // ---- Wait for country-detector.js, but never hang forever ----
+  // Handles the case where script order is accidentally wrong, a CDN
+  // is blocked, or this file loads on a page missing the other script.
+  function waitForCountryDetector(maxWaitMs, intervalMs) {
+    const start = Date.now();
+    (function poll() {
+      if (window.TickmarkCountry && typeof window.TickmarkCountry.onReady === "function") {
+        window.TickmarkCountry.onReady(init);
+        return;
+      }
+      if (Date.now() - start >= maxWaitMs) {
+        console.warn(
+          "[TickmarkTools] country-detector.js was not found after waiting. " +
+          "Falling back to metric/USD defaults. Check that country-detector.js " +
+          "is included BEFORE tool-localization.js on this page."
+        );
+        init(SAFE_DEFAULT_INFO);
+        return;
+      }
+      setTimeout(poll, intervalMs);
+    })();
+  }
+
+  waitForCountryDetector(4000, 50);
 
   window.TickmarkLocalization = {
     apply: applyAll,
