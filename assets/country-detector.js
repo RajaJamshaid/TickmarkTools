@@ -1,70 +1,80 @@
 /**
  * TickmarkTools — Country Detector
  * ---------------------------------
- * Site-wide utility to detect the visitor's country and expose it to
- * every tool/calculator on the platform, so results can be localized
- * (currency, measurement units, tax rules, date format, etc.)
+ * Detects the visitor's country and exposes it globally so any tool on
+ * the site can localize its results (currency, units, tax rules, dates).
  *
- * USAGE (drop once in your global footer/layout):
- *   <script src="/assets/js/country-detector.js"></script>
+ * LOAD THIS SCRIPT FIRST, before tool-localization.js and before main.js,
+ * as a plain classic <script> tag (no async/defer) so execution order is
+ * guaranteed by the browser:
  *
- * Any tool page can then do:
+ *   <script src="assets/country-detector.js"></script>
+ *   <script src="assets/tool-localization.js"></script>
+ *   <script src="assets/main.js"></script>
  *
- *   TickmarkCountry.onReady((info) => {
- *     console.log(info.countryCode, info.countryName, info.unitSystem, info.currency);
- *   });
+ * Note the RELATIVE path ("assets/...", no leading slash). This is
+ * required for GitHub Pages project sites served from a subfolder
+ * (e.g. username.github.io/tickmarktools/) — a leading "/assets/..."
+ * would incorrectly resolve to the domain root and 404.
  *
- *   // or, if you need it later / conditionally:
- *   const info = await TickmarkCountry.detect();
+ * PUBLIC API (always available immediately after this script runs):
+ *   window.TickmarkCountry.detect()      -> Promise<info>
+ *   window.TickmarkCountry.onReady(fn)   -> calls fn(info) once ready
  *
- * Design notes:
- * - Result is cached in localStorage for 24h so we don't hit the API on
- *   every page view (important once you have 500+ tool pages).
- * - Primary provider: ipapi.co (free tier, CORS-enabled, no key needed).
- * - Fallback provider: ipwhois.app (used only if the primary fails).
- * - Final fallback: browser locale/timezone guess (never blocks the UI).
- * - Never throws — worst case, callers get a "best guess" object.
+ * `info` shape:
+ *   {
+ *     countryCode:    "PK",
+ *     countryName:    "Pakistan",
+ *     currency:       "PKR",
+ *     currencySymbol: "₨",
+ *     unitSystem:     "metric" | "imperial",
+ *     source:         "detected" | "locale-fallback" | "default-fallback"
+ *   }
+ *
+ * This script is defensive by design: it can never throw during load,
+ * and window.TickmarkCountry is always defined the instant this file
+ * finishes executing — even if every network call later fails.
  */
 (function (window) {
   "use strict";
 
   const CACHE_KEY = "ttools_country_v1";
   const CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
+  const HARD_TIMEOUT_MS = 6000; // never let onReady() hang longer than this
 
-  // Countries that primarily use the imperial system for everyday measurements.
   const IMPERIAL_COUNTRIES = new Set(["US", "LR", "MM"]);
 
-  // Small currency map for common cases; falls back to Intl for the rest.
   const CURRENCY_SYMBOLS = {
     USD: "$", EUR: "€", GBP: "£", PKR: "₨", INR: "₹", AED: "د.إ",
     SAR: "﷼", CAD: "$", AUD: "$", JPY: "¥", CNY: "¥", BDT: "৳",
     NGN: "₦", ZAR: "R", TRY: "₺",
   };
 
-  function readCache() {
+  function safe(fn, fallback) {
     try {
+      return fn();
+    } catch (e) {
+      return fallback;
+    }
+  }
+
+  function readCache() {
+    return safe(() => {
       const raw = localStorage.getItem(CACHE_KEY);
       if (!raw) return null;
       const parsed = JSON.parse(raw);
       if (Date.now() - parsed.timestamp > CACHE_TTL_MS) return null;
       return parsed.data;
-    } catch (e) {
-      return null;
-    }
+    }, null);
   }
 
   function writeCache(data) {
-    try {
-      localStorage.setItem(
-        CACHE_KEY,
-        JSON.stringify({ timestamp: Date.now(), data })
-      );
-    } catch (e) {
-      /* localStorage unavailable (private mode etc.) — safe to ignore */
-    }
+    safe(() => {
+      localStorage.setItem(CACHE_KEY, JSON.stringify({ timestamp: Date.now(), data }));
+    });
   }
 
-  function buildInfo({ countryCode, countryName, currency }) {
+  function buildInfo({ countryCode, countryName, currency }, source) {
     countryCode = (countryCode || "").toUpperCase();
     return {
       countryCode: countryCode || "UNKNOWN",
@@ -72,16 +82,25 @@
       currency: currency || "USD",
       currencySymbol: CURRENCY_SYMBOLS[currency] || currency || "$",
       unitSystem: IMPERIAL_COUNTRIES.has(countryCode) ? "imperial" : "metric",
-      source: "detected",
+      source: source || "detected",
+    };
+  }
+
+  function hardDefault() {
+    return {
+      countryCode: "UNKNOWN",
+      countryName: "Unknown",
+      currency: "USD",
+      currencySymbol: "$",
+      unitSystem: "metric",
+      source: "default-fallback",
     };
   }
 
   function localeFallback() {
-    // Best-effort guess using browser locale/timezone when all network
-    // providers fail. Not accurate, but keeps the site functional.
-    try {
+    return safe(() => {
       const locale = navigator.language || "en-US";
-      const region = new Intl.Locale
+      const region = window.Intl && Intl.Locale
         ? new Intl.Locale(locale).maximize().region
         : locale.split("-")[1];
       const code = (region || "US").toUpperCase();
@@ -93,86 +112,103 @@
         unitSystem: IMPERIAL_COUNTRIES.has(code) ? "imperial" : "metric",
         source: "locale-fallback",
       };
-    } catch (e) {
-      return {
-        countryCode: "UNKNOWN",
-        countryName: "Unknown",
-        currency: "USD",
-        currencySymbol: "$",
-        unitSystem: "metric",
-        source: "default-fallback",
-      };
-    }
+    }, hardDefault());
   }
 
-  async function fetchWithTimeout(url, ms) {
-    const controller = new AbortController();
-    const id = setTimeout(() => controller.abort(), ms);
-    try {
-      const res = await fetch(url, { signal: controller.signal });
-      if (!res.ok) throw new Error("Bad response: " + res.status);
-      return await res.json();
-    } finally {
-      clearTimeout(id);
+  function fetchWithTimeout(url, ms) {
+    if (typeof fetch !== "function") {
+      return Promise.reject(new Error("fetch unavailable"));
     }
+    if (typeof AbortController === "function") {
+      const controller = new AbortController();
+      const id = setTimeout(() => controller.abort(), ms);
+      return fetch(url, { signal: controller.signal })
+        .then((res) => {
+          clearTimeout(id);
+          if (!res.ok) throw new Error("Bad response: " + res.status);
+          return res.json();
+        })
+        .catch((err) => {
+          clearTimeout(id);
+          throw err;
+        });
+    }
+    // Very old browsers without AbortController: race a manual timeout.
+    return Promise.race([
+      fetch(url).then((res) => {
+        if (!res.ok) throw new Error("Bad response: " + res.status);
+        return res.json();
+      }),
+      new Promise((_, reject) => setTimeout(() => reject(new Error("timeout")), ms)),
+    ]);
   }
 
-  async function detectFromNetwork() {
-    // Primary provider
-    try {
-      const data = await fetchWithTimeout("https://ipapi.co/json/", 4000);
-      if (data && data.country_code) {
-        return buildInfo({
-          countryCode: data.country_code,
-          countryName: data.country_name,
-          currency: data.currency,
-        });
-      }
-    } catch (e) {
-      /* fall through to secondary provider */
-    }
-
-    // Fallback provider
-    try {
-      const data = await fetchWithTimeout("https://ipwhois.app/json/", 4000);
-      if (data && data.country_code) {
-        return buildInfo({
-          countryCode: data.country_code,
-          countryName: data.country,
-          currency: data.currency && data.currency.code,
-        });
-      }
-    } catch (e) {
-      /* fall through to locale fallback */
-    }
-
-    return localeFallback();
+  function detectFromNetwork() {
+    return fetchWithTimeout("https://ipapi.co/json/", 4000)
+      .then((data) => {
+        if (data && data.country_code) {
+          return buildInfo(
+            { countryCode: data.country_code, countryName: data.country_name, currency: data.currency },
+            "detected"
+          );
+        }
+        throw new Error("primary provider returned no country_code");
+      })
+      .catch(() =>
+        fetchWithTimeout("https://ipwhois.app/json/", 4000)
+          .then((data) => {
+            if (data && data.country_code) {
+              return buildInfo(
+                {
+                  countryCode: data.country_code,
+                  countryName: data.country,
+                  currency: data.currency && data.currency.code,
+                },
+                "detected"
+              );
+            }
+            throw new Error("fallback provider returned no country_code");
+          })
+          .catch(() => localeFallback())
+      );
   }
 
   let detectPromise = null;
 
-  async function detect() {
+  function detect() {
     const cached = readCache();
-    if (cached) return cached;
+    if (cached) return Promise.resolve(cached);
 
     if (!detectPromise) {
-      detectPromise = detectFromNetwork().then((info) => {
-        writeCache(info);
-        document.dispatchEvent(
-          new CustomEvent("ttools:countryDetected", { detail: info })
-        );
-        return info;
-      });
+      const withHardTimeout = Promise.race([
+        detectFromNetwork(),
+        new Promise((resolve) =>
+          setTimeout(() => resolve(localeFallback()), HARD_TIMEOUT_MS)
+        ),
+      ]);
+
+      detectPromise = withHardTimeout
+        .then((info) => {
+          writeCache(info);
+          safe(() =>
+            document.dispatchEvent(
+              new CustomEvent("ttools:countryDetected", { detail: info })
+            )
+          );
+          return info;
+        })
+        .catch(() => hardDefault()); // absolute last resort — never rejects
     }
     return detectPromise;
   }
 
   function onReady(callback) {
-    detect().then(callback);
+    if (typeof callback !== "function") return;
+    detect().then(callback).catch(() => callback(hardDefault()));
   }
 
-  // Kick off detection as soon as the script loads, so the cache is
-  // warm and the event fires early for any listeners already attached.
+  // Warm the cache immediately so the first onReady() call anywhere on
+  // the page resolves as fast as possible.
   detect();
 
   window.TickmarkCountry = { detect, onReady };
