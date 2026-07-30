@@ -1,0 +1,70 @@
+{
+  "categories": [
+    { "id": "calculators",  "name": "Calculators",        "icon": "🧮", "page": "calculators.html" },
+    { "id": "finance",      "name": "Finance Tools",      "icon": "💰", "page": "index.html#categories" },
+    { "id": "pdf",          "name": "PDF Tools",          "icon": "📄", "page": "pdf-tools.html" },
+    { "id": "image",        "name": "Image Tools",        "icon": "🖼️", "page": "image-tools.html" },
+    { "id": "text",         "name": "Text Tools",         "icon": "📝", "page": "text-tools.html" },
+    { "id": "developer",    "name": "Developer Tools",    "icon": "💻", "page": "developer-tools.html" },
+    { "id": "productivity", "name": "Productivity Tools", "icon": "🗂️", "page": "index.html#categories" },
+    { "id": "ai",           "name": "AI Tools",           "icon": "✨", "page": "ai-tools.html" }
+  ],
+  "tools": [
+    { "slug": "age-calculator", "title": "Age Calculator", "category": "calculators", "icon": "🎂", "description": "Find your exact age in years, months and days.", "popular": true, "badge": "HOT" },
+    { "slug": "percentage-calculator", "title": "Percentage Calculator", "category": "calculators", "icon": "📊", "description": "X% of Y, ratio percentage, or percentage change.", "trending": true },
+    { "slug": "bmi-calculator", "title": "BMI Calculator", "category": "calculators", "icon": "⚖️", "description": "Calculate Body Mass Index and health category." },
+    { "slug": "emi-loan-calculator", "title": "EMI / Loan Calculator", "category": "calculators", "icon": "🏦", "description": "Monthly loan installment, interest and total payment." },
+    { "slug": "mortgage-calculator", "title": "Mortgage Calculator", "category": "calculators", "icon": "🏠", "description": "Estimate your monthly home loan payment." },
+    { "slug": "compound-interest-calculator", "title": "Compound Interest Calculator", "category": "calculators", "icon": "📈", "description": "See how your money grows with compounding." },
+    { "slug": "simple-interest-calculator", "title": "Simple Interest Calculator", "category": "calculators", "icon": "➗", "description": "Calculate simple interest and total amount." },
+    { "slug": "sip-investment-calculator", "title": "SIP Investment Calculator", "category": "calculators", "icon": "📈", "description": "Estimate the future value of monthly SIP investments." },
+    { "slug": "discount-calculator", "title": "Discount Calculator", "category": "calculators", "icon": "🏷️", "description": "Find the sale price and amount saved." },
+    { "slug": "date-difference-calculator", "title": "Date Difference Calculator", "category": "calculators", "icon": "📅", "description": "Exact difference between two dates." },
+    { "slug": "time-calculator", "title": "Time Calculator", "category": "calculators", "icon": "⏱️", "description": "Add or subtract hours, minutes and seconds." },
+    { "slug": "calorie-calculator", "title": "Calorie Calculator", "category": "calculators", "icon": "🔥", "description": "Estimate your daily calorie needs (TDEE)." },
+    { "slug": "pregnancy-due-date-calculator", "title": "Pregnancy Due Date Calculator", "category": "calculators", "icon": "🤰", "description": "Estimate your due date using Naegele's rule." },
+    { "slug": "fuel-cost-calculator", "title": "Fuel Cost Calculator", "category": "calculators", "icon": "⛽", "description": "Estimate trip fuel cost from distance and mileage." },
+    { "slug": "electricity-bill-calculator", "title": "Electricity Bill Calculator", "category": "calculators", "icon": "💡", "description": "Estimate your electricity bill from units used." },
+    { "slug": "gpa-cgpa-calculator", "title": "GPA / CGPA Calculator", "category": "calculators", "icon": "🎓", "description": "Weighted grade point average from grades and credits." },
+    { "slug": "retirement-calculator", "title": "Retirement Calculator", "category": "calculators", "icon": "🏖️", "description": "Project your retirement savings over time." },
+
+    { "slug": "currency-converter", "title": "Currency Converter", "category": "finance", "icon": "💱", "description": "Convert between world currencies with live rates.", "trending": true },
+    { "slug": "gst-vat-calculator", "title": "GST / VAT Calculator", "category": "finance", "icon": "🧾", "description": "Add or remove GST/VAT from any amount." },
+    { "slug": "income-tax-calculator", "title": "Income Tax Calculator", "category": "finance", "icon": "💼", "description": "Estimate income tax with a progressive slab system.", "trending": true },
+
+    { "slug": "pdf-merge", "title": "PDF Merge", "category": "pdf", "icon": "🔗", "description": "Combine multiple PDF files into one document.", "popular": true, "badge": "HOT" },
+    { "slug": "pdf-to-word", "title": "PDF to Word", "category": "pdf", "icon": "📝", "description": "Extract PDF text into an editable Word file." },
+    { "slug": "pdf-split", "title": "PDF Split", "category": "pdf", "icon": "✂️", "description": "Extract a page range from a PDF into a new file." },
+    { "slug": "pdf-compress", "title": "PDF Compress", "category": "pdf", "icon": "🗜️", "description": "Reduce PDF file size for easier sharing.", "trending": true },
+    { "slug": "pdf-to-jpg", "title": "PDF to JPG", "category": "pdf", "icon": "🖼️", "description": "Turn every PDF page into a downloadable JPG." },
+    { "slug": "word-to-pdf", "title": "Word to PDF", "category": "pdf", "icon": "📄", "description": "Convert a Word document into a PDF file." },
+
+    { "slug": "image-compressor", "title": "Image Compressor", "category": "image", "icon": "🖼️", "description": "Reduce image file size without losing much quality.", "popular": true },
+    { "slug": "image-resizer", "title": "Image Resizer", "category": "image", "icon": "📏", "description": "Resize images to exact width and height." },
+    { "slug": "jpg-to-png", "title": "JPG to PNG", "category": "image", "icon": "🔄", "description": "Convert JPG images to PNG format." },
+    { "slug": "png-to-jpg", "title": "PNG to JPG", "category": "image", "icon": "🔄", "description": "Convert PNG images to JPG format." },
+    { "slug": "image-cropper", "title": "Image Cropper", "category": "image", "icon": "✂️", "description": "Crop images by dragging a selection box." },
+    { "slug": "image-converter", "title": "Image Converter", "category": "image", "icon": "🔁", "description": "Convert between JPG, PNG and WebP formats." },
+
+    { "slug": "word-counter", "title": "Word Counter", "category": "text", "icon": "📝", "description": "Count words, characters, sentences and reading time.", "popular": true },
+    { "slug": "character-counter", "title": "Character Counter", "category": "text", "icon": "🔤", "description": "Count characters with and without spaces." },
+    { "slug": "case-converter", "title": "Case Converter", "category": "text", "icon": "🔠", "description": "Convert text to UPPER, lower, Title or Sentence case." },
+    { "slug": "remove-duplicate-lines", "title": "Remove Duplicate Lines", "category": "text", "icon": "🧹", "description": "Strip duplicate lines, keeping only unique entries." },
+    { "slug": "text-compare-diff-checker", "title": "Text Compare (Diff Checker)", "category": "text", "icon": "🔍", "description": "See line-by-line differences between two texts." },
+    { "slug": "lorem-ipsum-generator", "title": "Lorem Ipsum Generator", "category": "text", "icon": "📄", "description": "Generate placeholder text for design mockups." },
+
+    { "slug": "password-generator", "title": "Password Generator", "category": "developer", "icon": "🔐", "description": "Create strong, random passwords instantly.", "popular": true },
+    { "slug": "json-formatter", "title": "JSON Formatter", "category": "developer", "icon": "🧩", "description": "Beautify, minify and validate JSON." },
+    { "slug": "json-validator", "title": "JSON Validator", "category": "developer", "icon": "✅", "description": "Check JSON validity with clear error messages.", "trending": true },
+    { "slug": "base64-encoder-decoder", "title": "Base64 Encoder/Decoder", "category": "developer", "icon": "🔐", "description": "Encode or decode text using Base64." },
+    { "slug": "url-encoder-decoder", "title": "URL Encoder/Decoder", "category": "developer", "icon": "🔗", "description": "Encode or decode URL strings safely." },
+    { "slug": "html-minifier", "title": "HTML Minifier", "category": "developer", "icon": "🗜️", "description": "Compress HTML by removing whitespace and comments." },
+    { "slug": "css-minifier", "title": "CSS Minifier", "category": "developer", "icon": "🎨", "description": "Compress CSS by removing whitespace and comments." },
+    { "slug": "password-strength-checker", "title": "Password Strength Checker", "category": "developer", "icon": "🛡️", "description": "Analyze how strong a password is instantly." },
+    { "slug": "uuid-generator", "title": "UUID Generator", "category": "developer", "icon": "🆔", "description": "Generate random UUID v4 identifiers, in bulk." },
+    { "slug": "color-picker", "title": "Color Picker", "category": "developer", "icon": "🎨", "description": "Pick a color and get HEX, RGB and HSL values.", "trending": true },
+
+    { "slug": "qr-code-generator", "title": "QR Code Generator", "category": "productivity", "icon": "🔗", "description": "Turn any text or URL into a downloadable QR code.", "popular": true, "badge": "HOT" },
+    { "slug": "barcode-generator", "title": "Barcode Generator", "category": "productivity", "icon": "📊", "description": "Create downloadable barcodes from text or numbers." }
+  ]
+}
