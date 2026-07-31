@@ -1,70 +1,219 @@
-{
-  "categories": [
-    { "id": "calculators",  "name": "Calculators",        "icon": "🧮", "page": "calculators.html" },
-    { "id": "finance",      "name": "Finance Tools",      "icon": "💰", "page": "index.html#categories" },
-    { "id": "pdf",          "name": "PDF Tools",          "icon": "📄", "page": "pdf-tools.html" },
-    { "id": "image",        "name": "Image Tools",        "icon": "🖼️", "page": "image-tools.html" },
-    { "id": "text",         "name": "Text Tools",         "icon": "📝", "page": "text-tools.html" },
-    { "id": "developer",    "name": "Developer Tools",    "icon": "💻", "page": "developer-tools.html" },
-    { "id": "productivity", "name": "Productivity Tools", "icon": "🗂️", "page": "index.html#categories" },
-    { "id": "ai",           "name": "AI Tools",           "icon": "✨", "page": "ai-tools.html" }
-  ],
-  "tools": [
-    { "slug": "age-calculator", "title": "Age Calculator", "category": "calculators", "icon": "🎂", "description": "Find your exact age in years, months and days.", "popular": true, "badge": "HOT" },
-    { "slug": "percentage-calculator", "title": "Percentage Calculator", "category": "calculators", "icon": "📊", "description": "X% of Y, ratio percentage, or percentage change.", "trending": true },
-    { "slug": "bmi-calculator", "title": "BMI Calculator", "category": "calculators", "icon": "⚖️", "description": "Calculate Body Mass Index and health category." },
-    { "slug": "emi-loan-calculator", "title": "EMI / Loan Calculator", "category": "calculators", "icon": "🏦", "description": "Monthly loan installment, interest and total payment." },
-    { "slug": "mortgage-calculator", "title": "Mortgage Calculator", "category": "calculators", "icon": "🏠", "description": "Estimate your monthly home loan payment." },
-    { "slug": "compound-interest-calculator", "title": "Compound Interest Calculator", "category": "calculators", "icon": "📈", "description": "See how your money grows with compounding." },
-    { "slug": "simple-interest-calculator", "title": "Simple Interest Calculator", "category": "calculators", "icon": "➗", "description": "Calculate simple interest and total amount." },
-    { "slug": "sip-investment-calculator", "title": "SIP Investment Calculator", "category": "calculators", "icon": "📈", "description": "Estimate the future value of monthly SIP investments." },
-    { "slug": "discount-calculator", "title": "Discount Calculator", "category": "calculators", "icon": "🏷️", "description": "Find the sale price and amount saved." },
-    { "slug": "date-difference-calculator", "title": "Date Difference Calculator", "category": "calculators", "icon": "📅", "description": "Exact difference between two dates." },
-    { "slug": "time-calculator", "title": "Time Calculator", "category": "calculators", "icon": "⏱️", "description": "Add or subtract hours, minutes and seconds." },
-    { "slug": "calorie-calculator", "title": "Calorie Calculator", "category": "calculators", "icon": "🔥", "description": "Estimate your daily calorie needs (TDEE)." },
-    { "slug": "pregnancy-due-date-calculator", "title": "Pregnancy Due Date Calculator", "category": "calculators", "icon": "🤰", "description": "Estimate your due date using Naegele's rule." },
-    { "slug": "fuel-cost-calculator", "title": "Fuel Cost Calculator", "category": "calculators", "icon": "⛽", "description": "Estimate trip fuel cost from distance and mileage." },
-    { "slug": "electricity-bill-calculator", "title": "Electricity Bill Calculator", "category": "calculators", "icon": "💡", "description": "Estimate your electricity bill from units used." },
-    { "slug": "gpa-cgpa-calculator", "title": "GPA / CGPA Calculator", "category": "calculators", "icon": "🎓", "description": "Weighted grade point average from grades and credits." },
-    { "slug": "retirement-calculator", "title": "Retirement Calculator", "category": "calculators", "icon": "🏖️", "description": "Project your retirement savings over time." },
+/* ==========================================================
+   scripts/build-sitemap.js
 
-    { "slug": "currency-converter", "title": "Currency Converter", "category": "finance", "icon": "💱", "description": "Convert between world currencies with live rates.", "trending": true },
-    { "slug": "gst-vat-calculator", "title": "GST / VAT Calculator", "category": "finance", "icon": "🧾", "description": "Add or remove GST/VAT from any amount." },
-    { "slug": "income-tax-calculator", "title": "Income Tax Calculator", "category": "finance", "icon": "💼", "description": "Estimate income tax with a progressive slab system.", "trending": true },
+   Single sitemap build script for the project. Driven entirely by
+   assets/tools-data.json — the same source of truth used by the
+   homepage — so it stays correct and scalable as tools are added,
+   with no per-tool manual list to maintain (works fine past 1000+
+   tools since it's just iterating the JSON, not scanning the disk
+   for pages).
 
-    { "slug": "pdf-merge", "title": "PDF Merge", "category": "pdf", "icon": "🔗", "description": "Combine multiple PDF files into one document.", "popular": true, "badge": "HOT" },
-    { "slug": "pdf-to-word", "title": "PDF to Word", "category": "pdf", "icon": "📝", "description": "Extract PDF text into an editable Word file." },
-    { "slug": "pdf-split", "title": "PDF Split", "category": "pdf", "icon": "✂️", "description": "Extract a page range from a PDF into a new file." },
-    { "slug": "pdf-compress", "title": "PDF Compress", "category": "pdf", "icon": "🗜️", "description": "Reduce PDF file size for easier sharing.", "trending": true },
-    { "slug": "pdf-to-jpg", "title": "PDF to JPG", "category": "pdf", "icon": "🖼️", "description": "Turn every PDF page into a downloadable JPG." },
-    { "slug": "word-to-pdf", "title": "Word to PDF", "category": "pdf", "icon": "📄", "description": "Convert a Word document into a PDF file." },
+   Run after editing tools-data.json (or as a prebuild step):
 
-    { "slug": "image-compressor", "title": "Image Compressor", "category": "image", "icon": "🖼️", "description": "Reduce image file size without losing much quality.", "popular": true },
-    { "slug": "image-resizer", "title": "Image Resizer", "category": "image", "icon": "📏", "description": "Resize images to exact width and height." },
-    { "slug": "jpg-to-png", "title": "JPG to PNG", "category": "image", "icon": "🔄", "description": "Convert JPG images to PNG format." },
-    { "slug": "png-to-jpg", "title": "PNG to JPG", "category": "image", "icon": "🔄", "description": "Convert PNG images to JPG format." },
-    { "slug": "image-cropper", "title": "Image Cropper", "category": "image", "icon": "✂️", "description": "Crop images by dragging a selection box." },
-    { "slug": "image-converter", "title": "Image Converter", "category": "image", "icon": "🔁", "description": "Convert between JPG, PNG and WebP formats." },
+     node scripts/build-sitemap.js
 
-    { "slug": "word-counter", "title": "Word Counter", "category": "text", "icon": "📝", "description": "Count words, characters, sentences and reading time.", "popular": true },
-    { "slug": "character-counter", "title": "Character Counter", "category": "text", "icon": "🔤", "description": "Count characters with and without spaces." },
-    { "slug": "case-converter", "title": "Case Converter", "category": "text", "icon": "🔠", "description": "Convert text to UPPER, lower, Title or Sentence case." },
-    { "slug": "remove-duplicate-lines", "title": "Remove Duplicate Lines", "category": "text", "icon": "🧹", "description": "Strip duplicate lines, keeping only unique entries." },
-    { "slug": "text-compare-diff-checker", "title": "Text Compare (Diff Checker)", "category": "text", "icon": "🔍", "description": "See line-by-line differences between two texts." },
-    { "slug": "lorem-ipsum-generator", "title": "Lorem Ipsum Generator", "category": "text", "icon": "📄", "description": "Generate placeholder text for design mockups." },
+   It does two things:
 
-    { "slug": "password-generator", "title": "Password Generator", "category": "developer", "icon": "🔐", "description": "Create strong, random passwords instantly.", "popular": true },
-    { "slug": "json-formatter", "title": "JSON Formatter", "category": "developer", "icon": "🧩", "description": "Beautify, minify and validate JSON." },
-    { "slug": "json-validator", "title": "JSON Validator", "category": "developer", "icon": "✅", "description": "Check JSON validity with clear error messages.", "trending": true },
-    { "slug": "base64-encoder-decoder", "title": "Base64 Encoder/Decoder", "category": "developer", "icon": "🔐", "description": "Encode or decode text using Base64." },
-    { "slug": "url-encoder-decoder", "title": "URL Encoder/Decoder", "category": "developer", "icon": "🔗", "description": "Encode or decode URL strings safely." },
-    { "slug": "html-minifier", "title": "HTML Minifier", "category": "developer", "icon": "🗜️", "description": "Compress HTML by removing whitespace and comments." },
-    { "slug": "css-minifier", "title": "CSS Minifier", "category": "developer", "icon": "🎨", "description": "Compress CSS by removing whitespace and comments." },
-    { "slug": "password-strength-checker", "title": "Password Strength Checker", "category": "developer", "icon": "🛡️", "description": "Analyze how strong a password is instantly." },
-    { "slug": "uuid-generator", "title": "UUID Generator", "category": "developer", "icon": "🆔", "description": "Generate random UUID v4 identifiers, in bulk." },
-    { "slug": "color-picker", "title": "Color Picker", "category": "developer", "icon": "🎨", "description": "Pick a color and get HEX, RGB and HSL values.", "trending": true },
+   1. Regenerates the category tool-lists inside sitemap.html.
+      Only the <div class="footer-col"> blocks whose heading matches
+      a category name in tools-data.json are touched — everything
+      else in sitemap.html (Main Pages, Blog Articles, layout, etc.)
+      is left exactly as-is. [Preserved from the original script.]
 
-    { "slug": "qr-code-generator", "title": "QR Code Generator", "category": "productivity", "icon": "🔗", "description": "Turn any text or URL into a downloadable QR code.", "popular": true, "badge": "HOT" },
-    { "slug": "barcode-generator", "title": "Barcode Generator", "category": "productivity", "icon": "📊", "description": "Create downloadable barcodes from text or numbers." }
-  ]
+   2. Generates/refreshes sitemap.xml (the machine-readable XML
+      sitemap for search engines) with:
+        - the homepage
+        - a short fixed list of static/legal/category-hub pages
+        - every tool in tools-data.json, as a clean canonical URL
+
+   No dependencies, no Python, no additional runtime — plain Node.js.
+========================================================== */
+
+'use strict';
+
+const fs = require('fs');
+const path = require('path');
+
+const PROJECT_ROOT = path.resolve(__dirname, '..');
+const SITE_ROOT = 'https://tickmarktools.com';
+
+const dataPath = path.join(PROJECT_ROOT, 'assets', 'tools-data.json');
+const sitemapHtmlPath = path.join(PROJECT_ROOT, 'sitemap.html');
+const sitemapXmlPath = path.join(PROJECT_ROOT, 'sitemap.xml');
+
+// ---------------------------------------------------------------------------
+// Static pages that aren't tools and so don't live in tools-data.json, but
+// still need to be in sitemap.xml. Category hub pages (Calculators, PDF
+// Tools, etc.) are NOT listed here — those are derived automatically from
+// each category's "page" field in tools-data.json below, so a category only
+// shows up in the sitemap once it actually has its own dedicated page (some
+// categories, like Finance and Productivity, just anchor into the homepage
+// via "index.html#categories" and correctly get no separate sitemap entry).
+// This list only grows when a genuinely new *type* of page is added to the
+// site (not when a tool or category is added).
+// ---------------------------------------------------------------------------
+const STATIC_PAGES = [
+  { file: 'about.html', priority: '0.6', changefreq: 'monthly' },
+  { file: 'contact.html', priority: '0.5', changefreq: 'monthly' },
+  { file: 'blog.html', priority: '0.6', changefreq: 'weekly' },
+  { file: 'privacy-policy.html', priority: '0.3', changefreq: 'yearly' },
+  { file: 'terms-of-service.html', priority: '0.3', changefreq: 'yearly' },
+  { file: 'disclaimer.html', priority: '0.3', changefreq: 'yearly' },
+  { file: 'best-pdf-tools.html', priority: '0.5', changefreq: 'monthly' },
+  { file: 'best-ai-tools.html', priority: '0.5', changefreq: 'monthly' },
+  { file: 'best-calculators.html', priority: '0.5', changefreq: 'monthly' },
+  { file: 'how-to-use-tools.html', priority: '0.5', changefreq: 'monthly' },
+  { file: 'productivity-tips.html', priority: '0.5', changefreq: 'monthly' },
+];
+
+// ---------------------------------------------------------------------------
+// Shared helpers
+// ---------------------------------------------------------------------------
+
+function escapeRegExp(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
+
+function escapeXml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+}
+
+function loadToolsData() {
+  if (!fs.existsSync(dataPath)) {
+    throw new Error(`Could not find ${path.relative(PROJECT_ROOT, dataPath)} — build-sitemap.js requires it as the single source of truth.`);
+  }
+  return JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+}
+
+// ---------------------------------------------------------------------------
+// Step 1: regenerate the category tool-lists inside sitemap.html
+// (unchanged behavior from the original script)
+// ---------------------------------------------------------------------------
+
+function rebuildSitemapHtml(data) {
+  if (!fs.existsSync(sitemapHtmlPath)) {
+    console.warn(`⚠ ${path.relative(PROJECT_ROOT, sitemapHtmlPath)} not found — skipping HTML sitemap update.`);
+    return;
+  }
+
+  let html = fs.readFileSync(sitemapHtmlPath, 'utf8');
+
+  const catById = {};
+  data.categories.forEach((c) => { catById[c.id] = c.name; });
+
+  const toolsByCategory = {};
+  data.tools.forEach((t) => {
+    (toolsByCategory[t.category] = toolsByCategory[t.category] || []).push(t);
+  });
+
+  let changed = 0;
+  Object.keys(toolsByCategory).forEach((catId) => {
+    const name = catById[catId];
+    if (!name) return;
+    const links = toolsByCategory[catId]
+      .map((t) => `      <a href="${t.slug}.html">${t.title}</a>`)
+      .join('\n');
+
+    const blockRe = new RegExp(
+      `(<h5>${escapeRegExp(name)}</h5>\\n)([\\s\\S]*?)(\\n\\s*</div>)`
+    );
+    if (blockRe.test(html)) {
+      html = html.replace(blockRe, `$1${links}$3`);
+      changed++;
+    } else {
+      console.warn(`⚠ Could not find a matching block for category "${name}" in sitemap.html — left untouched.`);
+    }
+  });
+
+  fs.writeFileSync(sitemapHtmlPath, html);
+  console.log(`✔ sitemap.html updated: ${changed} category block(s) regenerated from tools-data.json.`);
+}
+
+// ---------------------------------------------------------------------------
+// Step 2: generate sitemap.xml
+// ---------------------------------------------------------------------------
+
+function buildSitemapXml(data) {
+  const today = new Date().toISOString().slice(0, 10);
+  const entries = [];
+
+  // Homepage
+  entries.push({ loc: `${SITE_ROOT}/`, priority: '1.0', changefreq: 'weekly' });
+
+  // Static / legal / blog pages (fixed, non-category, non-tool pages)
+  STATIC_PAGES.forEach(({ file, priority, changefreq }) => {
+    const slug = file.replace(/\.html$/, '');
+    entries.push({ loc: `${SITE_ROOT}/${slug}`, priority, changefreq });
+  });
+
+  // Category hub pages — derived from tools-data.json's "page" field, not
+  // hardcoded. Categories that just anchor into the homepage (page value
+  // like "index.html#categories") are correctly skipped since the homepage
+  // is already in the sitemap; only categories with their own real page
+  // (e.g. "pdf-tools.html") get a dedicated entry. New categories therefore
+  // need zero changes to this script — just add them to tools-data.json.
+  const seenHubs = new Set();
+  (data.categories || []).forEach((cat) => {
+    const page = cat.page || '';
+    if (!page.endsWith('.html') || page.includes('#')) return; // anchors into homepage, skip
+    if (seenHubs.has(page)) return;
+    seenHubs.add(page);
+    const slug = page.replace(/\.html$/, '');
+    entries.push({ loc: `${SITE_ROOT}/${slug}`, priority: '0.8', changefreq: 'weekly' });
+  });
+
+  // Every tool, driven entirely by tools-data.json — this is what keeps
+  // the sitemap scalable to 1000+ tools with zero manual upkeep. Popular
+  // and trending tools get a small priority bump since they're genuinely
+  // more important pages to crawl/rank.
+  (data.tools || []).forEach((t) => {
+    let priority = '0.6';
+    if (t.popular) priority = '0.7';
+    else if (t.trending) priority = '0.65';
+
+    entries.push({
+      loc: `${SITE_ROOT}/${t.slug}`,
+      priority,
+      changefreq: 'monthly',
+    });
+  });
+
+  const urlBlocks = entries.map(({ loc, priority, changefreq }) => [
+    '  <url>',
+    `    <loc>${escapeXml(loc)}</loc>`,
+    `    <lastmod>${today}</lastmod>`,
+    `    <changefreq>${changefreq}</changefreq>`,
+    `    <priority>${priority}</priority>`,
+    '  </url>',
+  ].join('\n'));
+
+  const xml =
+    '<?xml version="1.0" encoding="UTF-8"?>\n' +
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+    urlBlocks.join('\n') +
+    '\n</urlset>\n';
+
+  fs.writeFileSync(sitemapXmlPath, xml, 'utf8');
+  console.log(`✔ sitemap.xml written: ${entries.length} URLs (1 homepage + ${STATIC_PAGES.length} static + ${seenHubs.size} category hubs + ${(data.tools || []).length} tools).`);
+}
+
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
+
+function run() {
+  const data = loadToolsData();
+  rebuildSitemapHtml(data);
+  buildSitemapXml(data);
+}
+
+if (require.main === module) {
+  run();
+}
+
+module.exports = { run, rebuildSitemapHtml, buildSitemapXml };
