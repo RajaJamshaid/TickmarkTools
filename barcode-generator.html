@@ -4,25 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Barcode Generator — Free Online Tool | TickmarkTools</title>
-<meta name="description" content="Free online Barcode Generator — create downloadable barcodes from any text or number instantly.">
+<meta name="description" content="Free online Barcode Generator — create scannable CODE128, EAN13, UPC and CODE39 barcodes from any text or number, instantly in your browser. No sign-up, nothing uploaded.">
 <meta name="theme-color" content="#146356">
 <link rel="canonical" href="https://tickmarktools.com/barcode-generator">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Barcode Generator — Free Online Tool | TickmarkTools">
-<meta property="og:description" content="Free online Barcode Generator — create downloadable barcodes from any text or number instantly.">
+<meta property="og:description" content="Create scannable barcodes from any text or number — free, private, and instant.">
 <meta property="og:url" content="https://tickmarktools.com/barcode-generator">
 <meta property="og:site_name" content="TickmarkTools">
+<meta property="og:image" content="https://tickmarktools.com/assets/og/barcode-generator.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Barcode Generator — TickmarkTools">
-<meta name="twitter:description" content="Free online Barcode Generator — create downloadable barcodes from any text or number instantly.">
+<meta name="twitter:description" content="Create scannable barcodes from any text or number — free, private, and instant.">
+<meta name="twitter:image" content="https://tickmarktools.com/assets/og/barcode-generator.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<!-- Universal premium tool-page template — one file, every tool inherits it -->
+<link rel="stylesheet" href="assets/tool-template.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.12.3/JsBarcode.all.min.js"></script>
 
+<!-- ================= STRUCTURED DATA ================= -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -32,7 +37,8 @@
   "operatingSystem": "Any",
   "url": "https://tickmarktools.com/barcode-generator",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
-  "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "1200"}
+  "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "1200"},
+  "featureList": ["CODE128 support","EAN13 support","UPC support","CODE39 support","PNG download","No sign-up required","No data uploaded"]
 }
 </script>
 <script type="application/ld+json">
@@ -51,14 +57,18 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type": "Question", "name": "Is it free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes."}},
-    {"@type": "Question", "name": "Which format should I use?", "acceptedAnswer": {"@type": "Answer", "text": "CODE128 works for general text; EAN13/UPC are for retail products with specific digit requirements."}},
-    {"@type": "Question", "name": "Can I print these barcodes?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, download the PNG and print at sufficient size and resolution for reliable scanning."}}
+    {"@type": "Question", "name": "Is the Barcode Generator free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, completely free with no sign-up, no watermark, and no usage limit."}},
+    {"@type": "Question", "name": "Which barcode format should I use?", "acceptedAnswer": {"@type": "Answer", "text": "CODE128 works for general text and mixed alphanumeric data. EAN13 and UPC are for retail products and require a specific number of digits with a valid checksum. CODE39 is common in logistics and inventory."}},
+    {"@type": "Question", "name": "Can I print these barcodes?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Download the PNG and print it at a size large enough for your scanner to read reliably — at least 1 inch (2.5cm) wide is a safe starting point."}},
+    {"@type": "Question", "name": "Is my data uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. The barcode is generated entirely in your browser using JavaScript. Nothing you type is sent to a server."}},
+    {"@type": "Question", "name": "Why did my EAN13 or UPC code fail to generate?", "acceptedAnswer": {"@type": "Answer", "text": "EAN13 requires exactly 12 or 13 digits and UPC requires 11 or 12 digits, each with a valid checksum. Letters or an incorrect digit count will cause an error — CODE128 is more flexible if you just need a general-purpose barcode."}}
   ]
 }
 </script>
 </head>
 <body>
+
+<a href="#tt-main" class="tt-skip-link">Skip to tool</a>
 
 <header class="site">
   <div class="wrap">
@@ -90,79 +100,206 @@
   <span>Barcode Generator</span>
 </div>
 
-<section class="tool-hero">
+<!-- ================= 1. HERO ================= -->
+<section class="tt-hero">
   <div class="wrap">
-    <div class="cat-tag">🗂️ Productivity Tools</div>
+    <div class="tt-hero-top">
+      <div class="tt-icon" aria-hidden="true">📊</div>
+      <span class="tt-cat-badge">🗂️ Productivity Tools</span>
+      <span class="tt-updated">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Updated July 2026
+      </span>
+    </div>
     <h1>Barcode Generator</h1>
-    <p class="lead">Generate a scannable barcode from any text or number, and download it as a PNG.</p>
+    <p class="tt-desc">Turn any text or number into a scannable barcode — CODE128, EAN13, UPC, or CODE39 — then download it as a print-ready PNG. Everything runs locally, so nothing you type ever leaves your device.</p>
+    <div class="tt-trust-row">
+      <span class="tt-trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>100% Free</span>
+      <span class="tt-trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>Secure &amp; Private</span>
+      <span class="tt-trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>No Sign-up</span>
+      <span class="tt-trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>Works on Mobile</span>
+    </div>
   </div>
 </section>
 
+<!-- Ad Slot 1 — below hero -->
+<div class="wrap"><div class="tt-ad-slot" data-size="leaderboard" aria-hidden="true">Advertisement</div></div>
+
+<!-- ================= 3. MAIN TOOL INTERFACE + 4. RESULT ================= -->
+<main id="tt-main">
 <div class="wrap">
-  <div class="tool-panel">
-    <div class="field-row">
-      <div><label class="field-label">Text or Number</label><input type="text" id="bcText" class="field" placeholder="e.g. 123456789012"></div>
-      <div><label class="field-label">Barcode Format</label><select id="bcFormat" class="field">
-        <option value="CODE128">CODE128</option>
-        <option value="EAN13">EAN13</option>
-        <option value="UPC">UPC</option>
-        <option value="CODE39">CODE39</option>
-      </select></div>
+  <div class="tt-panel">
+    <label class="tt-field-label" for="bcText">Text or Number</label>
+    <input type="text" id="bcText" class="field" placeholder="e.g. 123456789012" autocomplete="off" inputmode="text">
+
+    <label class="tt-field-label" style="margin-top:16px;" for="bcFormat">Barcode Format</label>
+    <select id="bcFormat" class="field">
+      <option value="CODE128">CODE128 — general purpose</option>
+      <option value="EAN13">EAN13 — retail products</option>
+      <option value="UPC">UPC — retail products (US)</option>
+      <option value="CODE39">CODE39 — logistics &amp; inventory</option>
+    </select>
+
+    <div id="bcError" class="tt-error" role="alert">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>
+      <span id="bcErrorText">Something went wrong.</span>
     </div>
-    <div style="margin-top:18px;"><button class="btn btn-primary" id="bcGenBtn">Generate Barcode</button></div>
-    <div class="result-box" id="bcResult" style="text-align:center;">
-      <svg id="bcSvg" style="background:#fff;"></svg>
-      <div style="margin-top:14px;"><a id="bcDownload" class="btn btn-secondary" download="barcode.png">Download PNG</a></div>
+
+    <div style="margin-top:20px;">
+      <button class="tt-btn tt-btn-primary" id="bcGenBtn">Generate Barcode</button>
     </div>
-    <div class="toolbar-row">
-      <button class="btn btn-secondary" onclick="resetTool()">↺ Reset</button>
-      <button class="btn btn-secondary" id="copyResultBtn" onclick="copyResult()">📋 Copy Result</button>
-      <button class="btn btn-secondary" onclick="shareTool()">🔗 Share Tool</button>
+
+    <div class="tt-result" id="bcResult">
+      <div class="tt-result-head">
+        <div class="tt-result-title"><span class="tt-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span> Barcode ready</div>
+        <div class="tt-result-actions">
+          <button class="tt-icon-btn" id="bcCopyBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copy Value
+          </button>
+          <button class="tt-icon-btn" id="bcShareBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+            Share
+          </button>
+          <button class="tt-icon-btn" id="bcResetBtn" type="button">↺ Reset</button>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <svg id="bcSvg" style="background:#fff;max-width:100%;"></svg>
+        <div style="margin-top:14px;"><a id="bcDownload" class="tt-btn tt-btn-secondary" download="barcode.png">⬇ Download PNG</a></div>
+      </div>
+    </div>
+
+    <div class="tt-sticky-actions" id="bcStickyActions">
+      <button class="tt-btn tt-btn-secondary" id="bcStickyReset" type="button">Reset</button>
+      <button class="tt-btn tt-btn-primary" id="bcStickyDownload" type="button">Download</button>
     </div>
   </div>
 </div>
 
+<!-- Ad Slot 2 — below result -->
+<div class="wrap"><div class="tt-ad-slot" data-size="banner" aria-hidden="true">Advertisement</div></div>
+
+<!-- ================= 6. HOW TO USE ================= -->
 <div class="wrap tool-section">
-  <h2>How to Use Barcode Generator</h2>
-  <ol class="steps">
-      <li>Enter the text or number to encode.</li>
-      <li>Choose a barcode format matching your use case.</li>
+  <div class="tt-article">
+    <h2>How to Use the Barcode Generator</h2>
+    <ol class="steps">
+      <li>Type the text or number you want encoded — a SKU, serial number, or product code.</li>
+      <li>Choose a barcode format that matches your use case (see the comparison table below if you're unsure).</li>
       <li>Click <strong>Generate Barcode</strong>.</li>
-      <li>Download the barcode as a PNG.</li>
-  </ol>
-</div>
+      <li>Download the PNG, or copy the raw value to paste elsewhere.</li>
+    </ol>
 
-<div class="wrap tool-section">
-  <h2>Features</h2>
-  <div class="features-grid">
-      <div class="feature-card"><div class="ico">🎯</div><h4>4 formats supported</h4></div>
-      <div class="feature-card"><div class="ico">⚡</div><h4>Instant generation</h4></div>
-      <div class="feature-card"><div class="ico">🔒</div><h4>No data stored</h4></div>
-      <div class="feature-card"><div class="ico">📱</div><h4>Mobile friendly</h4></div>
+    <div class="tt-callout tt-tip">
+      <div class="tt-callout-icon">💡</div>
+      <p><strong>Tip:</strong> if you're not sure which format to pick, start with <strong>CODE128</strong> — it accepts letters, numbers, and symbols, and is readable by virtually every modern scanner.</p>
+    </div>
   </div>
 </div>
 
+<!-- Ad Slot 3 — between How to Use and Features -->
+<div class="wrap"><div class="tt-ad-slot" data-size="leaderboard" aria-hidden="true">Advertisement</div></div>
+
+<!-- ================= 8. FEATURES & BENEFITS ================= -->
+<div class="wrap tool-section">
+  <h2 style="margin-bottom:16px;">Features</h2>
+  <div class="features-grid">
+    <div class="feature-card"><div class="ico">🎯</div><h4>4 barcode formats</h4></div>
+    <div class="feature-card"><div class="ico">⚡</div><h4>Instant generation</h4></div>
+    <div class="feature-card"><div class="ico">🔒</div><h4>No data stored</h4></div>
+    <div class="feature-card"><div class="ico">📱</div><h4>Mobile friendly</h4></div>
+  </div>
+
+  <div class="tt-article" style="margin-top:36px;">
+    <h2>Which Format Should I Choose?</h2>
+    <table class="tt-example-table">
+      <thead><tr><th>Format</th><th>Best for</th><th>Example input</th></tr></thead>
+      <tbody>
+        <tr><td>CODE128</td><td>General text, mixed alphanumeric data, internal tracking codes</td><td><code>SKU-8841-A</code></td></tr>
+        <tr><td>EAN13</td><td>Retail products sold in Europe/international markets</td><td><code>5901234123457</code></td></tr>
+        <tr><td>UPC</td><td>Retail products sold in the US/Canada</td><td><code>036000291452</code></td></tr>
+        <tr><td>CODE39</td><td>Logistics, inventory, industrial &amp; automotive labeling</td><td><code>ABC-12345</code></td></tr>
+      </tbody>
+    </table>
+
+    <h2>Common Mistakes to Avoid</h2>
+    <ul class="tt-mistake-list">
+      <li>Using letters with EAN13 or UPC — these formats are numeric-only with a required digit count.</li>
+      <li>Printing a barcode too small — under 1 inch (2.5cm) wide often fails to scan reliably.</li>
+      <li>Forgetting the checksum digit on EAN13/UPC — most product codes already include it; don't add an extra one.</li>
+      <li>Using low print contrast — a barcode printed in light grey or on a busy background may not scan.</li>
+    </ul>
+
+    <div class="tt-callout tt-warn">
+      <div class="tt-callout-icon">⚠️</div>
+      <p><strong>Note:</strong> this tool generates barcodes for labeling and internal use. If you're listing products with a retailer or marketplace, confirm you're using an officially assigned EAN/UPC number from GS1 — reusing an arbitrary number can cause listing conflicts.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ================= TRUST SECTION ================= -->
+<div class="wrap tool-section">
+  <h2 style="margin-bottom:4px;">Why You Can Trust This Tool</h2>
+  <div class="tt-trust-grid">
+    <div class="tt-trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      <div><h4>No data stored</h4><p>Your input is never saved or logged.</p></div>
+    </div>
+    <div class="tt-trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>
+      <div><h4>Secure processing</h4><p>All generation happens client-side in your browser.</p></div>
+    </div>
+    <div class="tt-trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <div><h4>Fast processing</h4><p>Barcodes render in milliseconds, no waiting.</p></div>
+    </div>
+    <div class="tt-trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+      <div><h4>Mobile friendly</h4><p>Generate and download barcodes from any device.</p></div>
+    </div>
+    <div class="tt-trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+      <div><h4>No sign-up</h4><p>No account, no email, no watermark.</p></div>
+    </div>
+    <div class="tt-trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+      <div><h4>Works offline*</h4><p>Once loaded, generation needs no internet connection.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 9. FAQ ================= -->
 <div class="wrap tool-section">
   <h2>Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q"><span>Is it free?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-        <div class="faq-a"><p>Yes.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q"><span>Which format should I use?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-        <div class="faq-a"><p>CODE128 works for general text; EAN13/UPC are for retail products with specific digit requirements.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q"><span>Can I print these barcodes?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-        <div class="faq-a"><p>Yes, download the PNG and print at sufficient size and resolution for reliable scanning.</p></div>
-      </div>
+  <div class="faq-item">
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Is the Barcode Generator free?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+    <div class="faq-a"><p>Yes, completely free with no sign-up, no watermark, and no usage limit.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Which barcode format should I use?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+    <div class="faq-a"><p>CODE128 works for general text and mixed alphanumeric data. EAN13 and UPC are for retail products and require a specific digit count with a valid checksum. CODE39 is common in logistics and inventory.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Can I print these barcodes?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+    <div class="faq-a"><p>Yes. Download the PNG and print at a size large enough for reliable scanning — at least 1 inch (2.5cm) wide is a safe starting point.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Is my data uploaded anywhere?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+    <div class="faq-a"><p>No, the barcode is generated entirely in your browser using JavaScript — nothing you type is sent to a server.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Why did my EAN13 or UPC code fail?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+    <div class="faq-a"><p>EAN13 requires exactly 12–13 digits and UPC requires 11–12 digits, each with a valid checksum. Letters or an incorrect digit count will cause an error — try CODE128 if you just need a general-purpose barcode.</p></div>
+  </div>
 </div>
 
+<!-- ================= AI ASSISTANT ================= -->
 <div class="wrap tool-section">
   <div class="ai-panel">
     <h3>🤖 Ask AI about this tool</h3>
     <p style="font-size:13.5px;color:var(--ink-soft);margin-top:4px;">Tap a question for an instant answer. Full conversational AI is coming soon.</p>
-    <div class="ai-q">What's the difference between a barcode and QR code?</div><div class="ai-a">Barcodes store data in parallel lines (1D) and hold less data; QR codes are 2D and can store much more, including URLs.</div>
+    <div class="ai-q">What's the difference between a barcode and a QR code?</div><div class="ai-a">Barcodes store data in parallel lines (1D) and hold less data; QR codes are 2D and can store much more, including full URLs.</div>
     <div class="ai-q">Why isn't my EAN13 code working?</div><div class="ai-a">EAN13 requires exactly 12-13 digits with a valid checksum — CODE128 is more flexible for general text.</div>
     <div class="ai-q">Can barcodes be scanned from a screen?</div><div class="ai-a">Yes, most scanners can read barcodes off a screen, though printed barcodes tend to scan more reliably.</div>
     <div class="ai-input-row">
@@ -172,60 +309,38 @@
   </div>
 </div>
 
+<!-- Ad Slot 4 — below FAQ, above Related Tools -->
+<div class="wrap"><div class="tt-ad-slot" data-size="leaderboard" aria-hidden="true">Advertisement</div></div>
+
+<!-- ================= 11. RELATED TOOLS ================= -->
 <div class="wrap tool-section">
   <h2>Related Tools</h2>
   <div class="related-grid">
-      <a href="qr-code-generator.html" class="related-card">
-        <div class="related-emoji">🔗</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">QR Code Generator</h4></div>
-      </a>
-      <a href="uuid-generator.html" class="related-card">
-        <div class="related-emoji">🆔</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">UUID Generator</h4></div>
-      </a>
-      <a href="password-generator.html" class="related-card">
-        <div class="related-emoji">🔐</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Password Generator</h4></div>
-      </a>
+    <a href="qr-code-generator.html" class="related-card"><div class="related-emoji">🔗</div><div><h4 style="font-size:14.5px;font-weight:600;">QR Code Generator</h4></div></a>
+    <a href="uuid-generator.html" class="related-card"><div class="related-emoji">🆔</div><div><h4 style="font-size:14.5px;font-weight:600;">UUID Generator</h4></div></a>
+    <a href="password-generator.html" class="related-card"><div class="related-emoji">🔐</div><div><h4 style="font-size:14.5px;font-weight:600;">Password Generator</h4></div></a>
   </div>
 </div>
 
 <div class="wrap tool-section">
   <h2>Popular Calculators</h2>
   <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
-      </a>
-      <a href="percentage-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div>
-      </a>
-      <a href="bmi-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div>
-      </a>
+    <a href="age-calculator.html" class="related-card"><div class="related-emoji">🧮</div><div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div></a>
+    <a href="percentage-calculator.html" class="related-card"><div class="related-emoji">🧮</div><div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div></a>
+    <a href="bmi-calculator.html" class="related-card"><div class="related-emoji">🧮</div><div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div></a>
   </div>
 </div>
 
-<div class="wrap tool-section">
+<div class="wrap tool-section" style="border-bottom:1px solid var(--border);">
   <h2>You May Also Like</h2>
   <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
-      </a>
-      <a href="percentage-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div>
-      </a>
-      <a href="bmi-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div>
-      </a>
+    <a href="qr-code-generator.html" class="related-card"><div class="related-emoji">🗂️</div><div><h4 style="font-size:14.5px;font-weight:600;">QR Code Generator</h4></div></a>
+    <a href="json-formatter.html" class="related-card"><div class="related-emoji">💻</div><div><h4 style="font-size:14.5px;font-weight:600;">JSON Formatter</h4></div></a>
+    <a href="uuid-generator.html" class="related-card"><div class="related-emoji">💻</div><div><h4 style="font-size:14.5px;font-weight:600;">UUID Generator</h4></div></a>
   </div>
 </div>
 
+<!-- ================= 12. COMMENTS ================= -->
 <div class="wrap tool-section" style="border-bottom:1px solid var(--border);">
   <h2>Comments</h2>
   <div class="comment-box">
@@ -236,36 +351,126 @@
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
+</main>
+
+<!-- Mobile sticky ad (optional, closable) -->
+<div class="tt-sticky-ad" id="ttStickyAd">
+  <button class="tt-sticky-ad-close" id="ttStickyAdClose" aria-label="Close ad">✕</button>
+  <span class="tt-visually-hidden">Advertisement</span>
+  <div style="font-size:12px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;">Advertisement</div>
+</div>
+
+<!-- ================= 13. FOOTER ================= -->
+<div class="compact-footer">
+  <div class="compact-footer-links">
+    <a href="about.html">About Us</a><span class="sep">|</span>
+    <a href="sitemap.html">Sitemap</a><span class="sep">|</span>
+    <a href="terms-of-service.html">Terms of Use</a><span class="sep">|</span>
+    <a href="privacy-policy.html">Privacy Policy</a><span class="sep">|</span>
+    <a href="contact.html">Contact</a><span class="sep">|</span>
+    <a href="disclaimer.html">Disclaimer</a>
+  </div>
+</div>
+<div class="compact-footer-copy">© 2026 <a href="index.html" style="color:var(--ink-soft);text-decoration:underline;">TickmarkTools</a>. All rights reserved.</div>
+
 <script src="assets/main.js"></script>
 <script>
-document.getElementById('bcGenBtn').addEventListener('click',()=>{
+/* ---------- Barcode tool logic ---------- */
+const bcResultBox = document.getElementById('bcResult');
+const bcErrorBox = document.getElementById('bcError');
+const bcErrorText = document.getElementById('bcErrorText');
+const bcGenBtn = document.getElementById('bcGenBtn');
+const bcStickyActions = document.getElementById('bcStickyActions');
+
+function showBcError(msg){
+  bcErrorText.textContent = msg;
+  bcErrorBox.classList.add('show');
+  bcResultBox.classList.remove('show');
+  bcStickyActions.classList.remove('is-active');
+}
+function hideBcError(){ bcErrorBox.classList.remove('show'); }
+
+bcGenBtn.addEventListener('click', ()=>{
+  hideBcError();
   const text = document.getElementById('bcText').value.trim();
   const format = document.getElementById('bcFormat').value;
-  if(!text){alert('Please enter text or a number');return;}
-  try{
-    JsBarcode('#bcSvg', text, { format: format, lineColor:'#12181A', width:2, height:80, displayValue:true });
-    document.getElementById('bcResult').classList.add('show');
-    setTimeout(()=>{
-      const svg = document.getElementById('bcSvg');
-      const svgData = new XMLSerializer().serializeToString(svg);
-      const canvas = document.createElement('canvas');
-      const img = new Image();
-      const svgBlob = new Blob([svgData], {type:'image/svg+xml;charset=utf-8'});
-      const url = URL.createObjectURL(svgBlob);
-      img.onload = ()=>{
-        canvas.width = img.width || 300; canvas.height = img.height || 120;
-        canvas.getContext('2d').drawImage(img,0,0);
-        canvas.toBlob(blob=>{ document.getElementById('bcDownload').href = URL.createObjectURL(blob); });
-      };
-      img.src = url;
-    }, 100);
-  }catch(e){ console.error('Barcode generation error:', e); alert('Could not generate barcode: ' + e.message); }
+  if(!text){ showBcError('Please enter text or a number to encode.'); return; }
+
+  bcGenBtn.classList.add('is-loading');
+  bcGenBtn.disabled = true;
+
+  setTimeout(()=>{
+    try{
+      JsBarcode('#bcSvg', text, { format: format, lineColor:'#12181A', width:2, height:80, displayValue:true });
+      bcResultBox.classList.add('show');
+      bcStickyActions.classList.add('is-active');
+      setTimeout(()=>{
+        const svg = document.getElementById('bcSvg');
+        const svgData = new XMLSerializer().serializeToString(svg);
+        const canvas = document.createElement('canvas');
+        const img = new Image();
+        const svgBlob = new Blob([svgData], {type:'image/svg+xml;charset=utf-8'});
+        const url = URL.createObjectURL(svgBlob);
+        img.onload = ()=>{
+          canvas.width = img.width || 300; canvas.height = img.height || 120;
+          canvas.getContext('2d').drawImage(img,0,0);
+          canvas.toBlob(blob=>{
+            const dlUrl = URL.createObjectURL(blob);
+            document.getElementById('bcDownload').href = dlUrl;
+            document.getElementById('bcStickyDownload').onclick = ()=> document.getElementById('bcDownload').click();
+          });
+        };
+        img.src = url;
+      }, 80);
+      bcResultBox.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }catch(e){
+      showBcError('Could not generate this barcode: ' + e.message);
+    } finally {
+      bcGenBtn.classList.remove('is-loading');
+      bcGenBtn.disabled = false;
+    }
+  }, 250); // brief loading state for perceived feedback
 });
-window.resetTool=function(){document.getElementById('bcText').value='';document.getElementById('bcSvg').innerHTML='';document.getElementById('bcResult').classList.remove('show');};
-</script>
-<script>
+
+function resetBc(){
+  document.getElementById('bcText').value='';
+  document.getElementById('bcSvg').innerHTML='';
+  bcResultBox.classList.remove('show');
+  bcStickyActions.classList.remove('is-active');
+  hideBcError();
+}
+document.getElementById('bcResetBtn').addEventListener('click', resetBc);
+document.getElementById('bcStickyReset').addEventListener('click', resetBc);
+
+document.getElementById('bcCopyBtn').addEventListener('click', function(){
+  const val = document.getElementById('bcText').value;
+  navigator.clipboard.writeText(val);
+  const btn = this; const old = btn.innerHTML;
+  btn.classList.add('tt-success');
+  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" width="15" height="15"><path d="M5 13l4 4L19 7"/></svg> Copied!';
+  setTimeout(()=>{ btn.classList.remove('tt-success'); btn.innerHTML = old; }, 1600);
+});
+
+document.getElementById('bcShareBtn').addEventListener('click', async ()=>{
+  const shareData = { title:'Barcode — TickmarkTools', text:'Check out this barcode generator', url:'https://tickmarktools.com/barcode-generator' };
+  if(navigator.share){ try{ await navigator.share(shareData); }catch(e){} }
+  else{ navigator.clipboard.writeText(shareData.url); alert('Link copied to clipboard!'); }
+});
+
+/* ---------- FAQ accordion ---------- */
+document.querySelectorAll('.faq-item').forEach(item=>{
+  const q = item.querySelector('.faq-q');
+  function toggle(){
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i=>{ if(i!==item){ i.classList.remove('open'); i.querySelector('.faq-q').setAttribute('aria-expanded','false'); } });
+    item.classList.toggle('open', !isOpen);
+    q.setAttribute('aria-expanded', String(!isOpen));
+  }
+  q.addEventListener('click', toggle);
+  q.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
+});
+
+/* ---------- Comments ---------- */
 function postComment(){
   const input = document.getElementById('commentInput');
   const text = input.value.trim();
@@ -278,21 +483,22 @@ function postComment(){
   list.prepend(item);
   input.value = '';
 }
-document.getElementById('commentInput').addEventListener('keydown', (e)=>{
-  if(e.key === 'Enter') postComment();
-});
-</script>
+document.getElementById('commentInput').addEventListener('keydown', (e)=>{ if(e.key === 'Enter') postComment(); });
 
-<div class="compact-footer">
-  <div class="compact-footer-links">
-    <a href="about.html">About Us</a><span class="sep">|</span>
-    <a href="sitemap.html">Sitemap</a><span class="sep">|</span>
-    <a href="terms-of-service.html">Terms of Use</a><span class="sep">|</span>
-    <a href="privacy-policy.html">Privacy Policy</a><span class="sep">|</span>
-    <a href="contact.html">Contact</a><span class="sep">|</span>
-    <a href="disclaimer.html">Disclaimer</a>
-  </div>
-</div>
-<div class="compact-footer-copy">© 2026 <a href="index.html" style="color:var(--ink-soft);text-decoration:underline;">TickmarkTools</a>. All rights reserved.</div>
+/* ---------- Scroll reveal ---------- */
+if('IntersectionObserver' in window){
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('tt-visible'); io.unobserve(e.target); } });
+  }, {threshold:0.1});
+  document.querySelectorAll('.tool-section').forEach(el=>{ el.classList.add('tt-reveal'); io.observe(el); });
+}
+
+/* ---------- Optional mobile sticky ad, dismissible ---------- */
+const stickyAd = document.getElementById('ttStickyAd');
+const stickyAdClose = document.getElementById('ttStickyAdClose');
+if(window.innerWidth <= 820 && !sessionStorage?.getItem){ /* no-op guard for older browsers */ }
+setTimeout(()=>{ if(window.innerWidth <= 820) stickyAd.classList.add('is-active'); }, 1500);
+stickyAdClose.addEventListener('click', ()=> stickyAd.classList.remove('is-active'));
+</script>
 </body>
 </html>
