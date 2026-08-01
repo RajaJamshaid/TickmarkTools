@@ -21,6 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<script src="assets/geo-detect.js"></script>
 
 
 <script type="application/ld+json">
@@ -58,6 +59,7 @@
 }
 </script>
 </head>
+
 <body>
 
 <header class="site">
@@ -100,6 +102,9 @@
 
 <div class="wrap">
   <div class="tool-panel">
+    <div id="geoBadge" style="display:none;font-size:12.5px;color:var(--ink-soft);margin-bottom:14px;display:flex;align-items:center;gap:6px;">
+      <span id="geoFlag"></span> Detected: <span id="geoCountry"></span> — default currency set to <span id="geoCurrency"></span>
+    </div>
     <div class="field-row">
       <div><label class="field-label">Amount</label><input type="number" id="curAmt" class="field" value="1"></div>
       <div><label class="field-label">From</label>
@@ -233,9 +238,25 @@
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
+<script>
+if(window.TTGeo){
+  TTGeo.get().then(geo=>{
+    const fromSelect = document.getElementById('curFrom');
+    const toSelect = document.getElementById('curTo');
+    // If the detected currency isn't already in the list, add it so the badge is always accurate
+    if(![...fromSelect.options].some(o=>o.value===geo.currency)){
+      const opt = document.createElement('option'); opt.value=geo.currency; opt.textContent=geo.currency;
+      fromSelect.appendChild(opt.cloneNode(true)); toSelect.appendChild(opt);
+    }
+    fromSelect.value = geo.currency;
+    document.getElementById('geoFlag').textContent = geo.flagEmoji;
+    document.getElementById('geoCountry').textContent = geo.countryName;
+    document.getElementById('geoCurrency').textContent = geo.currency + ' (' + geo.currencySymbol + ')';
+    document.getElementById('geoBadge').style.display = 'flex';
+  }).catch(()=>{ /* fail silently — tool still works with defaults */ });
+}
+</script>
 <script>
 document.getElementById('curBtn').addEventListener('click', async ()=>{
   const amt=parseFloat(document.getElementById('curAmt').value);
