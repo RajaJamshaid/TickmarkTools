@@ -21,6 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<script src="assets/geo-detect.js"></script>
 
 
 <script type="application/ld+json">
@@ -100,6 +101,9 @@
 
 <div class="wrap">
   <div class="tool-panel">
+    <div id="geoBadge" style="display:none;font-size:12.5px;color:var(--ink-soft);margin-bottom:14px;align-items:center;gap:6px;">
+      <span id="geoFlag"></span> Showing amounts for <span id="geoCountry"></span> in <span id="geoCurrency"></span>
+    </div>
     <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;">
       <button class="btn btn-secondary pct-tab active" data-mode="add">Add GST</button>
       <button class="btn btn-secondary pct-tab" data-mode="remove">Remove GST</button>
@@ -234,9 +238,22 @@
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
+<script>
+if(window.TTGeo){
+  TTGeo.get().then(geo=>{
+    window.ttCurSym = geo.currencySymbol;
+    const flagEl = document.getElementById('geoFlag');
+    const countryEl = document.getElementById('geoCountry');
+    const curEl = document.getElementById('geoCurrency');
+    const badgeEl = document.getElementById('geoBadge');
+    if(flagEl){ flagEl.textContent = geo.flagEmoji; }
+    if(countryEl){ countryEl.textContent = geo.countryName; }
+    if(curEl){ curEl.textContent = geo.currency + ' (' + geo.currencySymbol + ')'; }
+    if(badgeEl){ badgeEl.style.display = 'flex'; }
+  }).catch(()=>{ /* fail silently, tool still works with plain numbers */ });
+}
+</script>
 <script>
 let gstMode='add';
 document.querySelectorAll('.pct-tab').forEach(btn=>{
@@ -252,8 +269,8 @@ document.getElementById('gstBtn').addEventListener('click',()=>{
   let tax, total;
   if(gstMode==='add'){ tax=(amt*rate)/100; total=amt+tax; }
   else { total=amt; const net=amt/(1+rate/100); tax=amt-net; }
-  document.getElementById('gstTax').textContent=tax.toFixed(2);
-  document.getElementById('gstTotal').textContent=total.toFixed(2);
+  document.getElementById('gstTax').textContent=(window.ttCurSym||'')+tax.toFixed(2);
+  document.getElementById('gstTotal').textContent=(window.ttCurSym||'')+total.toFixed(2);
   document.getElementById('gstResult').classList.add('show');
 });
 window.resetTool=function(){['gstAmt'].forEach(id=>document.getElementById(id).value='');document.getElementById('gstRate').value='18';document.getElementById('gstResult').classList.remove('show');};
