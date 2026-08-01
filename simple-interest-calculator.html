@@ -21,6 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<script src="assets/geo-detect.js"></script>
 
 
 <script type="application/ld+json">
@@ -100,6 +101,9 @@
 
 <div class="wrap">
   <div class="tool-panel">
+    <div id="geoBadge" style="display:none;font-size:12.5px;color:var(--ink-soft);margin-bottom:14px;align-items:center;gap:6px;">
+      <span id="geoFlag"></span> Showing amounts for <span id="geoCountry"></span> in <span id="geoCurrency"></span>
+    </div>
     <div class="field-row">
       <div><label class="field-label">Principal Amount</label><input type="number" id="siPrincipal" class="field" placeholder="e.g. 10000"></div>
       <div><label class="field-label">Rate (% per year)</label><input type="number" id="siRate" class="field" placeholder="e.g. 6"></div>
@@ -232,9 +236,22 @@
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
+<script>
+if(window.TTGeo){
+  TTGeo.get().then(geo=>{
+    window.ttCurSym = geo.currencySymbol;
+    const flagEl = document.getElementById('geoFlag');
+    const countryEl = document.getElementById('geoCountry');
+    const curEl = document.getElementById('geoCurrency');
+    const badgeEl = document.getElementById('geoBadge');
+    if(flagEl){ flagEl.textContent = geo.flagEmoji; }
+    if(countryEl){ countryEl.textContent = geo.countryName; }
+    if(curEl){ curEl.textContent = geo.currency + ' (' + geo.currencySymbol + ')'; }
+    if(badgeEl){ badgeEl.style.display = 'flex'; }
+  }).catch(()=>{ /* fail silently, tool still works with plain numbers */ });
+}
+</script>
 <script>
 document.getElementById('siBtn').addEventListener('click',()=>{
   const P=parseFloat(document.getElementById('siPrincipal').value);
@@ -242,8 +259,8 @@ document.getElementById('siBtn').addEventListener('click',()=>{
   const T=parseFloat(document.getElementById('siTime').value);
   if(!P||!R||!T){alert('Please fill all fields');return;}
   const SI=(P*R*T)/100;
-  document.getElementById('siInterest').textContent=SI.toFixed(2);
-  document.getElementById('siTotal').textContent=(P+SI).toFixed(2);
+  document.getElementById('siInterest').textContent=(window.ttCurSym||'')+SI.toFixed(2);
+  document.getElementById('siTotal').textContent=(window.ttCurSym||'')+(P+SI).toFixed(2);
   document.getElementById('siResult').classList.add('show');
 });
 window.resetTool=function(){['siPrincipal','siRate','siTime'].forEach(id=>document.getElementById(id).value='');document.getElementById('siResult').classList.remove('show');};
