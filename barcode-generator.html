@@ -2,44 +2,81 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Barcode Generator — Free Online Tool | TickmarkTools</title>
-<meta name="description" content="Free online Barcode Generator — create scannable CODE128, EAN13, UPC and CODE39 barcodes from any text or number, instantly in your browser. No sign-up, nothing uploaded.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Free Online Barcode Generator - Create CODE128, EAN13, UPC & CODE39 | TickmarkTools</title>
+<meta name="description" content="Create scannable CODE128, EAN13, UPC and CODE39 barcodes online for free. No sign-up, no watermark, nothing uploaded — everything runs in your browser.">
 <meta name="theme-color" content="#146356">
 <link rel="canonical" href="https://tickmarktools.com/barcode-generator">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Barcode Generator — Free Online Tool | TickmarkTools">
-<meta property="og:description" content="Create scannable barcodes from any text or number — free, private, and instant.">
+<meta property="og:title" content="Free Online Barcode Generator - CODE128, EAN13, UPC & CODE39 | TickmarkTools">
+<meta property="og:description" content="Create scannable barcodes from any text or number — free, private, and instant. No sign-up, nothing uploaded.">
 <meta property="og:url" content="https://tickmarktools.com/barcode-generator">
 <meta property="og:site_name" content="TickmarkTools">
 <meta property="og:image" content="https://tickmarktools.com/assets/og/barcode-generator.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Barcode Generator — TickmarkTools">
-<meta name="twitter:description" content="Create scannable barcodes from any text or number — free, private, and instant.">
+<meta name="twitter:title" content="Free Online Barcode Generator — TickmarkTools">
+<meta name="twitter:description" content="Create scannable CODE128, EAN13, UPC and CODE39 barcodes — free, private, and instant.">
 <meta name="twitter:image" content="https://tickmarktools.com/assets/og/barcode-generator.png">
 
+<!-- Preconnects for the only two font/CDN origins we use -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
-<!-- Universal premium tool-page template — one file, every tool inherits it -->
-<link rel="stylesheet" href="assets/tool-template.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.12.3/JsBarcode.all.min.js" defer></script>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<!-- Trimmed to the exact weights actually used, to cut font payload -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap"></noscript>
 
-<!-- ================= STRUCTURED DATA ================= -->
+<!-- ================= STRUCTURED DATA (accurate, matches visible content — no unverifiable counts) ================= -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
+  "@type": ["WebApplication", "SoftwareApplication"],
   "name": "Barcode Generator",
   "applicationCategory": "UtilitiesApplication",
+  "browserRequirements": "Requires JavaScript. Requires HTML5.",
   "operatingSystem": "Any",
   "url": "https://tickmarktools.com/barcode-generator",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
-  "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "12480"},
-  "softwareVersion": "2.3",
-  "featureList": ["CODE128 support","EAN13 support","UPC support","CODE39 support","PNG download","No sign-up required","No data uploaded"]
+  "softwareVersion": "2.5",
+  "featureList": ["CODE128 support","EAN13 support","UPC support","CODE39 support","PNG download","No sign-up required","No data uploaded","Runs entirely in the browser"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "TickmarkTools",
+  "url": "https://tickmarktools.com/",
+  "logo": "https://tickmarktools.com/favicon.png"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "TickmarkTools",
+  "url": "https://tickmarktools.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://tickmarktools.com/sitemap.html?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to generate a barcode online",
+  "totalTime": "PT30S",
+  "step": [
+    {"@type": "HowToStep", "name": "Enter your data", "text": "Type the text or number you want encoded — a SKU, serial number, ISBN, or product code."},
+    {"@type": "HowToStep", "name": "Choose a format", "text": "Select CODE128, EAN13, UPC, or CODE39 based on your use case."},
+    {"@type": "HowToStep", "name": "Generate the barcode", "text": "Select Generate barcode to render it instantly in your browser."},
+    {"@type": "HowToStep", "name": "Download or copy", "text": "Download the PNG for printing, or copy the raw value to paste elsewhere."}
+  ]
 }
 </script>
 <script type="application/ld+json">
@@ -62,10 +99,451 @@
     {"@type": "Question", "name": "Which barcode format should I use?", "acceptedAnswer": {"@type": "Answer", "text": "CODE128 works for general text and mixed alphanumeric data. EAN13 and UPC are for retail products and require a specific number of digits with a valid checksum. CODE39 is common in logistics and inventory."}},
     {"@type": "Question", "name": "Can I print these barcodes?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Download the PNG and print it at a size large enough for your scanner to read reliably — at least 1 inch (2.5cm) wide is a safe starting point."}},
     {"@type": "Question", "name": "Is my data uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. The barcode is generated entirely in your browser using JavaScript. Nothing you type is sent to a server."}},
-    {"@type": "Question", "name": "Why did my EAN13 or UPC code fail to generate?", "acceptedAnswer": {"@type": "Answer", "text": "EAN13 requires exactly 12 or 13 digits and UPC requires 11 or 12 digits, each with a valid checksum. Letters or an incorrect digit count will cause an error — CODE128 is more flexible if you just need a general-purpose barcode."}}
+    {"@type": "Question", "name": "Why did my EAN13 or UPC code fail to generate?", "acceptedAnswer": {"@type": "Answer", "text": "EAN13 requires exactly 12 or 13 digits and UPC requires 11 or 12 digits, each with a valid checksum. Letters or an incorrect digit count will cause an error — CODE128 is more flexible if you just need a general-purpose barcode."}},
+    {"@type": "Question", "name": "What's the difference between a barcode and a QR code?", "acceptedAnswer": {"@type": "Answer", "text": "A barcode is a 1D symbol made of parallel lines that stores a limited amount of data, usually a numeric or alphanumeric ID. A QR code is a 2D symbol that can store far more data, including full URLs, and is more tolerant of damage or partial obstruction."}},
+    {"@type": "Question", "name": "Do I need an official GS1 number for EAN13 or UPC?", "acceptedAnswer": {"@type": "Answer", "text": "For real retail sale through a store or marketplace, yes — you need an officially assigned GS1 prefix. For internal labeling, testing, or personal projects, any validly formatted number will scan correctly."}}
   ]
 }
 </script>
+
+<style>
+/* ============================================================
+   TICKMARKTOOLS DESIGN SYSTEM — v1.0 "Gold Standard" Template
+   This file is the reference architecture for every tool page.
+   Sections are labelled so the same structure, tokens, and
+   components can be reused verbatim across the site.
+   CRITICAL / BASE is inlined so first paint never blocks on a
+   network round trip for page-shell CSS.
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}
+}
+html,body{max-width:100%;overflow-x:hidden;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg,video,canvas{max-width:100%;display:block;}
+button,input,select,textarea{font:inherit;color:inherit;}
+a{color:inherit;}
+ul,ol{padding-left:1.15em;}
+
+:root{
+  /* ---- Design tokens (site-wide) ---- */
+  --bg:#ffffff;
+  --surface:#F5F7F6;
+  --surface-2:#EEF2F0;
+  --ink:#101615;
+  --ink-soft:#5B6864;
+  --ink-faint:#8A9591;
+  --teal:#146356;
+  --teal-dark:#0C4137;
+  --teal-tint:#E7F1EE;
+  --laser:#E8402C;
+  --laser-tint:#FDEBE7;
+  --line:#E1E6E3;
+  --line-soft:#EEF1EF;
+  --danger:#B4291A;
+  --danger-tint:#FCEAE7;
+  --radius-lg:18px;
+  --radius-md:12px;
+  --radius-sm:8px;
+  --shadow-sm:0 1px 2px rgba(16,22,21,0.06);
+  --shadow-md:0 8px 24px rgba(16,22,21,0.08);
+  --shadow-lg:0 20px 48px rgba(16,22,21,0.14);
+  --font-display:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+  --font-body:'Inter',ui-sans-serif,system-ui,sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --header-h:60px;
+  --jumpnav-h:56px;
+  --sticky-bar-h:76px;
+}
+[data-theme="dark"]{
+  --bg:#0E1413;
+  --surface:#161D1B;
+  --surface-2:#1D2523;
+  --ink:#EEF3F1;
+  --ink-soft:#A9B5B1;
+  --ink-faint:#77837F;
+  --teal:#3FB89E;
+  --teal-dark:#2A8C77;
+  --teal-tint:#152622;
+  --laser:#FF6A50;
+  --laser-tint:#2A1714;
+  --line:#28312E;
+  --line-soft:#202826;
+  --danger:#FF7A63;
+  --danger-tint:#2C1815;
+  --shadow-sm:0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md:0 8px 24px rgba(0,0,0,0.35);
+  --shadow-lg:0 20px 48px rgba(0,0,0,0.45);
+}
+
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:clamp(14px,4vw,32px);}
+.tt-skip-link{position:absolute;left:-9999px;top:0;background:var(--teal);color:#fff;padding:10px 16px;border-radius:0 0 8px 0;z-index:1000;font-weight:600;}
+.tt-skip-link:focus{left:0;}
+
+:focus-visible{outline:2.5px solid var(--laser);outline-offset:2px;border-radius:4px;}
+
+/* ---- Header ---- */
+header.site{position:sticky;top:0;z-index:70;background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line);}
+nav.main{display:flex;align-items:center;gap:20px;height:var(--header-h);}
+.logo{display:flex;align-items:center;gap:9px;font-family:var(--font-display);font-weight:700;font-size:17px;text-decoration:none;color:var(--ink);flex-shrink:0;}
+.logo svg{width:24px;height:24px;flex-shrink:0;}
+.nav-links{display:flex;gap:4px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;}
+.nav-links::-webkit-scrollbar{display:none;}
+.nav-links a{white-space:nowrap;font-size:14px;font-weight:500;text-decoration:none;color:var(--ink-soft);padding:8px 10px;border-radius:8px;transition:background .15s,color .15s;}
+.nav-links a:hover{background:var(--surface);color:var(--ink);}
+.nav-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.theme-toggle{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--surface);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s,transform .1s;}
+.theme-toggle:hover{background:var(--surface-2);}
+.theme-toggle:active{transform:scale(.92);}
+.theme-toggle svg{width:18px;height:18px;color:var(--ink-soft);}
+.nav-cta{display:none;}
+@media(min-width:720px){.nav-cta{display:inline-flex;background:var(--teal);color:#fff;text-decoration:none;padding:9px 16px;border-radius:10px;font-weight:600;font-size:14px;transition:background .15s;}
+.nav-cta:hover{background:var(--teal-dark);}}
+
+.breadcrumb{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding-block:12px;font-size:12.5px;color:var(--ink-faint);}
+.breadcrumb a{text-decoration:none;color:var(--ink-faint);}
+.breadcrumb a:hover{color:var(--teal);}
+.breadcrumb .sep{opacity:.5;}
+.breadcrumb span:last-child{color:var(--ink-soft);font-weight:500;}
+
+/* ---- Hero ---- */
+.tt-hero{padding-block:28px 20px;}
+.tt-hero-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+.tt-icon{width:44px;height:44px;border-radius:12px;background:var(--teal-tint);display:flex;align-items:center;justify-content:center;font-size:22px;}
+.tt-cat-badge{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.02em;background:var(--surface);border:1px solid var(--line);padding:5px 10px;border-radius:20px;color:var(--ink-soft);}
+.tt-hero h1{font-family:var(--font-display);font-weight:700;font-size:clamp(28px,5.2vw,42px);letter-spacing:-0.02em;margin:0 0 12px;line-height:1.08;}
+.tt-desc{font-size:clamp(15px,2vw,17px);color:var(--ink-soft);max-width:66ch;margin:0 0 18px;}
+
+.tt-meta-row{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink-faint);margin-bottom:16px;}
+.tt-meta-row strong{color:var(--ink-soft);font-weight:600;}
+
+.tt-trust-row{display:flex;flex-wrap:wrap;gap:8px;}
+.tt-trust-chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;background:var(--teal-tint);color:var(--teal-dark);padding:8px 13px;border-radius:20px;}
+[data-theme="dark"] .tt-trust-chip{color:var(--teal);}
+.tt-trust-chip svg{width:14px;height:14px;flex-shrink:0;}
+
+/* ---- Jump nav (in-page anchor pills — sticky under header) ---- */
+.tt-jumpnav{position:sticky;top:var(--header-h);z-index:55;background:var(--bg);border-bottom:1px solid var(--line);}
+.tt-jumpnav-row{display:flex;gap:8px;overflow-x:auto;padding:10px 0;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.tt-jumpnav-row::-webkit-scrollbar{display:none;}
+.tt-jumpnav-row a{flex-shrink:0;min-height:36px;display:inline-flex;align-items:center;font-size:13px;font-weight:600;padding:0 14px;border-radius:20px;background:var(--surface);border:1px solid var(--line);color:var(--ink-soft);text-decoration:none;white-space:nowrap;transition:background .15s,color .15s,border-color .15s;}
+.tt-jumpnav-row a:hover{border-color:var(--teal);color:var(--teal-dark);}
+.tt-jumpnav-row a.tt-jump-active{background:var(--teal);border-color:var(--teal);color:#fff;}
+
+/* ---- Ad slots: exact reserved space, minimal margin, zero CLS ---- */
+.tt-ad-wrap{margin-block:18px;}
+.tt-ad-slot{
+  width:100%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--surface);
+  border:1px dashed var(--line);
+  border-radius:10px;
+  color:var(--ink-faint);
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  content-visibility:auto;
+}
+.tt-ad-slot[data-size="leaderboard"]{min-height:90px;}
+.tt-ad-slot[data-size="banner"]{min-height:100px;}
+@media(min-width:600px){
+  .tt-ad-slot[data-size="leaderboard"]{min-height:90px;}
+  .tt-ad-slot[data-size="banner"]{min-height:120px;}
+}
+
+/* ---- Tool section shared spacing ---- */
+.tool-section{padding-block:34px;border-top:1px solid var(--line-soft);}
+.tool-section:first-of-type{border-top:none;}
+.tool-section h2{font-family:var(--font-display);font-size:clamp(20px,3vw,26px);font-weight:700;letter-spacing:-0.01em;margin:0 0 14px;}
+
+/* ---- Main tool layout ---- */
+.tt-layout{display:grid;grid-template-columns:1fr;gap:24px;align-items:start;padding-top:4px;}
+@media(min-width:960px){.tt-layout{grid-template-columns:1fr 220px;}}
+
+.tt-panel{
+  background:var(--bg);
+  border:1px solid var(--line);
+  border-radius:var(--radius-lg);
+  padding:18px;
+  box-shadow:var(--shadow-sm);
+}
+@media(min-width:600px){.tt-panel{padding:26px;}}
+
+.tt-field-label{display:block;font-size:13px;font-weight:600;color:var(--ink-soft);margin-bottom:7px;}
+.field{
+  width:100%;
+  min-height:50px;
+  padding:12px 14px;
+  border:1.5px solid var(--line);
+  border-radius:var(--radius-md);
+  background:var(--surface);
+  font-family:var(--font-mono);
+  font-size:15px;
+  color:var(--ink);
+  transition:border-color .15s,box-shadow .15s,background .15s;
+}
+.field:hover{border-color:var(--ink-faint);}
+.field:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 4px var(--teal-tint);background:var(--bg);}
+select.field{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235B6864' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:16px;padding-right:40px;}
+
+.tt-error{display:none;align-items:flex-start;gap:9px;margin-top:14px;padding:12px 14px;border-radius:var(--radius-md);background:var(--danger-tint);color:var(--danger);font-size:13.5px;font-weight:500;}
+.tt-error.show{display:flex;animation:tt-shake .35s ease;}
+.tt-error svg{width:17px;height:17px;flex-shrink:0;margin-top:1px;}
+@keyframes tt-shake{10%,90%{transform:translateX(-1px);}20%,80%{transform:translateX(2px);}30%,50%,70%{transform:translateX(-3px);}40%,60%{transform:translateX(3px);}}
+
+.tt-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:50px;padding:0 22px;border-radius:var(--radius-md);
+  font-weight:600;font-size:15px;border:none;cursor:pointer;
+  transition:transform .08s ease,background .15s,box-shadow .15s,opacity .15s;
+  -webkit-tap-highlight-color:transparent;
+}
+.tt-btn:active{transform:scale(.97);}
+.tt-btn-primary{background:var(--teal);color:#fff;width:100%;box-shadow:var(--shadow-sm);position:relative;overflow:hidden;}
+.tt-btn-primary:hover{background:var(--teal-dark);}
+.tt-btn-primary:disabled{opacity:.75;cursor:progress;}
+.tt-btn-secondary{background:var(--surface);color:var(--ink);border:1.5px solid var(--line);}
+.tt-btn-secondary:hover{background:var(--surface-2);}
+
+.tt-btn-primary.is-loading .tt-btn-label{opacity:0;}
+.tt-btn-primary .tt-spinner{display:none;position:absolute;inset:0;align-items:center;justify-content:center;}
+.tt-btn-primary.is-loading .tt-spinner{display:flex;}
+.tt-spinner span{width:6px;height:6px;border-radius:50%;background:#fff;margin:0 3px;animation:tt-bounce 1s infinite ease-in-out;}
+.tt-spinner span:nth-child(2){animation-delay:.12s;}
+.tt-spinner span:nth-child(3){animation-delay:.24s;}
+@keyframes tt-bounce{0%,80%,100%{transform:scale(0.6);opacity:.5;}40%{transform:scale(1);opacity:1;}}
+
+/* ---- Empty state ---- */
+.tt-empty-state{text-align:center;padding:22px 14px;border:1.5px dashed var(--line);border-radius:var(--radius-md);background:var(--surface);}
+.tt-empty-state .ico{font-size:26px;margin-bottom:6px;}
+.tt-empty-state h4{margin:0 0 4px;font-family:var(--font-display);font-size:15px;font-weight:600;}
+.tt-empty-state p{margin:0 0 14px;font-size:13.5px;color:var(--ink-soft);}
+.tt-example-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+.tt-example-chip{min-height:38px;padding:0 13px;border-radius:20px;border:1px solid var(--line);background:var(--bg);font-size:12.5px;font-weight:600;color:var(--ink-soft);cursor:pointer;transition:border-color .15s,color .15s,transform .08s;}
+.tt-example-chip:hover{border-color:var(--teal);color:var(--teal-dark);}
+.tt-example-chip:active{transform:scale(.96);}
+
+/* ---- Skeleton / shimmer ---- */
+.tt-skeleton{border-radius:8px;background:linear-gradient(100deg,var(--surface) 30%,var(--surface-2) 50%,var(--surface) 70%);background-size:220% 100%;animation:tt-shimmer 1.3s ease-in-out infinite;}
+@keyframes tt-shimmer{0%{background-position:120% 0;}100%{background-position:-20% 0;}}
+
+/* ---- Result ---- */
+.tt-result{display:none;margin-top:20px;animation:tt-fade-up .35s ease both;}
+.tt-result.show{display:block;}
+@keyframes tt-fade-up{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+.tt-result-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px;}
+.tt-result-title{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;}
+.tt-check{width:20px;height:20px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;animation:tt-pop .4s cubic-bezier(.34,1.56,.64,1) both;}
+@keyframes tt-pop{0%{transform:scale(0);}70%{transform:scale(1.15);}100%{transform:scale(1);}}
+.tt-result-actions{display:flex;gap:6px;flex-wrap:wrap;}
+.tt-icon-btn{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 12px;border-radius:9px;border:1px solid var(--line);background:var(--bg);font-size:12.5px;font-weight:600;color:var(--ink-soft);cursor:pointer;transition:background .15s,border-color .15s,transform .08s,color .15s;}
+.tt-icon-btn svg{width:14px;height:14px;}
+.tt-icon-btn:hover{background:var(--surface);border-color:var(--ink-faint);}
+.tt-icon-btn:active{transform:scale(.95);}
+.tt-icon-btn.tt-success{background:var(--teal-tint);border-color:var(--teal);color:var(--teal-dark);}
+
+.tt-barcode-stage{
+  position:relative;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius-md);
+  padding:18px 12px;
+  min-height:150px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.tt-barcode-stage svg{max-width:100%;height:auto;}
+.tt-scan-line{position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,var(--laser) 20%,var(--laser) 80%,transparent);box-shadow:0 0 10px 1px var(--laser);opacity:0;pointer-events:none;}
+.tt-barcode-stage.is-scanning .tt-scan-line{animation:tt-scan .9s cubic-bezier(.65,0,.35,1) 1;}
+@keyframes tt-scan{
+  0%{opacity:0;top:6%;}
+  8%{opacity:1;}
+  92%{opacity:1;}
+  100%{opacity:0;top:94%;}
+}
+@media (prefers-reduced-motion: reduce){.tt-scan-line{display:none;}}
+
+.tt-download-row{margin-top:16px;display:flex;justify-content:center;}
+.tt-download-row .tt-btn{width:auto;min-width:220px;}
+
+/* ---- Sticky mobile action bar ---- */
+.tt-sticky-actions{
+  display:none;
+  position:fixed;left:0;right:0;bottom:0;z-index:70;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter:saturate(180%) blur(10px);
+  border-top:1px solid var(--line);
+  gap:10px;
+  box-shadow:0 -6px 20px rgba(16,22,21,0.06);
+}
+.tt-sticky-actions.is-active{display:flex;}
+.tt-sticky-actions .tt-btn{margin:0;}
+.tt-sticky-actions .tt-btn-secondary{flex:0 0 auto;width:auto;padding:0 16px;}
+.tt-sticky-actions .tt-btn-primary{flex:1;}
+@media(min-width:720px){.tt-sticky-actions{display:none !important;}}
+body.tt-has-sticky-bar{padding-bottom:var(--sticky-bar-h);}
+@media(min-width:720px){body.tt-has-sticky-bar{padding-bottom:0;}}
+
+/* ---- TOC ---- */
+.tt-toc{display:none;}
+@media(min-width:960px){
+  .tt-toc{display:block;position:sticky;top:calc(var(--header-h) + var(--jumpnav-h) + 20px);max-height:calc(100vh - var(--header-h) - var(--jumpnav-h) - 40px);overflow-y:auto;border-left:1px solid var(--line);padding-left:16px;}
+  .tt-toc h5{margin:0 0 10px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;}
+  .tt-toc a{display:block;padding:6px 0;font-size:13.5px;color:var(--ink-soft);text-decoration:none;border-left:2px solid transparent;margin-left:-17px;padding-left:15px;transition:color .15s,border-color .15s;}
+  .tt-toc a:hover{color:var(--ink);}
+  .tt-toc a.tt-toc-active{color:var(--teal);border-color:var(--teal);font-weight:600;}
+}
+
+/* ---- Article / steps / callouts ---- */
+.tt-article h2{font-family:var(--font-display);font-size:clamp(19px,2.6vw,23px);font-weight:700;margin:28px 0 12px;}
+.tt-article h2:first-child{margin-top:0;}
+.tt-article h3{font-family:var(--font-display);font-size:16.5px;font-weight:600;margin:22px 0 8px;}
+.tt-article p{color:var(--ink-soft);margin:0 0 12px;}
+.steps{margin:0;padding-left:0;list-style:none;counter-reset:tt-step;display:grid;gap:10px;}
+.steps li{counter-increment:tt-step;position:relative;padding:12px 14px 12px 46px;background:var(--surface);border-radius:var(--radius-md);font-size:14.5px;}
+.steps li::before{content:counter(tt-step);position:absolute;left:12px;top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:50%;background:var(--teal);color:#fff;font-family:var(--font-mono);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;}
+
+.tt-callout{display:flex;gap:12px;padding:14px 16px;border-radius:var(--radius-md);margin:16px 0;}
+.tt-callout-icon{font-size:18px;flex-shrink:0;}
+.tt-callout p{margin:0;font-size:13.5px;color:var(--ink);}
+.tt-tip{background:var(--teal-tint);}
+.tt-warn{background:var(--laser-tint);}
+
+.tt-example-table{width:100%;border-collapse:collapse;margin-top:14px;font-size:13.5px;}
+.tt-example-table th,.tt-example-table td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);}
+.tt-example-table th{color:var(--ink-faint);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;font-weight:700;}
+.tt-example-table code{font-family:var(--font-mono);background:var(--surface);padding:2px 6px;border-radius:5px;font-size:12.5px;}
+.tt-example-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+
+/* ---- Format deep-dive sections (CODE128 / EAN13 / UPC / CODE39) ---- */
+.tt-format-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:4px;}
+.tt-format-icon{width:40px;height:40px;border-radius:10px;background:var(--teal-tint);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
+.tt-format-head h2{margin:0;}
+.tt-format-sub{margin:2px 0 0;font-size:13px;color:var(--ink-faint);font-family:var(--font-mono);}
+.tt-format-try{margin-left:auto;flex-shrink:0;}
+@media(max-width:560px){.tt-format-try{width:100%;margin-left:0;margin-top:6px;}}
+
+.tt-proscons{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px;}
+@media(max-width:640px){.tt-proscons{grid-template-columns:1fr;}}
+.tt-pros,.tt-cons{padding:14px 16px;border-radius:var(--radius-md);}
+.tt-pros{background:var(--teal-tint);}
+.tt-cons{background:var(--surface);}
+.tt-pros h4,.tt-cons h4{margin:0 0 8px;font-size:13px;font-weight:700;}
+.tt-pros ul,.tt-cons ul{margin:0;padding-left:18px;font-size:13.5px;color:var(--ink-soft);display:grid;gap:5px;}
+
+.tt-mistake-list{display:grid;gap:8px;margin:0 0 16px;padding:0;list-style:none;}
+.tt-mistake-list li{padding:10px 12px 10px 34px;position:relative;font-size:14px;color:var(--ink-soft);background:var(--surface);border-radius:9px;}
+.tt-mistake-list li::before{content:"✕";position:absolute;left:12px;color:var(--danger);font-weight:700;font-size:12px;top:11px;}
+
+/* ---- Examples grid (reused inside format sections) ---- */
+.tt-examples-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:10px;}
+.tt-example-card{text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:var(--radius-md);padding:14px;cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .1s;}
+.tt-example-card:hover{border-color:var(--teal);box-shadow:var(--shadow-sm);transform:translateY(-1px);}
+.tt-example-card:active{transform:translateY(0) scale(.98);}
+.tt-example-card .tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--teal-dark);background:var(--teal-tint);padding:3px 8px;border-radius:12px;margin-bottom:8px;}
+.tt-example-card h5{margin:0 0 6px;font-size:14.5px;font-weight:600;}
+.tt-example-card .val{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-faint);word-break:break-all;}
+
+/* ---- Features ---- */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;}
+.feature-card{background:var(--surface);border-radius:var(--radius-md);padding:16px;text-align:center;}
+.feature-card .ico{font-size:22px;margin-bottom:8px;}
+.feature-card h4{margin:0;font-size:13.5px;font-weight:600;}
+
+/* ---- Comparison ---- */
+.tt-compare-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius-md);border:1px solid var(--line);margin-top:14px;}
+.tt-compare{width:100%;border-collapse:collapse;font-size:13.5px;min-width:520px;}
+.tt-compare th,.tt-compare td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line);}
+.tt-compare thead th{background:var(--surface);font-size:12px;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-faint);}
+.tt-compare tbody tr:last-child td{border-bottom:none;}
+.tt-highlight-col{background:var(--teal-tint);font-weight:600;color:var(--teal-dark);}
+.tt-compare .yes{color:var(--teal-dark);font-weight:700;}
+.tt-compare .no{color:var(--ink-faint);}
+.tt-compare-note{font-size:12px;color:var(--ink-faint);margin-top:8px;}
+
+/* ---- Trust grid ---- */
+.tt-trust-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:16px;}
+.tt-trust-item{display:flex;gap:12px;padding:14px;background:var(--surface);border-radius:var(--radius-md);}
+.tt-trust-item svg{width:20px;height:20px;color:var(--teal);flex-shrink:0;margin-top:2px;}
+.tt-trust-item h4{margin:0 0 3px;font-size:14px;font-weight:600;}
+.tt-trust-item p{margin:0;font-size:12.5px;color:var(--ink-soft);}
+
+/* ---- FAQ ---- */
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-item:first-child{border-top:1px solid var(--line);}
+.faq-q{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 4px;cursor:pointer;font-weight:600;font-size:15px;min-height:48px;}
+.faq-q .chev{flex-shrink:0;transition:transform .2s;color:var(--ink-faint);}
+.faq-item.open .chev{transform:rotate(180deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.faq-item.open .faq-a{max-height:260px;}
+.faq-a p{margin:0 4px 16px;color:var(--ink-soft);font-size:14px;}
+
+/* ---- AI panel ---- */
+.ai-panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:18px;}
+.ai-panel h3{margin:0;font-family:var(--font-display);font-size:16px;}
+.ai-q{margin-top:12px;padding:11px 13px;background:var(--bg);border:1px solid var(--line);border-radius:9px;font-size:13.5px;font-weight:600;cursor:pointer;}
+.ai-a{display:none;padding:10px 13px;font-size:13.5px;color:var(--ink-soft);}
+.ai-q.open + .ai-a{display:block;}
+.ai-input-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+.ai-input-row .field{flex:1;min-width:160px;}
+.ai-input-row .btn{min-height:48px;padding:0 18px;border-radius:var(--radius-md);border:none;background:var(--teal);color:#fff;font-weight:600;cursor:pointer;}
+
+/* ---- Request CTA ---- */
+.tt-request-cta{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--teal-dark);color:#fff;border-radius:var(--radius-lg);padding:22px;}
+.tt-request-cta h3{margin:0 0 4px;font-family:var(--font-display);font-size:18px;}
+.tt-request-cta p{margin:0;font-size:13.5px;color:#CFE4DF;}
+.tt-request-cta .tt-btn{background:#fff;color:var(--teal-dark);width:auto;text-decoration:none;padding:0 20px;flex-shrink:0;}
+
+/* ---- Chips row ---- */
+.tt-chip-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:thin;}
+.tt-tool-chip{flex-shrink:0;display:inline-flex;align-items:center;gap:7px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);padding:9px 14px;border-radius:20px;font-size:13.5px;font-weight:600;white-space:nowrap;transition:border-color .15s,transform .1s;}
+.tt-tool-chip:hover{border-color:var(--teal);}
+.tt-tool-chip .em{font-size:15px;}
+
+/* ---- Related ---- */
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;}
+.related-card{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:var(--radius-md);padding:13px;transition:border-color .15s,transform .1s;}
+.related-card:hover{border-color:var(--teal);transform:translateY(-1px);}
+.related-emoji{font-size:20px;flex-shrink:0;}
+
+/* ---- Comments ---- */
+.comment-box{background:var(--surface);border-radius:var(--radius-md);padding:16px;}
+.comment-input-row{margin-bottom:12px;}
+.comment-list{display:grid;gap:10px;}
+.comment-item{display:flex;gap:10px;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:11px 13px;}
+.comment-avatar{width:30px;height:30px;border-radius:50%;background:var(--teal-tint);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px;}
+.comment-meta{font-size:11.5px;color:var(--ink-faint);margin-bottom:2px;}
+.comment-text{font-size:13.5px;}
+
+/* ---- Footer ---- */
+footer.compact-footer{border-top:1px solid var(--line);}
+.compact-footer-links{max-width:1120px;margin:0 auto;padding:22px clamp(14px,4vw,32px) 10px;display:flex;flex-wrap:wrap;gap:6px 4px;font-size:12.5px;justify-content:center;}
+.compact-footer-links a{text-decoration:none;color:var(--ink-faint);padding:4px 2px;}
+.compact-footer-links a:hover{color:var(--teal);}
+.compact-footer-links .sep{color:var(--line);}
+.compact-footer-copy{text-align:center;font-size:12px;color:var(--ink-faint);padding-bottom:22px;}
+
+/* ---- Scroll reveal ---- */
+.tt-reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;}
+.tt-reveal.tt-visible{opacity:1;transform:translateY(0);}
+@media (prefers-reduced-motion: reduce){.tt-reveal{opacity:1;transform:none;transition:none;}}
+
+.tt-visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+</style>
 </head>
 <body>
 
@@ -73,9 +551,9 @@
 
 <header class="site">
   <div class="wrap">
-    <nav class="main">
+    <nav class="main" aria-label="Primary">
       <a href="index.html" class="logo">
-        <svg viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#146356"/><path d="M6 12.5L10 16.5L18 8" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#146356"/><path d="M6 12.5L10 16.5L18 8" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         TickmarkTools
       </a>
       <div class="nav-links">
@@ -86,8 +564,8 @@
         <a href="word-counter.html">Text Tools</a>
       </div>
       <div class="nav-right">
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-          <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+          <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
         </button>
         <a href="index.html#categories" class="nav-cta">All Tools</a>
       </div>
@@ -95,67 +573,67 @@
   </div>
 </header>
 
-<div class="wrap breadcrumb">
+<nav class="wrap breadcrumb" aria-label="Breadcrumb">
   <a href="index.html">Home</a><span class="sep">/</span>
   <a href="index.html#categories">Productivity Tools</a><span class="sep">/</span>
-  <span>Barcode Generator</span>
-</div>
+  <span aria-current="page">Barcode Generator</span>
+</nav>
 
-<!-- ================= 1. HERO ================= -->
+<!-- ================= HERO (H1 + EEAT signals) ================= -->
 <section class="tt-hero">
   <div class="wrap">
     <div class="tt-hero-top">
       <div class="tt-icon" aria-hidden="true">📊</div>
-      <span class="tt-cat-badge">🗂️ Productivity Tools</span>
-      <span class="tt-updated">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        Updated July 2026
-      </span>
+      <span class="tt-cat-badge">Productivity Tools</span>
     </div>
-    <h1>Barcode Generator</h1>
-    <p class="tt-desc">Turn any text or number into a scannable barcode — CODE128, EAN13, UPC, or CODE39 — then download it as a print-ready PNG. Everything runs locally, so nothing you type ever leaves your device.</p>
+    <h1>Free Online Barcode Generator</h1>
+    <p class="tt-desc">Create scannable <strong>CODE128</strong>, <strong>EAN13</strong>, <strong>UPC</strong>, and <strong>CODE39</strong> barcodes from any text or number, then download a print-ready PNG. Everything runs locally in your browser, so nothing you type is ever uploaded.</p>
 
     <div class="tt-meta-row">
-      <span class="tt-rating">★★★★★ <span style="color:var(--ink-soft);font-weight:600;">4.9/5</span></span>
-      <span>📖 <strong>1 min</strong> read</span>
-      <span>🏷️ Version <strong>2.3</strong></span>
-      <span>✍️ By <strong>TickmarkTools Team</strong></span>
-      <span>✅ Reviewed by <strong>Senior Dev Team</strong></span>
-      <span>⏱️ Est. completion: <strong>&lt; 30 sec</strong></span>
+      <span>📖 <strong>4 min</strong> read</span>
+      <span>🏷️ Version <strong>2.5</strong></span>
+      <span>✍️ Written by <strong>TickmarkTools Team</strong></span>
+      <span>✅ Reviewed by <strong>TickmarkTools Editorial</strong></span>
+      <span>🕒 Updated <strong>August 2026</strong></span>
     </div>
 
     <div class="tt-trust-row">
-      <span class="tt-trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>100% Free</span>
-      <span class="tt-trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>Secure &amp; Private</span>
-      <span class="tt-trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>No Sign-up</span>
-      <span class="tt-trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>Works on Mobile</span>
+      <span class="tt-trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>100% Free</span>
+      <span class="tt-trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>Private — nothing uploaded</span>
+      <span class="tt-trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>No Sign-up</span>
+      <span class="tt-trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>Browser-based processing</span>
+      <span class="tt-trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>Works on Mobile</span>
     </div>
   </div>
 </section>
 
-<!-- ================= 2. TRUST / STATS STRIP ================= -->
-<div class="wrap tool-section" style="border-top:none;padding-top:0;">
-  <div class="tt-stats-strip">
-    <div class="tt-stat"><div class="num">12M+</div><div class="lbl">Barcodes generated</div></div>
-    <div class="tt-stat"><div class="num">8.4M</div><div class="lbl">Monthly users</div></div>
-    <div class="tt-stat"><div class="num">99.9%</div><div class="lbl">Uptime</div></div>
-    <div class="tt-stat"><div class="num">100%</div><div class="lbl">Private processing</div></div>
-    <div class="tt-stat"><div class="num">&lt;100ms</div><div class="lbl">Generation time</div></div>
+<!-- ================= JUMP NAV (in-page anchors) ================= -->
+<nav class="tt-jumpnav" aria-label="Jump to barcode format">
+  <div class="wrap">
+    <div class="tt-jumpnav-row" id="jumpNavRow">
+      <a href="#tt-main" data-jump>Generator</a>
+      <a href="#code128" data-jump>CODE128</a>
+      <a href="#ean13" data-jump>EAN13</a>
+      <a href="#upc" data-jump>UPC</a>
+      <a href="#code39" data-jump>CODE39</a>
+      <a href="#qr-vs-barcode" data-jump>QR vs Barcode</a>
+      <a href="#faq" data-jump>FAQ</a>
+    </div>
   </div>
-</div>
+</nav>
 
 <!-- Ad Slot 1 — below hero -->
-<div class="wrap"><div class="tt-ad-slot" data-size="leaderboard" aria-hidden="true">Advertisement</div></div>
+<div class="wrap tt-ad-wrap"><div class="tt-ad-slot" data-size="leaderboard" role="complementary" aria-label="Advertisement">Advertisement</div></div>
 
-<!-- ================= 3+4. MAIN TOOL + FLOATING TOC ================= -->
+<!-- ================= MAIN TOOL + TOC ================= -->
 <main id="tt-main">
-<div class="wrap" style="display:grid;grid-template-columns:1fr 220px;gap:28px;align-items:start;">
+<div class="wrap tt-layout">
   <div>
-  <div class="tt-panel">
-    <label class="tt-field-label" for="bcText">Text or Number</label>
-    <input type="text" id="bcText" class="field" placeholder="e.g. 123456789012" autocomplete="off" inputmode="text">
+  <div class="tt-panel" role="form" aria-label="Barcode generator">
+    <label class="tt-field-label" for="bcText">Text or number</label>
+    <input type="text" id="bcText" class="field" placeholder="e.g. 123456789012" autocomplete="off" inputmode="text" aria-describedby="bcErrorText">
 
-    <label class="tt-field-label" style="margin-top:16px;" for="bcFormat">Barcode Format</label>
+    <label class="tt-field-label" style="margin-top:16px;" for="bcFormat">Barcode format</label>
     <select id="bcFormat" class="field">
       <option value="CODE128">CODE128 — general purpose</option>
       <option value="EAN13">EAN13 — retail products</option>
@@ -164,170 +642,374 @@
     </select>
 
     <div id="bcError" class="tt-error" role="alert">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>
       <span id="bcErrorText">Something went wrong.</span>
     </div>
 
     <div style="margin-top:20px;">
-      <button class="tt-btn tt-btn-primary" id="bcGenBtn">Generate Barcode</button>
+      <button class="tt-btn tt-btn-primary" id="bcGenBtn" type="button">
+        <span class="tt-btn-label">Generate barcode</span>
+        <span class="tt-spinner" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
     </div>
 
     <!-- Empty state: shown before first generation -->
     <div class="tt-empty-state" id="bcEmptyState" style="margin-top:20px;">
-      <div class="ico">🏷️</div>
+      <div class="ico" aria-hidden="true">🏷️</div>
       <h4>No barcode yet</h4>
-      <p>Type a value above and hit Generate — or try one of these real-world examples to get started instantly.</p>
+      <p>Type a value above and hit Generate — or try a real-world example to get started instantly.</p>
       <div class="tt-example-chips">
-        <button class="tt-example-chip" data-val="123456789012" data-fmt="CODE128">Warehouse SKU</button>
-        <button class="tt-example-chip" data-val="5901234123457" data-fmt="EAN13">Retail product (EAN13)</button>
-        <button class="tt-example-chip" data-val="036000291452" data-fmt="UPC">US Product (UPC)</button>
-        <button class="tt-example-chip" data-val="ABC-12345" data-fmt="CODE39">Inventory tag</button>
+        <button class="tt-example-chip" data-val="123456789012" data-fmt="CODE128" type="button">Warehouse SKU</button>
+        <button class="tt-example-chip" data-val="5901234123457" data-fmt="EAN13" type="button">Retail product (EAN13)</button>
+        <button class="tt-example-chip" data-val="036000291452" data-fmt="UPC" type="button">US product (UPC)</button>
+        <button class="tt-example-chip" data-val="ABC-12345" data-fmt="CODE39" type="button">Inventory tag</button>
       </div>
     </div>
 
     <!-- Skeleton loading state -->
-    <div id="bcSkeleton" style="display:none;margin-top:20px;">
-      <div class="tt-skeleton" style="height:16px;width:40%;margin-bottom:14px;"></div>
-      <div class="tt-skeleton" style="height:90px;width:100%;"></div>
+    <div id="bcSkeleton" style="display:none;margin-top:20px;" aria-hidden="true">
+      <div class="tt-skeleton" style="height:14px;width:38%;margin-bottom:14px;"></div>
+      <div class="tt-skeleton" style="height:110px;width:100%;border-radius:12px;"></div>
     </div>
 
-    <div class="tt-result" id="bcResult">
+    <div class="tt-result" id="bcResult" aria-live="polite">
       <div class="tt-result-head">
-        <div class="tt-result-title"><span class="tt-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span> Barcode ready</div>
+        <div class="tt-result-title"><span class="tt-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span> Barcode ready</div>
         <div class="tt-result-actions">
           <button class="tt-icon-btn" id="bcCopyBtn" type="button">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-            Copy Value
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copy value
           </button>
           <button class="tt-icon-btn" id="bcShareBtn" type="button">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
             Share
           </button>
           <button class="tt-icon-btn" id="bcResetBtn" type="button">↺ Reset</button>
         </div>
       </div>
-      <div style="text-align:center;">
-        <svg id="bcSvg" style="background:#fff;max-width:100%;"></svg>
-        <div style="margin-top:14px;"><a id="bcDownload" class="tt-btn tt-btn-secondary" download="barcode.png">⬇ Download PNG</a></div>
+      <div class="tt-barcode-stage" id="bcStage">
+        <div class="tt-scan-line" aria-hidden="true"></div>
+        <svg id="bcSvg" role="img" aria-label="Generated barcode preview"></svg>
       </div>
-    </div>
-
-    <div class="tt-sticky-actions" id="bcStickyActions">
-      <button class="tt-btn tt-btn-secondary" id="bcStickyReset" type="button">Reset</button>
-      <button class="tt-btn tt-btn-primary" id="bcStickyDownload" type="button">Download</button>
+      <div class="tt-download-row">
+        <a id="bcDownload" class="tt-btn tt-btn-secondary" download="barcode.png">⬇ Download PNG</a>
+      </div>
     </div>
   </div>
   </div>
 
   <!-- Floating Table of Contents (desktop only) -->
   <nav class="tt-toc" aria-label="On this page">
-    <h5>On This Page</h5>
-    <a href="#how-to-use" data-toc>How to Use</a>
-    <a href="#examples" data-toc>Live Examples</a>
-    <a href="#features" data-toc>Features</a>
+    <h5>On this page</h5>
+    <a href="#how-to-use" data-toc>How to use</a>
+    <a href="#code128" data-toc>CODE128 generator</a>
+    <a href="#ean13" data-toc>EAN13 generator</a>
+    <a href="#upc" data-toc>UPC generator</a>
+    <a href="#code39" data-toc>CODE39 generator</a>
+    <a href="#qr-vs-barcode" data-toc>QR code vs barcode</a>
     <a href="#comparison" data-toc>Comparison</a>
-    <a href="#faq" data-toc>FAQ</a>
+    <a href="#faq" data-toc>Barcode FAQ</a>
     <a href="#ai-assistant" data-toc>Ask AI</a>
-    <a href="#related" data-toc>Related Tools</a>
+    <a href="#related" data-toc>Related tools</a>
     <a href="#comments" data-toc>Comments</a>
   </nav>
 </div>
 
-<!-- Ad Slot 2 — below result -->
-<div class="wrap"><div class="tt-ad-slot" data-size="banner" aria-hidden="true">Advertisement</div></div>
+<!-- Sticky mobile action bar -->
+<div class="tt-sticky-actions" id="bcStickyActions">
+  <button class="tt-btn tt-btn-primary" id="bcStickyGen" type="button">Generate barcode</button>
+</div>
 
-<!-- ================= 6. HOW TO USE ================= -->
+<!-- Ad Slot 2 — below result -->
+<div class="wrap tt-ad-wrap"><div class="tt-ad-slot" data-size="banner" role="complementary" aria-label="Advertisement">Advertisement</div></div>
+
+<!-- ================= HOW TO USE (matches HowTo schema) ================= -->
 <div class="wrap tool-section" id="how-to-use">
   <div class="tt-article">
-    <h2>How to Use the Barcode Generator</h2>
+    <h2>How to use the barcode generator</h2>
     <ol class="steps">
-      <li>Type the text or number you want encoded — a SKU, serial number, or product code.</li>
-      <li>Choose a barcode format that matches your use case (see the comparison table below if you're unsure).</li>
-      <li>Click <strong>Generate Barcode</strong>.</li>
-      <li>Download the PNG, or copy the raw value to paste elsewhere.</li>
+      <li>Type the text or number you want encoded — a SKU, serial number, ISBN, or product code.</li>
+      <li>Choose a barcode format that matches your use case — CODE128, EAN13, UPC, or CODE39.</li>
+      <li>Select <strong>Generate barcode</strong> to render it instantly in your browser.</li>
+      <li>Download the PNG for printing, or copy the raw value to paste elsewhere.</li>
     </ol>
 
     <div class="tt-callout tt-tip">
-      <div class="tt-callout-icon">💡</div>
+      <div class="tt-callout-icon" aria-hidden="true">💡</div>
       <p><strong>Tip:</strong> if you're not sure which format to pick, start with <strong>CODE128</strong> — it accepts letters, numbers, and symbols, and is readable by virtually every modern scanner.</p>
     </div>
-  </div>
-</div>
 
-<!-- ================= 7. LIVE EXAMPLES ================= -->
-<div class="wrap tool-section" id="examples">
-  <h2 style="margin-bottom:6px;">Live Examples</h2>
-  <p style="color:var(--ink-soft);font-size:14.5px;margin-bottom:6px;">Tap any example to load it straight into the tool above.</p>
-  <div class="tt-examples-grid">
-    <button class="tt-example-card" data-val="8901030826197" data-fmt="EAN13">
-      <span class="tag">Retail</span><h5>📦 Amazon-style product</h5><span class="val">8901030826197</span>
-    </button>
-    <button class="tt-example-card" data-val="9780132350884" data-fmt="EAN13">
-      <span class="tag">Publishing</span><h5>📚 Book (ISBN-13/EAN13)</h5><span class="val">9780132350884</span>
-    </button>
-    <button class="tt-example-card" data-val="RX-449281-B" data-fmt="CODE39">
-      <span class="tag">Healthcare</span><h5>💊 Medicine batch label</h5><span class="val">RX-449281-B</span>
-    </button>
-    <button class="tt-example-card" data-val="INV-2026-00931" data-fmt="CODE128">
-      <span class="tag">Inventory</span><h5>🏷️ Inventory tracking code</h5><span class="val">INV-2026-00931</span>
-    </button>
-    <button class="tt-example-card" data-val="WH-A3-SHELF-12" data-fmt="CODE128">
-      <span class="tag">Logistics</span><h5>🏭 Warehouse shelf label</h5><span class="val">WH-A3-SHELF-12</span>
-    </button>
-    <button class="tt-example-card" data-val="036000291452" data-fmt="UPC">
-      <span class="tag">Retail (US)</span><h5>🛒 Grocery product</h5><span class="val">036000291452</span>
-    </button>
-  </div>
-</div>
-
-<!-- Ad Slot 3 — between examples and features -->
-<div class="wrap"><div class="tt-ad-slot" data-size="leaderboard" aria-hidden="true">Advertisement</div></div>
-
-<!-- ================= 8. FEATURES & BENEFITS ================= -->
-<div class="wrap tool-section" id="features">
-  <h2 style="margin-bottom:16px;">Features</h2>
-  <div class="features-grid">
-    <div class="feature-card"><div class="ico">🎯</div><h4>4 barcode formats</h4></div>
-    <div class="feature-card"><div class="ico">⚡</div><h4>Instant generation</h4></div>
-    <div class="feature-card"><div class="ico">🔒</div><h4>No data stored</h4></div>
-    <div class="feature-card"><div class="ico">📱</div><h4>Mobile friendly</h4></div>
-  </div>
-
-  <div class="tt-article" style="margin-top:36px;">
-    <h2>Which Format Should I Choose?</h2>
+    <h3>Quick format comparison</h3>
+    <div class="tt-example-table-wrap">
     <table class="tt-example-table">
       <thead><tr><th>Format</th><th>Best for</th><th>Example input</th></tr></thead>
       <tbody>
-        <tr><td>CODE128</td><td>General text, mixed alphanumeric data, internal tracking codes</td><td><code>SKU-8841-A</code></td></tr>
-        <tr><td>EAN13</td><td>Retail products sold in Europe/international markets</td><td><code>5901234123457</code></td></tr>
-        <tr><td>UPC</td><td>Retail products sold in the US/Canada</td><td><code>036000291452</code></td></tr>
-        <tr><td>CODE39</td><td>Logistics, inventory, industrial &amp; automotive labeling</td><td><code>ABC-12345</code></td></tr>
+        <tr><td><a href="#code128">CODE128</a></td><td>General text, mixed alphanumeric data, internal tracking codes</td><td><code>SKU-8841-A</code></td></tr>
+        <tr><td><a href="#ean13">EAN13</a></td><td>Retail products sold in Europe/international markets</td><td><code>5901234123457</code></td></tr>
+        <tr><td><a href="#upc">UPC</a></td><td>Retail products sold in the US/Canada</td><td><code>036000291452</code></td></tr>
+        <tr><td><a href="#code39">CODE39</a></td><td>Logistics, inventory, industrial &amp; automotive labeling</td><td><code>ABC-12345</code></td></tr>
       </tbody>
     </table>
-
-    <h2>Common Mistakes to Avoid</h2>
-    <ul class="tt-mistake-list">
-      <li>Using letters with EAN13 or UPC — these formats are numeric-only with a required digit count.</li>
-      <li>Printing a barcode too small — under 1 inch (2.5cm) wide often fails to scan reliably.</li>
-      <li>Forgetting the checksum digit on EAN13/UPC — most product codes already include it; don't add an extra one.</li>
-      <li>Using low print contrast — a barcode printed in light grey or on a busy background may not scan.</li>
-    </ul>
-
-    <div class="tt-callout tt-warn">
-      <div class="tt-callout-icon">⚠️</div>
-      <p><strong>Note:</strong> this tool generates barcodes for labeling and internal use. If you're listing products with a retailer or marketplace, confirm you're using an officially assigned EAN/UPC number from GS1 — reusing an arbitrary number can cause listing conflicts.</p>
     </div>
   </div>
 </div>
 
-<!-- ================= 9. COMPARISON TABLE ================= -->
+<!-- Ad Slot 3 -->
+<div class="wrap tt-ad-wrap"><div class="tt-ad-slot" data-size="leaderboard" role="complementary" aria-label="Advertisement">Advertisement</div></div>
+
+<!-- ================= CODE128 DEEP SECTION ================= -->
+<div class="wrap tool-section" id="code128">
+  <div class="tt-article">
+    <div class="tt-format-head">
+      <span class="tt-format-icon" aria-hidden="true">🏷️</span>
+      <div>
+        <h2>Code-128 Barcode Generator</h2>
+        <p class="tt-format-sub">General-purpose · letters, numbers &amp; symbols · no fixed length</p>
+      </div>
+      <button class="tt-btn tt-btn-secondary tt-format-try" data-val="INV-2026-00931" data-fmt="CODE128" type="button">Generate a CODE128 barcode →</button>
+    </div>
+    <p>CODE128 is a high-density linear barcode symbology that can encode all 128 ASCII characters — uppercase and lowercase letters, digits, and punctuation. It automatically switches between three internal character sets to keep the barcode as compact as possible, which is why it's the default choice for general-purpose tracking.</p>
+
+    <h3>When to use CODE128</h3>
+    <p>Reach for CODE128 whenever you need to encode alphanumeric data that doesn't fit a fixed-length retail standard — internal SKUs, shipping and logistics labels, asset tags, ID badges, and warehouse tracking codes.</p>
+
+    <h3>Real-world CODE128 examples</h3>
+    <div class="tt-examples-grid">
+      <button class="tt-example-card" data-val="INV-2026-00931" data-fmt="CODE128" type="button">
+        <span class="tag">Inventory</span><h5>🏷️ Inventory tracking code</h5><span class="val">INV-2026-00931</span>
+      </button>
+      <button class="tt-example-card" data-val="WH-A3-SHELF-12" data-fmt="CODE128" type="button">
+        <span class="tag">Shipping</span><h5>🚚 Shipping / warehouse label</h5><span class="val">WH-A3-SHELF-12</span>
+      </button>
+      <button class="tt-example-card" data-val="123456789012" data-fmt="CODE128" type="button">
+        <span class="tag">Logistics</span><h5>📦 Warehouse SKU</h5><span class="val">123456789012</span>
+      </button>
+    </div>
+
+    <div class="tt-proscons">
+      <div class="tt-pros">
+        <h4>✓ Pros</h4>
+        <ul>
+          <li>Encodes letters, numbers, and symbols</li>
+          <li>Very compact — no fixed digit count</li>
+          <li>Widely supported by modern scanners</li>
+        </ul>
+      </div>
+      <div class="tt-cons">
+        <h4>✕ Limitations</h4>
+        <ul>
+          <li>Not a retail point-of-sale standard</li>
+          <li>Won't scan at most store checkouts</li>
+          <li>Slightly more complex structure than numeric codes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= EAN13 DEEP SECTION ================= -->
+<div class="wrap tool-section" id="ean13">
+  <div class="tt-article">
+    <div class="tt-format-head">
+      <span class="tt-format-icon" aria-hidden="true">🌍</span>
+      <div>
+        <h2>EAN-13 Barcode Generator</h2>
+        <p class="tt-format-sub">International retail standard · 12–13 digits · checksum validated</p>
+      </div>
+      <button class="tt-btn tt-btn-secondary tt-format-try" data-val="5901234123457" data-fmt="EAN13" type="button">Generate an EAN13 barcode →</button>
+    </div>
+    <p>EAN-13 (European Article Number, now managed globally by GS1) is a 13-digit numeric barcode standard used at retail checkouts worldwide. It's structured as a country/prefix code, manufacturer code, product code, and a final checksum digit that lets scanners verify the number was read correctly.</p>
+
+    <h3>When to use EAN13</h3>
+    <p>Use EAN13 for retail products sold in Europe, Asia, and most international markets outside the US and Canada. Many online marketplaces also require a valid EAN when listing physical products, and book ISBN-13 numbers use the same 13-digit format.</p>
+
+    <h3>Real-world EAN13 examples</h3>
+    <div class="tt-examples-grid">
+      <button class="tt-example-card" data-val="8901030826197" data-fmt="EAN13" type="button">
+        <span class="tag">Retail</span><h5>📦 Retail product</h5><span class="val">8901030826197</span>
+      </button>
+      <button class="tt-example-card" data-val="9780132350884" data-fmt="EAN13" type="button">
+        <span class="tag">Publishing</span><h5>📚 Book ISBN-13</h5><span class="val">9780132350884</span>
+      </button>
+      <button class="tt-example-card" data-val="5901234123457" data-fmt="EAN13" type="button">
+        <span class="tag">Retail</span><h5>🛒 Grocery / imported item</h5><span class="val">5901234123457</span>
+      </button>
+    </div>
+
+    <div class="tt-proscons">
+      <div class="tt-pros">
+        <h4>✓ Pros</h4>
+        <ul>
+          <li>Recognized at retail POS scanners worldwide</li>
+          <li>Compact, fully numeric encoding</li>
+          <li>Official GS1 international standard</li>
+        </ul>
+      </div>
+      <div class="tt-cons">
+        <h4>✕ Limitations</h4>
+        <ul>
+          <li>Numeric only, fixed 12–13 digit length</li>
+          <li>Requires a valid checksum digit</li>
+          <li>Real retail sale needs an official GS1 prefix</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Ad Slot mid-content -->
+<div class="wrap tt-ad-wrap"><div class="tt-ad-slot" data-size="banner" role="complementary" aria-label="Advertisement">Advertisement</div></div>
+
+<!-- ================= UPC DEEP SECTION ================= -->
+<div class="wrap tool-section" id="upc">
+  <div class="tt-article">
+    <div class="tt-format-head">
+      <span class="tt-format-icon" aria-hidden="true">🇺🇸</span>
+      <div>
+        <h2>UPC Barcode Generator</h2>
+        <p class="tt-format-sub">US &amp; Canada retail standard · 11–12 digits · checksum validated</p>
+      </div>
+      <button class="tt-btn tt-btn-secondary tt-format-try" data-val="036000291452" data-fmt="UPC" type="button">Generate a UPC barcode →</button>
+    </div>
+    <p>The Universal Product Code (UPC-A) is an 11–12 digit numeric barcode standard used primarily in the United States and Canada. It's structurally compatible with EAN13 — a UPC can be read by any EAN13-capable scanner — which makes it the de facto standard for North American retail.</p>
+
+    <h3>When to use UPC</h3>
+    <p>Use UPC for retail products sold in US and Canadian stores, grocery items, and marketplace listings on platforms like Amazon or Walmart that require a valid GTIN/UPC for physical product listings.</p>
+
+    <h3>Real-world UPC examples</h3>
+    <div class="tt-examples-grid">
+      <button class="tt-example-card" data-val="036000291452" data-fmt="UPC" type="button">
+        <span class="tag">Retail (US)</span><h5>🛒 Grocery product</h5><span class="val">036000291452</span>
+      </button>
+      <button class="tt-example-card" data-val="012345678905" data-fmt="UPC" type="button">
+        <span class="tag">Amazon</span><h5>📦 Amazon-style product</h5><span class="val">012345678905</span>
+      </button>
+      <button class="tt-example-card" data-val="000000000000" data-fmt="UPC" type="button">
+        <span class="tag">Template</span><h5>🧾 UPC template (12 digits)</h5><span class="val">000000000000</span>
+      </button>
+    </div>
+
+    <div class="tt-proscons">
+      <div class="tt-pros">
+        <h4>✓ Pros</h4>
+        <ul>
+          <li>Standard for North American retail scanners</li>
+          <li>Compact, fully numeric</li>
+          <li>Interoperable with EAN13 systems</li>
+        </ul>
+      </div>
+      <div class="tt-cons">
+        <h4>✕ Limitations</h4>
+        <ul>
+          <li>Numeric only, fixed digit count</li>
+          <li>Official codes require licensing through GS1 US</li>
+          <li>Not used outside North American retail</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CODE39 DEEP SECTION ================= -->
+<div class="wrap tool-section" id="code39">
+  <div class="tt-article">
+    <div class="tt-format-head">
+      <span class="tt-format-icon" aria-hidden="true">🏭</span>
+      <div>
+        <h2>Code-39 Barcode Generator</h2>
+        <p class="tt-format-sub">Logistics &amp; industrial standard · uppercase letters, digits &amp; symbols</p>
+      </div>
+      <button class="tt-btn tt-btn-secondary tt-format-try" data-val="RX-449281-B" data-fmt="CODE39" type="button">Generate a CODE39 barcode →</button>
+    </div>
+    <p>CODE39 is one of the oldest and simplest widely-supported barcode symbologies. It encodes uppercase letters, digits, and a handful of symbols using variable-width bars, and is readable by nearly every barcode scanner ever made — including older industrial hardware.</p>
+
+    <h3>When to use CODE39</h3>
+    <p>CODE39 is a strong fit for logistics, industrial and automotive parts labeling, warehouse asset tags, and healthcare or medicine batch labels — anywhere robustness and backward compatibility with older scanners matter more than data density.</p>
+
+    <h3>Real-world CODE39 examples</h3>
+    <div class="tt-examples-grid">
+      <button class="tt-example-card" data-val="RX-449281-B" data-fmt="CODE39" type="button">
+        <span class="tag">Healthcare</span><h5>💊 Medicine batch label</h5><span class="val">RX-449281-B</span>
+      </button>
+      <button class="tt-example-card" data-val="ABC-12345" data-fmt="CODE39" type="button">
+        <span class="tag">Inventory</span><h5>🏷️ Inventory tag</h5><span class="val">ABC-12345</span>
+      </button>
+      <button class="tt-example-card" data-val="PART-4471-X" data-fmt="CODE39" type="button">
+        <span class="tag">Industrial</span><h5>🔧 Automotive part number</h5><span class="val">PART-4471-X</span>
+      </button>
+    </div>
+
+    <div class="tt-proscons">
+      <div class="tt-pros">
+        <h4>✓ Pros</h4>
+        <ul>
+          <li>Simple and extremely robust</li>
+          <li>Readable by nearly all scanners, old and new</li>
+          <li>No checksum required (self-checking design)</li>
+        </ul>
+      </div>
+      <div class="tt-cons">
+        <h4>✕ Limitations</h4>
+        <ul>
+          <li>Less data-dense than CODE128</li>
+          <li>Uppercase letters only, limited symbol set</li>
+          <li>Not used at retail checkout</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tt-callout tt-warn">
+      <div class="tt-callout-icon" aria-hidden="true">⚠️</div>
+      <p><strong>Note:</strong> these generators produce barcodes for labeling, testing, and internal use. If you're listing products with a retailer or marketplace, confirm you're using an officially assigned EAN/UPC number from GS1 — reusing an arbitrary number can cause listing conflicts.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Ad Slot -->
+<div class="wrap tt-ad-wrap"><div class="tt-ad-slot" data-size="leaderboard" role="complementary" aria-label="Advertisement">Advertisement</div></div>
+
+<!-- ================= QR CODE VS BARCODE ================= -->
+<div class="wrap tool-section" id="qr-vs-barcode">
+  <div class="tt-article">
+    <h2>QR Code vs Barcode</h2>
+    <p>Barcodes and QR codes both encode data for a scanner to read, but they're built differently and suit different jobs. Here's how they compare at a glance.</p>
+  </div>
+  <div class="tt-compare-wrap">
+    <table class="tt-compare">
+      <thead>
+        <tr><th>Attribute</th><th class="tt-highlight-col">Barcode (1D)</th><th>QR Code (2D)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Structure</td><td class="tt-highlight-col">Parallel lines, read in one direction</td><td>Grid of squares, read in two directions</td></tr>
+        <tr><td>Data capacity</td><td class="tt-highlight-col">Low — typically a short ID or number</td><td>High — can store URLs, contact cards, Wi-Fi credentials</td></tr>
+        <tr><td>Damage tolerance</td><td class="tt-highlight-col">Low — a torn line can break the scan</td><td>Higher — built-in error correction</td></tr>
+        <tr><td>Typical use case</td><td class="tt-highlight-col">Retail checkout, inventory, shipping</td><td>Links, payments, menus, marketing</td></tr>
+        <tr><td>Scanning hardware</td><td class="tt-highlight-col">Laser or camera-based scanners</td><td>Camera-based scanners (most smartphones)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="color:var(--ink-soft);font-size:14.5px;margin-top:14px;">Need a QR code instead of a linear barcode? Try our <a href="qr-code-generator.html" style="color:var(--teal-dark);font-weight:600;">QR Code Generator</a>.</p>
+</div>
+
+<!-- ================= FEATURES & BENEFITS ================= -->
+<div class="wrap tool-section" id="features">
+  <h2 style="margin-bottom:16px;">Features</h2>
+  <div class="features-grid">
+    <div class="feature-card"><div class="ico" aria-hidden="true">🎯</div><h4>4 barcode formats</h4></div>
+    <div class="feature-card"><div class="ico" aria-hidden="true">⚡</div><h4>Instant generation</h4></div>
+    <div class="feature-card"><div class="ico" aria-hidden="true">🔒</div><h4>No data stored</h4></div>
+    <div class="feature-card"><div class="ico" aria-hidden="true">📱</div><h4>Mobile friendly</h4></div>
+  </div>
+</div>
+
+<!-- ================= COMPARISON TABLE (vs competitor sites) ================= -->
 <div class="wrap tool-section" id="comparison">
-  <h2>How TickmarkTools Compares</h2>
+  <h2>How TickmarkTools compares</h2>
   <p style="color:var(--ink-soft);font-size:14.5px;">An honest, feature-by-feature look at browser-based barcode generation.</p>
   <div class="tt-compare-wrap">
     <table class="tt-compare">
       <thead>
-        <tr><th>Feature</th><th class="tt-highlight-col">TickmarkTools</th><th>Typical Free Sites</th><th>Design Suites (Canva/Adobe)</th></tr>
+        <tr><th>Feature</th><th class="tt-highlight-col">TickmarkTools</th><th>Typical free sites</th><th>Design suites (Canva/Adobe)</th></tr>
       </thead>
       <tbody>
         <tr><td>Price</td><td class="tt-highlight-col">Free</td><td>Free / freemium</td><td>Free tier + paid plans</td></tr>
@@ -340,62 +1022,70 @@
       </tbody>
     </table>
   </div>
-  <p class="tt-compare-note">Comparisons reflect typical behavior of general-purpose competitors as of July 2026 and may vary by provider.</p>
+  <p class="tt-compare-note">Comparisons reflect typical behavior of general-purpose competitors as of August 2026 and may vary by provider.</p>
 </div>
 
 <!-- ================= TRUST SECTION ================= -->
 <div class="wrap tool-section">
-  <h2 style="margin-bottom:4px;">Why You Can Trust This Tool</h2>
+  <h2 style="margin-bottom:4px;">Why you can trust this tool</h2>
   <div class="tt-trust-grid">
     <div class="tt-trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
       <div><h4>No data stored</h4><p>Your input is never saved or logged.</p></div>
     </div>
     <div class="tt-trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>
       <div><h4>Secure processing</h4><p>All generation happens client-side in your browser.</p></div>
     </div>
     <div class="tt-trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
       <div><h4>Fast processing</h4><p>Barcodes render in milliseconds, no waiting.</p></div>
     </div>
     <div class="tt-trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
       <div><h4>Mobile friendly</h4><p>Generate and download barcodes from any device.</p></div>
     </div>
     <div class="tt-trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
       <div><h4>No sign-up</h4><p>No account, no email, no watermark.</p></div>
     </div>
     <div class="tt-trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v20M2 12h20"/></svg>
       <div><h4>Works offline*</h4><p>Once loaded, generation needs no internet connection.</p></div>
     </div>
   </div>
 </div>
 
-<!-- ================= 9b. FAQ ================= -->
+<!-- ================= FAQ ================= -->
 <div class="wrap tool-section" id="faq">
-  <h2>Frequently Asked Questions</h2>
+  <h2>Barcode FAQ</h2>
   <div class="faq-item">
-    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Is the Barcode Generator free?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Is the Barcode Generator free?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></div>
     <div class="faq-a"><p>Yes, completely free with no sign-up, no watermark, and no usage limit.</p></div>
   </div>
   <div class="faq-item">
-    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Which barcode format should I use?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Which barcode format should I use?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></div>
     <div class="faq-a"><p>CODE128 works for general text and mixed alphanumeric data. EAN13 and UPC are for retail products and require a specific digit count with a valid checksum. CODE39 is common in logistics and inventory.</p></div>
   </div>
   <div class="faq-item">
-    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Can I print these barcodes?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Can I print these barcodes?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></div>
     <div class="faq-a"><p>Yes. Download the PNG and print at a size large enough for reliable scanning — at least 1 inch (2.5cm) wide is a safe starting point.</p></div>
   </div>
   <div class="faq-item">
-    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Is my data uploaded anywhere?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Is my data uploaded anywhere?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></div>
     <div class="faq-a"><p>No, the barcode is generated entirely in your browser using JavaScript — nothing you type is sent to a server.</p></div>
   </div>
   <div class="faq-item">
-    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Why did my EAN13 or UPC code fail?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Why did my EAN13 or UPC code fail?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></div>
     <div class="faq-a"><p>EAN13 requires exactly 12–13 digits and UPC requires 11–12 digits, each with a valid checksum. Letters or an incorrect digit count will cause an error — try CODE128 if you just need a general-purpose barcode.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>What's the difference between a barcode and a QR code?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></div>
+    <div class="faq-a"><p>A barcode is a 1D symbol made of parallel lines that stores a short ID or number. A QR code is a 2D symbol that can store far more data, including full URLs, and tolerates more damage or obstruction.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Do I need an official GS1 number for EAN13 or UPC?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></div>
+    <div class="faq-a"><p>For real retail sale through a store or marketplace, yes — you need an officially assigned GS1 prefix. For internal labeling, testing, or personal projects, any validly formatted number will scan correctly.</p></div>
   </div>
 </div>
 
@@ -403,34 +1093,35 @@
 <div class="wrap tool-section" id="ai-assistant">
   <div class="ai-panel">
     <h3>🤖 Ask AI about this tool</h3>
-    <p style="font-size:13.5px;color:var(--ink-soft);margin-top:4px;">Tap a question for an instant answer. Full conversational AI is coming soon.</p>
-    <div class="ai-q">What's the difference between a barcode and a QR code?</div><div class="ai-a">Barcodes store data in parallel lines (1D) and hold less data; QR codes are 2D and can store much more, including full URLs.</div>
-    <div class="ai-q">Why isn't my EAN13 code working?</div><div class="ai-a">EAN13 requires exactly 12-13 digits with a valid checksum — CODE128 is more flexible for general text.</div>
-    <div class="ai-q">Can barcodes be scanned from a screen?</div><div class="ai-a">Yes, most scanners can read barcodes off a screen, though printed barcodes tend to scan more reliably.</div>
+    <p style="font-size:13.5px;color:var(--ink-soft);margin-top:4px;">Select a question for an instant answer. Full conversational AI is coming soon.</p>
+    <div class="ai-q" role="button" tabindex="0">What's the difference between a barcode and a QR code?</div><div class="ai-a">Barcodes store data in parallel lines (1D) and hold less data; QR codes are 2D and can store much more, including full URLs.</div>
+    <div class="ai-q" role="button" tabindex="0">Why isn't my EAN13 code working?</div><div class="ai-a">EAN13 requires exactly 12-13 digits with a valid checksum — CODE128 is more flexible for general text.</div>
+    <div class="ai-q" role="button" tabindex="0">Can barcodes be scanned from a screen?</div><div class="ai-a">Yes, most scanners can read barcodes off a screen, though printed barcodes tend to scan more reliably.</div>
     <div class="ai-input-row">
-      <input type="text" class="field" placeholder="Ask your own question...">
-      <button class="btn btn-primary">Ask</button>
+      <label class="tt-visually-hidden" for="aiCustomQ">Ask your own question</label>
+      <input type="text" id="aiCustomQ" class="field" placeholder="Ask your own question...">
+      <button class="btn" type="button">Ask</button>
     </div>
   </div>
 </div>
 
 <!-- Ad Slot 4 — below FAQ, above Related Tools -->
-<div class="wrap"><div class="tt-ad-slot" data-size="leaderboard" aria-hidden="true">Advertisement</div></div>
+<div class="wrap tt-ad-wrap"><div class="tt-ad-slot" data-size="leaderboard" role="complementary" aria-label="Advertisement">Advertisement</div></div>
 
 <!-- ================= REQUEST A TOOL ================= -->
 <div class="wrap tool-section">
   <div class="tt-request-cta">
     <div>
       <h3>Can't find the tool you need?</h3>
-      <p>Tell us what to build next — we ship new tools every week.</p>
+      <p>Tell us what to build next — we ship new tools regularly.</p>
     </div>
-    <a href="contact.html" class="tt-btn">Request a Tool →</a>
+    <a href="contact.html" class="tt-btn">Request a tool →</a>
   </div>
 </div>
 
-<!-- ================= RECENT / TRENDING TOOLS ================= -->
+<!-- ================= TRENDING TOOLS ================= -->
 <div class="wrap tool-section">
-  <h2 style="margin-bottom:2px;">Trending Right Now</h2>
+  <h2 style="margin-bottom:12px;">Trending right now</h2>
   <div class="tt-chip-row">
     <a href="qr-code-generator.html" class="tt-tool-chip"><span class="em">🔗</span>QR Code Generator</a>
     <a href="password-generator.html" class="tt-tool-chip"><span class="em">🔐</span>Password Generator</a>
@@ -440,39 +1131,40 @@
   </div>
 </div>
 
-<!-- ================= 11. RELATED TOOLS ================= -->
+<!-- ================= RELATED TOOLS ================= -->
 <div class="wrap tool-section" id="related">
-  <h2>Related Tools</h2>
+  <h2>Related tools</h2>
   <div class="related-grid">
-    <a href="qr-code-generator.html" class="related-card"><div class="related-emoji">🔗</div><div><h4 style="font-size:14.5px;font-weight:600;">QR Code Generator</h4></div></a>
-    <a href="uuid-generator.html" class="related-card"><div class="related-emoji">🆔</div><div><h4 style="font-size:14.5px;font-weight:600;">UUID Generator</h4></div></a>
-    <a href="password-generator.html" class="related-card"><div class="related-emoji">🔐</div><div><h4 style="font-size:14.5px;font-weight:600;">Password Generator</h4></div></a>
+    <a href="qr-code-generator.html" class="related-card"><div class="related-emoji" aria-hidden="true">🔗</div><h4 style="font-size:14.5px;font-weight:600;margin:0;">QR Code Generator</h4></a>
+    <a href="uuid-generator.html" class="related-card"><div class="related-emoji" aria-hidden="true">🆔</div><h4 style="font-size:14.5px;font-weight:600;margin:0;">UUID Generator</h4></a>
+    <a href="password-generator.html" class="related-card"><div class="related-emoji" aria-hidden="true">🔐</div><h4 style="font-size:14.5px;font-weight:600;margin:0;">Password Generator</h4></a>
   </div>
 </div>
 
 <div class="wrap tool-section">
-  <h2>Popular Calculators</h2>
+  <h2>Popular calculators</h2>
   <div class="related-grid">
-    <a href="age-calculator.html" class="related-card"><div class="related-emoji">🧮</div><div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div></a>
-    <a href="percentage-calculator.html" class="related-card"><div class="related-emoji">🧮</div><div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div></a>
-    <a href="bmi-calculator.html" class="related-card"><div class="related-emoji">🧮</div><div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div></a>
+    <a href="age-calculator.html" class="related-card"><div class="related-emoji" aria-hidden="true">🧮</div><h4 style="font-size:14.5px;font-weight:600;margin:0;">Age Calculator</h4></a>
+    <a href="percentage-calculator.html" class="related-card"><div class="related-emoji" aria-hidden="true">🧮</div><h4 style="font-size:14.5px;font-weight:600;margin:0;">Percentage Calculator</h4></a>
+    <a href="bmi-calculator.html" class="related-card"><div class="related-emoji" aria-hidden="true">🧮</div><h4 style="font-size:14.5px;font-weight:600;margin:0;">BMI Calculator</h4></a>
   </div>
 </div>
 
-<div class="wrap tool-section" style="border-bottom:1px solid var(--border);">
-  <h2>You May Also Like</h2>
+<div class="wrap tool-section" style="border-bottom:1px solid var(--line);">
+  <h2>You may also like</h2>
   <div class="related-grid">
-    <a href="qr-code-generator.html" class="related-card"><div class="related-emoji">🗂️</div><div><h4 style="font-size:14.5px;font-weight:600;">QR Code Generator</h4></div></a>
-    <a href="json-formatter.html" class="related-card"><div class="related-emoji">💻</div><div><h4 style="font-size:14.5px;font-weight:600;">JSON Formatter</h4></div></a>
-    <a href="uuid-generator.html" class="related-card"><div class="related-emoji">💻</div><div><h4 style="font-size:14.5px;font-weight:600;">UUID Generator</h4></div></a>
+    <a href="qr-code-generator.html" class="related-card"><div class="related-emoji" aria-hidden="true">🗂️</div><h4 style="font-size:14.5px;font-weight:600;margin:0;">QR Code Generator</h4></a>
+    <a href="json-formatter.html" class="related-card"><div class="related-emoji" aria-hidden="true">💻</div><h4 style="font-size:14.5px;font-weight:600;margin:0;">JSON Formatter</h4></a>
+    <a href="uuid-generator.html" class="related-card"><div class="related-emoji" aria-hidden="true">💻</div><h4 style="font-size:14.5px;font-weight:600;margin:0;">UUID Generator</h4></a>
   </div>
 </div>
 
-<!-- ================= 12. COMMENTS ================= -->
-<div class="wrap tool-section" id="comments" style="border-bottom:1px solid var(--border);">
+<!-- ================= COMMENTS ================= -->
+<div class="wrap tool-section" id="comments">
   <h2>Comments</h2>
   <div class="comment-box">
     <div class="comment-input-row">
+      <label class="tt-visually-hidden" for="commentInput">Write a comment</label>
       <input type="text" id="commentInput" class="field" placeholder="Write a comment and press Enter...">
     </div>
     <div id="commentList" class="comment-list"></div>
@@ -481,16 +1173,9 @@
 
 </main>
 
-<!-- Mobile sticky ad (optional, closable) -->
-<div class="tt-sticky-ad" id="ttStickyAd">
-  <button class="tt-sticky-ad-close" id="ttStickyAdClose" aria-label="Close ad">✕</button>
-  <span class="tt-visually-hidden">Advertisement</span>
-  <div style="font-size:12px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;">Advertisement</div>
-</div>
-
-<!-- ================= 13. FOOTER ================= -->
-<div class="compact-footer">
-  <div class="compact-footer-links">
+<!-- ================= FOOTER ================= -->
+<footer class="compact-footer">
+  <nav class="compact-footer-links" aria-label="Footer">
     <a href="about.html">About Us</a><span class="sep">|</span>
     <a href="sitemap.html">Sitemap</a><span class="sep">|</span>
     <a href="terms-of-service.html">Terms of Use</a><span class="sep">|</span>
@@ -499,243 +1184,229 @@
     <a href="disclaimer.html">Disclaimer</a><span class="sep">|</span>
     <a href="contact.html">Report Bug</a><span class="sep">|</span>
     <a href="contact.html">Request Tool</a>
-  </div>
-</div>
-<div class="compact-footer-copy">© 2026 <a href="index.html" style="color:var(--ink-soft);text-decoration:underline;">TickmarkTools</a>. All rights reserved.</div>
+  </nav>
+  <p class="compact-footer-copy">© 2026 <a href="index.html" style="color:var(--ink-soft);text-decoration:underline;">TickmarkTools</a>. All rights reserved.</p>
+</footer>
 
-<script src="assets/main.js"></script>
+<!-- Barcode library — deferred so it never blocks first paint -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.12.3/JsBarcode.all.min.js" defer></script>
 <script>
-/* ---------- Barcode tool logic (Tested & Fixed) ---------- */
-const bcResultBox = document.getElementById('bcResult');
-const bcErrorBox = document.getElementById('bcError');
-const bcErrorText = document.getElementById('bcErrorText');
-const bcGenBtn = document.getElementById('bcGenBtn');
-const bcStickyActions = document.getElementById('bcStickyActions');
-const bcEmptyState = document.getElementById('bcEmptyState');
-const bcSkeleton = document.getElementById('bcSkeleton');
-const bcTextInput = document.getElementById('bcText');
-const bcFormatSelect = document.getElementById('bcFormat');
-let currentDownloadUrl = null;
+(function(){
+  'use strict';
 
-function showBcError(msg){
-  bcErrorText.textContent = msg;
-  bcErrorBox.classList.add('show');
-  bcResultBox.classList.remove('show');
-  bcStickyActions.classList.remove('is-active');
-  bcSkeleton.style.display = 'none';
-  bcEmptyState.style.display = 'block';
-}
-function hideBcError(){ bcErrorBox.classList.remove('show'); }
-
-function generateBarcode(){
-  hideBcError();
-  const text = bcTextInput.value.trim();
-  const format = bcFormatSelect.value;
-  
-  if(!text){ 
-    showBcError('Please enter text or a number to encode.'); 
-    return; 
-  }
-
-  if (typeof JsBarcode !== 'function') {
-    showBcError('Barcode library is still loading. Please try again in a moment.');
-    return;
-  }
-
-  bcGenBtn.classList.add('is-loading');
-  bcGenBtn.disabled = true;
-  bcEmptyState.style.display = 'none';
-  bcResultBox.classList.remove('show');
-  bcSkeleton.style.display = 'block';
-
-  setTimeout(()=>{
-    try{
-      JsBarcode('#bcSvg', text, { 
-        format: format, 
-        lineColor: '#12181A', 
-        width: 2, 
-        height: 80, 
-        displayValue: true 
-      });
-
-      bcSkeleton.style.display = 'none';
-      bcResultBox.classList.add('show');
-      bcStickyActions.classList.add('is-active');
-
-      setTimeout(()=>{
-        const svg = document.getElementById('bcSvg');
-        const svgData = new XMLSerializer().serializeToString(svg);
-        const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
-        const url = URL.createObjectURL(svgBlob);
-        const img = new Image();
-
-        img.onload = ()=>{
-          const bbox = svg.getBoundingClientRect();
-          const scale = 2; // High DPI crisp output
-          const width = (bbox.width || 300);
-          const height = (bbox.height || 120);
-
-          const canvas = document.createElement('canvas');
-          canvas.width = width * scale;
-          canvas.height = height * scale;
-          const ctx = canvas.getContext('2d');
-
-          // White background fix
-          ctx.fillStyle = '#FFFFFF';
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-          ctx.scale(scale, scale);
-          ctx.drawImage(img, 0, 0, width, height);
-
-          canvas.toBlob(blob => {
-            if (currentDownloadUrl) {
-              URL.revokeObjectURL(currentDownloadUrl);
-            }
-            currentDownloadUrl = URL.createObjectURL(blob);
-            
-            const dlLink = document.getElementById('bcDownload');
-            dlLink.href = currentDownloadUrl;
-            dlLink.download = `barcode-${format.toLowerCase()}-${text.replace(/[^a-zA-Z0-9]/g, '_')}.png`;
-
-            document.getElementById('bcStickyDownload').onclick = () => dlLink.click();
-            URL.revokeObjectURL(url);
-          }, 'image/png');
-        };
-        img.src = url;
-      }, 80);
-
-      bcResultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    } catch(e) {
-      bcSkeleton.style.display = 'none';
-      showBcError('Could not generate barcode: ' + e.message);
-    } finally {
-      bcGenBtn.classList.remove('is-loading');
-      bcGenBtn.disabled = false;
+  /* ---------- Theme toggle ---------- */
+  var root = document.documentElement;
+  var themeBtn = document.getElementById('theme-toggle');
+  try{
+    var saved = localStorage.getItem('tt-theme');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if(saved === 'dark' || (!saved && prefersDark)){
+      root.setAttribute('data-theme','dark');
+      themeBtn.setAttribute('aria-pressed','true');
     }
-  }, 250);
-}
-
-bcGenBtn.addEventListener('click', generateBarcode);
-
-function resetBc(){
-  bcTextInput.value = '';
-  document.getElementById('bcSvg').innerHTML = '';
-  bcResultBox.classList.remove('show');
-  bcStickyActions.classList.remove('is-active');
-  bcSkeleton.style.display = 'none';
-  bcEmptyState.style.display = 'block';
-  hideBcError();
-  if (currentDownloadUrl) {
-    URL.revokeObjectURL(currentDownloadUrl);
-    currentDownloadUrl = null;
-  }
-}
-
-document.getElementById('bcResetBtn').addEventListener('click', resetBc);
-document.getElementById('bcStickyReset').addEventListener('click', resetBc);
-
-document.getElementById('bcCopyBtn').addEventListener('click', function(){
-  const val = bcTextInput.value;
-  if(!val) return;
-  navigator.clipboard.writeText(val);
-  const btn = this; 
-  const old = btn.innerHTML;
-  btn.classList.add('tt-success');
-  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" width="15" height="15"><path d="M5 13l4 4L19 7"/></svg> Copied!';
-  setTimeout(()=>{ btn.classList.remove('tt-success'); btn.innerHTML = old; }, 1600);
-});
-
-document.getElementById('bcShareBtn').addEventListener('click', async ()=>{
-  const shareData = { 
-    title: 'Barcode Generator — TickmarkTools', 
-    text: 'Check out this free online barcode generator', 
-    url: window.location.href 
-  };
-  if(navigator.share){ 
-    try { await navigator.share(shareData); } catch(e){} 
-  } else { 
-    navigator.clipboard.writeText(shareData.url); 
-    alert('Link copied to clipboard!'); 
-  }
-});
-
-/* Example chips */
-function wireExample(el){
-  el.addEventListener('click', ()=>{
-    bcTextInput.value = el.dataset.val;
-    bcFormatSelect.value = el.dataset.fmt;
-    generateBarcode();
-    document.getElementById('tt-main').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }catch(e){}
+  themeBtn.addEventListener('click', function(){
+    var isDark = root.getAttribute('data-theme') === 'dark';
+    if(isDark){ root.removeAttribute('data-theme'); themeBtn.setAttribute('aria-pressed','false'); }
+    else{ root.setAttribute('data-theme','dark'); themeBtn.setAttribute('aria-pressed','true'); }
+    try{ localStorage.setItem('tt-theme', isDark ? 'light' : 'dark'); }catch(e){}
   });
-}
-document.querySelectorAll('.tt-example-chip[data-val], .tt-example-card[data-val]').forEach(wireExample);
 
-/* FAQ accordion */
-document.querySelectorAll('.faq-item').forEach(item=>{
-  const q = item.querySelector('.faq-q');
-  function toggle(){
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(i=>{ 
-      if(i!==item){ 
-        i.classList.remove('open'); 
-        i.querySelector('.faq-q').setAttribute('aria-expanded','false'); 
-      } 
-    });
-    item.classList.toggle('open', !isOpen);
-    q.setAttribute('aria-expanded', String(!isOpen));
+  /* ---------- Barcode tool ---------- */
+  var bcResultBox = document.getElementById('bcResult');
+  var bcStage = document.getElementById('bcStage');
+  var bcErrorBox = document.getElementById('bcError');
+  var bcErrorText = document.getElementById('bcErrorText');
+  var bcGenBtn = document.getElementById('bcGenBtn');
+  var bcStickyActions = document.getElementById('bcStickyActions');
+  var bcStickyGen = document.getElementById('bcStickyGen');
+  var bcEmptyState = document.getElementById('bcEmptyState');
+  var bcSkeleton = document.getElementById('bcSkeleton');
+  var bcTextInput = document.getElementById('bcText');
+  var bcFormatSelect = document.getElementById('bcFormat');
+  var hasResult = false;
+
+  function isMobile(){ return window.innerWidth < 720; }
+
+  function syncStickyBar(){
+    if(!isMobile()){ bcStickyActions.classList.remove('is-active'); document.body.classList.remove('tt-has-sticky-bar'); return; }
+    bcStickyActions.classList.add('is-active');
+    document.body.classList.add('tt-has-sticky-bar');
+    bcStickyGen.textContent = hasResult ? 'Generate again' : 'Generate barcode';
   }
-  q.addEventListener('click', toggle);
-  q.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
-});
 
-/* Comments */
-function postComment(){
-  const input = document.getElementById('commentInput');
-  const text = input.value.trim();
-  if(!text) return;
-  const list = document.getElementById('commentList');
-  const item = document.createElement('div');
-  item.className = 'comment-item';
-  item.innerHTML = `<div class="comment-avatar">🙂</div><div><div class="comment-meta">Guest • just now</div><div class="comment-text"></div></div>`;
-  item.querySelector('.comment-text').textContent = text;
-  list.prepend(item);
-  input.value = '';
-}
-document.getElementById('commentInput').addEventListener('keydown', (e)=>{ if(e.key === 'Enter') postComment(); });
+  function showBcError(msg){
+    bcErrorText.textContent = msg;
+    bcErrorBox.classList.add('show');
+    bcResultBox.classList.remove('show');
+    bcSkeleton.style.display = 'none';
+    bcEmptyState.style.display = 'block';
+    hasResult = false;
+    syncStickyBar();
+  }
+  function hideBcError(){ bcErrorBox.classList.remove('show'); }
 
-/* Scroll reveal */
-if('IntersectionObserver' in window){
-  const io = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('tt-visible'); io.unobserve(e.target); } });
-  }, {threshold:0.1});
-  document.querySelectorAll('.tool-section').forEach(el=>{ el.classList.add('tt-reveal'); io.observe(el); });
-}
+  function generateBarcode(){
+    hideBcError();
+    var text = bcTextInput.value.trim();
+    var format = bcFormatSelect.value;
+    if(!text){ showBcError('Please enter text or a number to encode.'); bcTextInput.focus(); return; }
+    if(typeof JsBarcode === 'undefined'){ showBcError('Still loading — try again in a moment.'); return; }
 
-/* Floating TOC */
-const tocLinks = document.querySelectorAll('[data-toc]');
-const tocTargets = Array.from(tocLinks).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-if('IntersectionObserver' in window && tocTargets.length){
-  const tocIO = new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      const id = '#' + entry.target.id;
-      const link = document.querySelector(`[data-toc][href="${id}"]`);
-      if(!link) return;
-      if(entry.isIntersecting){
-        tocLinks.forEach(l=>l.classList.remove('tt-toc-active'));
-        link.classList.add('tt-toc-active');
+    [bcGenBtn, bcStickyGen].forEach(function(b){ b.classList.add('is-loading'); b.disabled = true; });
+    bcEmptyState.style.display = 'none';
+    bcResultBox.classList.remove('show');
+    bcStage.classList.remove('is-scanning');
+    bcSkeleton.style.display = 'block';
+
+    window.setTimeout(function(){
+      try{
+        JsBarcode('#bcSvg', text, { format: format, lineColor:'#12181A', width:2, height:80, displayValue:true, margin:10 });
+        bcSkeleton.style.display = 'none';
+        bcResultBox.classList.add('show');
+        hasResult = true;
+        syncStickyBar();
+        requestAnimationFrame(function(){ bcStage.classList.add('is-scanning'); });
+
+        window.setTimeout(function(){
+          var svg = document.getElementById('bcSvg');
+          var svgData = new XMLSerializer().serializeToString(svg);
+          var canvas = document.createElement('canvas');
+          var img = new Image();
+          var svgBlob = new Blob([svgData], {type:'image/svg+xml;charset=utf-8'});
+          var url = URL.createObjectURL(svgBlob);
+          img.onload = function(){
+            canvas.width = img.width || 300; canvas.height = img.height || 120;
+            canvas.getContext('2d').drawImage(img,0,0);
+            canvas.toBlob(function(blob){
+              var dlUrl = URL.createObjectURL(blob);
+              document.getElementById('bcDownload').href = dlUrl;
+            });
+          };
+          img.src = url;
+        }, 60);
+
+        bcResultBox.scrollIntoView({behavior:'smooth', block:'nearest'});
+      }catch(e){
+        bcSkeleton.style.display = 'none';
+        showBcError('Could not generate this barcode: ' + e.message);
+      } finally {
+        [bcGenBtn, bcStickyGen].forEach(function(b){ b.classList.remove('is-loading'); b.disabled = false; });
       }
-    });
-  }, {rootMargin:'-40% 0px -50% 0px'});
-  tocTargets.forEach(t=>tocIO.observe(t));
-}
+    }, 250); // brief loading state for perceived feedback
+  }
+  bcGenBtn.addEventListener('click', generateBarcode);
+  bcStickyGen.addEventListener('click', generateBarcode);
 
-/* Sticky Ad */
-const stickyAd = document.getElementById('ttStickyAd');
-const stickyAdClose = document.getElementById('ttStickyAdClose');
-if(stickyAd && stickyAdClose){
-  setTimeout(()=>{ if(window.innerWidth <= 820) stickyAd.classList.add('is-active'); }, 1500);
-  stickyAdClose.addEventListener('click', ()=> stickyAd.classList.remove('is-active'));
-}
+  function resetBc(){
+    bcTextInput.value='';
+    document.getElementById('bcSvg').innerHTML='';
+    bcResultBox.classList.remove('show');
+    bcStage.classList.remove('is-scanning');
+    bcSkeleton.style.display = 'none';
+    bcEmptyState.style.display = 'block';
+    hideBcError();
+    hasResult = false;
+    syncStickyBar();
+    bcTextInput.focus();
+  }
+  document.getElementById('bcResetBtn').addEventListener('click', resetBc);
+
+  document.getElementById('bcCopyBtn').addEventListener('click', function(){
+    var val = bcTextInput.value;
+    if(navigator.clipboard){ navigator.clipboard.writeText(val).catch(function(){}); }
+    var btn = this; var old = btn.innerHTML;
+    btn.classList.add('tt-success');
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" width="15" height="15" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg> Copied!';
+    window.setTimeout(function(){ btn.classList.remove('tt-success'); btn.innerHTML = old; }, 1600);
+  });
+
+  document.getElementById('bcShareBtn').addEventListener('click', function(){
+    var shareData = { title:'Barcode — TickmarkTools', text:'Check out this barcode generator', url:'https://tickmarktools.com/barcode-generator' };
+    if(navigator.share){ navigator.share(shareData).catch(function(){}); }
+    else if(navigator.clipboard){ navigator.clipboard.writeText(shareData.url).then(function(){ alert('Link copied to clipboard!'); }); }
+  });
+
+  /* ---------- Example chips / cards / format-section "try" buttons fill the input and auto-generate ---------- */
+  function wireExample(el){
+    el.addEventListener('click', function(){
+      bcTextInput.value = el.dataset.val;
+      bcFormatSelect.value = el.dataset.fmt;
+      generateBarcode();
+      document.getElementById('tt-main').scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  }
+  document.querySelectorAll('.tt-example-chip[data-val], .tt-example-card[data-val], .tt-format-try[data-val]').forEach(wireExample);
+
+  window.addEventListener('resize', syncStickyBar);
+  syncStickyBar();
+
+  /* ---------- FAQ accordion ---------- */
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    var q = item.querySelector('.faq-q');
+    function toggle(){
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(i){ if(i!==item){ i.classList.remove('open'); i.querySelector('.faq-q').setAttribute('aria-expanded','false'); } });
+      item.classList.toggle('open', !isOpen);
+      q.setAttribute('aria-expanded', String(!isOpen));
+    }
+    q.addEventListener('click', toggle);
+    q.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
+  });
+
+  /* ---------- Ask AI mini accordion ---------- */
+  document.querySelectorAll('.ai-q').forEach(function(q){
+    function toggle(){ q.classList.toggle('open'); }
+    q.addEventListener('click', toggle);
+    q.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
+  });
+
+  /* ---------- Comments ---------- */
+  function postComment(){
+    var input = document.getElementById('commentInput');
+    var text = input.value.trim();
+    if(!text) return;
+    var list = document.getElementById('commentList');
+    var item = document.createElement('div');
+    item.className = 'comment-item';
+    item.innerHTML = '<div class="comment-avatar" aria-hidden="true">🙂</div><div><div class="comment-meta">Guest • just now</div><div class="comment-text"></div></div>';
+    item.querySelector('.comment-text').textContent = text;
+    list.prepend(item);
+    input.value = '';
+  }
+  document.getElementById('commentInput').addEventListener('keydown', function(e){ if(e.key === 'Enter') postComment(); });
+
+  /* ---------- Scroll reveal ---------- */
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('tt-visible'); io.unobserve(e.target); } });
+    }, {threshold:0.1});
+    document.querySelectorAll('.tool-section').forEach(function(el){ el.classList.add('tt-reveal'); io.observe(el); });
+  } else {
+    document.querySelectorAll('.tool-section').forEach(function(el){ el.classList.add('tt-visible'); });
+  }
+
+  /* ---------- Floating TOC + jump nav: active-section highlighting ---------- */
+  var tocLinks = document.querySelectorAll('[data-toc]');
+  var jumpLinks = document.querySelectorAll('[data-jump]');
+  var allSectionIds = ['tt-main','code128','ean13','upc','code39','qr-vs-barcode','comparison','faq','ai-assistant','related','comments','how-to-use'];
+  var sectionEls = allSectionIds.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+
+  function setActive(id){
+    var hash = '#' + id;
+    tocLinks.forEach(function(l){ l.classList.toggle('tt-toc-active', l.getAttribute('href') === hash); });
+    jumpLinks.forEach(function(l){ l.classList.toggle('tt-jump-active', l.getAttribute('href') === hash); });
+  }
+
+  if('IntersectionObserver' in window && sectionEls.length){
+    var sectionIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ setActive(entry.target.id); }
+      });
+    }, {rootMargin:'-35% 0px -55% 0px'});
+    sectionEls.forEach(function(t){ sectionIO.observe(t); });
+  }
+})();
 </script>
 </body>
 </html>
