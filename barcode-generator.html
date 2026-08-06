@@ -1205,12 +1205,14 @@ footer.compact-footer{border-top:1px solid var(--line);}
       themeBtn.setAttribute('aria-pressed','true');
     }
   }catch(e){}
-  themeBtn.addEventListener('click', function(){
-    var isDark = root.getAttribute('data-theme') === 'dark';
-    if(isDark){ root.removeAttribute('data-theme'); themeBtn.setAttribute('aria-pressed','false'); }
-    else{ root.setAttribute('data-theme','dark'); themeBtn.setAttribute('aria-pressed','true'); }
-    try{ localStorage.setItem('tt-theme', isDark ? 'light' : 'dark'); }catch(e){}
-  });
+  if(themeBtn){
+    themeBtn.addEventListener('click', function(){
+      var isDark = root.getAttribute('data-theme') === 'dark';
+      if(isDark){ root.removeAttribute('data-theme'); themeBtn.setAttribute('aria-pressed','false'); }
+      else{ root.setAttribute('data-theme','dark'); themeBtn.setAttribute('aria-pressed','true'); }
+      try{ localStorage.setItem('tt-theme', isDark ? 'light' : 'dark'); }catch(e){}
+    });
+  }
 
   /* ---------- Barcode tool ---------- */
   var bcResultBox = document.getElementById('bcResult');
@@ -1224,6 +1226,7 @@ footer.compact-footer{border-top:1px solid var(--line);}
   var bcSkeleton = document.getElementById('bcSkeleton');
   var bcTextInput = document.getElementById('bcText');
   var bcFormatSelect = document.getElementById('bcFormat');
+  var currentDownloadUrl = null;
   var hasResult = false;
 
   function isMobile(){ return window.innerWidth < 720; }
@@ -1251,9 +1254,9 @@ footer.compact-footer{border-top:1px solid var(--line);}
     var text = bcTextInput.value.trim();
     var format = bcFormatSelect.value;
     if(!text){ showBcError('Please enter text or a number to encode.'); bcTextInput.focus(); return; }
-    if(typeof JsBarcode === 'undefined'){ showBcError('Still loading — try again in a moment.'); return; }
+    if(typeof JsBarcode === 'undefined'){ showBcError('Barcode library is still loading. Please try again in a moment.'); return; }
 
-    [bcGenBtn, bcStickyGen].forEach(function(b){ b.classList.add('is-loading'); b.disabled = true; });
+    [bcGenBtn, bcStickyGen].forEach(function(b){ if(b){ b.classList.add('is-loading'); b.disabled = true; } });
     bcEmptyState.style.display = 'none';
     bcResultBox.classList.remove('show');
     bcStage.classList.remove('is-scanning');
@@ -1271,32 +1274,55 @@ footer.compact-footer{border-top:1px solid var(--line);}
         window.setTimeout(function(){
           var svg = document.getElementById('bcSvg');
           var svgData = new XMLSerializer().serializeToString(svg);
-          var canvas = document.createElement('canvas');
-          var img = new Image();
           var svgBlob = new Blob([svgData], {type:'image/svg+xml;charset=utf-8'});
           var url = URL.createObjectURL(svgBlob);
+          var img = new Image();
+
           img.onload = function(){
-            canvas.width = img.width || 300; canvas.height = img.height || 120;
-            canvas.getContext('2d').drawImage(img,0,0);
+            var bbox = svg.getBoundingClientRect();
+            var scale = 2; // High resolution 2x sharp PNG output
+            var width = (bbox.width || 300);
+            var height = (bbox.height || 120);
+
+            var canvas = document.createElement('canvas');
+            canvas.width = width * scale;
+            canvas.height = height * scale;
+            var ctx = canvas.getContext('2d');
+
+            // Fixed Solid White Background
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.scale(scale, scale);
+            ctx.drawImage(img, 0, 0, width, height);
+
             canvas.toBlob(function(blob){
-              var dlUrl = URL.createObjectURL(blob);
-              document.getElementById('bcDownload').href = dlUrl;
-            });
+              if (currentDownloadUrl) {
+                URL.revokeObjectURL(currentDownloadUrl);
+              }
+              currentDownloadUrl = URL.createObjectURL(blob);
+              var dlLink = document.getElementById('bcDownload');
+              dlLink.href = currentDownloadUrl;
+              dlLink.download = `barcode-${format.toLowerCase()}-${text.replace(/[^a-zA-Z0-9]/g, '_')}.png`;
+              
+              URL.revokeObjectURL(url); // Memory clean-up
+            }, 'image/png');
           };
           img.src = url;
-        }, 60);
+        }, 80);
 
         bcResultBox.scrollIntoView({behavior:'smooth', block:'nearest'});
       }catch(e){
         bcSkeleton.style.display = 'none';
         showBcError('Could not generate this barcode: ' + e.message);
       } finally {
-        [bcGenBtn, bcStickyGen].forEach(function(b){ b.classList.remove('is-loading'); b.disabled = false; });
+        [bcGenBtn, bcStickyGen].forEach(function(b){ if(b){ b.classList.remove('is-loading'); b.disabled = false; } });
       }
-    }, 250); // brief loading state for perceived feedback
+    }, 250);
   }
-  bcGenBtn.addEventListener('click', generateBarcode);
-  bcStickyGen.addEventListener('click', generateBarcode);
+
+  if(bcGenBtn) bcGenBtn.addEventListener('click', generateBarcode);
+  if(bcStickyGen) bcStickyGen.addEventListener('click', generateBarcode);
 
   function resetBc(){
     bcTextInput.value='';
@@ -1307,27 +1333,38 @@ footer.compact-footer{border-top:1px solid var(--line);}
     bcEmptyState.style.display = 'block';
     hideBcError();
     hasResult = false;
+    if (currentDownloadUrl) {
+      URL.revokeObjectURL(currentDownloadUrl);
+      currentDownloadUrl = null;
+    }
     syncStickyBar();
     bcTextInput.focus();
   }
-  document.getElementById('bcResetBtn').addEventListener('click', resetBc);
+  var resetBtn = document.getElementById('bcResetBtn');
+  if(resetBtn) resetBtn.addEventListener('click', resetBc);
 
-  document.getElementById('bcCopyBtn').addEventListener('click', function(){
-    var val = bcTextInput.value;
-    if(navigator.clipboard){ navigator.clipboard.writeText(val).catch(function(){}); }
-    var btn = this; var old = btn.innerHTML;
-    btn.classList.add('tt-success');
-    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" width="15" height="15" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg> Copied!';
-    window.setTimeout(function(){ btn.classList.remove('tt-success'); btn.innerHTML = old; }, 1600);
-  });
+  var copyBtn = document.getElementById('bcCopyBtn');
+  if(copyBtn){
+    copyBtn.addEventListener('click', function(){
+      var val = bcTextInput.value;
+      if(!val) return;
+      if(navigator.clipboard){ navigator.clipboard.writeText(val).catch(function(){}); }
+      var btn = this; var old = btn.innerHTML;
+      btn.classList.add('tt-success');
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" width="15" height="15" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg> Copied!';
+      window.setTimeout(function(){ btn.classList.remove('tt-success'); btn.innerHTML = old; }, 1600);
+    });
+  }
 
-  document.getElementById('bcShareBtn').addEventListener('click', function(){
-    var shareData = { title:'Barcode — TickmarkTools', text:'Check out this barcode generator', url:'https://tickmarktools.com/barcode-generator' };
-    if(navigator.share){ navigator.share(shareData).catch(function(){}); }
-    else if(navigator.clipboard){ navigator.clipboard.writeText(shareData.url).then(function(){ alert('Link copied to clipboard!'); }); }
-  });
+  var shareBtn = document.getElementById('bcShareBtn');
+  if(shareBtn){
+    shareBtn.addEventListener('click', function(){
+      var shareData = { title:'Barcode — TickmarkTools', text:'Check out this barcode generator', url: window.location.href };
+      if(navigator.share){ navigator.share(shareData).catch(function(){}); }
+      else if(navigator.clipboard){ navigator.clipboard.writeText(shareData.url).then(function(){ alert('Link copied to clipboard!'); }); }
+    });
+  }
 
-  /* ---------- Example chips / cards / format-section "try" buttons fill the input and auto-generate ---------- */
   function wireExample(el){
     el.addEventListener('click', function(){
       bcTextInput.value = el.dataset.val;
@@ -1344,6 +1381,7 @@ footer.compact-footer{border-top:1px solid var(--line);}
   /* ---------- FAQ accordion ---------- */
   document.querySelectorAll('.faq-item').forEach(function(item){
     var q = item.querySelector('.faq-q');
+    if(!q) return;
     function toggle(){
       var isOpen = item.classList.contains('open');
       document.querySelectorAll('.faq-item.open').forEach(function(i){ if(i!==item){ i.classList.remove('open'); i.querySelector('.faq-q').setAttribute('aria-expanded','false'); } });
@@ -1354,7 +1392,7 @@ footer.compact-footer{border-top:1px solid var(--line);}
     q.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
   });
 
-  /* ---------- Ask AI mini accordion ---------- */
+  /* ---------- Ask AI accordion ---------- */
   document.querySelectorAll('.ai-q').forEach(function(q){
     function toggle(){ q.classList.toggle('open'); }
     q.addEventListener('click', toggle);
@@ -1374,7 +1412,8 @@ footer.compact-footer{border-top:1px solid var(--line);}
     list.prepend(item);
     input.value = '';
   }
-  document.getElementById('commentInput').addEventListener('keydown', function(e){ if(e.key === 'Enter') postComment(); });
+  var commentInput = document.getElementById('commentInput');
+  if(commentInput) commentInput.addEventListener('keydown', function(e){ if(e.key === 'Enter') postComment(); });
 
   /* ---------- Scroll reveal ---------- */
   if('IntersectionObserver' in window){
@@ -1386,7 +1425,7 @@ footer.compact-footer{border-top:1px solid var(--line);}
     document.querySelectorAll('.tool-section').forEach(function(el){ el.classList.add('tt-visible'); });
   }
 
-  /* ---------- Floating TOC + jump nav: active-section highlighting ---------- */
+  /* ---------- Floating TOC & jump nav active links ---------- */
   var tocLinks = document.querySelectorAll('[data-toc]');
   var jumpLinks = document.querySelectorAll('[data-jump]');
   var allSectionIds = ['tt-main','code128','ean13','upc','code39','qr-vs-barcode','comparison','faq','ai-assistant','related','comments','how-to-use'];
