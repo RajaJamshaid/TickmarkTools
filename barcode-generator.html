@@ -3,20 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Free Online Barcode Generator - Create CODE128, EAN13, UPC & CODE39 | TickmarkTools</title>
-<meta name="description" content="Create scannable CODE128, EAN13, UPC and CODE39 barcodes online for free. No sign-up, no watermark, nothing uploaded — everything runs in your browser.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<title>Free Online Barcode Generator – CODE128, EAN-13, UPC & CODE39 | TickmarkTools</title>
+<meta name="description" content="Free online Barcode Generator — create instant, scannable CODE128, EAN-13, UPC and CODE39 barcodes. No sign-up, 100% private, fully browser-based.">
 <meta name="theme-color" content="#146356">
 <link rel="canonical" href="https://tickmarktools.com/barcode-generator">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Free Online Barcode Generator - CODE128, EAN13, UPC & CODE39 | TickmarkTools">
-<meta property="og:description" content="Create scannable barcodes from any text or number — free, private, and instant. No sign-up, nothing uploaded.">
+<meta property="og:title" content="Free Online Barcode Generator – CODE128, EAN-13, UPC & CODE39 | TickmarkTools">
+<meta property="og:description" content="Free online Barcode Generator — create instant, scannable CODE128, EAN-13, UPC and CODE39 barcodes. No sign-up, 100% private, fully browser-based.">
 <meta property="og:url" content="https://tickmarktools.com/barcode-generator">
 <meta property="og:site_name" content="TickmarkTools">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://tickmarktools.com/assets/og/barcode-generator.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Free Online Barcode Generator — TickmarkTools">
-<meta name="twitter:description" content="Create scannable CODE128, EAN13, UPC and CODE39 barcodes — free, private, and instant.">
+<meta name="twitter:title" content="Free Online Barcode Generator – CODE128, EAN-13, UPC & CODE39">
+<meta name="twitter:description" content="Free online Barcode Generator — instant CODE128, EAN-13, UPC & CODE39 barcodes. No sign-up, 100% private, browser-based.">
 <meta name="twitter:image" content="https://tickmarktools.com/assets/og/barcode-generator.png">
 
 <!-- Preconnects for the only two font/CDN origins we use -->
@@ -39,7 +44,7 @@
   "operatingSystem": "Any",
   "url": "https://tickmarktools.com/barcode-generator",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
-  "softwareVersion": "2.5",
+  "softwareVersion": "2.6",
   "featureList": ["CODE128 support","EAN13 support","UPC support","CODE39 support","PNG download","No sign-up required","No data uploaded","Runs entirely in the browser"]
 }
 </script>
@@ -108,7 +113,7 @@
 
 <style>
 /* ============================================================
-   TICKMARKTOOLS DESIGN SYSTEM — v1.0 "Gold Standard" Template
+   TICKMARKTOOLS DESIGN SYSTEM — v1.1 "Gold Standard" Template
    This file is the reference architecture for every tool page.
    Sections are labelled so the same structure, tokens, and
    components can be reused verbatim across the site.
@@ -591,7 +596,7 @@ footer.compact-footer{border-top:1px solid var(--line);}
 
     <div class="tt-meta-row">
       <span>📖 <strong>4 min</strong> read</span>
-      <span>🏷️ Version <strong>2.5</strong></span>
+      <span>🏷️ Version <strong>2.6</strong></span>
       <span>✍️ Written by <strong>TickmarkTools Team</strong></span>
       <span>✅ Reviewed by <strong>TickmarkTools Editorial</strong></span>
       <span>🕒 Updated <strong>August 2026</strong></span>
@@ -1289,7 +1294,7 @@ footer.compact-footer{border-top:1px solid var(--line);}
             canvas.height = height * scale;
             var ctx = canvas.getContext('2d');
 
-            // Fixed Solid White Background
+            // Fixed solid white background (matches printed-label expectation)
             ctx.fillStyle = '#FFFFFF';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -1303,9 +1308,9 @@ footer.compact-footer{border-top:1px solid var(--line);}
               currentDownloadUrl = URL.createObjectURL(blob);
               var dlLink = document.getElementById('bcDownload');
               dlLink.href = currentDownloadUrl;
-              dlLink.download = `barcode-${format.toLowerCase()}-${text.replace(/[^a-zA-Z0-9]/g, '_')}.png`;
-              
-              URL.revokeObjectURL(url); // Memory clean-up
+              dlLink.download = 'barcode-' + format.toLowerCase() + '-' + text.replace(/[^a-zA-Z0-9]/g, '_') + '.png';
+
+              URL.revokeObjectURL(url); // Memory clean-up for the intermediate SVG blob
             }, 'image/png');
           };
           img.src = url;
@@ -1425,7 +1430,7 @@ footer.compact-footer{border-top:1px solid var(--line);}
     document.querySelectorAll('.tool-section').forEach(function(el){ el.classList.add('tt-visible'); });
   }
 
-  /* ---------- Floating TOC & jump nav active links ---------- */
+  /* ---------- Floating TOC & jump nav active links (with aria-current) ---------- */
   var tocLinks = document.querySelectorAll('[data-toc]');
   var jumpLinks = document.querySelectorAll('[data-jump]');
   var allSectionIds = ['tt-main','code128','ean13','upc','code39','qr-vs-barcode','comparison','faq','ai-assistant','related','comments','how-to-use'];
@@ -1433,8 +1438,16 @@ footer.compact-footer{border-top:1px solid var(--line);}
 
   function setActive(id){
     var hash = '#' + id;
-    tocLinks.forEach(function(l){ l.classList.toggle('tt-toc-active', l.getAttribute('href') === hash); });
-    jumpLinks.forEach(function(l){ l.classList.toggle('tt-jump-active', l.getAttribute('href') === hash); });
+    tocLinks.forEach(function(l){
+      var active = l.getAttribute('href') === hash;
+      l.classList.toggle('tt-toc-active', active);
+      if(active){ l.setAttribute('aria-current','true'); } else { l.removeAttribute('aria-current'); }
+    });
+    jumpLinks.forEach(function(l){
+      var active = l.getAttribute('href') === hash;
+      l.classList.toggle('tt-jump-active', active);
+      if(active){ l.setAttribute('aria-current','true'); } else { l.removeAttribute('aria-current'); }
+    });
   }
 
   if('IntersectionObserver' in window && sectionEls.length){
