@@ -1,21 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ML405W1QDX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-ML405W1QDX');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TickmarkTools — Professional Free Online Tools. No Signup, No Watermark.</title>
 <meta name="description" content="Professional free online tools — calculators, PDF, image, text and developer tools. Fast, private, AI-powered search, no sign-up, no watermark. Works on any device.">
 <meta name="theme-color" content="#146356">
 <link rel="canonical" href="https://tickmarktools.com/">
+<link rel="icon" type="image/png" href="logo.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="TickmarkTools — Professional Free Online Tools">
 <meta property="og:description" content="Fast, private, AI-powered free tools. No sign-up, no watermark, no installs.">
@@ -416,7 +408,7 @@
   .adsense-slot{
     width:100%;
     max-width:1200px;
-    margin:40px auto;
+    margin:18px auto;
     padding:0 24px;
     box-sizing:border-box;
   }
@@ -440,7 +432,7 @@
   .adsense-slot-inner[data-size="leaderboard"]{ min-height:90px; }
   .adsense-slot-inner[data-size="infeed"]{ min-height:120px; }
   @media (max-width:640px){
-    .adsense-slot{ margin:32px auto; padding:0 16px; }
+    .adsense-slot{ margin:14px auto; padding:0 16px; }
     .adsense-slot-inner{ min-height:100px; }
   }
 
@@ -472,7 +464,237 @@
   .footer-col h5{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.03em;color:var(--ink-soft);margin-bottom:14px;}
   .footer-col a{display:block;font-size:14px;color:var(--ink);margin-bottom:10px;}
   .footer-col a:hover{color:var(--primary);}
-  .footer-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--ink-soft);}
+  .footer-bottom{
+    border-top:1px solid var(--border);padding-top:20px;
+    display:flex;flex-direction:column;align-items:center;text-align:center;
+    gap:6px;font-size:13px;color:var(--ink-soft);
+  }
+  .footer-bottom a{color:inherit;text-decoration:underline;text-underline-offset:2px;transition:color 0.2s ease;}
+  .footer-bottom a:hover{color:var(--primary);}
+
+  /* ============================================================
+     PREMIUM MOTION ANIMATIONS (additive only — no layout/spacing/color changes)
+     ============================================================ */
+
+  /* ---- 1. Logo intro animation (plays once) ---- */
+  .logo-mark{overflow:visible;}
+  .logo-t{
+    display:inline-block;
+    opacity:0;
+    transform:translateY(10px);
+    animation:tt-logo-t-rise .5s cubic-bezier(.2,.8,.2,1) .15s forwards;
+  }
+  @keyframes tt-logo-t-rise{ to{ opacity:1; transform:translateY(0); } }
+  .tick-path{
+    stroke-dasharray:18;
+    stroke-dashoffset:18;
+    animation:tt-tick-draw .5s cubic-bezier(.4,0,.2,1) .7s forwards;
+  }
+  @keyframes tt-tick-draw{ to{ stroke-dashoffset:0; } }
+  .tick-glow-dot{
+    offset-path:path('M6 12.5L10 16.5L18 8');
+    offset-distance:0%;
+    opacity:0;
+    filter:drop-shadow(0 0 2px #ffffff);
+    animation:tt-dot-appear .01s linear .7s forwards, tt-dot-travel .5s cubic-bezier(.4,0,.2,1) .7s forwards, tt-dot-fade .15s linear 1.18s forwards;
+  }
+  @keyframes tt-dot-appear{ to{ opacity:1; } }
+  @keyframes tt-dot-travel{ to{ offset-distance:100%; } }
+  @keyframes tt-dot-fade{ to{ opacity:0; } }
+  .tick-sparkle{
+    opacity:0;
+    transform-origin:center;
+    transform:translate(18px,8px) scale(0);
+  }
+  .tick-sparkle path{transform-origin:center;}
+  .tick-sparkle{
+    animation:tt-sparkle-burst .5s cubic-bezier(.2,.8,.2,1) 1.15s forwards;
+  }
+  @keyframes tt-sparkle-burst{
+    0%{ opacity:0; transform:translate(18px,8px) scale(0) rotate(0deg); }
+    35%{ opacity:1; transform:translate(18px,8px) scale(1.3) rotate(20deg); }
+    70%{ opacity:.8; transform:translate(18px,8px) scale(1) rotate(20deg); }
+    100%{ opacity:0; transform:translate(18px,8px) scale(.7) rotate(20deg); }
+  }
+
+  /* ---- 2. Hero content reveal (elegant, staggered) ---- */
+  @keyframes tt-reveal-up{
+    from{ opacity:0; transform:translateY(14px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+  .hero-fade #liveToolBadge{ opacity:0; animation:tt-reveal-up .6s ease .05s forwards; }
+  .hero-fade .hero-line{ display:block; opacity:0; animation:tt-reveal-up .6s ease forwards; }
+  .hero-fade .hero-line:nth-child(1){ animation-delay:.18s; }
+  .hero-fade .hero-line:nth-child(2){ animation-delay:.32s; }
+  .hero-fade p.sub{ opacity:0; animation:tt-reveal-up .6s ease .46s forwards; }
+  .hero-fade .tt-tagline{ opacity:0; animation:tt-reveal-up .6s ease .56s forwards; }
+  .hero-fade .hero-badges{ opacity:0; animation:tt-reveal-up .6s ease .64s forwards; }
+  .hero-fade .search-box{ opacity:0; animation:tt-reveal-up .6s ease .5s forwards; }
+  .hero-fade .cta-row .btn{ opacity:0; animation:tt-reveal-up .55s ease forwards; }
+  .hero-fade .cta-row .btn:nth-child(1){ animation-delay:.72s; }
+  .hero-fade .cta-row .btn:nth-child(2){ animation-delay:.82s; }
+  .hero-fade .trust-row{ opacity:0; animation:tt-reveal-up .6s ease .9s forwards; }
+  .hero-fade.tick-panel{ opacity:0; animation:tt-reveal-up .7s ease .3s forwards; }
+
+  /* ---- 3. Premium CTA shine ---- */
+  .btn, .nav-cta{ position:relative; overflow:hidden; }
+  .btn::before, .nav-cta::before{
+    content:'';
+    position:absolute;
+    top:0; left:-60%;
+    width:45%; height:100%;
+    background:linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%);
+    transform:skewX(-20deg);
+    animation:tt-btn-shine 4.5s ease-in-out infinite;
+    animation-delay:2s;
+    pointer-events:none;
+  }
+  .btn:hover::before, .nav-cta:hover::before{ animation-play-state:paused; }
+  @keyframes tt-btn-shine{
+    0%{ left:-60%; }
+    18%{ left:130%; }
+    100%{ left:130%; }
+  }
+  .view-all{ position:relative; }
+  .view-all::after{
+    content:'';
+    position:absolute;
+    left:0; right:100%; bottom:-2px;
+    height:1px;
+    background:linear-gradient(90deg, transparent, var(--primary), transparent);
+    opacity:0;
+    animation:tt-link-shimmer 5s ease-in-out infinite;
+    animation-delay:2.5s;
+    pointer-events:none;
+  }
+  @keyframes tt-link-shimmer{
+    0%{ right:100%; opacity:0; }
+    8%{ opacity:.6; }
+    28%{ right:-4%; opacity:0; }
+    100%{ right:-4%; opacity:0; }
+  }
+
+  /* ---- 4. Floating hero visual (subtle, starts after entrance) ---- */
+  .tick-panel.tt-float{ animation:tt-hero-float 6s ease-in-out infinite; }
+  @keyframes tt-hero-float{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-3px); }
+  }
+
+  /* ---- 5. Cursor glow (desktop only, added via JS) ---- */
+  #ttCursorGlow{
+    position:fixed;top:0;left:0;width:220px;height:220px;border-radius:50%;
+    background:radial-gradient(circle, color-mix(in srgb, var(--primary) 22%, transparent) 0%, transparent 70%);
+    transform:translate(-50%,-50%);
+    pointer-events:none;z-index:1;opacity:0;
+    transition:opacity .3s ease;
+    will-change:transform;
+  }
+  #ttCursorGlow.show{opacity:1;}
+
+  @media (prefers-reduced-motion: reduce){
+    .btn::before, .nav-cta::before, .view-all::after, .tick-panel.tt-float, #ttCursorGlow{ display:none !important; }
+  }
+  @media (max-width:860px){
+    #ttCursorGlow{ display:none !important; }
+  }
+
+  /* ============================================================
+     PART 2 — ADDITIVE PREMIUM MOTION
+     (scroll reveal, card micro-interactions, button polish)
+     Nothing above this block is modified — everything here only
+     ADDS behaviour on top of the existing design.
+     ============================================================ */
+
+  /* ---- Generic scroll-reveal utility (sections, headers, misc blocks) ---- */
+  .tt-sr{
+    opacity:0;
+    transform:translateY(26px);
+    transition:opacity .8s cubic-bezier(.16,.8,.24,1), transform .8s cubic-bezier(.16,.8,.24,1);
+    will-change:opacity, transform;
+  }
+  .tt-sr.tt-sr-in{ opacity:1; transform:translateY(0); }
+
+  /* ---- Tool cards: refined transition set (adds opacity for reveal + keeps hover) ---- */
+  .tool-card{
+    transition:transform .4s cubic-bezier(.16,.8,.24,1), box-shadow .4s cubic-bezier(.16,.8,.24,1), border-color .3s ease, opacity .7s cubic-bezier(.16,.8,.24,1);
+    overflow:hidden;
+  }
+  .tool-card.tt-sr{ opacity:0; transform:translateY(20px); }
+  .tool-card.tt-sr.tt-sr-in{ opacity:1; transform:translateY(0); }
+  .tool-card::before{
+    content:'';
+    position:absolute; top:0; left:-60%; width:40%; height:100%;
+    background:linear-gradient(115deg, transparent 0%, color-mix(in srgb, var(--primary) 14%, transparent) 50%, transparent 100%);
+    transform:skewX(-20deg);
+    transition:left .65s ease;
+    pointer-events:none;
+  }
+  .tool-card:hover::before{ left:130%; }
+  .tool-card::after{
+    content:'';
+    position:absolute; inset:0; border-radius:12px;
+    padding:1px;
+    background:linear-gradient(120deg, transparent, color-mix(in srgb, var(--primary) 45%, transparent), transparent);
+    -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    opacity:0; transition:opacity .35s ease; pointer-events:none;
+  }
+  .tool-card:hover::after{ opacity:1; }
+  .tool-emoji{ transition:transform .4s cubic-bezier(.34,1.56,.64,1); }
+  .tool-card:hover .tool-emoji{ transform:scale(1.12) rotate(-3deg); }
+  .tool-card:active{ transform:translateY(-2px) scale(.985); }
+
+  /* ---- Category cards: refined transition set + animated border glow ---- */
+  .cat-card{
+    transition:transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease, border-color .3s ease, opacity .7s cubic-bezier(.16,.8,.24,1);
+    isolation:isolate;
+  }
+  .cat-card.tt-sr{ opacity:0; transform:translateY(22px); }
+  .cat-card.tt-sr.tt-sr-in{ opacity:1; transform:translateY(0); }
+  .cat-card::after{
+    content:'';
+    position:absolute; inset:0; border-radius:inherit;
+    padding:1.5px;
+    background:conic-gradient(from 0deg, color-mix(in srgb, var(--primary) 65%, transparent), transparent 30%, color-mix(in srgb, var(--primary) 65%, transparent) 60%, transparent 90%);
+    -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    opacity:0; transition:opacity .4s ease;
+    animation:tt-border-spin 4s linear infinite paused;
+    pointer-events:none;
+  }
+  .cat-card:hover::after{ opacity:1; animation-play-state:running; }
+  @keyframes tt-border-spin{ to{ transform:rotate(360deg); } }
+
+  /* ---- Why-choose cards: reveal + subtle icon micro-animation ---- */
+  .why-card{
+    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease, opacity .7s cubic-bezier(.16,.8,.24,1);
+  }
+  .why-card.tt-sr{ opacity:0; transform:translateY(22px); }
+  .why-card.tt-sr.tt-sr-in{ opacity:1; transform:translateY(0); }
+  .why-ico{ transition:transform .4s cubic-bezier(.34,1.56,.64,1); }
+  .why-card:hover .why-ico{ transform:scale(1.1) rotate(-4deg); }
+
+  /* ---- Buttons: smoother, more premium press/hover feel ---- */
+  .btn, .nav-cta{
+    transition:transform .25s cubic-bezier(.16,.8,.24,1), box-shadow .25s cubic-bezier(.16,.8,.24,1), background .25s ease;
+  }
+  .btn:active, .nav-cta:active{ transform:translateY(0) scale(.96); box-shadow:none; }
+  .theme-toggle{ transition:border-color .25s ease, transform .25s cubic-bezier(.16,.8,.24,1); }
+  .theme-toggle:active{ transform:scale(.9); }
+  #backToTop{ transition:opacity .25s ease, transform .3s cubic-bezier(.34,1.56,.64,1), background .25s ease; }
+  #backToTop:active{ transform:scale(.9); }
+
+  /* ---- Tick checklist: smoother, more premium easing (functionality unchanged) ---- */
+  .tick-item{ transition:color .5s cubic-bezier(.4,0,.2,1); }
+  .tick-circle{ transition:background-color .45s cubic-bezier(.34,1.56,.64,1), border-color .45s cubic-bezier(.34,1.56,.64,1), transform .45s cubic-bezier(.34,1.56,.64,1); }
+  .tick-item.done .tick-circle{ transform:scale(1.08); }
+  .tick-circle svg{ transition:opacity .35s cubic-bezier(.34,1.56,.64,1), transform .35s cubic-bezier(.34,1.56,.64,1); }
+
+  @media (prefers-reduced-motion: reduce){
+    .tt-sr, .tool-card, .cat-card, .why-card{ opacity:1 !important; transform:none !important; transition:none !important; }
+    .tool-card::before, .tool-card::after, .cat-card::after{ display:none !important; }
+  }
 </style>
 </head>
 <body>
@@ -481,9 +703,9 @@
 <header>
   <div class="wrap">
     <nav aria-label="Primary">
-      <div class="logo">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#146356"/><path d="M6 12.5L10 16.5L18 8" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        TickmarkTools
+      <div class="logo" id="brandLogo">
+        <img src="logo.png" alt="Tickmark Tools" width="32" height="32" style="vertical-align: middle; margin-right: 8px; border-radius: 6px;">
+        <span class="logo-word"><span class="logo-t">T</span>ickmarkTools</span>
       </div>
       <div class="nav-links">
         <a href="calculators.html">Calculators</a>
@@ -523,7 +745,7 @@
         <span class="tt-live-dot" aria-hidden="true"></span>
         <span id="liveToolCount">0</span>+ Tools Live Right Now
       </div>
-      <h1>Professional Tools.<br><span class="highlight">Zero</span> Friction.</h1>
+      <h1><span class="hero-line">Free Professional Tools.</span><span class="hero-line"><span class="highlight">Zero</span> Friction.</span></h1>
       <p class="sub">Calculators, PDF, image, text and developer tools that just work — instantly, in your browser, with nothing to install and nothing to sign up for.</p>
       <p class="tt-tagline">Every Tool. One Place. Always Free.</p>
 
@@ -992,8 +1214,8 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <div>© 2026 TickmarkTools. All rights reserved.</div>
-      <div>Every Tool. One Place.</div>
+      <div>© 2026 <a href="/">TickmarkTools</a></div>
+      <div>All rights reserved. • Every Tool. One Place.</div>
     </div>
   </div>
 </footer>
@@ -1318,6 +1540,89 @@
     backToTop.classList.toggle('show', window.scrollY > 600);
   }, {passive:true});
   backToTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  /* ---------- Premium motion: start subtle hero float after entrance settles ---------- */
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const heroPanel = document.querySelector('.tick-panel.hero-fade');
+  if(heroPanel && !prefersReducedMotion){
+    setTimeout(() => heroPanel.classList.add('tt-float'), 1000);
+  }
+
+  /* ---------- Premium motion: desktop-only cursor glow ---------- */
+  if(!prefersReducedMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches){
+    const glow = document.createElement('div');
+    glow.id = 'ttCursorGlow';
+    document.body.appendChild(glow);
+    let glowX = 0, glowY = 0, rafId = null;
+    function moveGlow(){
+      glow.style.transform = `translate(${glowX}px, ${glowY}px)`;
+      rafId = null;
+    }
+    window.addEventListener('mousemove', (e) => {
+      glowX = e.clientX; glowY = e.clientY;
+      glow.classList.add('show');
+      if(!rafId) rafId = requestAnimationFrame(moveGlow);
+    }, {passive:true});
+    document.addEventListener('mouseleave', () => glow.classList.remove('show'));
+  }
+</script>
+
+<!-- ============================================================
+     PART 2 — ADDITIVE PREMIUM MOTION SCRIPT
+     Only adds scroll-reveal classes at runtime. Does not modify
+     any existing element, content, or prior script logic.
+     ============================================================ -->
+<script>
+(function(){
+  'use strict';
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduceMotion || !('IntersectionObserver' in window)) return;
+
+  var STAGGER_STEP = 55;   // ms between each card in a group
+  var STAGGER_CAP  = 360;  // max delay so long grids don't feel slow
+
+  function markStaggered(container){
+    if(!container) return;
+    Array.prototype.forEach.call(container.children, function(el, i){
+      el.classList.add('tt-sr');
+      el.style.transitionDelay = Math.min(i * STAGGER_STEP, STAGGER_CAP) + 'ms';
+    });
+  }
+
+  // Card grids get per-card staggered reveal
+  document.querySelectorAll('.tool-grid, .cat-grid, .why-grid').forEach(markStaggered);
+
+  // Section intros / standalone blocks get a simple fade-up reveal
+  document.querySelectorAll(
+    '.section-head, .demo-card, .compare-wrap, .faq-list, footer .footer-grid, footer .footer-bottom, .strip .wrap'
+  ).forEach(function(el){ el.classList.add('tt-sr'); });
+
+  var revealTargets = document.querySelectorAll('.tt-sr');
+
+  function clearDelayOnSettle(el){
+    // once the entrance transition finishes, drop the inline delay so
+    // later hover/press transitions on the same element stay instant
+    el.addEventListener('transitionend', function handler(e){
+      if(e.target !== el) return;
+      el.style.transitionDelay = '';
+      el.removeEventListener('transitionend', handler);
+    });
+  }
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        var el = entry.target;
+        clearDelayOnSettle(el);
+        el.classList.add('tt-sr-in');
+        io.unobserve(el);
+      }
+    });
+  }, { threshold:0.1, rootMargin:'0px 0px -6% 0px' });
+
+  revealTargets.forEach(function(el){ io.observe(el); });
+})();
 </script>
 
 </body>
