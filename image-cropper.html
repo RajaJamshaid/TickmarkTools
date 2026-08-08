@@ -22,7 +22,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -112,7 +111,7 @@
       <p style="font-size:13px;color:var(--ink-soft);margin-top:10px;">Drag on the image to select the area you want to crop.</p>
       <button class="btn btn-primary" id="cropBtn" style="margin-top:10px;">Crop Selected Area</button>
       <div class="result-box" id="cropResult" style="margin-top:16px;">
-        <img id="cropPreview" style="max-width:200px;border-radius:10px;border:1px solid var(--border);">
+        <img id="cropPreview" style="max-width:200px;border-radius:10px;border:1px solid var(--border);" alt="Cropped Preview">
         <div style="margin-top:10px;"><a id="cropDownload" class="btn btn-primary" download="cropped.png">Download Cropped Image</a></div>
       </div>
     </div>
@@ -210,24 +209,6 @@
   </div>
 </div>
 
-<div class="wrap tool-section">
-  <h2>You May Also Like</h2>
-  <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
-      </a>
-      <a href="percentage-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div>
-      </a>
-      <a href="bmi-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div>
-      </a>
-  </div>
-</div>
-
 <div class="wrap tool-section" style="border-bottom:1px solid var(--border);">
   <h2>Comments</h2>
   <div class="comment-box">
@@ -238,73 +219,144 @@
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
-const cropDrop=document.getElementById('cropDrop');
-const cropFile=document.getElementById('cropFile');
-const cropCanvas=document.getElementById('cropCanvas');
+let createdObjectUrl = null;
+let currentFileName = 'cropped.png';
+
+const cropDrop = document.getElementById('cropDrop');
+const cropFile = document.getElementById('cropFile');
+const cropCanvas = document.getElementById('cropCanvas');
 const ctx = cropCanvas.getContext('2d');
-let cropImg=new Image(), sel={x:0,y:0,w:0,h:0}, dragging=false, startX=0, startY=0, scaleRatio=1;
-cropDrop.addEventListener('click',()=>cropFile.click());
-cropDrop.addEventListener('dragover',e=>e.preventDefault());
-cropDrop.addEventListener('drop',e=>{e.preventDefault(); if(e.dataTransfer.files[0]) loadCrop(e.dataTransfer.files[0]);});
-cropFile.addEventListener('change',()=>{ if(cropFile.files[0]) loadCrop(cropFile.files[0]); });
-function loadCrop(file){
-  const reader=new FileReader();
-  reader.onload=(e)=>{
-    cropImg.onload=()=>{
-      document.getElementById('cropControls').style.display='block';
+let cropImg = new Image(), sel = {x:0, y:0, w:0, h:0}, dragging = false, startX = 0, startY = 0, scaleRatio = 1;
+
+cropDrop.addEventListener('click', () => cropFile.click());
+cropDrop.addEventListener('dragover', e => e.preventDefault());
+cropDrop.addEventListener('drop', e => {
+  e.preventDefault();
+  if (e.dataTransfer.files[0] && e.dataTransfer.files[0].type.startsWith('image/')) {
+    loadCrop(e.dataTransfer.files[0]);
+  }
+});
+
+cropFile.addEventListener('change', () => {
+  if (cropFile.files[0]) loadCrop(cropFile.files[0]);
+});
+
+function loadCrop(file) {
+  currentFileName = file.name.replace(/\.[^/.]+$/, "") + "_cropped.png";
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    cropImg.onload = () => {
+      document.getElementById('cropControls').style.display = 'block';
+      document.getElementById('cropResult').classList.remove('show');
+      sel = {x:0, y:0, w:0, h:0};
       const maxW = 560;
-      scaleRatio = cropImg.width > maxW ? maxW/cropImg.width : 1;
-      cropCanvas.width = cropImg.width*scaleRatio;
-      cropCanvas.height = cropImg.height*scaleRatio;
+      scaleRatio = cropImg.width > maxW ? maxW / cropImg.width : 1;
+      cropCanvas.width = cropImg.width * scaleRatio;
+      cropCanvas.height = cropImg.height * scaleRatio;
       redrawCrop();
     };
     cropImg.src = e.target.result;
   };
   reader.readAsDataURL(file);
 }
-function redrawCrop(){
-  ctx.clearRect(0,0,cropCanvas.width,cropCanvas.height);
-  ctx.drawImage(cropImg,0,0,cropCanvas.width,cropCanvas.height);
-  if(sel.w && sel.h){
-    ctx.strokeStyle='#146356'; ctx.lineWidth=2;
-    ctx.strokeRect(sel.x,sel.y,sel.w,sel.h);
-    ctx.fillStyle='rgba(20,99,86,0.15)';
-    ctx.fillRect(sel.x,sel.y,sel.w,sel.h);
+
+function redrawCrop() {
+  ctx.clearRect(0, 0, cropCanvas.width, cropCanvas.height);
+  ctx.drawImage(cropImg, 0, 0, cropCanvas.width, cropCanvas.height);
+  if (sel.w && sel.h) {
+    ctx.strokeStyle = '#146356';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(sel.x, sel.y, sel.w, sel.h);
+    ctx.fillStyle = 'rgba(20,99,86,0.15)';
+    ctx.fillRect(sel.x, sel.y, sel.w, sel.h);
   }
 }
-function getPos(e){
+
+function getPos(e) {
   const rect = cropCanvas.getBoundingClientRect();
   const clientX = e.touches ? e.touches[0].clientX : e.clientX;
   const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-  return { x: (clientX-rect.left) * (cropCanvas.width/rect.width), y: (clientY-rect.top) * (cropCanvas.height/rect.height) };
+  const rawX = (clientX - rect.left) * (cropCanvas.width / rect.width);
+  const rawY = (clientY - rect.top) * (cropCanvas.height / rect.height);
+  return {
+    x: Math.max(0, Math.min(cropCanvas.width, rawX)),
+    y: Math.max(0, Math.min(cropCanvas.height, rawY))
+  };
 }
-cropCanvas.addEventListener('mousedown', e=>{ const p=getPos(e); startX=p.x; startY=p.y; dragging=true; });
-cropCanvas.addEventListener('mousemove', e=>{
-  if(!dragging) return;
-  const p=getPos(e);
-  sel = { x:Math.min(startX,p.x), y:Math.min(startY,p.y), w:Math.abs(p.x-startX), h:Math.abs(p.y-startY) };
+
+// Mouse event listeners
+cropCanvas.addEventListener('mousedown', e => {
+  const p = getPos(e);
+  startX = p.x; startY = p.y; dragging = true;
+});
+
+cropCanvas.addEventListener('mousemove', e => {
+  if (!dragging) return;
+  const p = getPos(e);
+  sel = { x: Math.min(startX, p.x), y: Math.min(startY, p.y), w: Math.abs(p.x - startX), h: Math.abs(p.y - startY) };
   redrawCrop();
 });
-window.addEventListener('mouseup', ()=>{ dragging=false; });
-document.getElementById('cropBtn').addEventListener('click',()=>{
-  if(!sel.w || !sel.h){ alert('Please drag to select a crop area first'); return; }
+
+window.addEventListener('mouseup', () => { dragging = false; });
+
+// Touch event listeners for mobile devices
+cropCanvas.addEventListener('touchstart', e => {
+  e.preventDefault();
+  const p = getPos(e);
+  startX = p.x; startY = p.y; dragging = true;
+}, { passive: false });
+
+cropCanvas.addEventListener('touchmove', e => {
+  if (!dragging) return;
+  e.preventDefault();
+  const p = getPos(e);
+  sel = { x: Math.min(startX, p.x), y: Math.min(startY, p.y), w: Math.abs(p.x - startX), h: Math.abs(p.y - startY) };
+  redrawCrop();
+}, { passive: false });
+
+window.addEventListener('touchend', () => { dragging = false; });
+
+document.getElementById('cropBtn').addEventListener('click', () => {
+  if (!sel.w || !sel.h) {
+    alert('Please drag to select a crop area first.');
+    return;
+  }
   const outCanvas = document.createElement('canvas');
-  const realX = sel.x/scaleRatio, realY = sel.y/scaleRatio, realW = sel.w/scaleRatio, realH = sel.h/scaleRatio;
-  outCanvas.width = realW; outCanvas.height = realH;
+  const realX = sel.x / scaleRatio, realY = sel.y / scaleRatio, realW = sel.w / scaleRatio, realH = sel.h / scaleRatio;
+  outCanvas.width = realW;
+  outCanvas.height = realH;
   outCanvas.getContext('2d').drawImage(cropImg, realX, realY, realW, realH, 0, 0, realW, realH);
-  outCanvas.toBlob(blob=>{
-    const url = URL.createObjectURL(blob);
-    document.getElementById('cropPreview').src = url;
-    document.getElementById('cropDownload').href = url;
+  
+  outCanvas.toBlob(blob => {
+    if (!blob) return;
+    if (createdObjectUrl) {
+      URL.revokeObjectURL(createdObjectUrl);
+    }
+    createdObjectUrl = URL.createObjectURL(blob);
+    document.getElementById('cropPreview').src = createdObjectUrl;
+    const downloadBtn = document.getElementById('cropDownload');
+    downloadBtn.href = createdObjectUrl;
+    downloadBtn.download = currentFileName;
     document.getElementById('cropResult').classList.add('show');
   }, 'image/png');
 });
-window.resetTool=function(){document.getElementById('cropControls').style.display='none'; cropFile.value=''; sel={x:0,y:0,w:0,h:0};};
-window.copyResult=function(){ alert('Use the Download button to save the cropped image.'); };
+
+window.resetTool = function() {
+  document.getElementById('cropControls').style.display = 'none';
+  document.getElementById('cropResult').classList.remove('show');
+  cropFile.value = '';
+  sel = {x:0, y:0, w:0, h:0};
+  if (createdObjectUrl) {
+    URL.revokeObjectURL(createdObjectUrl);
+    createdObjectUrl = null;
+  }
+};
+
+window.copyResult = function() {
+  alert('Use the "Download Cropped Image" button to save your file.');
+};
 </script>
 <script>
 function postComment(){
