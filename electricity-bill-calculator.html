@@ -252,16 +252,28 @@ if(window.TTGeo){
 }
 </script>
 <script>
-document.getElementById('ebBtn').addEventListener('click',()=>{
-  const units=parseFloat(document.getElementById('ebUnits').value);
-  const rate=parseFloat(document.getElementById('ebRate').value);
-  const fixed=parseFloat(document.getElementById('ebFixed').value)||0;
-  if(!units||!rate){alert('Please enter units and rate');return;}
-  const total = units*rate + fixed;
-  document.getElementById('ebTotal').textContent = (window.ttCurSym||'') + total.toFixed(0);
+document.getElementById('ebBtn').addEventListener('click', () => {
+  const units = parseFloat(document.getElementById('ebUnits').value);
+  const rate = parseFloat(document.getElementById('ebRate').value);
+  const fixed = parseFloat(document.getElementById('ebFixed').value) || 0;
+
+  if (isNaN(units) || isNaN(rate) || units < 0 || rate < 0 || fixed < 0) {
+    alert('Please enter valid positive numbers for units, rate, and fixed charges.');
+    return;
+  }
+
+  const total = (units * rate) + fixed;
+  const sym = window.ttCurSym ? window.ttCurSym + ' ' : '';
+
+  document.getElementById('ebTotal').textContent = sym + Math.round(total).toLocaleString();
   document.getElementById('ebResult').classList.add('show');
 });
-window.resetTool=function(){['ebUnits','ebRate','ebFixed'].forEach(id=>document.getElementById(id).value='');document.getElementById('ebResult').classList.remove('show');};
+
+window.resetTool = function() {
+  ['ebUnits', 'ebRate', 'ebFixed'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('ebTotal').textContent = '0';
+  document.getElementById('ebResult').classList.remove('show');
+};
 </script>
 <script>
 function postComment(){
