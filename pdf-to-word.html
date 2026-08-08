@@ -178,37 +178,19 @@
         <div class="related-emoji">🔗</div>
         <div><h4 style="font-size:14.5px;font-weight:600;">PDF Merge</h4></div>
       </a>
-      <a href="word-to-pdf.html" class="related-card">
-        <div class="related-emoji">📄</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Word to PDF</h4></div>
+      <a href="word-counter.html" class="related-card">
+        <div class="related-emoji">📝</div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">Word Counter</h4></div>
       </a>
-      <a href="pdf-to-jpg.html" class="related-card">
+      <a href="image-compressor.html" class="related-card">
         <div class="related-emoji">🖼️</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">PDF to JPG</h4></div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">Image Compressor</h4></div>
       </a>
   </div>
 </div>
 
 <div class="wrap tool-section">
   <h2>Popular Calculators</h2>
-  <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
-      </a>
-      <a href="percentage-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div>
-      </a>
-      <a href="bmi-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div>
-      </a>
-  </div>
-</div>
-
-<div class="wrap tool-section">
-  <h2>You May Also Like</h2>
   <div class="related-grid">
       <a href="age-calculator.html" class="related-card">
         <div class="related-emoji">🧮</div>
@@ -235,40 +217,107 @@
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
-const p2wDrop=document.getElementById('p2wDrop');
-const p2wFile=document.getElementById('p2wFile');
-p2wDrop.addEventListener('click',()=>p2wFile.click());
-p2wDrop.addEventListener('dragover',e=>e.preventDefault());
-p2wDrop.addEventListener('drop',e=>{e.preventDefault(); if(e.dataTransfer.files[0]){ p2wFile.files = e.dataTransfer.files; renderP2W(); }});
-p2wFile.addEventListener('change', renderP2W);
-function renderP2W(){
-  const f = p2wFile.files[0];
-  document.getElementById('p2wFileList').innerHTML = f ? `<div class="file-chip"><span>${f.name}</span><span>${(f.size/1024).toFixed(0)} KB</span></div>` : '';
-}
-document.getElementById('p2wBtn').addEventListener('click', async ()=>{
-  const file = p2wFile.files[0];
-  if(!file){alert('Please choose a PDF file first');return;}
-  const arrayBuffer = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({data:arrayBuffer}).promise;
-  let paragraphs=[];
-  for(let i=1;i<=pdf.numPages;i++){
-    const page = await pdf.getPage(i);
-    const content = await page.getTextContent();
-    const text = content.items.map(it=>it.str).join(' ');
-    paragraphs.push(new docx.Paragraph({ text: text }));
+let createdObjectUrl = null;
+const p2wDrop = document.getElementById('p2wDrop');
+const p2wFile = document.getElementById('p2wFile');
+
+p2wDrop.addEventListener('click', () => p2wFile.click());
+p2wDrop.addEventListener('dragover', e => e.preventDefault());
+p2wDrop.addEventListener('drop', e => {
+  e.preventDefault();
+  if (e.dataTransfer.files[0] && e.dataTransfer.files[0].type === 'application/pdf') {
+    p2wFile.files = e.dataTransfer.files;
+    renderP2W();
   }
-  const doc = new docx.Document({ sections:[{ children: paragraphs }] });
-  const blob = await docx.Packer.toBlob(doc);
-  const url = URL.createObjectURL(blob);
-  document.getElementById('p2wDownload').href = url;
-  document.getElementById('p2wResult').classList.add('show');
 });
-window.resetTool = function(){
-  p2wFile.value=''; renderP2W();
+
+p2wFile.addEventListener('change', renderP2W);
+
+function renderP2W() {
+  const f = p2wFile.files[0];
+  document.getElementById('p2wFileList').innerHTML = f ? `
+    <div class="file-chip" style="display:flex;justify-content:space-between;padding:8px 12px;margin-top:6px;background:var(--bg-soft,#f4f6f8);border-radius:6px;font-size:13px;">
+      <span>📄 ${f.name}</span>
+      <span style="color:var(--ink-soft);">${(f.size / 1024).toFixed(0)} KB</span>
+    </div>
+  ` : '';
+}
+
+document.getElementById('p2wBtn').addEventListener('click', async () => {
+  const file = p2wFile.files[0];
+  if (!file) {
+    alert('Please choose a PDF file first');
+    return;
+  }
+
+  const btn = document.getElementById('p2wBtn');
+  btn.disabled = true;
+  btn.textContent = 'Converting...';
+
+  try {
+    const arrayBuffer = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+    let paragraphs = [];
+
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      
+      let lastY = null;
+      let lineText = '';
+
+      for (const item of content.items) {
+        if (!item.str) continue;
+        // Check vertical positioning to preserve natural line breaks
+        const currentY = item.transform ? item.transform[5] : null;
+        if (lastY !== null && currentY !== null && Math.abs(currentY - lastY) > 5) {
+          if (lineText.trim().length > 0) {
+            paragraphs.push(new docx.Paragraph({ text: lineText.trim() }));
+          }
+          lineText = '';
+        }
+        lineText += item.str + ' ';
+        lastY = currentY;
+      }
+      if (lineText.trim().length > 0) {
+        paragraphs.push(new docx.Paragraph({ text: lineText.trim() }));
+      }
+    }
+
+    if (paragraphs.length === 0) {
+      paragraphs.push(new docx.Paragraph({ text: "No extractable text was found in this PDF file." }));
+    }
+
+    const doc = new docx.Document({ sections: [{ children: paragraphs }] });
+    const blob = await docx.Packer.toBlob(doc);
+
+    if (createdObjectUrl) {
+      URL.revokeObjectURL(createdObjectUrl);
+    }
+
+    createdObjectUrl = URL.createObjectURL(blob);
+    const downloadBtn = document.getElementById('p2wDownload');
+    downloadBtn.href = createdObjectUrl;
+    downloadBtn.download = file.name.replace(/\.pdf$/i, '') + '.docx';
+    document.getElementById('p2wResult').classList.add('show');
+  } catch (err) {
+    alert('Failed to process PDF. Please make sure it is a valid document.');
+    console.error(err);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Convert to Word';
+  }
+});
+
+window.resetTool = function() {
+  p2wFile.value = '';
+  renderP2W();
+  if (createdObjectUrl) {
+    URL.revokeObjectURL(createdObjectUrl);
+    createdObjectUrl = null;
+  }
   document.getElementById('p2wResult').classList.remove('show');
 };
 </script>
