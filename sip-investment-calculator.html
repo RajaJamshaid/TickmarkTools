@@ -254,21 +254,60 @@ if(window.TTGeo){
 }
 </script>
 <script>
-document.getElementById('sipBtn').addEventListener('click',()=>{
-  const P=parseFloat(document.getElementById('sipAmt').value);
-  const annualRate=parseFloat(document.getElementById('sipRate').value);
-  const years=parseFloat(document.getElementById('sipYears').value);
-  if(!P||!annualRate||!years){alert('Please fill all fields');return;}
-  const r=annualRate/12/100;
-  const n=years*12;
-  const maturity=P*((Math.pow(1+r,n)-1)/r)*(1+r);
-  const invested=P*n;
-  document.getElementById('sipInvested').textContent=(window.ttCurSym||'')+invested.toFixed(0);
-  document.getElementById('sipGain').textContent=(window.ttCurSym||'')+(maturity-invested).toFixed(0);
-  document.getElementById('sipMaturity').textContent=(window.ttCurSym||'')+maturity.toFixed(0);
+document.getElementById('sipBtn').addEventListener('click', () => {
+  const pInput = document.getElementById('sipAmt').value.trim();
+  const rateInput = document.getElementById('sipRate').value.trim();
+  const yearsInput = document.getElementById('sipYears').value.trim();
+
+  if (pInput === '' || rateInput === '' || yearsInput === '') {
+    alert('Please fill in all fields.');
+    return;
+  }
+
+  const P = parseFloat(pInput);
+  const annualRate = parseFloat(rateInput);
+  const years = parseFloat(yearsInput);
+
+  if (isNaN(P) || isNaN(annualRate) || isNaN(years)) {
+    alert('Please enter valid numeric values.');
+    return;
+  }
+
+  if (P < 0 || annualRate < 0 || years < 0) {
+    alert('Values cannot be negative.');
+    return;
+  }
+
+  const n = years * 12;
+  const invested = P * n;
+  let maturity = 0;
+
+  if (annualRate === 0) {
+    // Zero interest rate case (no wealth gained)
+    maturity = invested;
+  } else {
+    const r = annualRate / 12 / 100;
+    maturity = P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
+  }
+
+  const gain = Math.max(0, maturity - invested);
+  const sym = window.ttCurSym || '';
+
+  document.getElementById('sipInvested').textContent = sym + Math.round(invested).toLocaleString('en-US');
+  document.getElementById('sipGain').textContent = sym + Math.round(gain).toLocaleString('en-US');
+  document.getElementById('sipMaturity').textContent = sym + Math.round(maturity).toLocaleString('en-US');
   document.getElementById('sipResult').classList.add('show');
 });
-window.resetTool=function(){['sipAmt','sipRate','sipYears'].forEach(id=>document.getElementById(id).value='');document.getElementById('sipResult').classList.remove('show');};
+
+window.resetTool = function() {
+  ['sipAmt', 'sipRate', 'sipYears'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('sipInvested').textContent = '0';
+  document.getElementById('sipGain').textContent = '0';
+  document.getElementById('sipMaturity').textContent = '0';
+  document.getElementById('sipResult').classList.remove('show');
+};
 </script>
 <script>
 function postComment(){
