@@ -256,21 +256,43 @@ if(window.TTGeo){
 }
 </script>
 <script>
-document.getElementById('emiBtn').addEventListener('click',()=>{
-  const P=parseFloat(document.getElementById('loanAmt').value);
-  const annualRate=parseFloat(document.getElementById('loanRate').value);
-  const n=parseFloat(document.getElementById('loanTenure').value);
-  if(!P||!annualRate||!n){alert('Please fill all fields with valid numbers');return;}
-  const r=annualRate/12/100;
-  const emi=(P*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
-  const total=emi*n;
-  const interest=total-P;
-  document.getElementById('emiMonthly').textContent=(window.ttCurSym||'')+emi.toFixed(0);
-  document.getElementById('emiInterest').textContent=(window.ttCurSym||'')+interest.toFixed(0);
-  document.getElementById('emiTotal').textContent=(window.ttCurSym||'')+total.toFixed(0);
+document.getElementById('emiBtn').addEventListener('click', () => {
+  const P = parseFloat(document.getElementById('loanAmt').value);
+  const annualRate = parseFloat(document.getElementById('loanRate').value);
+  const n = parseFloat(document.getElementById('loanTenure').value);
+
+  if (isNaN(P) || isNaN(annualRate) || isNaN(n) || P <= 0 || annualRate < 0 || n <= 0) {
+    alert('Please enter valid positive values for Loan Amount, Rate, and Tenure.');
+    return;
+  }
+
+  let emi, total, interest;
+  const sym = window.ttCurSym ? window.ttCurSym + ' ' : '';
+
+  if (annualRate === 0) {
+    emi = P / n;
+    total = P;
+    interest = 0;
+  } else {
+    const r = annualRate / 12 / 100;
+    emi = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    total = emi * n;
+    interest = total - P;
+  }
+
+  document.getElementById('emiMonthly').textContent = sym + Math.round(emi).toLocaleString();
+  document.getElementById('emiInterest').textContent = sym + Math.round(interest).toLocaleString();
+  document.getElementById('emiTotal').textContent = sym + Math.round(total).toLocaleString();
   document.getElementById('emiResult').classList.add('show');
 });
-window.resetTool=function(){['loanAmt','loanRate','loanTenure'].forEach(id=>document.getElementById(id).value='');document.getElementById('emiResult').classList.remove('show');};
+
+window.resetTool = function() {
+  ['loanAmt', 'loanRate', 'loanTenure'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('emiMonthly').textContent = '0';
+  document.getElementById('emiInterest').textContent = '0';
+  document.getElementById('emiTotal').textContent = '0';
+  document.getElementById('emiResult').classList.remove('show');
+};
 </script>
 <script>
 function postComment(){
