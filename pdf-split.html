@@ -162,7 +162,7 @@
   <div class="ai-panel">
     <h3>🤖 Ask AI about this tool</h3>
     <p style="font-size:13.5px;color:var(--ink-soft);margin-top:4px;">Tap a question for an instant answer. Full conversational AI is coming soon.</p>
-    <div class="ai-q">How do I know my PDF's total page count?</div><div class="ai-a">Open your PDF in any viewer — the page count is usually shown in the toolbar or status bar.</div>
+    <div class="ai-q">How do I know my PDF's total page count?</div><div class="ai-a">When you upload a PDF file here, the tool automatically detects and displays the total page count for you.</div>
     <div class="ai-q">Can I split a PDF into multiple separate files?</div><div class="ai-a">Yes, run this tool multiple times with different page ranges to create separate files.</div>
     <div class="ai-q">Does splitting affect PDF quality?</div><div class="ai-a">No, page content is copied as-is without any re-compression.</div>
     <div class="ai-input-row">
@@ -179,37 +179,19 @@
         <div class="related-emoji">🔗</div>
         <div><h4 style="font-size:14.5px;font-weight:600;">PDF Merge</h4></div>
       </a>
-      <a href="pdf-compress.html" class="related-card">
-        <div class="related-emoji">🗜️</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">PDF Compress</h4></div>
+      <a href="pdf-to-word.html" class="related-card">
+        <div class="related-emoji">📝</div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">PDF to Word</h4></div>
       </a>
-      <a href="pdf-to-jpg.html" class="related-card">
+      <a href="image-compressor.html" class="related-card">
         <div class="related-emoji">🖼️</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">PDF to JPG</h4></div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">Image Compressor</h4></div>
       </a>
   </div>
 </div>
 
 <div class="wrap tool-section">
   <h2>Popular Calculators</h2>
-  <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
-      </a>
-      <a href="percentage-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div>
-      </a>
-      <a href="bmi-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div>
-      </a>
-  </div>
-</div>
-
-<div class="wrap tool-section">
-  <h2>You May Also Like</h2>
   <div class="related-grid">
       <a href="age-calculator.html" class="related-card">
         <div class="related-emoji">🧮</div>
@@ -236,41 +218,129 @@
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
-const splitDrop=document.getElementById('splitDrop');
-const splitFile=document.getElementById('splitFile');
-splitDrop.addEventListener('click',()=>splitFile.click());
-splitDrop.addEventListener('dragover',e=>e.preventDefault());
-splitDrop.addEventListener('drop',e=>{e.preventDefault(); if(e.dataTransfer.files[0]){splitFile.files=e.dataTransfer.files; renderSplitFile();}});
-splitFile.addEventListener('change', renderSplitFile);
-function renderSplitFile(){
-  const f=splitFile.files[0];
-  document.getElementById('splitFileList').innerHTML = f ? `<div class="file-chip"><span>${f.name}</span><span>${(f.size/1024).toFixed(0)} KB</span></div>` : '';
-}
-document.getElementById('splitBtn').addEventListener('click', async ()=>{
-  const file = splitFile.files[0];
-  if(!file){alert('Please choose a PDF file first');return;}
-  const from = parseInt(document.getElementById('splitFrom').value);
-  const to = parseInt(document.getElementById('splitTo').value);
-  const { PDFDocument } = PDFLib;
-  const bytes = await file.arrayBuffer();
-  const src = await PDFDocument.load(bytes);
-  const total = src.getPageCount();
-  if(!from||!to||from<1||to>total||from>to){alert('Please enter a valid page range (1 to '+total+')');return;}
-  const newDoc = await PDFDocument.create();
-  const indices = [];
-  for(let i=from-1;i<=to-1;i++) indices.push(i);
-  const pages = await newDoc.copyPages(src, indices);
-  pages.forEach(p=>newDoc.addPage(p));
-  const newBytes = await newDoc.save();
-  const blob = new Blob([newBytes], {type:'application/pdf'});
-  document.getElementById('splitDownload').href = URL.createObjectURL(blob);
-  document.getElementById('splitResult').classList.add('show');
+let createdObjectUrl = null;
+let detectedTotalPages = 1;
+
+const splitDrop = document.getElementById('splitDrop');
+const splitFile = document.getElementById('splitFile');
+
+splitDrop.addEventListener('click', () => splitFile.click());
+splitDrop.addEventListener('dragover', e => e.preventDefault());
+splitDrop.addEventListener('drop', e => {
+  e.preventDefault();
+  if (e.dataTransfer.files[0] && e.dataTransfer.files[0].type === 'application/pdf') {
+    splitFile.files = e.dataTransfer.files;
+    renderSplitFile();
+  }
 });
-window.resetTool=function(){splitFile.value='';renderSplitFile();document.getElementById('splitFrom').value='1';document.getElementById('splitTo').value='1';document.getElementById('splitResult').classList.remove('show');};
+
+splitFile.addEventListener('change', renderSplitFile);
+
+async function renderSplitFile() {
+  const f = splitFile.files[0];
+  const list = document.getElementById('splitFileList');
+  
+  if (!f) {
+    list.innerHTML = '';
+    return;
+  }
+
+  try {
+    const bytes = await f.arrayBuffer();
+    const { PDFDocument } = PDFLib;
+    const src = await PDFDocument.load(bytes, { ignoreEncryption: true });
+    detectedTotalPages = src.getPageCount();
+
+    document.getElementById('splitFrom').value = '1';
+    document.getElementById('splitFrom').max = detectedTotalPages;
+    document.getElementById('splitTo').value = detectedTotalPages;
+    document.getElementById('splitTo').max = detectedTotalPages;
+
+    list.innerHTML = `
+      <div class="file-chip" style="display:flex;justify-content:space-between;padding:8px 12px;margin-top:6px;background:var(--bg-soft,#f4f6f8);border-radius:6px;font-size:13px;">
+        <span>📄 ${f.name} (${detectedTotalPages} page${detectedTotalPages > 1 ? 's' : ''})</span>
+        <span style="color:var(--ink-soft);">${(f.size / 1024).toFixed(0)} KB</span>
+      </div>
+    `;
+  } catch (err) {
+    list.innerHTML = `
+      <div class="file-chip" style="display:flex;justify-content:space-between;padding:8px 12px;margin-top:6px;background:var(--bg-soft,#f4f6f8);border-radius:6px;font-size:13px;">
+        <span>📄 ${f.name}</span>
+        <span style="color:var(--ink-soft);">${(f.size / 1024).toFixed(0)} KB</span>
+      </div>
+    `;
+  }
+}
+
+document.getElementById('splitBtn').addEventListener('click', async () => {
+  const file = splitFile.files[0];
+  if (!file) {
+    alert('Please choose a PDF file first');
+    return;
+  }
+
+  const from = parseInt(document.getElementById('splitFrom').value, 10);
+  const to = parseInt(document.getElementById('splitTo').value, 10);
+
+  const btn = document.getElementById('splitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Splitting...';
+
+  try {
+    const { PDFDocument } = PDFLib;
+    const bytes = await file.arrayBuffer();
+    const src = await PDFDocument.load(bytes, { ignoreEncryption: true });
+    const total = src.getPageCount();
+
+    if (!from || !to || from < 1 || to > total || from > to) {
+      alert(`Please enter a valid page range (1 to ${total})`);
+      return;
+    }
+
+    const newDoc = await PDFDocument.create();
+    const indices = [];
+    for (let i = from - 1; i <= to - 1; i++) {
+      indices.push(i);
+    }
+
+    const pages = await newDoc.copyPages(src, indices);
+    pages.forEach(p => newDoc.addPage(p));
+
+    const newBytes = await newDoc.save();
+    const blob = new Blob([newBytes], { type: 'application/pdf' });
+
+    if (createdObjectUrl) {
+      URL.revokeObjectURL(createdObjectUrl);
+    }
+
+    createdObjectUrl = URL.createObjectURL(blob);
+    const downloadBtn = document.getElementById('splitDownload');
+    downloadBtn.href = createdObjectUrl;
+    downloadBtn.download = file.name.replace(/\.pdf$/i, '') + `_p${from}-p${to}.pdf`;
+
+    document.getElementById('splitResult').classList.add('show');
+  } catch (err) {
+    alert('Failed to split PDF. The document may be corrupted or securely restricted.');
+    console.error(err);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Split PDF';
+  }
+});
+
+window.resetTool = function() {
+  splitFile.value = '';
+  document.getElementById('splitFileList').innerHTML = '';
+  document.getElementById('splitFrom').value = '1';
+  document.getElementById('splitTo').value = '1';
+  if (createdObjectUrl) {
+    URL.revokeObjectURL(createdObjectUrl);
+    createdObjectUrl = null;
+  }
+  document.getElementById('splitResult').classList.remove('show');
+};
 </script>
 <script>
 function postComment(){
