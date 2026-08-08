@@ -252,26 +252,44 @@ if(window.TTGeo){
 }
 </script>
 <script>
-document.getElementById('taxBtn').addEventListener('click',()=>{
-  const income=parseFloat(document.getElementById('taxIncome').value);
-  if(!income){alert('Please enter your annual income');return;}
-  const slabs=[[600000,0],[1200000,0.05],[2400000,0.15],[Infinity,0.25]];
-  let tax=0, prev=0;
-  for(const [limit,rate] of slabs){
-    if(income>prev){
-      const taxable=Math.min(income,limit)-prev;
-      tax += taxable*rate;
-      prev=limit;
-    } else break;
+document.getElementById('taxBtn').addEventListener('click', () => {
+  const income = parseFloat(document.getElementById('taxIncome').value);
+
+  if (isNaN(income) || income < 0) {
+    alert('Please enter a valid non-negative income amount.');
+    return;
   }
-  const net=income-tax;
-  const effective=(tax/income)*100;
-  document.getElementById('taxAmount').textContent=(window.ttCurSym||'')+tax.toFixed(0);
-  document.getElementById('taxNet').textContent=(window.ttCurSym||'')+net.toFixed(0);
-  document.getElementById('taxEffective').textContent=effective.toFixed(1)+'%';
+
+  const slabs = [[600000, 0], [1200000, 0.05], [2400000, 0.15], [Infinity, 0.25]];
+  let tax = 0, prev = 0;
+
+  for (const [limit, rate] of slabs) {
+    if (income > prev) {
+      const taxable = Math.min(income, limit) - prev;
+      tax += taxable * rate;
+      prev = limit;
+    } else {
+      break;
+    }
+  }
+
+  const net = income - tax;
+  const effective = income > 0 ? (tax / income) * 100 : 0;
+  const sym = window.ttCurSym ? window.ttCurSym + ' ' : '';
+
+  document.getElementById('taxAmount').textContent = sym + Math.round(tax).toLocaleString();
+  document.getElementById('taxNet').textContent = sym + Math.round(net).toLocaleString();
+  document.getElementById('taxEffective').textContent = effective.toFixed(1) + '%';
   document.getElementById('taxResult').classList.add('show');
 });
-window.resetTool=function(){document.getElementById('taxIncome').value='';document.getElementById('taxResult').classList.remove('show');};
+
+window.resetTool = function() {
+  document.getElementById('taxIncome').value = '';
+  document.getElementById('taxAmount').textContent = '0';
+  document.getElementById('taxNet').textContent = '0';
+  document.getElementById('taxEffective').textContent = '0%';
+  document.getElementById('taxResult').classList.remove('show');
+};
 </script>
 <script>
 function postComment(){
