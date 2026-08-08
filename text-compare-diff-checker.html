@@ -22,7 +22,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -101,8 +100,14 @@
 <div class="wrap">
   <div class="tool-panel">
     <div class="field-row">
-      <div><label class="field-label">Original Text</label><textarea id="diffA" class="field" style="min-height:180px;"></textarea></div>
-      <div><label class="field-label">Changed Text</label><textarea id="diffB" class="field" style="min-height:180px;"></textarea></div>
+      <div>
+        <label class="field-label" for="diffA">Original Text</label>
+        <textarea id="diffA" class="field" style="min-height:180px;" placeholder="Paste original text here..."></textarea>
+      </div>
+      <div>
+        <label class="field-label" for="diffB">Changed Text</label>
+        <textarea id="diffB" class="field" style="min-height:180px;" placeholder="Paste modified text here..."></textarea>
+      </div>
     </div>
     <div style="margin-top:18px;"><button class="btn btn-primary" id="diffBtn">Compare Text</button></div>
     <div class="result-box" id="diffResult">
@@ -202,24 +207,6 @@
   </div>
 </div>
 
-<div class="wrap tool-section">
-  <h2>You May Also Like</h2>
-  <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
-      </a>
-      <a href="percentage-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div>
-      </a>
-      <a href="bmi-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div>
-      </a>
-  </div>
-</div>
-
 <div class="wrap tool-section" style="border-bottom:1px solid var(--border);">
   <h2>Comments</h2>
   <div class="comment-box">
@@ -230,29 +217,66 @@
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
-document.getElementById('diffBtn').addEventListener('click',()=>{
-  const a = document.getElementById('diffA').value.split(/\r?\n/);
-  const b = document.getElementById('diffB').value.split(/\r?\n/);
+function escapeHtml(s) {
+  return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+document.getElementById('diffBtn').addEventListener('click', () => {
+  const textA = document.getElementById('diffA').value;
+  const textB = document.getElementById('diffB').value;
+
+  if (!textA.trim() && !textB.trim()) {
+    alert('Please enter text in at least one box to compare.');
+    return;
+  }
+
+  const a = textA.split(/\r?\n/);
+  const b = textB.split(/\r?\n/);
   const maxLen = Math.max(a.length, b.length);
   let html = '';
-  for(let i=0;i<maxLen;i++){
-    const lineA = a[i]; const lineB = b[i];
-    if(lineA === lineB){
-      html += `<div style="padding:4px 8px;">${escapeHtml(lineA||'')}</div>`;
+
+  for (let i = 0; i < maxLen; i++) {
+    const lineA = a[i];
+    const lineB = b[i];
+
+    if (lineA === lineB) {
+      html += `<div style="padding:4px 8px;border-radius:4px;">${escapeHtml(lineA)}</div>`;
     } else {
-      if(lineA !== undefined) html += `<div style="padding:4px 8px;background:#FEE2E2;color:#991B1B;text-decoration:line-through;">- ${escapeHtml(lineA)}</div>`;
-      if(lineB !== undefined) html += `<div style="padding:4px 8px;background:#DCFCE7;color:#166534;">+ ${escapeHtml(lineB)}</div>`;
+      if (lineA !== undefined) {
+        html += `<div style="padding:4px 8px;background:rgba(239,68,68,0.15);color:#b91c1c;text-decoration:line-through;border-radius:4px;margin-bottom:2px;">- ${escapeHtml(lineA)}</div>`;
+      }
+      if (lineB !== undefined) {
+        html += `<div style="padding:4px 8px;background:rgba(34,197,94,0.15);color:#15803d;border-radius:4px;margin-bottom:2px;">+ ${escapeHtml(lineB)}</div>`;
+      }
     }
   }
-  function escapeHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
   document.getElementById('diffOutput').innerHTML = html;
   document.getElementById('diffResult').classList.add('show');
 });
-window.resetTool=function(){document.getElementById('diffA').value='';document.getElementById('diffB').value='';document.getElementById('diffResult').classList.remove('show');};
+
+window.resetTool = function() {
+  document.getElementById('diffA').value = '';
+  document.getElementById('diffB').value = '';
+  document.getElementById('diffOutput').innerHTML = '';
+  document.getElementById('diffResult').classList.remove('show');
+};
+
+window.copyResult = function() {
+  const diffOutput = document.getElementById('diffOutput');
+  const text = diffOutput.innerText || diffOutput.textContent;
+  if (!text) {
+    alert('Please run a comparison first before copying.');
+    return;
+  }
+  navigator.clipboard.writeText(text).then(() => {
+    alert('Diff result copied to clipboard!');
+  }).catch(() => {
+    alert('Failed to copy diff result.');
+  });
+};
 </script>
 <script>
 function postComment(){
