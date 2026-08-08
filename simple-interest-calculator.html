@@ -253,17 +253,46 @@ if(window.TTGeo){
 }
 </script>
 <script>
-document.getElementById('siBtn').addEventListener('click',()=>{
-  const P=parseFloat(document.getElementById('siPrincipal').value);
-  const R=parseFloat(document.getElementById('siRate').value);
-  const T=parseFloat(document.getElementById('siTime').value);
-  if(!P||!R||!T){alert('Please fill all fields');return;}
-  const SI=(P*R*T)/100;
-  document.getElementById('siInterest').textContent=(window.ttCurSym||'')+SI.toFixed(2);
-  document.getElementById('siTotal').textContent=(window.ttCurSym||'')+(P+SI).toFixed(2);
+document.getElementById('siBtn').addEventListener('click', () => {
+  const pInput = document.getElementById('siPrincipal').value.trim();
+  const rInput = document.getElementById('siRate').value.trim();
+  const tInput = document.getElementById('siTime').value.trim();
+
+  if (pInput === '' || rInput === '' || tInput === '') {
+    alert('Please fill in all fields.');
+    return;
+  }
+
+  const P = parseFloat(pInput);
+  const R = parseFloat(rInput);
+  const T = parseFloat(tInput);
+
+  if (isNaN(P) || isNaN(R) || isNaN(T)) {
+    alert('Please enter valid numeric values.');
+    return;
+  }
+
+  if (P < 0 || R < 0 || T < 0) {
+    alert('Values cannot be negative.');
+    return;
+  }
+
+  const SI = (P * R * T) / 100;
+  const sym = window.ttCurSym || '';
+
+  document.getElementById('siInterest').textContent = sym + SI.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  document.getElementById('siTotal').textContent = sym + (P + SI).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   document.getElementById('siResult').classList.add('show');
 });
-window.resetTool=function(){['siPrincipal','siRate','siTime'].forEach(id=>document.getElementById(id).value='');document.getElementById('siResult').classList.remove('show');};
+
+window.resetTool = function() {
+  ['siPrincipal', 'siRate', 'siTime'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('siInterest').textContent = '0';
+  document.getElementById('siTotal').textContent = '0';
+  document.getElementById('siResult').classList.remove('show');
+};
 </script>
 <script>
 function postComment(){
