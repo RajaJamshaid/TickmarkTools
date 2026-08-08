@@ -213,17 +213,17 @@
 <div class="wrap tool-section">
   <h2>You May Also Like</h2>
   <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
+      <a href="word-counter.html" class="related-card">
+        <div class="related-emoji">📝</div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">Word Counter</h4></div>
       </a>
-      <a href="percentage-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div>
+      <a href="image-compressor.html" class="related-card">
+        <div class="related-emoji">🖼️</div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">Image Compressor</h4></div>
       </a>
-      <a href="bmi-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div>
+      <a href="pdf-merge.html" class="related-card">
+        <div class="related-emoji">📄</div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">PDF Merge</h4></div>
       </a>
   </div>
 </div>
@@ -258,27 +258,54 @@ if(window.TTGeo){
 }
 </script>
 <script>
-document.getElementById('curBtn').addEventListener('click', async ()=>{
-  const amt=parseFloat(document.getElementById('curAmt').value);
-  const from=document.getElementById('curFrom').value;
-  const to=document.getElementById('curTo').value;
-  const errEl=document.getElementById('curError');
-  errEl.style.display='none';
-  if(!amt){alert('Please enter a valid amount');return;}
-  try{
-    const res = await fetch('https://open.er-api.com/v6/latest/'+from);
+document.getElementById('curBtn').addEventListener('click', async () => {
+  const amtVal = document.getElementById('curAmt').value.trim();
+  const from = document.getElementById('curFrom').value;
+  const to = document.getElementById('curTo').value;
+  const errEl = document.getElementById('curError');
+  errEl.style.display = 'none';
+
+  if (amtVal === '') {
+    alert('Please enter a valid amount.');
+    return;
+  }
+
+  const amt = parseFloat(amtVal);
+  if (isNaN(amt) || amt < 0) {
+    alert('Please enter a valid positive amount.');
+    return;
+  }
+
+  // Same currency fast-path
+  if (from === to) {
+    document.getElementById('curOutput').textContent = amt.toFixed(2);
+    document.getElementById('curLabel').textContent = amt + ' ' + from + ' = ' + to;
+    document.getElementById('curResult').classList.add('show');
+    return;
+  }
+
+  try {
+    const res = await fetch('https://open.er-api.com/v6/latest/' + from);
     const data = await res.json();
-    if(!data.rates || !data.rates[to]) throw new Error('Rate not available');
+    if (!data.rates || !data.rates[to]) throw new Error('Rate not available');
+    
     const converted = amt * data.rates[to];
     document.getElementById('curOutput').textContent = converted.toFixed(2);
-    document.getElementById('curLabel').textContent = amt+' '+from+' = '+to;
+    document.getElementById('curLabel').textContent = amt + ' ' + from + ' = ' + to;
     document.getElementById('curResult').classList.add('show');
-  }catch(e){
+  } catch (e) {
     errEl.textContent = 'Could not fetch live rates right now. Please check your connection and try again.';
-    errEl.style.display='block';
+    errEl.style.display = 'block';
   }
 });
-window.resetTool=function(){document.getElementById('curAmt').value='1';document.getElementById('curResult').classList.remove('show');document.getElementById('curError').style.display='none';};
+
+window.resetTool = function() {
+  document.getElementById('curAmt').value = '1';
+  document.getElementById('curOutput').textContent = '0';
+  document.getElementById('curLabel').textContent = 'Converted Amount';
+  document.getElementById('curResult').classList.remove('show');
+  document.getElementById('curError').style.display = 'none';
+};
 </script>
 <script>
 function postComment(){
