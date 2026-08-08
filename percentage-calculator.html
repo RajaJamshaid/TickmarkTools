@@ -240,18 +240,20 @@
 <script>
 let pctMode = 'a';
 
+function setPctLabels(mode) {
+  const labelX = document.getElementById('pctLabelX');
+  const labelY = document.getElementById('pctLabelY');
+  if (mode === 'a') { labelX.textContent = 'X (%)'; labelY.textContent = 'Y'; }
+  if (mode === 'b') { labelX.textContent = 'X'; labelY.textContent = 'Y'; }
+  if (mode === 'c') { labelX.textContent = 'Original Value'; labelY.textContent = 'New Value'; }
+}
+
 document.querySelectorAll('.pct-tab').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.pct-tab').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     pctMode = btn.dataset.mode;
-    
-    const labelX = document.getElementById('pctLabelX');
-    const labelY = document.getElementById('pctLabelY');
-    
-    if (pctMode === 'a') { labelX.textContent = 'X (%)'; labelY.textContent = 'Y'; }
-    if (pctMode === 'b') { labelX.textContent = 'X'; labelY.textContent = 'Y'; }
-    if (pctMode === 'c') { labelX.textContent = 'Original Value'; labelY.textContent = 'New Value'; }
+    setPctLabels(pctMode);
   });
 });
 
@@ -260,38 +262,33 @@ document.getElementById('pctCalcBtn').addEventListener('click', () => {
   const y = parseFloat(document.getElementById('pctY').value);
 
   if (isNaN(x) || isNaN(y)) {
-    alert('Please enter valid numbers');
+    alert('Please enter valid numerical values for both fields.');
+    return;
+  }
+
+  if (pctMode === 'b' && y === 0) {
+    alert('Cannot divide by zero. Please enter a non-zero value for Y.');
+    return;
+  }
+
+  if (pctMode === 'c' && x === 0) {
+    alert('Cannot calculate percentage change from an Original Value of zero.');
     return;
   }
 
   let answer, label;
-
   if (pctMode === 'a') {
     answer = (x / 100) * y;
     label = x + '% of ' + y;
   } else if (pctMode === 'b') {
-    if (y === 0) {
-      alert('Cannot divide by zero (Y cannot be 0)');
-      return;
-    }
     answer = (x / y) * 100;
     label = x + ' as a % of ' + y;
   } else {
-    if (x === 0) {
-      alert('Original Value cannot be zero for percentage change calculation');
-      return;
-    }
-    answer = ((y - x) / x) * 100;
-    
-    let changeType = 'No change';
-    if (answer > 0) changeType = 'Increase';
-    else if (answer < 0) changeType = 'Decrease';
-    
-    label = changeType + ' from ' + x + ' to ' + y;
+    answer = ((y - x) / Math.abs(x)) * 100;
+    label = (answer >= 0 ? 'Increase' : 'Decrease') + ' from ' + x + ' to ' + y;
   }
 
-  const roundedAnswer = Math.round(answer * 100) / 100;
-  document.getElementById('pctAnswer').textContent = roundedAnswer + (pctMode !== 'a' ? '%' : '');
+  document.getElementById('pctAnswer').textContent = (Math.round(answer * 100) / 100) + (pctMode !== 'a' ? '%' : '');
   document.getElementById('pctAnswerLbl').textContent = label;
   document.getElementById('pctResult').classList.add('show');
 });
@@ -301,6 +298,13 @@ window.resetTool = function() {
   document.getElementById('pctY').value = '';
   document.getElementById('pctAnswer').textContent = '0';
   document.getElementById('pctAnswerLbl').textContent = 'Result';
+  
+  // Reset tabs to Mode A
+  pctMode = 'a';
+  document.querySelectorAll('.pct-tab').forEach(b => b.classList.remove('active'));
+  document.querySelector('.pct-tab[data-mode="a"]').classList.add('active');
+  setPctLabels('a');
+  
   document.getElementById('pctResult').classList.remove('show');
 };
 </script>
