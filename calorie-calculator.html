@@ -247,22 +247,37 @@
 <script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
-document.getElementById('calBtn').addEventListener('click',()=>{
-  const gender=document.getElementById('calGender').value;
-  const age=parseFloat(document.getElementById('calAge').value);
-  const height=parseFloat(document.getElementById('calHeight').value);
-  const weight=parseFloat(document.getElementById('calWeight').value);
-  const activity=parseFloat(document.getElementById('calActivity').value);
-  if(!age||!height||!weight){alert('Please fill all fields');return;}
-  let bmr = gender==='male'
-    ? (10*weight)+(6.25*height)-(5*age)+5
-    : (10*weight)+(6.25*height)-(5*age)-161;
-  const tdee=bmr*activity;
-  document.getElementById('calBMR').textContent=bmr.toFixed(0);
-  document.getElementById('calTDEE').textContent=tdee.toFixed(0);
+document.getElementById('calBtn').addEventListener('click', () => {
+  const gender = document.getElementById('calGender').value;
+  const age = parseFloat(document.getElementById('calAge').value);
+  const height = parseFloat(document.getElementById('calHeight').value);
+  const weight = parseFloat(document.getElementById('calWeight').value);
+  const activity = parseFloat(document.getElementById('calActivity').value);
+
+  if (isNaN(age) || isNaN(height) || isNaN(weight) || age <= 0 || height <= 0 || weight <= 0) {
+    alert('Please enter valid positive numbers for Age, Height, and Weight');
+    return;
+  }
+
+  let bmr = gender === 'male'
+    ? (10 * weight) + (6.25 * height) - (5 * age) + 5
+    : (10 * weight) + (6.25 * height) - (5 * age) - 161;
+
+  const tdee = bmr * activity;
+
+  document.getElementById('calBMR').textContent = Math.round(bmr).toLocaleString();
+  document.getElementById('calTDEE').textContent = Math.round(tdee).toLocaleString();
   document.getElementById('calResult').classList.add('show');
 });
-window.resetTool=function(){['calAge','calHeight','calWeight'].forEach(id=>document.getElementById(id).value='');document.getElementById('calResult').classList.remove('show');};
+
+window.resetTool = function() {
+  ['calAge', 'calHeight', 'calWeight'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('calGender').selectedIndex = 0;
+  document.getElementById('calActivity').value = '1.55';
+  document.getElementById('calBMR').textContent = '0';
+  document.getElementById('calTDEE').textContent = '0';
+  document.getElementById('calResult').classList.remove('show');
+};
 </script>
 <script>
 function postComment(){
