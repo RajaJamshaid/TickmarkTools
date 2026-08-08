@@ -235,25 +235,47 @@
 <script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
-document.getElementById('bmiCalcBtn').addEventListener('click',()=>{
-  const h = parseFloat(document.getElementById('bmiHeight').value)/100;
-  const w = parseFloat(document.getElementById('bmiWeight').value);
-  if(!h||!w){alert('Please enter valid height and weight');return;}
-  const bmi = w/(h*h);
+document.getElementById('bmiCalcBtn').addEventListener('click', () => {
+  const hVal = parseFloat(document.getElementById('bmiHeight').value);
+  const wVal = parseFloat(document.getElementById('bmiWeight').value);
+
+  if (isNaN(hVal) || isNaN(wVal) || hVal <= 0 || wVal <= 0) {
+    alert('Please enter valid positive numbers for height and weight');
+    return;
+  }
+
+  const h = hVal / 100;
+  const bmi = wVal / (h * h);
+
   let cat, color;
-  if(bmi<18.5){cat='Underweight';color='#3B82F6';}
-  else if(bmi<25){cat='Normal weight';color='#146356';}
-  else if(bmi<30){cat='Overweight';color='#F59E0B';}
-  else {cat='Obese';color='#EF4444';}
+  if (bmi < 18.5) {
+    cat = 'Underweight';
+    color = '#3B82F6';
+  } else if (bmi < 25) {
+    cat = 'Normal weight';
+    color = '#146356';
+  } else if (bmi < 30) {
+    cat = 'Overweight';
+    color = '#F59E0B';
+  } else {
+    cat = 'Obese';
+    color = '#EF4444';
+  }
+
   document.getElementById('bmiValue').textContent = bmi.toFixed(1);
   const catEl = document.getElementById('bmiCategory');
   catEl.textContent = cat;
   catEl.style.color = color;
   document.getElementById('bmiResult').classList.add('show');
 });
-window.resetTool = function(){
-  document.getElementById('bmiHeight').value='';
-  document.getElementById('bmiWeight').value='';
+
+window.resetTool = function() {
+  document.getElementById('bmiHeight').value = '';
+  document.getElementById('bmiWeight').value = '';
+  document.getElementById('bmiValue').textContent = '0';
+  const catEl = document.getElementById('bmiCategory');
+  catEl.textContent = '';
+  catEl.style.color = '';
   document.getElementById('bmiResult').classList.remove('show');
 };
 </script>
