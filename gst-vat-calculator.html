@@ -255,25 +255,47 @@ if(window.TTGeo){
 }
 </script>
 <script>
-let gstMode='add';
-document.querySelectorAll('.pct-tab').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.pct-tab').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active'); gstMode=btn.dataset.mode;
+let gstMode = 'add';
+document.querySelectorAll('.pct-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.pct-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    gstMode = btn.dataset.mode;
   });
 });
-document.getElementById('gstBtn').addEventListener('click',()=>{
-  const amt=parseFloat(document.getElementById('gstAmt').value);
-  const rate=parseFloat(document.getElementById('gstRate').value);
-  if(!amt||!rate){alert('Please fill all fields');return;}
+
+document.getElementById('gstBtn').addEventListener('click', () => {
+  const amt = parseFloat(document.getElementById('gstAmt').value);
+  const rate = parseFloat(document.getElementById('gstRate').value);
+
+  if (isNaN(amt) || isNaN(rate) || amt <= 0 || rate < 0) {
+    alert('Please enter valid positive values for Amount and Rate.');
+    return;
+  }
+
   let tax, total;
-  if(gstMode==='add'){ tax=(amt*rate)/100; total=amt+tax; }
-  else { total=amt; const net=amt/(1+rate/100); tax=amt-net; }
-  document.getElementById('gstTax').textContent=(window.ttCurSym||'')+tax.toFixed(2);
-  document.getElementById('gstTotal').textContent=(window.ttCurSym||'')+total.toFixed(2);
+  if (gstMode === 'add') {
+    tax = (amt * rate) / 100;
+    total = amt + tax;
+  } else {
+    total = amt;
+    const net = amt / (1 + rate / 100);
+    tax = amt - net;
+  }
+
+  const sym = window.ttCurSym ? window.ttCurSym + ' ' : '';
+  document.getElementById('gstTax').textContent = sym + tax.toFixed(2);
+  document.getElementById('gstTotal').textContent = sym + total.toFixed(2);
   document.getElementById('gstResult').classList.add('show');
 });
-window.resetTool=function(){['gstAmt'].forEach(id=>document.getElementById(id).value='');document.getElementById('gstRate').value='18';document.getElementById('gstResult').classList.remove('show');};
+
+window.resetTool = function() {
+  document.getElementById('gstAmt').value = '';
+  document.getElementById('gstRate').value = '18';
+  document.getElementById('gstTax').textContent = '0';
+  document.getElementById('gstTotal').textContent = '0';
+  document.getElementById('gstResult').classList.remove('show');
+};
 </script>
 <script>
 function postComment(){
