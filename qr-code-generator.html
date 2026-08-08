@@ -100,7 +100,7 @@
 
 <div class="wrap">
   <div class="tool-panel">
-    <label class="field-label">Text or URL</label>
+    <label class="field-label" for="qrText">Text or URL</label>
     <input type="text" id="qrText" class="field" placeholder="https://tickmarktools.com">
     <div style="margin-top:18px;"><button class="btn btn-primary" id="qrGenBtn">Generate QR Code</button></div>
     <div class="result-box" id="qrResult" style="text-align:center;">
@@ -200,24 +200,6 @@
   </div>
 </div>
 
-<div class="wrap tool-section">
-  <h2>You May Also Like</h2>
-  <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
-      </a>
-      <a href="percentage-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div>
-      </a>
-      <a href="bmi-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div>
-      </a>
-  </div>
-</div>
-
 <div class="wrap tool-section" style="border-bottom:1px solid var(--border);">
   <h2>Comments</h2>
   <div class="comment-box">
@@ -228,29 +210,54 @@
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
-document.getElementById('qrGenBtn').addEventListener('click',()=>{
+document.getElementById('qrGenBtn').addEventListener('click', () => {
   const text = document.getElementById('qrText').value.trim();
-  if(!text){alert('Please enter text or a URL');return;}
+  if (!text) {
+    alert('Please enter text or a URL');
+    return;
+  }
   const container = document.getElementById('qrCanvas');
-  container.innerHTML='';
-  new QRCode(container, { text:text, width:200, height:200 });
+  container.innerHTML = '';
+  new QRCode(container, { text: text, width: 200, height: 200 });
   document.getElementById('qrResult').classList.add('show');
-  setTimeout(()=>{
-    const img = container.querySelector('img') || container.querySelector('canvas');
-    if(img){
-      const url = img.tagName==='CANVAS' ? img.toDataURL('image/png') : img.src;
+  
+  setTimeout(() => {
+    const canvas = container.querySelector('canvas');
+    const img = container.querySelector('img');
+    let url = '';
+    if (canvas) {
+      url = canvas.toDataURL('image/png');
+    } else if (img) {
+      url = img.src;
+    }
+    if (url) {
       document.getElementById('qrDownload').href = url;
     }
-  }, 200);
+  }, 100);
 });
-window.resetTool = function(){
-  document.getElementById('qrText').value='';
-  document.getElementById('qrCanvas').innerHTML='';
+
+window.resetTool = function() {
+  document.getElementById('qrText').value = '';
+  document.getElementById('qrCanvas').innerHTML = '';
   document.getElementById('qrResult').classList.remove('show');
+};
+
+window.copyResult = function() {
+  const text = document.getElementById('qrText').value.trim();
+  if (!text) {
+    alert('Please generate a QR code first.');
+    return;
+  }
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyResultBtn');
+    const oldText = btn.textContent;
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = oldText, 1500);
+  }).catch(() => {
+    alert('Failed to copy to clipboard.');
+  });
 };
 </script>
 <script>
@@ -266,7 +273,7 @@ function postComment(){
   list.prepend(item);
   input.value = '';
 }
-document.getElementById('commentInput').addEventListener('keydown', (e)=>{
+document.getElementById('commentInput').addEventListener('keydown', (e) => {
   if(e.key === 'Enter') postComment();
 });
 </script>
