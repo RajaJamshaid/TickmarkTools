@@ -22,7 +22,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -100,12 +99,13 @@
 
 <div class="wrap">
   <div class="tool-panel">
-    <label class="field-label">Input</label>
+    <label class="field-label" for="urlInput">Input</label>
     <textarea id="urlInput" class="field" style="min-height:140px;" placeholder="https://example.com/search?q=hello world"></textarea>
     <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
       <button class="btn btn-primary" id="urlEncodeBtn">Encode URL</button>
       <button class="btn btn-secondary" id="urlDecodeBtn">Decode URL</button>
     </div>
+    <div id="urlError" style="color:#EF4444;font-size:13.5px;margin-top:10px;display:none;"></div>
     <div class="result-box" id="urlResult">
       <pre id="urlOutput" class="mono" style="white-space:pre-wrap;font-size:13.5px;margin:0;word-break:break-all;"></pre>
     </div>
@@ -202,24 +202,6 @@
   </div>
 </div>
 
-<div class="wrap tool-section">
-  <h2>You May Also Like</h2>
-  <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
-      </a>
-      <a href="percentage-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div>
-      </a>
-      <a href="bmi-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div>
-      </a>
-  </div>
-</div>
-
 <div class="wrap tool-section" style="border-bottom:1px solid var(--border);">
   <h2>Comments</h2>
   <div class="comment-box">
@@ -230,21 +212,75 @@
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
-document.getElementById('urlEncodeBtn').addEventListener('click',()=>{
-  document.getElementById('urlOutput').textContent = encodeURIComponent(document.getElementById('urlInput').value);
-  document.getElementById('urlResult').classList.add('show');
-});
-document.getElementById('urlDecodeBtn').addEventListener('click',()=>{
-  try{
-    document.getElementById('urlOutput').textContent = decodeURIComponent(document.getElementById('urlInput').value);
+document.getElementById('urlEncodeBtn').addEventListener('click', () => {
+  const raw = document.getElementById('urlInput').value;
+  const errEl = document.getElementById('urlError');
+  errEl.style.display = 'none';
+
+  if(!raw.trim()){
+    errEl.textContent = 'Please enter a URL or text to encode.';
+    errEl.style.display = 'block';
+    document.getElementById('urlResult').classList.remove('show');
+    return;
+  }
+
+  try {
+    document.getElementById('urlOutput').textContent = encodeURIComponent(raw);
     document.getElementById('urlResult').classList.add('show');
-  }catch(e){ alert('Invalid encoded URL string.'); }
+  } catch(e) {
+    errEl.textContent = 'Error encoding URL.';
+    errEl.style.display = 'block';
+    document.getElementById('urlResult').classList.remove('show');
+  }
 });
-window.resetTool=function(){document.getElementById('urlInput').value='';document.getElementById('urlResult').classList.remove('show');};
+
+document.getElementById('urlDecodeBtn').addEventListener('click', () => {
+  const raw = document.getElementById('urlInput').value;
+  const errEl = document.getElementById('urlError');
+  errEl.style.display = 'none';
+
+  if(!raw.trim()){
+    errEl.textContent = 'Please enter a URL-encoded string to decode.';
+    errEl.style.display = 'block';
+    document.getElementById('urlResult').classList.remove('show');
+    return;
+  }
+
+  try {
+    document.getElementById('urlOutput').textContent = decodeURIComponent(raw);
+    document.getElementById('urlResult').classList.add('show');
+  } catch(e) {
+    errEl.textContent = 'Invalid encoded URL string.';
+    errEl.style.display = 'block';
+    document.getElementById('urlResult').classList.remove('show');
+  }
+});
+
+window.resetTool = function(){
+  document.getElementById('urlInput').value = '';
+  document.getElementById('urlError').style.display = 'none';
+  document.getElementById('urlOutput').textContent = '';
+  document.getElementById('urlResult').classList.remove('show');
+};
+
+window.copyResult = function(){
+  const out = document.getElementById('urlOutput');
+  const text = out.textContent || out.innerText;
+  if(!text){
+    alert('Please encode or decode a URL first.');
+    return;
+  }
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyResultBtn');
+    const old = btn.textContent;
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = old, 1500);
+  }).catch(() => {
+    alert('Failed to copy text.');
+  });
+};
 </script>
 <script>
 function postComment(){
@@ -259,7 +295,7 @@ function postComment(){
   list.prepend(item);
   input.value = '';
 }
-document.getElementById('commentInput').addEventListener('keydown', (e)=>{
+document.getElementById('commentInput').addEventListener('keydown', (e) => {
   if(e.key === 'Enter') postComment();
 });
 </script>
