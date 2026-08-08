@@ -22,7 +22,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -101,8 +100,17 @@
 <div class="wrap">
   <div class="tool-panel">
     <div class="field-row">
-      <div><label class="field-label">Number of Paragraphs</label><input type="number" id="loremCount" class="field" value="3" min="1" max="20"></div>
-      <div><label class="field-label">Start With "Lorem ipsum..."</label><select id="loremStart" class="field"><option value="yes">Yes</option><option value="no">No</option></select></div>
+      <div>
+        <label class="field-label" for="loremCount">Number of Paragraphs</label>
+        <input type="number" id="loremCount" class="field" value="3" min="1" max="20">
+      </div>
+      <div>
+        <label class="field-label" for="loremStart">Start With "Lorem ipsum..."</label>
+        <select id="loremStart" class="field">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
     </div>
     <div style="margin-top:18px;"><button class="btn btn-primary" id="loremBtn">Generate Text</button></div>
     <div class="result-box" id="loremResult">
@@ -201,24 +209,6 @@
   </div>
 </div>
 
-<div class="wrap tool-section">
-  <h2>You May Also Like</h2>
-  <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
-      </a>
-      <a href="percentage-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div>
-      </a>
-      <a href="bmi-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div>
-      </a>
-  </div>
-</div>
-
 <div class="wrap tool-section" style="border-bottom:1px solid var(--border);">
   <h2>Comments</h2>
   <div class="comment-box">
@@ -229,33 +219,61 @@
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
 const loremWords = "lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum".split(' ');
+
 function generateParagraph(wordCount){
-  let words=[];
-  for(let i=0;i<wordCount;i++){ words.push(loremWords[Math.floor(Math.random()*loremWords.length)]); }
+  let words = [];
+  for(let i = 0; i < wordCount; i++){ 
+    words.push(loremWords[Math.floor(Math.random() * loremWords.length)]); 
+  }
   let sentence = words.join(' ');
-  sentence = sentence.charAt(0).toUpperCase()+sentence.slice(1)+'.';
+  sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1) + '.';
   return sentence;
 }
-document.getElementById('loremBtn').addEventListener('click',()=>{
-  const count = parseInt(document.getElementById('loremCount').value)||3;
-  const startWithLorem = document.getElementById('loremStart').value==='yes';
-  let paras=[];
-  for(let i=0;i<count;i++){
-    let para='';
-    const sentences = 4+Math.floor(Math.random()*3);
-    for(let s=0;s<sentences;s++){ para += generateParagraph(8+Math.floor(Math.random()*10)) + ' '; }
-    if(i===0 && startWithLorem){ para = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' + para; }
+
+document.getElementById('loremBtn').addEventListener('click', () => {
+  const count = parseInt(document.getElementById('loremCount').value, 10) || 3;
+  const startWithLorem = document.getElementById('loremStart').value === 'yes';
+  let paras = [];
+
+  for(let i = 0; i < count; i++){
+    let para = '';
+    const sentences = 4 + Math.floor(Math.random() * 3);
+    for(let s = 0; s < sentences; s++){ 
+      para += generateParagraph(8 + Math.floor(Math.random() * 10)) + ' '; 
+    }
+    if(i === 0 && startWithLorem){ 
+      para = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' + para; 
+    }
     paras.push(para.trim());
   }
-  document.getElementById('loremOutput').innerHTML = paras.map(p=>`<p style="margin:0 0 14px;">${p}</p>`).join('');
+
+  document.getElementById('loremOutput').innerHTML = paras.map(p => `<p style="margin:0 0 14px;">${p}</p>`).join('');
   document.getElementById('loremResult').classList.add('show');
 });
-window.resetTool=function(){document.getElementById('loremCount').value='3'; document.getElementById('loremResult').classList.remove('show');};
+
+window.resetTool = function() {
+  document.getElementById('loremCount').value = '3';
+  document.getElementById('loremStart').value = 'yes';
+  document.getElementById('loremOutput').innerHTML = '';
+  document.getElementById('loremResult').classList.remove('show');
+};
+
+window.copyResult = function() {
+  const loremOutput = document.getElementById('loremOutput');
+  const text = loremOutput.innerText || loremOutput.textContent;
+  if (!text) {
+    alert('Please generate text first before copying.');
+    return;
+  }
+  navigator.clipboard.writeText(text).then(() => {
+    alert('Lorem Ipsum text copied to clipboard!');
+  }).catch(() => {
+    alert('Failed to copy text.');
+  });
+};
 </script>
 <script>
 function postComment(){
