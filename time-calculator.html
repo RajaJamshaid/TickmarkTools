@@ -236,33 +236,70 @@
 <script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
-let timeMode='add';
-document.querySelectorAll('.pct-tab').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.pct-tab').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active'); timeMode=btn.dataset.mode;
+let timeMode = 'add';
+
+document.querySelectorAll('.pct-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.pct-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    timeMode = btn.dataset.mode;
   });
 });
-function toSeconds(str){
-  const parts=str.split(':').map(Number);
-  if(parts.some(isNaN)) return null;
-  const [h=0,m=0,s=0]=parts;
-  return h*3600+m*60+s;
+
+function toSeconds(str) {
+  if (!str || !str.trim()) return null;
+  const parts = str.trim().split(':').map(Number);
+  
+  // Validation for invalid numbers or more than 3 parts (HH:MM:SS)
+  if (parts.some(isNaN) || parts.length < 1 || parts.length > 3) return null;
+
+  let h = 0, m = 0, s = 0;
+  if (parts.length === 3) {
+    [h, m, s] = parts;
+  } else if (parts.length === 2) {
+    [h, m] = parts;
+  } else if (parts.length === 1) {
+    [h] = parts;
+  }
+
+  // Minutes and seconds boundary check
+  if (m >= 60 || s >= 60 || m < 0 || s < 0) return null;
+
+  return h * 3600 + m * 60 + s;
 }
-document.getElementById('timeBtn').addEventListener('click',()=>{
-  const s1=toSeconds(document.getElementById('t1').value);
-  const s2=toSeconds(document.getElementById('t2').value);
-  if(s1===null||s2===null){alert('Please use HH:MM:SS format for both times');return;}
-  let total = timeMode==='add' ? s1+s2 : s1-s2;
-  const sign = total<0 ? '-' : '';
-  total=Math.abs(total);
-  const h=Math.floor(total/3600);
-  const m=Math.floor((total%3600)/60);
-  const s=total%60;
-  document.getElementById('timeOutput').textContent = sign + String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+
+document.getElementById('timeBtn').addEventListener('click', () => {
+  const t1Val = document.getElementById('t1').value;
+  const t2Val = document.getElementById('t2').value;
+
+  const s1 = toSeconds(t1Val);
+  const s2 = toSeconds(t2Val);
+
+  if (s1 === null || s2 === null) {
+    alert('Please enter valid time values in HH:MM:SS or HH:MM format.');
+    return;
+  }
+
+  let total = timeMode === 'add' ? s1 + s2 : s1 - s2;
+  const sign = total < 0 ? '-' : '';
+  total = Math.abs(total);
+
+  const h = Math.floor(total / 3600);
+  const m = Math.floor((total % 3600) / 60);
+  const s = total % 60;
+
+  document.getElementById('timeOutput').textContent = 
+    sign + String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
   document.getElementById('timeResult').classList.add('show');
 });
-window.resetTool=function(){['t1','t2'].forEach(id=>document.getElementById(id).value='');document.getElementById('timeResult').classList.remove('show');};
+
+window.resetTool = function() {
+  ['t1', 't2'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('timeOutput').textContent = '00:00:00';
+  document.getElementById('timeResult').classList.remove('show');
+};
 </script>
 <script>
 function postComment(){
