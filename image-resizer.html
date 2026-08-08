@@ -22,7 +22,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -107,12 +106,12 @@
     </div>
     <div id="rsControls" style="display:none;margin-top:20px;">
       <div class="field-row">
-        <div><label class="field-label">Width (px)</label><input type="number" id="rsWidth" class="field"></div>
-        <div><label class="field-label">Height (px)</label><input type="number" id="rsHeight" class="field"></div>
+        <div><label class="field-label">Width (px)</label><input type="number" id="rsWidth" class="field" min="1"></div>
+        <div><label class="field-label">Height (px)</label><input type="number" id="rsHeight" class="field" min="1"></div>
       </div>
       <label style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:14px;"><input type="checkbox" id="rsLock" checked> Lock aspect ratio</label>
       <div style="margin-top:16px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
-        <img id="rsPreview" style="max-width:160px;border-radius:10px;border:1px solid var(--border);">
+        <img id="rsPreview" style="max-width:160px;border-radius:10px;border:1px solid var(--border);" alt="Preview">
         <a id="rsDownload" class="btn btn-primary" download="resized.png">Download Resized Image</a>
       </div>
     </div>
@@ -210,24 +209,6 @@
   </div>
 </div>
 
-<div class="wrap tool-section">
-  <h2>You May Also Like</h2>
-  <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
-      </a>
-      <a href="percentage-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div>
-      </a>
-      <a href="bmi-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div>
-      </a>
-  </div>
-</div>
-
 <div class="wrap tool-section" style="border-bottom:1px solid var(--border);">
   <h2>Comments</h2>
   <div class="comment-box">
@@ -238,25 +219,36 @@
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
-const rsDrop=document.getElementById('rsDrop');
-const rsFile=document.getElementById('rsFile');
-let rsImg=new Image(), rsRatio=1;
-rsDrop.addEventListener('click',()=>rsFile.click());
-rsDrop.addEventListener('dragover',e=>e.preventDefault());
-rsDrop.addEventListener('drop',e=>{e.preventDefault(); if(e.dataTransfer.files[0]) loadRs(e.dataTransfer.files[0]);});
-rsFile.addEventListener('change',()=>{ if(rsFile.files[0]) loadRs(rsFile.files[0]); });
-function loadRs(file){
-  const reader=new FileReader();
-  reader.onload=(e)=>{
-    rsImg.onload=()=>{
-      rsRatio = rsImg.width/rsImg.height;
+let createdObjectUrl = null;
+let currentFileName = 'resized.png';
+const rsDrop = document.getElementById('rsDrop');
+const rsFile = document.getElementById('rsFile');
+let rsImg = new Image(), rsRatio = 1;
+
+rsDrop.addEventListener('click', () => rsFile.click());
+rsDrop.addEventListener('dragover', e => e.preventDefault());
+rsDrop.addEventListener('drop', e => {
+  e.preventDefault();
+  if (e.dataTransfer.files[0] && e.dataTransfer.files[0].type.startsWith('image/')) {
+    loadRs(e.dataTransfer.files[0]);
+  }
+});
+
+rsFile.addEventListener('change', () => {
+  if (rsFile.files[0]) loadRs(rsFile.files[0]);
+});
+
+function loadRs(file) {
+  currentFileName = file.name.replace(/\.[^/.]+$/, "") + "_resized.png";
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    rsImg.onload = () => {
+      rsRatio = rsImg.width / rsImg.height;
       document.getElementById('rsWidth').value = rsImg.width;
       document.getElementById('rsHeight').value = rsImg.height;
-      document.getElementById('rsControls').style.display='block';
+      document.getElementById('rsControls').style.display = 'block';
       document.getElementById('rsPreview').src = e.target.result;
       doResize();
     };
@@ -264,24 +256,58 @@ function loadRs(file){
   };
   reader.readAsDataURL(file);
 }
-document.getElementById('rsWidth').addEventListener('input',()=>{
-  if(document.getElementById('rsLock').checked){ document.getElementById('rsHeight').value = Math.round(document.getElementById('rsWidth').value / rsRatio); }
+
+document.getElementById('rsWidth').addEventListener('input', () => {
+  const wVal = parseInt(document.getElementById('rsWidth').value);
+  if (document.getElementById('rsLock').checked && wVal > 0) {
+    document.getElementById('rsHeight').value = Math.round(wVal / rsRatio);
+  }
   doResize();
 });
-document.getElementById('rsHeight').addEventListener('input',()=>{
-  if(document.getElementById('rsLock').checked){ document.getElementById('rsWidth').value = Math.round(document.getElementById('rsHeight').value * rsRatio); }
+
+document.getElementById('rsHeight').addEventListener('input', () => {
+  const hVal = parseInt(document.getElementById('rsHeight').value);
+  if (document.getElementById('rsLock').checked && hVal > 0) {
+    document.getElementById('rsWidth').value = Math.round(hVal * rsRatio);
+  }
   doResize();
 });
-function doResize(){
-  const w = parseInt(document.getElementById('rsWidth').value)||rsImg.width;
-  const h = parseInt(document.getElementById('rsHeight').value)||rsImg.height;
-  const canvas=document.createElement('canvas');
-  canvas.width=w; canvas.height=h;
-  canvas.getContext('2d').drawImage(rsImg,0,0,w,h);
-  canvas.toBlob(blob=>{ document.getElementById('rsDownload').href = URL.createObjectURL(blob); }, 'image/png');
+
+function doResize() {
+  if (!rsImg.width || !rsImg.height) return;
+  const w = Math.max(1, parseInt(document.getElementById('rsWidth').value) || rsImg.width);
+  const h = Math.max(1, parseInt(document.getElementById('rsHeight').value) || rsImg.height);
+
+  const canvas = document.createElement('canvas');
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(rsImg, 0, 0, w, h);
+
+  canvas.toBlob(blob => {
+    if (!blob) return;
+    if (createdObjectUrl) {
+      URL.revokeObjectURL(createdObjectUrl);
+    }
+    createdObjectUrl = URL.createObjectURL(blob);
+    const downloadBtn = document.getElementById('rsDownload');
+    downloadBtn.href = createdObjectUrl;
+    downloadBtn.download = currentFileName;
+  }, 'image/png');
 }
-window.resetTool=function(){document.getElementById('rsControls').style.display='none'; rsFile.value='';};
-window.copyResult=function(){ alert('Use the Download button to save the resized image.'); };
+
+window.resetTool = function() {
+  document.getElementById('rsControls').style.display = 'none';
+  rsFile.value = '';
+  if (createdObjectUrl) {
+    URL.revokeObjectURL(createdObjectUrl);
+    createdObjectUrl = null;
+  }
+};
+
+window.copyResult = function() {
+  alert('Use the "Download Resized Image" button to save your file.');
+};
 </script>
 <script>
 function postComment(){
