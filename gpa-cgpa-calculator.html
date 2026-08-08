@@ -231,29 +231,61 @@
 <script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
-function addGpaRow(grade='',credit=''){
-  const row=document.createElement('div');
-  row.className='field-row';
-  row.style.marginBottom='10px';
-  row.innerHTML=`<div><input type="number" class="field gpa-grade" placeholder="Grade Points (e.g. 3.7)" step="0.1" value="${grade}"></div><div><input type="number" class="field gpa-credit" placeholder="Credit Hours (e.g. 3)" value="${credit}"></div>`;
+function addGpaRow(grade = '', credit = '') {
+  const row = document.createElement('div');
+  row.className = 'field-row';
+  row.style.cssText = 'margin-bottom:10px; display:flex; gap:10px; align-items:center;';
+  row.innerHTML = `
+    <div style="flex:1;"><input type="number" class="field gpa-grade" placeholder="Grade Points (e.g. 3.7)" step="0.1" min="0" max="4" value="${grade}"></div>
+    <div style="flex:1;"><input type="number" class="field gpa-credit" placeholder="Credit Hours (e.g. 3)" min="0" value="${credit}"></div>
+    <button class="btn btn-secondary remove-row-btn" style="padding: 8px 12px; height: 100%;" onclick="this.parentElement.remove()" title="Remove Course">✕</button>
+  `;
   document.getElementById('gpaRows').appendChild(row);
 }
+
+// Initial 3 rows
 addGpaRow(); addGpaRow(); addGpaRow();
-document.getElementById('gpaAddRow').addEventListener('click',()=>addGpaRow());
-document.getElementById('gpaBtn').addEventListener('click',()=>{
-  const grades=[...document.querySelectorAll('.gpa-grade')].map(el=>parseFloat(el.value));
-  const credits=[...document.querySelectorAll('.gpa-credit')].map(el=>parseFloat(el.value));
-  let totalPoints=0, totalCredits=0;
-  for(let i=0;i<grades.length;i++){
-    if(!isNaN(grades[i]) && !isNaN(credits[i])){ totalPoints += grades[i]*credits[i]; totalCredits += credits[i]; }
+
+document.getElementById('gpaAddRow').addEventListener('click', () => addGpaRow());
+
+document.getElementById('gpaBtn').addEventListener('click', () => {
+  const gradeInputs = document.querySelectorAll('.gpa-grade');
+  const creditInputs = document.querySelectorAll('.gpa-credit');
+  
+  let totalPoints = 0;
+  let totalCredits = 0;
+  let validCourses = 0;
+
+  for (let i = 0; i < gradeInputs.length; i++) {
+    const gradeVal = gradeInputs[i].value.trim();
+    const creditVal = creditInputs[i].value.trim();
+
+    if (gradeVal !== '' && creditVal !== '') {
+      const g = parseFloat(gradeVal);
+      const c = parseFloat(creditVal);
+
+      if (!isNaN(g) && !isNaN(c) && g >= 0 && c > 0) {
+        totalPoints += g * c;
+        totalCredits += c;
+        validCourses++;
+      }
+    }
   }
-  if(totalCredits===0){alert('Please enter at least one valid course');return;}
-  document.getElementById('gpaValue').textContent = (totalPoints/totalCredits).toFixed(2);
+
+  if (totalCredits === 0 || validCourses === 0) {
+    alert('Please enter valid Grade Points (>= 0) and Credit Hours (> 0) for at least one course.');
+    return;
+  }
+
+  const finalGpa = (totalPoints / totalCredits).toFixed(2);
+  document.getElementById('gpaValue').textContent = finalGpa;
   document.getElementById('gpaResult').classList.add('show');
 });
-window.resetTool=function(){
-  document.getElementById('gpaRows').innerHTML='';
+
+window.resetTool = function() {
+  document.getElementById('gpaRows').innerHTML = '';
   addGpaRow(); addGpaRow(); addGpaRow();
+  document.getElementById('gpaValue').textContent = '0.00';
   document.getElementById('gpaResult').classList.remove('show');
 };
 </script>
