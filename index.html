@@ -170,8 +170,8 @@
     font-size:13px;font-weight:600;color:var(--primary);
     background:color-mix(in srgb, var(--primary) 12%, transparent);padding:6px 12px;border-radius:999px;margin-bottom:16px;
   }
-  .hero h1{font-size:50px;line-height:1.08;letter-spacing:-0.03em;font-weight:700;margin-top:2px;}
-  @media (max-width:560px){.hero h1{font-size:32px;line-height:1.15;}}
+  .hero h1{font-size:44px;line-height:1.08;letter-spacing:-0.03em;font-weight:700;margin-top:2px;}
+  @media (max-width:560px){.hero h1{font-size:29px;line-height:1.15;}}
   .hero .highlight{color:var(--primary);}
   .hero p.sub{font-size:18px;font-weight:500;color:var(--ink-soft);margin-top:16px;max-width:520px;line-height:1.6;}
   @media (max-width:560px){.hero p.sub{font-size:15.5px;margin-top:12px;}}
@@ -408,7 +408,7 @@
   .adsense-slot{
     width:100%;
     max-width:1200px;
-    margin:18px auto;
+    margin:0 auto;
     padding:0 24px;
     box-sizing:border-box;
   }
@@ -432,7 +432,7 @@
   .adsense-slot-inner[data-size="leaderboard"]{ min-height:90px; }
   .adsense-slot-inner[data-size="infeed"]{ min-height:120px; }
   @media (max-width:640px){
-    .adsense-slot{ margin:14px auto; padding:0 16px; }
+    .adsense-slot{ margin:0 auto; padding:0 16px; }
     .adsense-slot-inner{ min-height:100px; }
   }
 
@@ -695,6 +695,13 @@
     .tt-sr, .tool-card, .cat-card, .why-card{ opacity:1 !important; transform:none !important; transition:none !important; }
     .tool-card::before, .tool-card::after, .cat-card::after{ display:none !important; }
   }
+
+.tt-gtd-panel{background:var(--ink);border-radius:20px;padding:28px;box-shadow:0 20px 50px -20px rgba(20,99,86,.35)}
+.tt-gtd-heading{color:#fff;font:600 14px 'Space Grotesk',sans-serif;opacity:.7;text-transform:uppercase}
+.tt-gtd-item{display:flex;gap:13px;padding:12px 0;color:rgba(255,255,255,.5);border-bottom:1px solid rgba(255,255,255,.08);transition:.4s}
+.tt-gtd-item:last-child{border-bottom:none}.tt-gtd-circle{width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center}
+.tt-gtd-circle svg{width:11px;height:11px;opacity:0;transform:scale(.5);transition:.3s}.tt-gtd-done{color:#fff}.tt-gtd-done .tt-gtd-circle{background:var(--primary);border-color:var(--primary)}.tt-gtd-done .tt-gtd-circle svg{opacity:1;transform:scale(1)}
+
 </style>
 </head>
 <body>
@@ -769,18 +776,17 @@
       </div>
     </div>
 
-    <div class="tick-panel hero-fade">
-      <h3>Getting things done</h3>
-      <div id="tick-list">
-        <div class="tick-item"><div class="tick-circle"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></div>Merge PDF</div>
-        <div class="tick-item"><div class="tick-circle"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></div>Loan Calculator</div>
-        <div class="tick-item"><div class="tick-circle"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></div>Word Counter</div>
-        <div class="tick-item"><div class="tick-circle"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></div>Image Compressor</div>
-        <div class="tick-item"><div class="tick-circle"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></div>JSON Formatter</div>
-      </div>
-    </div>
-  </div>
-</section>
+    <div class="hero-fade">
+<div class="tt-gtd-panel">
+<h3 class="tt-gtd-heading">Getting Things Done</h3>
+<div class="tt-gtd-list" id="tt-gtd-list">
+<div class="tt-gtd-item"><div class="tt-gtd-circle"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div><span>Merge PDF</span></div>
+<div class="tt-gtd-item"><div class="tt-gtd-circle"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div><span>Loan Calculator</span></div>
+<div class="tt-gtd-item"><div class="tt-gtd-circle"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div><span>Word Counter</span></div>
+<div class="tt-gtd-item"><div class="tt-gtd-circle"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div><span>Image Compressor</span></div>
+<div class="tt-gtd-item"><div class="tt-gtd-circle"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div><span>JSON Formatter</span></div>
+</div></div>
+</div></section>
 
 <!-- Google AdSense Slot 1 -->
 <div class="adsense-slot" aria-hidden="true">
@@ -1147,7 +1153,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="logo" style="font-size:17px;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#146356"/><path d="M6 12.5L10 16.5L18 8" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <img src="logo.png" alt="Tickmark Tools" width="22" height="22" style="vertical-align: middle; margin-right: 6px; border-radius: 6px;">
           TickmarkTools
         </div>
         <p>Professional tools, built privacy-first. Calculators, PDF, image and text tools that run in your browser — your files stay on your device, always free, never watermarked.</p>
@@ -1625,5 +1631,7 @@
 })();
 </script>
 
+
+<script>(function(){var i=document.querySelectorAll('#tt-gtd-list .tt-gtd-item');if(!i.length)return;let g=0;function loop(){i.forEach(e=>e.classList.remove('tt-gtd-done'));function s(){if(g<i.length){i[g++].classList.add('tt-gtd-done');setTimeout(s,500)}else setTimeout(()=>{g=0;loop()},1400)}s()}loop();})();</script>
 </body>
-       </html>
+</html>
