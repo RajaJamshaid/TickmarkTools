@@ -291,28 +291,63 @@
 <script src="assets/main.js"></script>
 <script>
 document.getElementById('onDate').valueAsDate = new Date();
-function calcAge(){
+
+function parseLocalDate(dateStr) {
+  if (!dateStr) return null;
+  const [y, m, d] = dateStr.split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
+
+function calcAge() {
   const dobVal = document.getElementById('dob').value;
-  if(!dobVal){ alert('Please enter your date of birth'); return; }
-  const dob = new Date(dobVal);
   const onDateVal = document.getElementById('onDate').value;
-  const onD = onDateVal ? new Date(onDateVal) : new Date();
+
+  if (!dobVal) { 
+    alert('Please enter your date of birth'); 
+    return; 
+  }
+
+  const dob = parseLocalDate(dobVal);
+  const onD = onDateVal ? parseLocalDate(onDateVal) : new Date();
+
+  if (dob > onD) {
+    alert('Date of Birth cannot be in the future of the calculation date.');
+    return;
+  }
+
   let years = onD.getFullYear() - dob.getFullYear();
   let months = onD.getMonth() - dob.getMonth();
   let days = onD.getDate() - dob.getDate();
-  if(days < 0){ months--; const prevMonth = new Date(onD.getFullYear(), onD.getMonth(), 0); days += prevMonth.getDate(); }
-  if(months < 0){ years--; months += 12; }
-  const totalDays = Math.floor((onD - dob) / (1000*60*60*24));
+
+  if (days < 0) { 
+    months--; 
+    const prevMonth = new Date(onD.getFullYear(), onD.getMonth(), 0); 
+    days += prevMonth.getDate(); 
+  }
+  
+  if (months < 0) { 
+    years--; 
+    months += 12; 
+  }
+
+  const totalDays = Math.floor((onD - dob) / (1000 * 60 * 60 * 24));
+
   document.getElementById('ageYears').textContent = years;
   document.getElementById('ageMonths').textContent = months;
   document.getElementById('ageDays').textContent = days;
   document.getElementById('ageTotalDays').textContent = totalDays.toLocaleString();
   document.getElementById('ageResult').classList.add('show');
 }
+
 document.getElementById('calcAgeBtn').addEventListener('click', calcAge);
-window.resetTool = function(){
-  document.getElementById('dob').value='';
+
+window.resetTool = function() {
+  document.getElementById('dob').value = '';
   document.getElementById('onDate').valueAsDate = new Date();
+  document.getElementById('ageYears').textContent = '0';
+  document.getElementById('ageMonths').textContent = '0';
+  document.getElementById('ageDays').textContent = '0';
+  document.getElementById('ageTotalDays').textContent = '0';
   document.getElementById('ageResult').classList.remove('show');
 };
 </script>
