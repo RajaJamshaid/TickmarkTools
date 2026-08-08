@@ -22,7 +22,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -100,7 +99,7 @@
 
 <div class="wrap">
   <div class="tool-panel">
-    <label class="field-label">Paste your JSON</label>
+    <label class="field-label" for="jvInput">Paste your JSON</label>
     <textarea id="jvInput" class="field" style="min-height:200px;font-family:'IBM Plex Mono',monospace;" placeholder='{"valid":true}'></textarea>
     <div style="margin-top:14px;"><button class="btn btn-primary" id="jvBtn">Validate JSON</button></div>
     <div class="result-box" id="jvResult">
@@ -199,24 +198,6 @@
   </div>
 </div>
 
-<div class="wrap tool-section">
-  <h2>You May Also Like</h2>
-  <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
-      </a>
-      <a href="percentage-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div>
-      </a>
-      <a href="bmi-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div>
-      </a>
-  </div>
-</div>
-
 <div class="wrap tool-section" style="border-bottom:1px solid var(--border);">
   <h2>Comments</h2>
   <div class="comment-box">
@@ -227,24 +208,52 @@
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
-document.getElementById('jvBtn').addEventListener('click',()=>{
-  const raw = document.getElementById('jvInput').value;
+document.getElementById('jvBtn').addEventListener('click', () => {
+  const raw = document.getElementById('jvInput').value.trim();
   const msgEl = document.getElementById('jvMessage');
-  try{
+  
+  if(!raw){
+    msgEl.textContent = '⚠️ Please enter or paste JSON to validate.';
+    msgEl.style.color = '#F59E0B';
+    document.getElementById('jvResult').classList.add('show');
+    return;
+  }
+
+  try {
     JSON.parse(raw);
     msgEl.textContent = '✅ Valid JSON';
     msgEl.style.color = '#146356';
-  }catch(e){
+  } catch(e) {
     msgEl.textContent = '❌ Invalid JSON: ' + e.message;
     msgEl.style.color = '#EF4444';
   }
   document.getElementById('jvResult').classList.add('show');
 });
-window.resetTool=function(){document.getElementById('jvInput').value='';document.getElementById('jvResult').classList.remove('show');};
+
+window.resetTool = function(){
+  document.getElementById('jvInput').value = '';
+  document.getElementById('jvMessage').textContent = '';
+  document.getElementById('jvResult').classList.remove('show');
+};
+
+window.copyResult = function(){
+  const msgEl = document.getElementById('jvMessage');
+  const text = msgEl.textContent || msgEl.innerText;
+  if(!text){
+    alert('Please validate JSON first.');
+    return;
+  }
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyResultBtn');
+    const old = btn.textContent;
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = old, 1500);
+  }).catch(() => {
+    alert('Failed to copy text.');
+  });
+};
 </script>
 <script>
 function postComment(){
@@ -259,7 +268,7 @@ function postComment(){
   list.prepend(item);
   input.value = '';
 }
-document.getElementById('commentInput').addEventListener('keydown', (e)=>{
+document.getElementById('commentInput').addEventListener('keydown', (e) => {
   if(e.key === 'Enter') postComment();
 });
 </script>
