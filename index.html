@@ -92,7 +92,7 @@
     --card-bg:#161D1F;
   }
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth;overflow-y:scroll;}
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
     *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
@@ -104,6 +104,7 @@
     background:var(--bg);
     -webkit-font-smoothing:antialiased;
     transition:background 0.3s ease, color 0.3s ease;
+    overflow-x:hidden;
   }
   h1,h2,h3,.display{
     font-family:'Space Grotesk',sans-serif;
