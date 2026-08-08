@@ -22,7 +22,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -100,7 +99,7 @@
 
 <div class="wrap">
   <div class="tool-panel">
-    <label class="field-label">Paste your JSON</label>
+    <label class="field-label" for="jsonInput">Paste your JSON</label>
     <textarea id="jsonInput" class="field" style="min-height:180px;font-family:'IBM Plex Mono',monospace;" placeholder='{"name":"TickmarkTools","free":true}'></textarea>
     <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
       <button class="btn btn-primary" id="jsonFormatBtn">Format / Beautify</button>
@@ -203,24 +202,6 @@
   </div>
 </div>
 
-<div class="wrap tool-section">
-  <h2>You May Also Like</h2>
-  <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
-      </a>
-      <a href="percentage-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div>
-      </a>
-      <a href="bmi-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div>
-      </a>
-  </div>
-</div>
-
 <div class="wrap tool-section" style="border-bottom:1px solid var(--border);">
   <h2>Comments</h2>
   <div class="comment-box">
@@ -231,39 +212,66 @@
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
 function tryParse(){
-  const raw = document.getElementById('jsonInput').value;
+  const raw = document.getElementById('jsonInput').value.trim();
   const errEl = document.getElementById('jsonError');
-  errEl.style.display='none';
-  try{
+  errEl.style.display = 'none';
+
+  if(!raw){
+    errEl.textContent = 'Please enter or paste JSON to format.';
+    errEl.style.display = 'block';
+    document.getElementById('jsonResult').classList.remove('show');
+    return undefined;
+  }
+
+  try {
     return JSON.parse(raw);
-  }catch(e){
-    errEl.textContent = 'Invalid JSON: '+e.message;
-    errEl.style.display='block';
+  } catch(e) {
+    errEl.textContent = 'Invalid JSON: ' + e.message;
+    errEl.style.display = 'block';
     document.getElementById('jsonResult').classList.remove('show');
     return undefined;
   }
 }
-document.getElementById('jsonFormatBtn').addEventListener('click',()=>{
+
+document.getElementById('jsonFormatBtn').addEventListener('click', () => {
   const parsed = tryParse();
-  if(parsed===undefined) return;
+  if(parsed === undefined) return;
   document.getElementById('jsonOutput').textContent = JSON.stringify(parsed, null, 2);
   document.getElementById('jsonResult').classList.add('show');
 });
-document.getElementById('jsonMinifyBtn').addEventListener('click',()=>{
+
+document.getElementById('jsonMinifyBtn').addEventListener('click', () => {
   const parsed = tryParse();
-  if(parsed===undefined) return;
+  if(parsed === undefined) return;
   document.getElementById('jsonOutput').textContent = JSON.stringify(parsed);
   document.getElementById('jsonResult').classList.add('show');
 });
+
 window.resetTool = function(){
-  document.getElementById('jsonInput').value='';
-  document.getElementById('jsonError').style.display='none';
+  document.getElementById('jsonInput').value = '';
+  document.getElementById('jsonError').style.display = 'none';
+  document.getElementById('jsonOutput').textContent = '';
   document.getElementById('jsonResult').classList.remove('show');
+};
+
+window.copyResult = function(){
+  const out = document.getElementById('jsonOutput');
+  const text = out.textContent || out.innerText;
+  if(!text){ 
+    alert('Please format or minify JSON first.'); 
+    return; 
+  }
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyResultBtn');
+    const old = btn.textContent;
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = old, 1500);
+  }).catch(() => {
+    alert('Failed to copy text.');
+  });
 };
 </script>
 <script>
@@ -279,7 +287,7 @@ function postComment(){
   list.prepend(item);
   input.value = '';
 }
-document.getElementById('commentInput').addEventListener('keydown', (e)=>{
+document.getElementById('commentInput').addEventListener('keydown', (e) => {
   if(e.key === 'Enter') postComment();
 });
 </script>
