@@ -182,33 +182,15 @@
         <div class="related-emoji">✂️</div>
         <div><h4 style="font-size:14.5px;font-weight:600;">PDF Split</h4></div>
       </a>
-      <a href="image-converter.html" class="related-card">
-        <div class="related-emoji">🔁</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Image Converter</h4></div>
+      <a href="pdf-to-word.html" class="related-card">
+        <div class="related-emoji">📝</div>
+        <div><h4 style="font-size:14.5px;font-weight:600;">PDF to Word</h4></div>
       </a>
   </div>
 </div>
 
 <div class="wrap tool-section">
   <h2>Popular Calculators</h2>
-  <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
-      </a>
-      <a href="percentage-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div>
-      </a>
-      <a href="bmi-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div>
-      </a>
-  </div>
-</div>
-
-<div class="wrap tool-section">
-  <h2>You May Also Like</h2>
   <div class="related-grid">
       <a href="age-calculator.html" class="related-card">
         <div class="related-emoji">🧮</div>
@@ -235,46 +217,105 @@
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
-const p2jDrop=document.getElementById('p2jDrop');
-const p2jFile=document.getElementById('p2jFile');
-p2jDrop.addEventListener('click',()=>p2jFile.click());
-p2jDrop.addEventListener('dragover',e=>e.preventDefault());
-p2jDrop.addEventListener('drop',e=>{e.preventDefault(); if(e.dataTransfer.files[0]){p2jFile.files=e.dataTransfer.files; renderP2J();}});
-p2jFile.addEventListener('change', renderP2J);
-function renderP2J(){
-  const f=p2jFile.files[0];
-  document.getElementById('p2jFileList').innerHTML = f ? `<div class="file-chip"><span>${f.name}</span><span>${(f.size/1024).toFixed(0)} KB</span></div>` : '';
-}
-document.getElementById('p2jBtn').addEventListener('click', async ()=>{
-  const file = p2jFile.files[0];
-  if(!file){alert('Please choose a PDF file first');return;}
-  const statusEl = document.getElementById('p2jStatus');
-  statusEl.textContent = 'Rendering pages...';
-  const arrayBuffer = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({data:arrayBuffer}).promise;
-  const zip = new JSZip();
-  for(let i=1;i<=pdf.numPages;i++){
-    statusEl.textContent = `Rendering page ${i} of ${pdf.numPages}...`;
-    const page = await pdf.getPage(i);
-    const viewport = page.getViewport({scale:2});
-    const canvas = document.createElement('canvas');
-    canvas.width = viewport.width; canvas.height = viewport.height;
-    const ctx = canvas.getContext('2d');
-    await page.render({canvasContext:ctx, viewport:viewport}).promise;
-    const dataUrl = canvas.toDataURL('image/jpeg', 0.9).split(',')[1];
-    zip.file(`page-${i}.jpg`, dataUrl, {base64:true});
+let createdObjectUrl = null;
+
+const p2jDrop = document.getElementById('p2jDrop');
+const p2jFile = document.getElementById('p2jFile');
+
+p2jDrop.addEventListener('click', () => p2jFile.click());
+p2jDrop.addEventListener('dragover', e => e.preventDefault());
+p2jDrop.addEventListener('drop', e => {
+  e.preventDefault();
+  if (e.dataTransfer.files[0] && e.dataTransfer.files[0].type === 'application/pdf') {
+    p2jFile.files = e.dataTransfer.files;
+    renderP2J();
   }
-  statusEl.textContent = 'Packaging ZIP...';
-  const zipBlob = await zip.generateAsync({type:'blob'});
-  document.getElementById('p2jDownload').href = URL.createObjectURL(zipBlob);
-  statusEl.textContent = `Done — ${pdf.numPages} page(s) converted.`;
-  document.getElementById('p2jResult').classList.add('show');
 });
-window.resetTool=function(){p2jFile.value='';renderP2J();document.getElementById('p2jResult').classList.remove('show');};
+
+p2jFile.addEventListener('change', renderP2J);
+
+function renderP2J() {
+  const f = p2jFile.files[0];
+  document.getElementById('p2jFileList').innerHTML = f ? `
+    <div class="file-chip" style="display:flex;justify-content:space-between;padding:8px 12px;margin-top:6px;background:var(--bg-soft,#f4f6f8);border-radius:6px;font-size:13px;">
+      <span>📄 ${f.name}</span>
+      <span style="color:var(--ink-soft);">${(f.size / 1024).toFixed(0)} KB</span>
+    </div>
+  ` : '';
+}
+
+document.getElementById('p2jBtn').addEventListener('click', async () => {
+  const file = p2jFile.files[0];
+  if (!file) {
+    alert('Please choose a PDF file first');
+    return;
+  }
+
+  const btn = document.getElementById('p2jBtn');
+  const statusEl = document.getElementById('p2jStatus');
+  btn.disabled = true;
+  btn.textContent = 'Processing...';
+  statusEl.textContent = 'Rendering pages...';
+
+  try {
+    const arrayBuffer = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+    const zip = new JSZip();
+
+    for (let i = 1; i <= pdf.numPages; i++) {
+      statusEl.textContent = `Rendering page ${i} of ${pdf.numPages}...`;
+      const page = await pdf.getPage(i);
+      const viewport = page.getViewport({ scale: 2 });
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      const ctx = canvas.getContext('2d');
+
+      // Solid white background to prevent transparent PDF backgrounds rendering black in JPEG
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.92).split(',')[1];
+      zip.file(`page-${i}.jpg`, dataUrl, { base64: true });
+    }
+
+    statusEl.textContent = 'Packaging ZIP file...';
+    const zipBlob = await zip.generateAsync({ type: 'blob' });
+
+    if (createdObjectUrl) {
+      URL.revokeObjectURL(createdObjectUrl);
+    }
+
+    createdObjectUrl = URL.createObjectURL(zipBlob);
+    const downloadBtn = document.getElementById('p2jDownload');
+    downloadBtn.href = createdObjectUrl;
+    downloadBtn.download = file.name.replace(/\.pdf$/i, '') + '_pages.zip';
+
+    statusEl.textContent = `Conversion complete — ${pdf.numPages} page(s) extracted.`;
+    document.getElementById('p2jResult').classList.add('show');
+  } catch (err) {
+    alert('Failed to render PDF pages. The file may be password-protected or corrupted.');
+    statusEl.textContent = 'Conversion failed.';
+    console.error(err);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Convert to JPG';
+  }
+});
+
+window.resetTool = function() {
+  p2jFile.value = '';
+  renderP2J();
+  if (createdObjectUrl) {
+    URL.revokeObjectURL(createdObjectUrl);
+    createdObjectUrl = null;
+  }
+  document.getElementById('p2jStatus').textContent = '';
+  document.getElementById('p2jResult').classList.remove('show');
+};
 </script>
 <script>
 function postComment(){
