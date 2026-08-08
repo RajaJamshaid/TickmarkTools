@@ -236,24 +236,59 @@
 <script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
-document.getElementById('ddBtn').addEventListener('click',()=>{
-  let d1=new Date(document.getElementById('ddStart').value);
-  let d2=new Date(document.getElementById('ddEnd').value);
-  if(isNaN(d1)||isNaN(d2)){alert('Please select both dates');return;}
-  if(d1>d2){ [d1,d2]=[d2,d1]; }
-  let years=d2.getFullYear()-d1.getFullYear();
-  let months=d2.getMonth()-d1.getMonth();
-  let days=d2.getDate()-d1.getDate();
-  if(days<0){ months--; const prevMonth=new Date(d2.getFullYear(),d2.getMonth(),0); days+=prevMonth.getDate(); }
-  if(months<0){ years--; months+=12; }
-  const totalDays=Math.floor((d2-d1)/(1000*60*60*24));
-  document.getElementById('ddYears').textContent=years;
-  document.getElementById('ddMonths').textContent=months;
-  document.getElementById('ddDays').textContent=days;
-  document.getElementById('ddTotalDays').textContent=totalDays.toLocaleString();
+document.getElementById('ddBtn').addEventListener('click', () => {
+  const startVal = document.getElementById('ddStart').value;
+  const endVal = document.getElementById('ddEnd').value;
+
+  if (!startVal || !endVal) {
+    alert('Please select both start and end dates.');
+    return;
+  }
+
+  // Parse YYYY-MM-DD in local time to prevent UTC timezone shifts
+  const [sY, sM, sD] = startVal.split('-').map(Number);
+  const [eY, eM, eD] = endVal.split('-').map(Number);
+
+  let d1 = new Date(sY, sM - 1, sD);
+  let d2 = new Date(eY, eM - 1, eD);
+
+  if (d1 > d2) { [d1, d2] = [d2, d1]; }
+
+  let years = d2.getFullYear() - d1.getFullYear();
+  let months = d2.getMonth() - d1.getMonth();
+  let days = d2.getDate() - d1.getDate();
+
+  if (days < 0) {
+    months--;
+    // Days in previous month relative to d2
+    const prevMonthDays = new Date(d2.getFullYear(), d2.getMonth(), 0).getDate();
+    days += prevMonthDays;
+  }
+
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  const utc1 = Date.UTC(d1.getFullYear(), d1.getMonth(), d1.getDate());
+  const utc2 = Date.UTC(d2.getFullYear(), d2.getMonth(), d2.getDate());
+  const totalDays = Math.floor((utc2 - utc1) / (1000 * 60 * 60 * 24));
+
+  document.getElementById('ddYears').textContent = years;
+  document.getElementById('ddMonths').textContent = months;
+  document.getElementById('ddDays').textContent = days;
+  document.getElementById('ddTotalDays').textContent = totalDays.toLocaleString();
   document.getElementById('ddResult').classList.add('show');
 });
-window.resetTool=function(){['ddStart','ddEnd'].forEach(id=>document.getElementById(id).value='');document.getElementById('ddResult').classList.remove('show');};
+
+window.resetTool = function() {
+  ['ddStart', 'ddEnd'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('ddYears').textContent = '0';
+  document.getElementById('ddMonths').textContent = '0';
+  document.getElementById('ddDays').textContent = '0';
+  document.getElementById('ddTotalDays').textContent = '0';
+  document.getElementById('ddResult').classList.remove('show');
+};
 </script>
 <script>
 function postComment(){
