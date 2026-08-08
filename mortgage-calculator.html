@@ -256,23 +256,50 @@ if(window.TTGeo){
 }
 </script>
 <script>
-document.getElementById('mtgBtn').addEventListener('click',()=>{
-  const price=parseFloat(document.getElementById('mtgPrice').value);
-  const down=parseFloat(document.getElementById('mtgDown').value)||0;
-  const rate=parseFloat(document.getElementById('mtgRate').value);
-  const years=parseFloat(document.getElementById('mtgYears').value);
-  if(!price||!rate||!years){alert('Please fill all required fields');return;}
-  const loanAmt=price-down;
-  const r=rate/12/100;
-  const n=years*12;
-  const monthly=(loanAmt*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
-  const totalInterest=(monthly*n)-loanAmt;
-  document.getElementById('mtgMonthly').textContent=(window.ttCurSym||'')+monthly.toFixed(0);
-  document.getElementById('mtgLoanAmt').textContent=(window.ttCurSym||'')+loanAmt.toFixed(0);
-  document.getElementById('mtgTotalInterest').textContent=(window.ttCurSym||'')+totalInterest.toFixed(0);
+document.getElementById('mtgBtn').addEventListener('click', () => {
+  const price = parseFloat(document.getElementById('mtgPrice').value);
+  const down = parseFloat(document.getElementById('mtgDown').value) || 0;
+  const rate = parseFloat(document.getElementById('mtgRate').value);
+  const years = parseFloat(document.getElementById('mtgYears').value);
+
+  if (isNaN(price) || isNaN(rate) || isNaN(years) || price <= 0 || rate < 0 || years <= 0) {
+    alert('Please enter valid positive values for Home Price, Rate, and Loan Term.');
+    return;
+  }
+
+  if (down >= price) {
+    alert('Down Payment must be less than the Home Price.');
+    return;
+  }
+
+  const loanAmt = price - down;
+  const n = years * 12;
+  let monthly, totalInterest;
+
+  if (rate === 0) {
+    monthly = loanAmt / n;
+    totalInterest = 0;
+  } else {
+    const r = rate / 12 / 100;
+    monthly = (loanAmt * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    totalInterest = (monthly * n) - loanAmt;
+  }
+
+  const sym = window.ttCurSym ? window.ttCurSym + ' ' : '';
+
+  document.getElementById('mtgMonthly').textContent = sym + Math.round(monthly).toLocaleString();
+  document.getElementById('mtgLoanAmt').textContent = sym + Math.round(loanAmt).toLocaleString();
+  document.getElementById('mtgTotalInterest').textContent = sym + Math.round(totalInterest).toLocaleString();
   document.getElementById('mtgResult').classList.add('show');
 });
-window.resetTool=function(){['mtgPrice','mtgDown','mtgRate','mtgYears'].forEach(id=>document.getElementById(id).value='');document.getElementById('mtgResult').classList.remove('show');};
+
+window.resetTool = function() {
+  ['mtgPrice', 'mtgDown', 'mtgRate', 'mtgYears'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('mtgMonthly').textContent = '0';
+  document.getElementById('mtgLoanAmt').textContent = '0';
+  document.getElementById('mtgTotalInterest').textContent = '0';
+  document.getElementById('mtgResult').classList.remove('show');
+};
 </script>
 <script>
 function postComment(){
