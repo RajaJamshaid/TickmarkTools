@@ -251,17 +251,36 @@ if(window.TTGeo){
 }
 </script>
 <script>
-document.getElementById('discBtn').addEventListener('click',()=>{
-  const price=parseFloat(document.getElementById('discPrice').value);
-  const pct=parseFloat(document.getElementById('discPct').value);
-  if(!price||!pct){alert('Please fill all fields');return;}
-  const saved=(price*pct)/100;
-  const final=price-saved;
-  document.getElementById('discFinal').textContent=(window.ttCurSym||'')+final.toFixed(2);
-  document.getElementById('discSaved').textContent=(window.ttCurSym||'')+saved.toFixed(2);
+document.getElementById('discBtn').addEventListener('click', () => {
+  const price = parseFloat(document.getElementById('discPrice').value);
+  const pct = parseFloat(document.getElementById('discPct').value);
+
+  if (isNaN(price) || isNaN(pct) || price <= 0 || pct < 0) {
+    alert('Please enter a valid positive price and discount percentage.');
+    return;
+  }
+
+  if (pct > 100) {
+    alert('Discount percentage cannot exceed 100%.');
+    return;
+  }
+
+  const saved = (price * pct) / 100;
+  const final = price - saved;
+  const sym = window.ttCurSym ? window.ttCurSym + ' ' : '';
+
+  document.getElementById('discFinal').textContent = sym + final.toFixed(2);
+  document.getElementById('discSaved').textContent = sym + saved.toFixed(2);
   document.getElementById('discResult').classList.add('show');
 });
-window.resetTool=function(){['discPrice','discPct'].forEach(id=>document.getElementById(id).value='');document.getElementById('discResult').classList.remove('show');};
+
+window.resetTool = function() {
+  document.getElementById('discPrice').value = '';
+  document.getElementById('discPct').value = '';
+  document.getElementById('discFinal').textContent = '0';
+  document.getElementById('discSaved').textContent = '0';
+  document.getElementById('discResult').classList.remove('show');
+};
 </script>
 <script>
 function postComment(){
