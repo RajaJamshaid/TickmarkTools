@@ -22,7 +22,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -103,13 +102,13 @@
     <div class="upload-drop" id="imgDrop">
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
       <div>Click or drag an image here</div>
-      <input type="file" id="imgFile" accept="image/*" style="display:none;">
+      <input type="file" id="imgFile" accept="image/jpeg,image/png,image/webp" style="display:none;">
     </div>
     <div id="imgControls" style="display:none;margin-top:20px;">
       <label class="field-label">Quality: <span id="qualityVal">80</span>%</label>
       <input type="range" id="qualitySlider" min="10" max="100" value="80">
       <div style="margin-top:16px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
-        <img id="imgPreview" style="max-width:160px;border-radius:10px;border:1px solid var(--border);">
+        <img id="imgPreview" style="max-width:160px;border-radius:10px;border:1px solid var(--border);" alt="Preview">
         <div>
           <div class="mono" id="origSize" style="font-size:13px;color:var(--ink-soft);"></div>
           <div class="mono" id="newSize" style="font-size:13px;color:var(--primary);font-weight:600;"></div>
@@ -117,7 +116,6 @@
         </div>
       </div>
     </div>
-    <div class="result-box show" id="imgResultHolder" style="display:none;"></div>
     <div class="toolbar-row">
       <button class="btn btn-secondary" onclick="resetTool()">↺ Reset</button>
       <button class="btn btn-secondary" id="copyResultBtn" onclick="copyResult()">📋 Copy Result</button>
@@ -212,24 +210,6 @@
   </div>
 </div>
 
-<div class="wrap tool-section">
-  <h2>You May Also Like</h2>
-  <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
-      </a>
-      <a href="percentage-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div>
-      </a>
-      <a href="bmi-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div>
-      </a>
-  </div>
-</div>
-
 <div class="wrap tool-section" style="border-bottom:1px solid var(--border);">
   <h2>Comments</h2>
   <div class="comment-box">
@@ -240,51 +220,85 @@
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
-const imgDrop=document.getElementById('imgDrop');
-const imgFile=document.getElementById('imgFile');
-let imgEl=new Image();
-imgDrop.addEventListener('click',()=>imgFile.click());
-imgDrop.addEventListener('dragover',e=>{e.preventDefault();});
-imgDrop.addEventListener('drop',e=>{e.preventDefault();if(e.dataTransfer.files[0]) handleImage(e.dataTransfer.files[0]);});
-imgFile.addEventListener('change',()=>{ if(imgFile.files[0]) handleImage(imgFile.files[0]); });
-function handleImage(file){
-  const reader=new FileReader();
-  reader.onload=(e)=>{
-    imgEl.onload=()=>{
-      document.getElementById('imgControls').style.display='block';
+let createdObjectUrl = null;
+let currentFileName = 'compressed.jpg';
+const imgDrop = document.getElementById('imgDrop');
+const imgFile = document.getElementById('imgFile');
+let imgEl = new Image();
+
+imgDrop.addEventListener('click', () => imgFile.click());
+imgDrop.addEventListener('dragover', e => e.preventDefault());
+imgDrop.addEventListener('drop', e => {
+  e.preventDefault();
+  if (e.dataTransfer.files[0] && e.dataTransfer.files[0].type.startsWith('image/')) {
+    handleImage(e.dataTransfer.files[0]);
+  }
+});
+
+imgFile.addEventListener('change', () => {
+  if (imgFile.files[0]) handleImage(imgFile.files[0]);
+});
+
+function handleImage(file) {
+  currentFileName = file.name.replace(/\.[^/.]+$/, "") + "_compressed.jpg";
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    imgEl.onload = () => {
+      document.getElementById('imgControls').style.display = 'block';
       document.getElementById('imgPreview').src = e.target.result;
-      document.getElementById('origSize').textContent = 'Original: '+(file.size/1024).toFixed(1)+' KB';
+      document.getElementById('origSize').textContent = 'Original: ' + (file.size / 1024).toFixed(1) + ' KB';
       compress();
     };
     imgEl.src = e.target.result;
   };
   reader.readAsDataURL(file);
 }
-document.getElementById('qualitySlider').addEventListener('input', (e)=>{
+
+document.getElementById('qualitySlider').addEventListener('input', (e) => {
   document.getElementById('qualityVal').textContent = e.target.value;
   compress();
 });
-function compress(){
-  const quality = document.getElementById('qualitySlider').value/100;
+
+function compress() {
+  if (!imgEl.width || !imgEl.height) return;
+  const quality = document.getElementById('qualitySlider').value / 100;
   const canvas = document.createElement('canvas');
-  canvas.width = imgEl.width; canvas.height = imgEl.height;
+  canvas.width = imgEl.width;
+  canvas.height = imgEl.height;
   const ctx = canvas.getContext('2d');
-  ctx.drawImage(imgEl,0,0);
-  canvas.toBlob((blob)=>{
-    const url = URL.createObjectURL(blob);
-    document.getElementById('downloadLink').href = url;
-    document.getElementById('newSize').textContent = 'Compressed: '+(blob.size/1024).toFixed(1)+' KB';
+
+  // Solid white background to prevent transparent PNGs rendering black in JPEG export
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(imgEl, 0, 0);
+
+  canvas.toBlob((blob) => {
+    if (!blob) return;
+    if (createdObjectUrl) {
+      URL.revokeObjectURL(createdObjectUrl);
+    }
+    createdObjectUrl = URL.createObjectURL(blob);
+    const downloadBtn = document.getElementById('downloadLink');
+    downloadBtn.href = createdObjectUrl;
+    downloadBtn.download = currentFileName;
+    document.getElementById('newSize').textContent = 'Compressed: ' + (blob.size / 1024).toFixed(1) + ' KB';
   }, 'image/jpeg', quality);
 }
-window.resetTool = function(){
-  document.getElementById('imgControls').style.display='none';
-  imgFile.value='';
+
+window.resetTool = function() {
+  document.getElementById('imgControls').style.display = 'none';
+  imgFile.value = '';
+  if (createdObjectUrl) {
+    URL.revokeObjectURL(createdObjectUrl);
+    createdObjectUrl = null;
+  }
 };
-window.copyResult = function(){ alert('Use the Download button to save the compressed image.'); };
+
+window.copyResult = function() {
+  alert('Use the "Download Compressed Image" button to save your file.');
+};
 </script>
 <script>
 function postComment(){
