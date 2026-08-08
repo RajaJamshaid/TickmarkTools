@@ -22,7 +22,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -100,7 +99,7 @@
 
 <div class="wrap">
   <div class="tool-panel">
-    <textarea id="wcInput" class="field" style="min-height:200px;" placeholder="Start typing or paste your text here..."></textarea>
+    <textarea id="wcInput" class="field" style="min-height:200px;" placeholder="Start typing or paste your text here..." aria-label="Text to count"></textarea>
     <div class="result-box show" style="margin-top:18px;">
       <div class="result-grid">
         <div class="result-item"><div class="num" id="wcWords">0</div><div class="lbl">Words</div></div>
@@ -202,24 +201,6 @@
   </div>
 </div>
 
-<div class="wrap tool-section">
-  <h2>You May Also Like</h2>
-  <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
-      </a>
-      <a href="percentage-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div>
-      </a>
-      <a href="bmi-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div>
-      </a>
-  </div>
-</div>
-
 <div class="wrap tool-section" style="border-bottom:1px solid var(--border);">
   <h2>Comments</h2>
   <div class="comment-box">
@@ -230,25 +211,54 @@
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
 const wcInput = document.getElementById('wcInput');
-wcInput.addEventListener('input', () => {
+
+function updateCounts() {
   const text = wcInput.value;
   const words = text.trim().length ? text.trim().split(/\s+/).length : 0;
   const chars = text.length;
-  const sentences = (text.match(/[.!?]+/g) || []).length;
-  const readSeconds = Math.max(1, Math.round((words / 200) * 60));
-  document.getElementById('wcWords').textContent = words;
-  document.getElementById('wcChars').textContent = chars;
-  document.getElementById('wcSentences').textContent = sentences;
-  document.getElementById('wcRead').textContent = readSeconds + 's';
-});
-window.resetTool = function(){
-  wcInput.value='';
-  wcInput.dispatchEvent(new Event('input'));
+  const sentences = text.trim().length ? (text.match(/[.!?]+/g) || []).length : 0;
+  
+  let readStr = '0s';
+  if (words > 0) {
+    const totalSeconds = Math.round((words / 200) * 60);
+    if (totalSeconds < 60) {
+      readStr = `${Math.max(1, totalSeconds)}s`;
+    } else {
+      const mins = Math.floor(totalSeconds / 60);
+      const secs = totalSeconds % 60;
+      readStr = secs > 0 ? `${mins}m ${secs}s` : `${mins}m`;
+    }
+  }
+
+  document.getElementById('wcWords').textContent = words.toLocaleString();
+  document.getElementById('wcChars').textContent = chars.toLocaleString();
+  document.getElementById('wcSentences').textContent = sentences.toLocaleString();
+  document.getElementById('wcRead').textContent = readStr;
+}
+
+wcInput.addEventListener('input', updateCounts);
+
+window.resetTool = function() {
+  wcInput.value = '';
+  updateCounts();
+};
+
+window.copyResult = function() {
+  const words = document.getElementById('wcWords').textContent;
+  const chars = document.getElementById('wcChars').textContent;
+  const sentences = document.getElementById('wcSentences').textContent;
+  const readTime = document.getElementById('wcRead').textContent;
+  
+  const summary = `Word Count Stats:\nWords: ${words}\nCharacters: ${chars}\nSentences: ${sentences}\nReading Time: ${readTime}`;
+  
+  navigator.clipboard.writeText(summary).then(() => {
+    alert('Word count stats copied to clipboard!');
+  }).catch(() => {
+    alert('Failed to copy stats.');
+  });
 };
 </script>
 <script>
