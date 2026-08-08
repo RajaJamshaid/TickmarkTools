@@ -258,19 +258,34 @@ if(window.TTGeo){
 }
 </script>
 <script>
-document.getElementById('ciBtn').addEventListener('click',()=>{
-  const P=parseFloat(document.getElementById('ciPrincipal').value);
-  const rate=parseFloat(document.getElementById('ciRate').value);
-  const t=parseFloat(document.getElementById('ciYears').value);
-  const n=parseFloat(document.getElementById('ciFreq').value);
-  if(!P||!rate||!t){alert('Please fill all fields');return;}
-  const r=rate/100;
-  const A=P*Math.pow(1+r/n, n*t);
-  document.getElementById('ciAmount').textContent=(window.ttCurSym||'')+A.toFixed(0);
-  document.getElementById('ciInterest').textContent=(window.ttCurSym||'')+(A-P).toFixed(0);
+document.getElementById('ciBtn').addEventListener('click', () => {
+  const P = parseFloat(document.getElementById('ciPrincipal').value);
+  const rate = parseFloat(document.getElementById('ciRate').value);
+  const t = parseFloat(document.getElementById('ciYears').value);
+  const n = parseFloat(document.getElementById('ciFreq').value);
+
+  if (isNaN(P) || isNaN(rate) || isNaN(t) || P <= 0 || rate < 0 || t <= 0) {
+    alert('Please enter valid positive values for Principal, Rate, and Time.');
+    return;
+  }
+
+  const r = rate / 100;
+  const A = P * Math.pow(1 + r / n, n * t);
+  const interest = A - P;
+  const sym = window.ttCurSym ? window.ttCurSym + ' ' : '';
+
+  document.getElementById('ciAmount').textContent = sym + Math.round(A).toLocaleString();
+  document.getElementById('ciInterest').textContent = sym + Math.round(interest).toLocaleString();
   document.getElementById('ciResult').classList.add('show');
 });
-window.resetTool=function(){['ciPrincipal','ciRate','ciYears'].forEach(id=>document.getElementById(id).value='');document.getElementById('ciResult').classList.remove('show');};
+
+window.resetTool = function() {
+  ['ciPrincipal', 'ciRate', 'ciYears'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('ciFreq').value = '12';
+  document.getElementById('ciAmount').textContent = '0';
+  document.getElementById('ciInterest').textContent = '0';
+  document.getElementById('ciResult').classList.remove('show');
+};
 </script>
 <script>
 function postComment(){
