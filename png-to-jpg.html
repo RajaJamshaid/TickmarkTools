@@ -22,7 +22,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -107,7 +106,7 @@
     </div>
     <div class="result-box" id="p2jgResult">
       <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
-        <img id="p2jgPreview" style="max-width:160px;border-radius:10px;border:1px solid var(--border);">
+        <img id="p2jgPreview" style="max-width:160px;border-radius:10px;border:1px solid var(--border);" alt="Converted Preview">
         <a id="p2jgDownload" class="btn btn-primary" download="converted.jpg">Download JPG</a>
       </div>
     </div>
@@ -204,24 +203,6 @@
   </div>
 </div>
 
-<div class="wrap tool-section">
-  <h2>You May Also Like</h2>
-  <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
-      </a>
-      <a href="percentage-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div>
-      </a>
-      <a href="bmi-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div>
-      </a>
-  </div>
-</div>
-
 <div class="wrap tool-section" style="border-bottom:1px solid var(--border);">
   <h2>Comments</h2>
   <div class="comment-box">
@@ -232,29 +213,55 @@
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
-const p2jgDrop=document.getElementById('p2jgDrop');
-const p2jgFile=document.getElementById('p2jgFile');
-p2jgDrop.addEventListener('click',()=>p2jgFile.click());
-p2jgDrop.addEventListener('dragover',e=>e.preventDefault());
-p2jgDrop.addEventListener('drop',e=>{e.preventDefault(); if(e.dataTransfer.files[0]) convertP2JG(e.dataTransfer.files[0]);});
-p2jgFile.addEventListener('change',()=>{ if(p2jgFile.files[0]) convertP2JG(p2jgFile.files[0]); });
-function convertP2JG(file){
-  const img=new Image();
-  const reader=new FileReader();
-  reader.onload=(e)=>{
-    img.onload=()=>{
-      const canvas=document.createElement('canvas');
-      canvas.width=img.width; canvas.height=img.height;
+let createdObjectUrl = null;
+let currentFileName = 'converted.jpg';
+
+const p2jgDrop = document.getElementById('p2jgDrop');
+const p2jgFile = document.getElementById('p2jgFile');
+
+p2jgDrop.addEventListener('click', () => p2jgFile.click());
+p2jgDrop.addEventListener('dragover', e => e.preventDefault());
+p2jgDrop.addEventListener('drop', e => {
+  e.preventDefault();
+  const file = e.dataTransfer.files[0];
+  if (file && (file.type === 'image/png' || file.name.match(/\.png$/i))) {
+    convertP2JG(file);
+  }
+});
+
+p2jgFile.addEventListener('change', () => {
+  if (p2jgFile.files[0]) convertP2JG(p2jgFile.files[0]);
+});
+
+function convertP2JG(file) {
+  currentFileName = file.name.replace(/\.[^/.]+$/, "") + ".jpg";
+  const img = new Image();
+  const reader = new FileReader();
+
+  reader.onload = (e) => {
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
       const ctx = canvas.getContext('2d');
-      ctx.fillStyle='#FFFFFF'; ctx.fillRect(0,0,canvas.width,canvas.height);
-      ctx.drawImage(img,0,0);
-      canvas.toBlob(blob=>{
+
+      // Fill background white for PNG transparency handling
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0);
+
+      canvas.toBlob(blob => {
+        if (!blob) return;
+        if (createdObjectUrl) {
+          URL.revokeObjectURL(createdObjectUrl);
+        }
+        createdObjectUrl = URL.createObjectURL(blob);
         document.getElementById('p2jgPreview').src = e.target.result;
-        document.getElementById('p2jgDownload').href = URL.createObjectURL(blob);
+        const downloadBtn = document.getElementById('p2jgDownload');
+        downloadBtn.href = createdObjectUrl;
+        downloadBtn.download = currentFileName;
         document.getElementById('p2jgResult').classList.add('show');
       }, 'image/jpeg', 0.92);
     };
@@ -262,8 +269,19 @@ function convertP2JG(file){
   };
   reader.readAsDataURL(file);
 }
-window.resetTool=function(){p2jgFile.value='';document.getElementById('p2jgResult').classList.remove('show');};
-window.copyResult=function(){ alert('Use the Download button to save the JPG image.'); };
+
+window.resetTool = function() {
+  p2jgFile.value = '';
+  document.getElementById('p2jgResult').classList.remove('show');
+  if (createdObjectUrl) {
+    URL.revokeObjectURL(createdObjectUrl);
+    createdObjectUrl = null;
+  }
+};
+
+window.copyResult = function() {
+  alert('Use the "Download JPG" button to save your file.');
+};
 </script>
 <script>
 function postComment(){
