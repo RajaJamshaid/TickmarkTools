@@ -22,7 +22,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -101,7 +100,7 @@
 <div class="wrap">
   <div class="tool-panel">
     <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
-      <input type="color" id="cpInput" value="#146356" style="width:80px;height:80px;border:none;border-radius:12px;cursor:pointer;padding:0;">
+      <input type="color" id="cpInput" value="#146356" aria-label="Choose color" style="width:80px;height:80px;border:none;border-radius:12px;cursor:pointer;padding:0;">
       <div>
         <div class="field-label">Selected Color</div>
         <div id="cpSwatchLabel" style="font-size:24px;font-weight:700;font-family:'IBM Plex Mono',monospace;">#146356</div>
@@ -110,8 +109,8 @@
     <div class="result-box show" style="margin-top:22px;">
       <div class="result-grid">
         <div class="result-item"><div class="num mono" id="cpHex" style="font-size:16px;">#146356</div><div class="lbl">HEX</div></div>
-        <div class="result-item"><div class="num mono" id="cpRgb" style="font-size:14px;">rgb(20,99,86)</div><div class="lbl">RGB</div></div>
-        <div class="result-item"><div class="num mono" id="cpHsl" style="font-size:14px;">hsl(169,66%,23%)</div><div class="lbl">HSL</div></div>
+        <div class="result-item"><div class="num mono" id="cpRgb" style="font-size:14px;">rgb(20, 99, 86)</div><div class="lbl">RGB</div></div>
+        <div class="result-item"><div class="num mono" id="cpHsl" style="font-size:14px;">hsl(169, 66%, 23%)</div><div class="lbl">HSL</div></div>
       </div>
     </div>
     <div class="toolbar-row">
@@ -208,24 +207,6 @@
   </div>
 </div>
 
-<div class="wrap tool-section">
-  <h2>You May Also Like</h2>
-  <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
-      </a>
-      <a href="percentage-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div>
-      </a>
-      <a href="bmi-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div>
-      </a>
-  </div>
-</div>
-
 <div class="wrap tool-section" style="border-bottom:1px solid var(--border);">
   <h2>Comments</h2>
   <div class="comment-box">
@@ -236,41 +217,66 @@
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
-function hexToRgb(hex){
-  const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
-  return {r,g,b};
+function hexToRgb(hex) {
+  const cleanHex = hex.replace('#', '');
+  const r = parseInt(cleanHex.slice(0, 2), 16);
+  const g = parseInt(cleanHex.slice(2, 4), 16);
+  const b = parseInt(cleanHex.slice(4, 6), 16);
+  return { r, g, b };
 }
-function rgbToHsl(r,g,b){
-  r/=255; g/=255; b/=255;
-  const max=Math.max(r,g,b), min=Math.min(r,g,b);
-  let h,s,l=(max+min)/2;
-  if(max===min){ h=s=0; }
-  else{
-    const d = max-min;
-    s = l>0.5 ? d/(2-max-min) : d/(max+min);
-    switch(max){
-      case r: h=(g-b)/d+(g<b?6:0); break;
-      case g: h=(b-r)/d+2; break;
-      case b: h=(r-g)/d+4; break;
+
+function rgbToHsl(r, g, b) {
+  r /= 255; g /= 255; b /= 255;
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  let h, s, l = (max + min) / 2;
+  if (max === min) {
+    h = s = 0;
+  } else {
+    const d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    switch (max) {
+      case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+      case g: h = (b - r) / d + 2; break;
+      case b: h = (r - g) / d + 4; break;
     }
-    h/=6;
+    h /= 6;
   }
-  return { h:Math.round(h*360), s:Math.round(s*100), l:Math.round(l*100) };
+  return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
 }
-document.getElementById('cpInput').addEventListener('input',(e)=>{
+
+document.getElementById('cpInput').addEventListener('input', (e) => {
   const hex = e.target.value;
-  const {r,g,b} = hexToRgb(hex);
-  const {h,s,l} = rgbToHsl(r,g,b);
+  const { r, g, b } = hexToRgb(hex);
+  const { h, s, l } = rgbToHsl(r, g, b);
   document.getElementById('cpSwatchLabel').textContent = hex.toUpperCase();
   document.getElementById('cpHex').textContent = hex.toUpperCase();
-  document.getElementById('cpRgb').textContent = `rgb(${r},${g},${b})`;
-  document.getElementById('cpHsl').textContent = `hsl(${h},${s}%,${l}%)`;
+  document.getElementById('cpRgb').textContent = `rgb(${r}, ${g}, ${b})`;
+  document.getElementById('cpHsl').textContent = `hsl(${h}, ${s}%, ${l}%)`;
 });
-window.resetTool=function(){document.getElementById('cpInput').value='#146356'; document.getElementById('cpInput').dispatchEvent(new Event('input'));};
+
+window.resetTool = function() {
+  const input = document.getElementById('cpInput');
+  input.value = '#146356';
+  input.dispatchEvent(new Event('input'));
+};
+
+window.copyResult = function() {
+  const hex = document.getElementById('cpHex').textContent;
+  const rgb = document.getElementById('cpRgb').textContent;
+  const hsl = document.getElementById('cpHsl').textContent;
+  const textToCopy = `HEX: ${hex}\nRGB: ${rgb}\nHSL: ${hsl}`;
+  
+  navigator.clipboard.writeText(textToCopy).then(() => {
+    const btn = document.getElementById('copyResultBtn');
+    const oldText = btn.textContent;
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = oldText, 1500);
+  }).catch(() => {
+    alert('Failed to copy to clipboard.');
+  });
+};
 </script>
 <script>
 function postComment(){
@@ -285,7 +291,7 @@ function postComment(){
   list.prepend(item);
   input.value = '';
 }
-document.getElementById('commentInput').addEventListener('keydown', (e)=>{
+document.getElementById('commentInput').addEventListener('keydown', (e) => {
   if(e.key === 'Enter') postComment();
 });
 </script>
