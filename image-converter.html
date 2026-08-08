@@ -22,7 +22,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -106,15 +105,15 @@
       <input type="file" id="icFile" accept="image/*" style="display:none;">
     </div>
     <div id="icControls" style="display:none;margin-top:20px;">
-      <label class="field-label">Convert To</label>
+      <label class="field-label" for="icFormat">Convert To</label>
       <select id="icFormat" class="field">
         <option value="image/png">PNG</option>
         <option value="image/jpeg">JPG</option>
         <option value="image/webp">WebP</option>
       </select>
       <div style="margin-top:16px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
-        <img id="icPreview" style="max-width:160px;border-radius:10px;border:1px solid var(--border);">
-        <a id="icDownload" class="btn btn-primary" download="converted">Download Converted Image</a>
+        <img id="icPreview" style="max-width:160px;border-radius:10px;border:1px solid var(--border);" alt="Converted Preview">
+        <a id="icDownload" class="btn btn-primary" download="converted.png">Download Converted Image</a>
       </div>
     </div>
     <div class="toolbar-row">
@@ -211,24 +210,6 @@
   </div>
 </div>
 
-<div class="wrap tool-section">
-  <h2>You May Also Like</h2>
-  <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
-      </a>
-      <a href="percentage-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div>
-      </a>
-      <a href="bmi-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div>
-      </a>
-  </div>
-</div>
-
 <div class="wrap tool-section" style="border-bottom:1px solid var(--border);">
   <h2>Comments</h2>
   <div class="comment-box">
@@ -239,46 +220,87 @@
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
-const icDrop=document.getElementById('icDrop');
-const icFile=document.getElementById('icFile');
-let icImg=new Image();
-icDrop.addEventListener('click',()=>icFile.click());
-icDrop.addEventListener('dragover',e=>e.preventDefault());
-icDrop.addEventListener('drop',e=>{e.preventDefault(); if(e.dataTransfer.files[0]) loadIc(e.dataTransfer.files[0]);});
-icFile.addEventListener('change',()=>{ if(icFile.files[0]) loadIc(icFile.files[0]); });
-function loadIc(file){
-  const reader=new FileReader();
-  reader.onload=(e)=>{
-    icImg.onload=()=>{
-      document.getElementById('icControls').style.display='block';
-      document.getElementById('icPreview').src = e.target.result;
+let createdObjectUrl = null;
+let baseFileName = 'converted';
+
+const icDrop = document.getElementById('icDrop');
+const icFile = document.getElementById('icFile');
+let icImg = new Image();
+
+icDrop.addEventListener('click', () => icFile.click());
+icDrop.addEventListener('dragover', e => e.preventDefault());
+icDrop.addEventListener('drop', e => {
+  e.preventDefault();
+  if (e.dataTransfer.files[0] && e.dataTransfer.files[0].type.startsWith('image/')) {
+    loadIc(e.dataTransfer.files[0]);
+  }
+});
+
+icFile.addEventListener('change', () => {
+  if (icFile.files[0]) loadIc(icFile.files[0]);
+});
+
+function loadIc(file) {
+  baseFileName = file.name.replace(/\.[^/.]+$/, "");
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    icImg.onload = () => {
+      document.getElementById('icControls').style.display = 'block';
       convertIc();
     };
     icImg.src = e.target.result;
   };
   reader.readAsDataURL(file);
 }
+
 document.getElementById('icFormat').addEventListener('change', convertIc);
-function convertIc(){
+
+function convertIc() {
   const format = document.getElementById('icFormat').value;
-  const canvas=document.createElement('canvas');
-  canvas.width=icImg.width; canvas.height=icImg.height;
-  const ctx=canvas.getContext('2d');
-  if(format==='image/jpeg'){ ctx.fillStyle='#FFFFFF'; ctx.fillRect(0,0,canvas.width,canvas.height); }
-  ctx.drawImage(icImg,0,0);
-  canvas.toBlob(blob=>{
-    const url = URL.createObjectURL(blob);
-    const ext = format.split('/')[1];
-    document.getElementById('icDownload').href = url;
-    document.getElementById('icDownload').download = 'converted.'+ext;
+  const canvas = document.createElement('canvas');
+  canvas.width = icImg.width;
+  canvas.height = icImg.height;
+  const ctx = canvas.getContext('2d');
+
+  // Fill background white if converting to JPG (transparency support fix)
+  if (format === 'image/jpeg') {
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
+  ctx.drawImage(icImg, 0, 0);
+
+  canvas.toBlob(blob => {
+    if (!blob) return;
+    if (createdObjectUrl) {
+      URL.revokeObjectURL(createdObjectUrl);
+    }
+    createdObjectUrl = URL.createObjectURL(blob);
+    
+    const ext = format === 'image/jpeg' ? 'jpg' : format.split('/')[1];
+    const fileName = `${baseFileName}.${ext}`;
+
+    document.getElementById('icPreview').src = createdObjectUrl;
+    const downloadBtn = document.getElementById('icDownload');
+    downloadBtn.href = createdObjectUrl;
+    downloadBtn.download = fileName;
   }, format, 0.92);
 }
-window.resetTool=function(){document.getElementById('icControls').style.display='none'; icFile.value='';};
-window.copyResult=function(){ alert('Use the Download button to save the converted image.'); };
+
+window.resetTool = function() {
+  document.getElementById('icControls').style.display = 'none';
+  icFile.value = '';
+  if (createdObjectUrl) {
+    URL.revokeObjectURL(createdObjectUrl);
+    createdObjectUrl = null;
+  }
+};
+
+window.copyResult = function() {
+  alert('Use the "Download Converted Image" button to save your file.');
+};
 </script>
 <script>
 function postComment(){
