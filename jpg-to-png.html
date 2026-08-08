@@ -22,7 +22,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -103,11 +102,11 @@
     <div class="upload-drop" id="j2pDrop">
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
       <div>Click or drag a JPG image here</div>
-      <input type="file" id="j2pFile" accept="image/jpeg" style="display:none;">
+      <input type="file" id="j2pFile" accept="image/jpeg,image/jpg" style="display:none;">
     </div>
     <div class="result-box" id="j2pResult">
       <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
-        <img id="j2pPreview" style="max-width:160px;border-radius:10px;border:1px solid var(--border);">
+        <img id="j2pPreview" style="max-width:160px;border-radius:10px;border:1px solid var(--border);" alt="Converted Preview">
         <a id="j2pDownload" class="btn btn-primary" download="converted.png">Download PNG</a>
       </div>
     </div>
@@ -204,24 +203,6 @@
   </div>
 </div>
 
-<div class="wrap tool-section">
-  <h2>You May Also Like</h2>
-  <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
-      </a>
-      <a href="percentage-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div>
-      </a>
-      <a href="bmi-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div>
-      </a>
-  </div>
-</div>
-
 <div class="wrap tool-section" style="border-bottom:1px solid var(--border);">
   <h2>Comments</h2>
   <div class="comment-box">
@@ -232,27 +213,51 @@
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
-const j2pDrop=document.getElementById('j2pDrop');
-const j2pFile=document.getElementById('j2pFile');
-j2pDrop.addEventListener('click',()=>j2pFile.click());
-j2pDrop.addEventListener('dragover',e=>e.preventDefault());
-j2pDrop.addEventListener('drop',e=>{e.preventDefault(); if(e.dataTransfer.files[0]) convertJ2P(e.dataTransfer.files[0]);});
-j2pFile.addEventListener('change',()=>{ if(j2pFile.files[0]) convertJ2P(j2pFile.files[0]); });
-function convertJ2P(file){
-  const img=new Image();
-  const reader=new FileReader();
-  reader.onload=(e)=>{
-    img.onload=()=>{
-      const canvas=document.createElement('canvas');
-      canvas.width=img.width; canvas.height=img.height;
-      canvas.getContext('2d').drawImage(img,0,0);
-      canvas.toBlob(blob=>{
+let createdObjectUrl = null;
+let currentFileName = 'converted.png';
+
+const j2pDrop = document.getElementById('j2pDrop');
+const j2pFile = document.getElementById('j2pFile');
+
+j2pDrop.addEventListener('click', () => j2pFile.click());
+j2pDrop.addEventListener('dragover', e => e.preventDefault());
+j2pDrop.addEventListener('drop', e => {
+  e.preventDefault();
+  const file = e.dataTransfer.files[0];
+  if (file && (file.type === 'image/jpeg' || file.name.match(/\.(jpg|jpeg)$/i))) {
+    convertJ2P(file);
+  }
+});
+
+j2pFile.addEventListener('change', () => {
+  if (j2pFile.files[0]) convertJ2P(j2pFile.files[0]);
+});
+
+function convertJ2P(file) {
+  currentFileName = file.name.replace(/\.[^/.]+$/, "") + ".png";
+  const img = new Image();
+  const reader = new FileReader();
+
+  reader.onload = (e) => {
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+
+      canvas.toBlob(blob => {
+        if (!blob) return;
+        if (createdObjectUrl) {
+          URL.revokeObjectURL(createdObjectUrl);
+        }
+        createdObjectUrl = URL.createObjectURL(blob);
         document.getElementById('j2pPreview').src = e.target.result;
-        document.getElementById('j2pDownload').href = URL.createObjectURL(blob);
+        const downloadBtn = document.getElementById('j2pDownload');
+        downloadBtn.href = createdObjectUrl;
+        downloadBtn.download = currentFileName;
         document.getElementById('j2pResult').classList.add('show');
       }, 'image/png');
     };
@@ -260,8 +265,19 @@ function convertJ2P(file){
   };
   reader.readAsDataURL(file);
 }
-window.resetTool=function(){j2pFile.value='';document.getElementById('j2pResult').classList.remove('show');};
-window.copyResult=function(){ alert('Use the Download button to save the PNG image.'); };
+
+window.resetTool = function() {
+  j2pFile.value = '';
+  document.getElementById('j2pResult').classList.remove('show');
+  if (createdObjectUrl) {
+    URL.revokeObjectURL(createdObjectUrl);
+    createdObjectUrl = null;
+  }
+};
+
+window.copyResult = function() {
+  alert('Use the "Download PNG" button to save your file.');
+};
 </script>
 <script>
 function postComment(){
