@@ -255,18 +255,31 @@ if(window.TTGeo){
 }
 </script>
 <script>
-document.getElementById('fcBtn').addEventListener('click',()=>{
-  const dist=parseFloat(document.getElementById('fcDist').value);
-  const mileage=parseFloat(document.getElementById('fcMileage').value);
-  const price=parseFloat(document.getElementById('fcPrice').value);
-  if(!dist||!mileage||!price){alert('Please fill all fields with valid numbers');return;}
-  const liters = dist/mileage;
-  const cost = liters*price;
+document.getElementById('fcBtn').addEventListener('click', () => {
+  const dist = parseFloat(document.getElementById('fcDist').value);
+  const mileage = parseFloat(document.getElementById('fcMileage').value);
+  const price = parseFloat(document.getElementById('fcPrice').value);
+
+  if (isNaN(dist) || isNaN(mileage) || isNaN(price) || dist <= 0 || mileage <= 0 || price < 0) {
+    alert('Please enter valid positive values for Distance, Mileage, and Fuel Price.');
+    return;
+  }
+
+  const liters = dist / mileage;
+  const cost = liters * price;
+  const sym = window.ttCurSym ? window.ttCurSym + ' ' : '';
+
   document.getElementById('fcLiters').textContent = liters.toFixed(2);
-  document.getElementById('fcCost').textContent = (window.ttCurSym||'') + cost.toFixed(0);
+  document.getElementById('fcCost').textContent = sym + Math.round(cost).toLocaleString();
   document.getElementById('fcResult').classList.add('show');
 });
-window.resetTool=function(){['fcDist','fcMileage','fcPrice'].forEach(id=>document.getElementById(id).value='');document.getElementById('fcResult').classList.remove('show');};
+
+window.resetTool = function() {
+  ['fcDist', 'fcMileage', 'fcPrice'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('fcLiters').textContent = '0';
+  document.getElementById('fcCost').textContent = '0';
+  document.getElementById('fcResult').classList.remove('show');
+};
 </script>
 <script>
 function postComment(){
