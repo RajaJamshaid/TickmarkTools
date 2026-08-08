@@ -256,23 +256,63 @@ if(window.TTGeo){
 }
 </script>
 <script>
-document.getElementById('retBtn').addEventListener('click',()=>{
-  const age=parseFloat(document.getElementById('retAge').value);
-  const retAge=parseFloat(document.getElementById('retRetAge').value);
-  const savings=parseFloat(document.getElementById('retSavings').value)||0;
-  const monthly=parseFloat(document.getElementById('retMonthly').value)||0;
-  const rate=parseFloat(document.getElementById('retReturn').value);
-  if(!age||!retAge||retAge<=age||isNaN(rate)){alert('Please fill all fields with valid values');return;}
-  const years = retAge-age;
-  const months = years*12;
-  const monthlyRate = rate/100/12;
-  let future = savings*Math.pow(1+monthlyRate, months);
-  if(monthlyRate>0){ future += monthly*((Math.pow(1+monthlyRate,months)-1)/monthlyRate); }
-  else { future += monthly*months; }
-  document.getElementById('retFuture').textContent = (window.ttCurSym||'') + future.toLocaleString(undefined,{maximumFractionDigits:0});
+document.getElementById('retBtn').addEventListener('click', () => {
+  const ageVal = document.getElementById('retAge').value.trim();
+  const retAgeVal = document.getElementById('retRetAge').value.trim();
+  const savingsVal = document.getElementById('retSavings').value.trim();
+  const monthlyVal = document.getElementById('retMonthly').value.trim();
+  const rateVal = document.getElementById('retReturn').value.trim();
+
+  if (ageVal === '' || retAgeVal === '' || rateVal === '') {
+    alert('Please enter your Current Age, Retirement Age, and Expected Return Rate.');
+    return;
+  }
+
+  const age = parseFloat(ageVal);
+  const retAge = parseFloat(retAgeVal);
+  const savings = parseFloat(savingsVal) || 0;
+  const monthly = parseFloat(monthlyVal) || 0;
+  const rate = parseFloat(rateVal);
+
+  if (isNaN(age) || isNaN(retAge) || isNaN(rate) || age < 0 || retAge < 0) {
+    alert('Please enter valid positive numbers for ages.');
+    return;
+  }
+
+  if (retAge <= age) {
+    alert('Retirement age must be greater than your current age.');
+    return;
+  }
+
+  if (savings < 0 || monthly < 0 || rate < 0) {
+    alert('Savings, monthly contributions, and return rates cannot be negative.');
+    return;
+  }
+
+  const years = retAge - age;
+  const months = years * 12;
+  const monthlyRate = rate / 100 / 12;
+
+  let future = 0;
+  if (monthlyRate === 0) {
+    future = savings + (monthly * months);
+  } else {
+    future = savings * Math.pow(1 + monthlyRate, months);
+    future += monthly * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
+  }
+
+  const sym = window.ttCurSym || '';
+  document.getElementById('retFuture').textContent = sym + Math.round(future).toLocaleString('en-US');
   document.getElementById('retResult').classList.add('show');
 });
-window.resetTool=function(){['retAge','retRetAge','retSavings','retMonthly','retReturn'].forEach(id=>document.getElementById(id).value='');document.getElementById('retResult').classList.remove('show');};
+
+window.resetTool = function() {
+  ['retAge', 'retRetAge', 'retSavings', 'retMonthly', 'retReturn'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('retFuture').textContent = '0';
+  document.getElementById('retResult').classList.remove('show');
+};
 </script>
 <script>
 function postComment(){
