@@ -22,7 +22,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -100,9 +99,10 @@
 
 <div class="wrap">
   <div class="tool-panel">
-    <label class="field-label">CSS Input</label>
+    <label class="field-label" for="cssInput">CSS Input</label>
     <textarea id="cssInput" class="field" style="min-height:180px;font-family:'IBM Plex Mono',monospace;" placeholder="body {&#10;  /* comment */&#10;  color: red;&#10;}"></textarea>
     <div style="margin-top:14px;"><button class="btn btn-primary" id="cssMinBtn">Minify CSS</button></div>
+    <div id="cssError" style="color:#EF4444;font-size:13.5px;margin-top:10px;display:none;"></div>
     <div class="result-box" id="cssResult">
       <div style="font-size:13px;color:var(--ink-soft);margin-bottom:8px;" id="cssStats"></div>
       <pre id="cssOutput" class="mono" style="white-space:pre-wrap;font-size:13px;margin:0;word-break:break-all;"></pre>
@@ -200,24 +200,6 @@
   </div>
 </div>
 
-<div class="wrap tool-section">
-  <h2>You May Also Like</h2>
-  <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
-      </a>
-      <a href="percentage-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div>
-      </a>
-      <a href="bmi-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">BMI Calculator</h4></div>
-      </a>
-  </div>
-</div>
-
 <div class="wrap tool-section" style="border-bottom:1px solid var(--border);">
   <h2>Comments</h2>
   <div class="comment-box">
@@ -228,23 +210,57 @@
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
 <script src="assets/main.js"></script>
 <script>
-document.getElementById('cssMinBtn').addEventListener('click',()=>{
+document.getElementById('cssMinBtn').addEventListener('click', () => {
   let css = document.getElementById('cssInput').value;
+  const errEl = document.getElementById('cssError');
+  errEl.style.display = 'none';
+
+  if (!css.trim()) {
+    errEl.textContent = 'Please enter CSS code to minify.';
+    errEl.style.display = 'block';
+    document.getElementById('cssResult').classList.remove('show');
+    return;
+  }
+
   const origLen = css.length;
   css = css.replace(/\/\*[\s\S]*?\*\//g, '');
   css = css.replace(/\s*([{}:;,])\s*/g, '$1');
   css = css.replace(/;}/g, '}');
   css = css.replace(/\s{2,}/g, ' ');
   css = css.trim();
-  document.getElementById('cssStats').textContent = `${origLen} → ${css.length} characters (${Math.round((1-css.length/origLen)*100)}% smaller)`;
+
+  const savings = origLen > 0 ? Math.round((1 - css.length / origLen) * 100) : 0;
+  document.getElementById('cssStats').textContent = `${origLen} → ${css.length} characters (${savings}% smaller)`;
   document.getElementById('cssOutput').textContent = css;
   document.getElementById('cssResult').classList.add('show');
 });
-window.resetTool=function(){document.getElementById('cssInput').value='';document.getElementById('cssResult').classList.remove('show');};
+
+window.resetTool = function() {
+  document.getElementById('cssInput').value = '';
+  document.getElementById('cssError').style.display = 'none';
+  document.getElementById('cssOutput').textContent = '';
+  document.getElementById('cssStats').textContent = '';
+  document.getElementById('cssResult').classList.remove('show');
+};
+
+window.copyResult = function() {
+  const out = document.getElementById('cssOutput');
+  const text = out.textContent || out.innerText;
+  if (!text) {
+    alert('Please minify CSS first.');
+    return;
+  }
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyResultBtn');
+    const old = btn.textContent;
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = old, 1500);
+  }).catch(() => {
+    alert('Failed to copy text.');
+  });
+};
 </script>
 <script>
 function postComment(){
@@ -259,7 +275,7 @@ function postComment(){
   list.prepend(item);
   input.value = '';
 }
-document.getElementById('commentInput').addEventListener('keydown', (e)=>{
+document.getElementById('commentInput').addEventListener('keydown', (e) => {
   if(e.key === 'Enter') postComment();
 });
 </script>
