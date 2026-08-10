@@ -830,8 +830,8 @@ footer.compact-footer{border-top:1px solid var(--line);}
 
     <h3>Real-world EAN13 examples</h3>
     <div class="tt-examples-grid">
-      <button class="tt-example-card" data-val="8901030826197" data-fmt="EAN13" type="button">
-        <span class="tag">Retail</span><h5>📦 Retail product</h5><span class="val">8901030826197</span>
+      <button class="tt-example-card" data-val="8901030826191" data-fmt="EAN13" type="button">
+        <span class="tag">Retail</span><h5>📦 Retail product</h5><span class="val">8901030826191</span>
       </button>
       <button class="tt-example-card" data-val="9780132350884" data-fmt="EAN13" type="button">
         <span class="tag">Publishing</span><h5>📚 Book ISBN-13</h5><span class="val">9780132350884</span>
@@ -1254,12 +1254,104 @@ footer.compact-footer{border-top:1px solid var(--line);}
   }
   function hideBcError(){ bcErrorBox.classList.remove('show'); }
 
+  /* ---------- Checksum & format validation (GS1 / standard barcode algorithms) ----------
+     Verified independently against known reference values before use:
+     EAN13 "590123412345" + check digit -> 7  (5901234123457, official GS1 example)
+     UPC   "03600029145" + check digit  -> 2  (036000291452)
+     UPC   "01234567890" + check digit  -> 5  (012345678905)
+     UPC   "00000000000" + check digit  -> 0  (000000000000)
+     Formulas confirmed correct against all four reference values. */
+  function calcEAN13CheckDigit(d12){
+    // GS1 EAN-13: positions 1,3,5,7,9,11 (odd, left-to-right, 1-indexed) weight x1; positions 2,4,6,8,10,12 weight x3
+    var sum = 0;
+    for(var i = 0; i < 12; i++){
+      var digit = d12.charCodeAt(i) - 48;
+      sum += (i % 2 === 0) ? digit : digit * 3;
+    }
+    return (10 - (sum % 10)) % 10;
+  }
+  function calcUPCCheckDigit(d11){
+    // UPC-A: positions 1,3,5,7,9,11 (odd, left-to-right, 1-indexed) weight x3; positions 2,4,6,8,10 weight x1
+    var sum = 0;
+    for(var i = 0; i < 11; i++){
+      var digit = d11.charCodeAt(i) - 48;
+      sum += (i % 2 === 0) ? digit * 3 : digit;
+    }
+    return (10 - (sum % 10)) % 10;
+  }
+  var CODE39_ALLOWED_RE = /^[0-9A-Z\-. $\/+%]+$/;
+
+  /* Validates and, where possible, corrects the raw input for the chosen format.
+     Returns { ok:true, value } on success (value is the exact string to encode),
+     or { ok:false, message } with a specific, actionable error. */
+  function validateBarcodeInput(format, raw){
+    if(format === 'EAN13'){
+      if(!/^[0-9]+$/.test(raw)) return {ok:false, message:'EAN13 accepts digits only (0-9) — no letters or symbols.'};
+      if(raw.length === 12){
+        return {ok:true, value: raw + calcEAN13CheckDigit(raw)};
+      }
+      if(raw.length === 13){
+        var expected = calcEAN13CheckDigit(raw.slice(0, 12));
+        var actual = raw.charCodeAt(12) - 48;
+        if(expected !== actual){
+          return {ok:false, message:'Invalid EAN13 checksum — the last digit should be ' + expected + ', not ' + actual + '. Enter just the first 12 digits and the check digit will be calculated for you.'};
+        }
+        return {ok:true, value: raw};
+      }
+      return {ok:false, message:'EAN13 needs exactly 12 digits (the check digit is added automatically) or 13 digits (including the check digit). You entered ' + raw.length + '.'};
+    }
+    if(format === 'UPC'){
+      if(!/^[0-9]+$/.test(raw)) return {ok:false, message:'UPC accepts digits only (0-9) — no letters or symbols.'};
+      if(raw.length === 11){
+        return {ok:true, value: raw + calcUPCCheckDigit(raw)};
+      }
+      if(raw.length === 12){
+        var expectedU = calcUPCCheckDigit(raw.slice(0, 11));
+        var actualU = raw.charCodeAt(11) - 48;
+        if(expectedU !== actualU){
+          return {ok:false, message:'Invalid UPC checksum — the last digit should be ' + expectedU + ', not ' + actualU + '. Enter just the first 11 digits and the check digit will be calculated for you.'};
+        }
+        return {ok:true, value: raw};
+      }
+      return {ok:false, message:'UPC needs exactly 11 digits (the check digit is added automatically) or 12 digits (including the check digit). You entered ' + raw.length + '.'};
+    }
+    if(format === 'CODE39'){
+      var upper = raw.toUpperCase();
+      if(!CODE39_ALLOWED_RE.test(upper)){
+        var seen = {}, bad = [];
+        for(var k = 0; k < upper.length; k++){
+          var ch = upper.charAt(k);
+          if(!/[0-9A-Z\-. $\/+%]/.test(ch) && !seen[ch]){ seen[ch] = true; bad.push(ch === ' ' ? '(space)' : ch); }
+        }
+        return {ok:false, message:'CODE39 only supports A-Z, 0-9, space, and - . $ / + %. Remove: ' + bad.join(' ')};
+      }
+      return {ok:true, value: upper};
+    }
+    if(format === 'CODE128'){
+      for(var j = 0; j < raw.length; j++){
+        if(raw.charCodeAt(j) > 127){
+          return {ok:false, message:'CODE128 only supports standard ASCII characters. Remove any emoji, accented letters, or other non-ASCII characters.'};
+        }
+      }
+      if(raw.length > 80){
+        return {ok:false, message:'That value is ' + raw.length + ' characters — very long values become unreadable to scanners once printed. Try shortening it to under 80 characters.'};
+      }
+      return {ok:true, value: raw};
+    }
+    return {ok:true, value: raw};
+  }
+
   function generateBarcode(){
     hideBcError();
     var text = bcTextInput.value.trim();
     var format = bcFormatSelect.value;
     if(!text){ showBcError('Please enter text or a number to encode.'); bcTextInput.focus(); return; }
     if(typeof JsBarcode === 'undefined'){ showBcError('Barcode library is still loading. Please try again in a moment.'); return; }
+
+    var validation = validateBarcodeInput(format, text);
+    if(!validation.ok){ showBcError(validation.message); bcTextInput.focus(); return; }
+    var encodedValue = validation.value;
+    if(encodedValue !== text){ bcTextInput.value = encodedValue; }
 
     [bcGenBtn, bcStickyGen].forEach(function(b){ if(b){ b.classList.add('is-loading'); b.disabled = true; } });
     bcEmptyState.style.display = 'none';
@@ -1269,7 +1361,7 @@ footer.compact-footer{border-top:1px solid var(--line);}
 
     window.setTimeout(function(){
       try{
-        JsBarcode('#bcSvg', text, { format: format, lineColor:'#12181A', width:2, height:80, displayValue:true, margin:10 });
+        JsBarcode('#bcSvg', encodedValue, { format: format, lineColor:'#12181A', width:2, height:80, displayValue:true, margin:10 });
         bcSkeleton.style.display = 'none';
         bcResultBox.classList.add('show');
         hasResult = true;
@@ -1308,7 +1400,7 @@ footer.compact-footer{border-top:1px solid var(--line);}
               currentDownloadUrl = URL.createObjectURL(blob);
               var dlLink = document.getElementById('bcDownload');
               dlLink.href = currentDownloadUrl;
-              dlLink.download = 'barcode-' + format.toLowerCase() + '-' + text.replace(/[^a-zA-Z0-9]/g, '_') + '.png';
+              dlLink.download = 'barcode-' + format.toLowerCase() + '-' + encodedValue.replace(/[^a-zA-Z0-9]/g, '_') + '.png';
 
               URL.revokeObjectURL(url); // Memory clean-up for the intermediate SVG blob
             }, 'image/png');
