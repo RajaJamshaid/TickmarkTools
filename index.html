@@ -39,7 +39,7 @@
   "url": "https://tickmarktools.com/",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://tickmarktools.com/sitemap.html?q={search_term_string}",
+    "target": "https://tickmarktools.com/?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 }
@@ -476,6 +476,7 @@
     font-size:15px; font-weight:600; color:var(--primary); margin-top:10px;
     letter-spacing:.01em;
   }
+
   /* ADSENSE PLACEHOLDERS */
   .adsense-slot{
     width:100%;
@@ -734,6 +735,25 @@ html[data-theme="dark"] .tt-gtd-panel{background:#050807;}
 .tt-gtd-item:last-child{border-bottom:none}.tt-gtd-circle{width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center}
 .tt-gtd-circle svg{width:11px;height:11px;opacity:0;transform:scale(.5);transition:.3s}.tt-gtd-done{color:#fff}.tt-gtd-done .tt-gtd-circle{background:var(--primary);border-color:var(--primary)}.tt-gtd-done .tt-gtd-circle svg{opacity:1;transform:scale(1)}
 
+/* PRO / AI BADGE STYLING */
+.nav-pro-badge {
+  background: linear-gradient(135deg, #FF6A4D, #146356);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700 !important;
+  position: relative;
+}
+.nav-pro-badge::after {
+  content: 'NEW';
+  font-size: 9px;
+  background: #FF6A4D;
+  color: #fff;
+  padding: 1px 5px;
+  border-radius: 4px;
+  margin-left: 4px;
+  vertical-align: middle;
+  -webkit-text-fill-color: #fff;
+}
 </style>
 </head>
 <body>
@@ -747,11 +767,12 @@ html[data-theme="dark"] .tt-gtd-panel{background:#050807;}
         <span class="logo-word">Tickmark<span style="color: var(--primary);">Tools</span></span>
       </div>
       <div class="nav-links" id="navLinks">
-        <a href="calculators.html">Calculators</a>
-        <a href="pdf-tools.html">PDF Tools</a>
-        <a href="image-tools.html">Image Tools</a>
-        <a href="text-tools.html">Text Tools</a>
-        <a href="developer-tools.html">Developer Tools</a>
+        <a href="/calculators">Calculators</a>
+        <a href="/pdf-tools">PDF Tools</a>
+        <a href="/image-tools">Image Tools</a>
+        <a href="/text-tools">Text Tools</a>
+        <a href="/developer-tools">Developer Tools</a>
+        <a href="/ai-tools" class="nav-pro-badge">AI Tools ⚡</a>
       </div>
       <div class="nav-right">
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" type="button">
@@ -821,7 +842,7 @@ html[data-theme="dark"] .tt-gtd-panel{background:#050807;}
 <div class="tt-gtd-item"><div class="tt-gtd-circle"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div><span>Image Compressor</span></div>
 <div class="tt-gtd-item"><div class="tt-gtd-circle"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div><span>JSON Formatter</span></div>
 </div></div>
-</div></section>
+</div></div></section>
 
 <!-- Google AdSense Slot 1 -->
 <div class="adsense-slot" aria-hidden="true">
@@ -862,12 +883,12 @@ html[data-theme="dark"] .tt-gtd-panel{background:#050807;}
       <a href="#categories" class="view-all">View All Tools →</a>
     </div>
     <div class="tool-grid">
-      <a href="age-calculator.html" class="tool-card" data-tool="Age Calculator"><div class="tool-emoji">🎂</div><div><h4>Age Calculator <span class="badge-hot">HOT</span></h4><span class="tag">Calculators</span></div></a>
-      <a href="pdf-merge.html" class="tool-card" data-tool="PDF Merge"><div class="tool-emoji">📄</div><div><h4>PDF Merge <span class="badge-hot">HOT</span></h4><span class="tag">PDF Tools</span></div></a>
-      <a href="image-compressor.html" class="tool-card" data-tool="Image Compressor"><div class="tool-emoji">🖼️</div><div><h4>Image Compressor</h4><span class="tag">Image Tools</span></div></a>
-      <a href="word-counter.html" class="tool-card" data-tool="Word Counter"><div class="tool-emoji">📝</div><div><h4>Word Counter</h4><span class="tag">Text Tools</span></div></a>
-      <a href="qr-code-generator.html" class="tool-card" data-tool="QR Code Generator"><div class="tool-emoji">🔗</div><div><h4>QR Generator <span class="badge-hot">HOT</span></h4><span class="tag">Productivity</span></div></a>
-      <a href="password-generator.html" class="tool-card" data-tool="Password Generator"><div class="tool-emoji">🔐</div><div><h4>Password Generator</h4><span class="tag">Developer Tools</span></div></a>
+      <a href="/age-calculator" class="tool-card" data-tool="Age Calculator"><div class="tool-emoji">🎂</div><div><h4>Age Calculator <span class="badge-hot">HOT</span></h4><span class="tag">Calculators</span></div></a>
+      <a href="/pdf-merge" class="tool-card" data-tool="PDF Merge"><div class="tool-emoji">📄</div><div><h4>PDF Merge <span class="badge-hot">HOT</span></h4><span class="tag">PDF Tools</span></div></a>
+      <a href="/image-compressor" class="tool-card" data-tool="Image Compressor"><div class="tool-emoji">🖼️</div><div><h4>Image Compressor</h4><span class="tag">Image Tools</span></div></a>
+      <a href="/word-counter" class="tool-card" data-tool="Word Counter"><div class="tool-emoji">📝</div><div><h4>Word Counter</h4><span class="tag">Text Tools</span></div></a>
+      <a href="/qr-code-generator" class="tool-card" data-tool="QR Code Generator"><div class="tool-emoji">🔗</div><div><h4>QR Generator <span class="badge-hot">HOT</span></h4><span class="tag">Productivity</span></div></a>
+      <a href="/password-generator" class="tool-card" data-tool="Password Generator"><div class="tool-emoji">🔐</div><div><h4>Password Generator</h4><span class="tag">Developer Tools</span></div></a>
     </div>
   </div>
 </section>
@@ -882,12 +903,12 @@ html[data-theme="dark"] .tt-gtd-panel{background:#050807;}
       <a href="#categories" class="view-all">View All Tools →</a>
     </div>
     <div class="tool-grid">
-      <a href="percentage-calculator.html" class="tool-card" data-tool="Percentage Calculator"><div class="tool-emoji">📉</div><div><h4>Percentage Calculator <span class="badge-trend">TRENDING</span></h4><span class="tag">Calculators</span></div></a>
-      <a href="pdf-compress.html" class="tool-card" data-tool="PDF Compress"><div class="tool-emoji">🗜️</div><div><h4>PDF Compress <span class="badge-trend">TRENDING</span></h4><span class="tag">PDF Tools</span></div></a>
-      <a href="currency-converter.html" class="tool-card" data-tool="Currency Converter"><div class="tool-emoji">💱</div><div><h4>Currency Converter</h4><span class="tag">Finance Tools</span></div></a>
-      <a href="income-tax-calculator.html" class="tool-card" data-tool="Income Tax Calculator"><div class="tool-emoji">🧾</div><div><h4>Income Tax Calculator <span class="badge-trend">TRENDING</span></h4><span class="tag">Finance Tools</span></div></a>
-      <a href="json-validator.html" class="tool-card" data-tool="JSON Validator"><div class="tool-emoji">✅</div><div><h4>JSON Validator</h4><span class="tag">Developer Tools</span></div></a>
-      <a href="color-picker.html" class="tool-card" data-tool="Color Picker"><div class="tool-emoji">🎨</div><div><h4>Color Picker</h4><span class="tag">Developer Tools</span></div></a>
+      <a href="/percentage-calculator" class="tool-card" data-tool="Percentage Calculator"><div class="tool-emoji">📉</div><div><h4>Percentage Calculator <span class="badge-trend">TRENDING</span></h4><span class="tag">Calculators</span></div></a>
+      <a href="/pdf-compress" class="tool-card" data-tool="PDF Compress"><div class="tool-emoji">🗜️</div><div><h4>PDF Compress <span class="badge-trend">TRENDING</span></h4><span class="tag">PDF Tools</span></div></a>
+      <a href="/currency-converter" class="tool-card" data-tool="Currency Converter"><div class="tool-emoji">💱</div><div><h4>Currency Converter</h4><span class="tag">Finance Tools</span></div></a>
+      <a href="/income-tax-calculator" class="tool-card" data-tool="Income Tax Calculator"><div class="tool-emoji">🧾</div><div><h4>Income Tax Calculator <span class="badge-trend">TRENDING</span></h4><span class="tag">Finance Tools</span></div></a>
+      <a href="/json-validator" class="tool-card" data-tool="JSON Validator"><div class="tool-emoji">✅</div><div><h4>JSON Validator</h4><span class="tag">Developer Tools</span></div></a>
+      <a href="/color-picker" class="tool-card" data-tool="Color Picker"><div class="tool-emoji">🎨</div><div><h4>Color Picker</h4><span class="tag">Developer Tools</span></div></a>
     </div>
   </div>
 </section>
@@ -912,26 +933,26 @@ html[data-theme="dark"] .tt-gtd-panel{background:#050807;}
           <div class="cat-icon">🧮</div>
           <h3>Calculators</h3>
           <p>Loan, age, BMI, percentage and more.</p>
-          <div class="cat-foot"><span class="cat-count">17 tools</span><span class="cat-link">View All <svg class="acc-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+          <div class="cat-foot"><span class="cat-count">17 tools</span><a href="/calculators" class="cat-link" style="color:var(--primary); font-weight:700;">Explore Category <svg class="acc-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></a></div>
         </summary>
         <div class="tool-grid acc-grid">
-        <a href="age-calculator.html" class="tool-card" data-tool="Age Calculator"><div class="tool-emoji">🧮</div><div><h4>Age Calculator</h4><span class="tag">Calculators</span></div></a>
-        <a href="percentage-calculator.html" class="tool-card" data-tool="Percentage Calculator"><div class="tool-emoji">🧮</div><div><h4>Percentage Calculator</h4><span class="tag">Calculators</span></div></a>
-        <a href="bmi-calculator.html" class="tool-card" data-tool="BMI Calculator"><div class="tool-emoji">🧮</div><div><h4>BMI Calculator</h4><span class="tag">Calculators</span></div></a>
-        <a href="emi-loan-calculator.html" class="tool-card" data-tool="EMI / Loan Calculator"><div class="tool-emoji">🧮</div><div><h4>EMI / Loan Calculator</h4><span class="tag">Calculators</span></div></a>
-        <a href="mortgage-calculator.html" class="tool-card" data-tool="Mortgage Calculator"><div class="tool-emoji">🧮</div><div><h4>Mortgage Calculator</h4><span class="tag">Calculators</span></div></a>
-        <a href="compound-interest-calculator.html" class="tool-card" data-tool="Compound Interest Calculator"><div class="tool-emoji">🧮</div><div><h4>Compound Interest Calculator</h4><span class="tag">Calculators</span></div></a>
-        <a href="simple-interest-calculator.html" class="tool-card" data-tool="Simple Interest Calculator"><div class="tool-emoji">🧮</div><div><h4>Simple Interest Calculator</h4><span class="tag">Calculators</span></div></a>
-        <a href="sip-investment-calculator.html" class="tool-card" data-tool="SIP Investment Calculator"><div class="tool-emoji">🧮</div><div><h4>SIP Investment Calculator</h4><span class="tag">Calculators</span></div></a>
-        <a href="discount-calculator.html" class="tool-card" data-tool="Discount Calculator"><div class="tool-emoji">🧮</div><div><h4>Discount Calculator</h4><span class="tag">Calculators</span></div></a>
-        <a href="date-difference-calculator.html" class="tool-card" data-tool="Date Difference Calculator"><div class="tool-emoji">🧮</div><div><h4>Date Difference Calculator</h4><span class="tag">Calculators</span></div></a>
-        <a href="time-calculator.html" class="tool-card" data-tool="Time Calculator"><div class="tool-emoji">🧮</div><div><h4>Time Calculator</h4><span class="tag">Calculators</span></div></a>
-        <a href="calorie-calculator.html" class="tool-card" data-tool="Calorie Calculator"><div class="tool-emoji">🧮</div><div><h4>Calorie Calculator</h4><span class="tag">Calculators</span></div></a>
-        <a href="pregnancy-due-date-calculator.html" class="tool-card" data-tool="Pregnancy Due Date Calculator"><div class="tool-emoji">🧮</div><div><h4>Pregnancy Due Date Calculator</h4><span class="tag">Calculators</span></div></a>
-        <a href="fuel-cost-calculator.html" class="tool-card" data-tool="Fuel Cost Calculator"><div class="tool-emoji">🧮</div><div><h4>Fuel Cost Calculator</h4><span class="tag">Calculators</span></div></a>
-        <a href="electricity-bill-calculator.html" class="tool-card" data-tool="Electricity Bill Calculator"><div class="tool-emoji">🧮</div><div><h4>Electricity Bill Calculator</h4><span class="tag">Calculators</span></div></a>
-        <a href="gpa-cgpa-calculator.html" class="tool-card" data-tool="GPA / CGPA Calculator"><div class="tool-emoji">🧮</div><div><h4>GPA / CGPA Calculator</h4><span class="tag">Calculators</span></div></a>
-        <a href="retirement-calculator.html" class="tool-card" data-tool="Retirement Calculator"><div class="tool-emoji">🧮</div><div><h4>Retirement Calculator</h4><span class="tag">Calculators</span></div></a>
+        <a href="/age-calculator" class="tool-card" data-tool="Age Calculator"><div class="tool-emoji">🧮</div><div><h4>Age Calculator</h4><span class="tag">Calculators</span></div></a>
+        <a href="/percentage-calculator" class="tool-card" data-tool="Percentage Calculator"><div class="tool-emoji">🧮</div><div><h4>Percentage Calculator</h4><span class="tag">Calculators</span></div></a>
+        <a href="/bmi-calculator" class="tool-card" data-tool="BMI Calculator"><div class="tool-emoji">🧮</div><div><h4>BMI Calculator</h4><span class="tag">Calculators</span></div></a>
+        <a href="/emi-loan-calculator" class="tool-card" data-tool="EMI / Loan Calculator"><div class="tool-emoji">🧮</div><div><h4>EMI / Loan Calculator</h4><span class="tag">Calculators</span></div></a>
+        <a href="/mortgage-calculator" class="tool-card" data-tool="Mortgage Calculator"><div class="tool-emoji">🧮</div><div><h4>Mortgage Calculator</h4><span class="tag">Calculators</span></div></a>
+        <a href="/compound-interest-calculator" class="tool-card" data-tool="Compound Interest Calculator"><div class="tool-emoji">🧮</div><div><h4>Compound Interest Calculator</h4><span class="tag">Calculators</span></div></a>
+        <a href="/simple-interest-calculator" class="tool-card" data-tool="Simple Interest Calculator"><div class="tool-emoji">🧮</div><div><h4>Simple Interest Calculator</h4><span class="tag">Calculators</span></div></a>
+        <a href="/sip-investment-calculator" class="tool-card" data-tool="SIP Investment Calculator"><div class="tool-emoji">🧮</div><div><h4>SIP Investment Calculator</h4><span class="tag">Calculators</span></div></a>
+        <a href="/discount-calculator" class="tool-card" data-tool="Discount Calculator"><div class="tool-emoji">🧮</div><div><h4>Discount Calculator</h4><span class="tag">Calculators</span></div></a>
+        <a href="/date-difference-calculator" class="tool-card" data-tool="Date Difference Calculator"><div class="tool-emoji">🧮</div><div><h4>Date Difference Calculator</h4><span class="tag">Calculators</span></div></a>
+        <a href="/time-calculator" class="tool-card" data-tool="Time Calculator"><div class="tool-emoji">🧮</div><div><h4>Time Calculator</h4><span class="tag">Calculators</span></div></a>
+        <a href="/calorie-calculator" class="tool-card" data-tool="Calorie Calculator"><div class="tool-emoji">🧮</div><div><h4>Calorie Calculator</h4><span class="tag">Calculators</span></div></a>
+        <a href="/pregnancy-due-date-calculator" class="tool-card" data-tool="Pregnancy Due Date Calculator"><div class="tool-emoji">🧮</div><div><h4>Pregnancy Due Date Calculator</h4><span class="tag">Calculators</span></div></a>
+        <a href="/fuel-cost-calculator" class="tool-card" data-tool="Fuel Cost Calculator"><div class="tool-emoji">🧮</div><div><h4>Fuel Cost Calculator</h4><span class="tag">Calculators</span></div></a>
+        <a href="/electricity-bill-calculator" class="tool-card" data-tool="Electricity Bill Calculator"><div class="tool-emoji">🧮</div><div><h4>Electricity Bill Calculator</h4><span class="tag">Calculators</span></div></a>
+        <a href="/gpa-cgpa-calculator" class="tool-card" data-tool="GPA / CGPA Calculator"><div class="tool-emoji">🧮</div><div><h4>GPA / CGPA Calculator</h4><span class="tag">Calculators</span></div></a>
+        <a href="/retirement-calculator" class="tool-card" data-tool="Retirement Calculator"><div class="tool-emoji">🧮</div><div><h4>Retirement Calculator</h4><span class="tag">Calculators</span></div></a>
         </div>
       </details>
       <details class="cat-card acc-card">
@@ -939,12 +960,12 @@ html[data-theme="dark"] .tt-gtd-panel{background:#050807;}
           <div class="cat-icon">💰</div>
           <h3>Finance Tools</h3>
           <p>Currency, tax, investment calculators.</p>
-          <div class="cat-foot"><span class="cat-count">3 tools</span><span class="cat-link">View All <svg class="acc-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+          <div class="cat-foot"><span class="cat-count">3 tools</span><a href="/finance-tools" class="cat-link" style="color:var(--primary); font-weight:700;">Explore Category <svg class="acc-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></a></div>
         </summary>
         <div class="tool-grid acc-grid">
-        <a href="currency-converter.html" class="tool-card" data-tool="Currency Converter"><div class="tool-emoji">💰</div><div><h4>Currency Converter</h4><span class="tag">Finance Tools</span></div></a>
-        <a href="gst-vat-calculator.html" class="tool-card" data-tool="GST / VAT Calculator"><div class="tool-emoji">💰</div><div><h4>GST / VAT Calculator</h4><span class="tag">Finance Tools</span></div></a>
-        <a href="income-tax-calculator.html" class="tool-card" data-tool="Income Tax Calculator"><div class="tool-emoji">💰</div><div><h4>Income Tax Calculator</h4><span class="tag">Finance Tools</span></div></a>
+        <a href="/currency-converter" class="tool-card" data-tool="Currency Converter"><div class="tool-emoji">💰</div><div><h4>Currency Converter</h4><span class="tag">Finance Tools</span></div></a>
+        <a href="/gst-vat-calculator" class="tool-card" data-tool="GST / VAT Calculator"><div class="tool-emoji">💰</div><div><h4>GST / VAT Calculator</h4><span class="tag">Finance Tools</span></div></a>
+        <a href="/income-tax-calculator" class="tool-card" data-tool="Income Tax Calculator"><div class="tool-emoji">💰</div><div><h4>Income Tax Calculator</h4><span class="tag">Finance Tools</span></div></a>
         </div>
       </details>
       <details class="cat-card acc-card">
@@ -952,15 +973,15 @@ html[data-theme="dark"] .tt-gtd-panel{background:#050807;}
           <div class="cat-icon">📄</div>
           <h3>PDF Tools</h3>
           <p>Merge, split, compress, convert PDFs.</p>
-          <div class="cat-foot"><span class="cat-count">6 tools</span><span class="cat-link">View All <svg class="acc-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+          <div class="cat-foot"><span class="cat-count">6 tools</span><a href="/pdf-tools" class="cat-link" style="color:var(--primary); font-weight:700;">Explore Category <svg class="acc-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></a></div>
         </summary>
         <div class="tool-grid acc-grid">
-        <a href="pdf-merge.html" class="tool-card" data-tool="PDF Merge"><div class="tool-emoji">📄</div><div><h4>PDF Merge</h4><span class="tag">PDF Tools</span></div></a>
-        <a href="pdf-to-word.html" class="tool-card" data-tool="PDF to Word"><div class="tool-emoji">📄</div><div><h4>PDF to Word</h4><span class="tag">PDF Tools</span></div></a>
-        <a href="pdf-split.html" class="tool-card" data-tool="PDF Split"><div class="tool-emoji">📄</div><div><h4>PDF Split</h4><span class="tag">PDF Tools</span></div></a>
-        <a href="pdf-compress.html" class="tool-card" data-tool="PDF Compress"><div class="tool-emoji">📄</div><div><h4>PDF Compress</h4><span class="tag">PDF Tools</span></div></a>
-        <a href="pdf-to-jpg.html" class="tool-card" data-tool="PDF to JPG"><div class="tool-emoji">📄</div><div><h4>PDF to JPG</h4><span class="tag">PDF Tools</span></div></a>
-        <a href="word-to-pdf.html" class="tool-card" data-tool="Word to PDF"><div class="tool-emoji">📄</div><div><h4>Word to PDF</h4><span class="tag">PDF Tools</span></div></a>
+        <a href="/pdf-merge" class="tool-card" data-tool="PDF Merge"><div class="tool-emoji">📄</div><div><h4>PDF Merge</h4><span class="tag">PDF Tools</span></div></a>
+        <a href="/pdf-to-word" class="tool-card" data-tool="PDF to Word"><div class="tool-emoji">📄</div><div><h4>PDF to Word</h4><span class="tag">PDF Tools</span></div></a>
+        <a href="/pdf-split" class="tool-card" data-tool="PDF Split"><div class="tool-emoji">📄</div><div><h4>PDF Split</h4><span class="tag">PDF Tools</span></div></a>
+        <a href="/pdf-compress" class="tool-card" data-tool="PDF Compress"><div class="tool-emoji">📄</div><div><h4>PDF Compress</h4><span class="tag">PDF Tools</span></div></a>
+        <a href="/pdf-to-jpg" class="tool-card" data-tool="PDF to JPG"><div class="tool-emoji">📄</div><div><h4>PDF to JPG</h4><span class="tag">PDF Tools</span></div></a>
+        <a href="/word-to-pdf" class="tool-card" data-tool="Word to PDF"><div class="tool-emoji">📄</div><div><h4>Word to PDF</h4><span class="tag">PDF Tools</span></div></a>
         </div>
       </details>
       <details class="cat-card acc-card">
@@ -968,15 +989,15 @@ html[data-theme="dark"] .tt-gtd-panel{background:#050807;}
           <div class="cat-icon">🖼️</div>
           <h3>Image Tools</h3>
           <p>Compress, resize, convert, crop images.</p>
-          <div class="cat-foot"><span class="cat-count">6 tools</span><span class="cat-link">View All <svg class="acc-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+          <div class="cat-foot"><span class="cat-count">6 tools</span><a href="/image-tools" class="cat-link" style="color:var(--primary); font-weight:700;">Explore Category <svg class="acc-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></a></div>
         </summary>
         <div class="tool-grid acc-grid">
-        <a href="image-compressor.html" class="tool-card" data-tool="Image Compressor"><div class="tool-emoji">🖼️</div><div><h4>Image Compressor</h4><span class="tag">Image Tools</span></div></a>
-        <a href="image-resizer.html" class="tool-card" data-tool="Image Resizer"><div class="tool-emoji">🖼️</div><div><h4>Image Resizer</h4><span class="tag">Image Tools</span></div></a>
-        <a href="jpg-to-png.html" class="tool-card" data-tool="JPG to PNG"><div class="tool-emoji">🖼️</div><div><h4>JPG to PNG</h4><span class="tag">Image Tools</span></div></a>
-        <a href="png-to-jpg.html" class="tool-card" data-tool="PNG to JPG"><div class="tool-emoji">🖼️</div><div><h4>PNG to JPG</h4><span class="tag">Image Tools</span></div></a>
-        <a href="image-cropper.html" class="tool-card" data-tool="Image Cropper"><div class="tool-emoji">🖼️</div><div><h4>Image Cropper</h4><span class="tag">Image Tools</span></div></a>
-        <a href="image-converter.html" class="tool-card" data-tool="Image Converter"><div class="tool-emoji">🖼️</div><div><h4>Image Converter</h4><span class="tag">Image Tools</span></div></a>
+        <a href="/image-compressor" class="tool-card" data-tool="Image Compressor"><div class="tool-emoji">🖼️</div><div><h4>Image Compressor</h4><span class="tag">Image Tools</span></div></a>
+        <a href="/image-resizer" class="tool-card" data-tool="Image Resizer"><div class="tool-emoji">🖼️</div><div><h4>Image Resizer</h4><span class="tag">Image Tools</span></div></a>
+        <a href="/jpg-to-png" class="tool-card" data-tool="JPG to PNG"><div class="tool-emoji">🖼️</div><div><h4>JPG to PNG</h4><span class="tag">Image Tools</span></div></a>
+        <a href="/png-to-jpg" class="tool-card" data-tool="PNG to JPG"><div class="tool-emoji">🖼️</div><div><h4>PNG to JPG</h4><span class="tag">Image Tools</span></div></a>
+        <a href="/image-cropper" class="tool-card" data-tool="Image Cropper"><div class="tool-emoji">🖼️</div><div><h4>Image Cropper</h4><span class="tag">Image Tools</span></div></a>
+        <a href="/image-converter" class="tool-card" data-tool="Image Converter"><div class="tool-emoji">🖼️</div><div><h4>Image Converter</h4><span class="tag">Image Tools</span></div></a>
         </div>
       </details>
       <details class="cat-card acc-card">
@@ -984,15 +1005,15 @@ html[data-theme="dark"] .tt-gtd-panel{background:#050807;}
           <div class="cat-icon">📝</div>
           <h3>Text Tools</h3>
           <p>Word counter, case converter, diff checker.</p>
-          <div class="cat-foot"><span class="cat-count">6 tools</span><span class="cat-link">View All <svg class="acc-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+          <div class="cat-foot"><span class="cat-count">6 tools</span><a href="/text-tools" class="cat-link" style="color:var(--primary); font-weight:700;">Explore Category <svg class="acc-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></a></div>
         </summary>
         <div class="tool-grid acc-grid">
-        <a href="word-counter.html" class="tool-card" data-tool="Word Counter"><div class="tool-emoji">📝</div><div><h4>Word Counter</h4><span class="tag">Text Tools</span></div></a>
-        <a href="character-counter.html" class="tool-card" data-tool="Character Counter"><div class="tool-emoji">📝</div><div><h4>Character Counter</h4><span class="tag">Text Tools</span></div></a>
-        <a href="case-converter.html" class="tool-card" data-tool="Case Converter"><div class="tool-emoji">📝</div><div><h4>Case Converter</h4><span class="tag">Text Tools</span></div></a>
-        <a href="remove-duplicate-lines.html" class="tool-card" data-tool="Remove Duplicate Lines"><div class="tool-emoji">📝</div><div><h4>Remove Duplicate Lines</h4><span class="tag">Text Tools</span></div></a>
-        <a href="text-compare-diff-checker.html" class="tool-card" data-tool="Text Compare (Diff Checker)"><div class="tool-emoji">📝</div><div><h4>Text Compare (Diff Checker)</h4><span class="tag">Text Tools</span></div></a>
-        <a href="lorem-ipsum-generator.html" class="tool-card" data-tool="Lorem Ipsum Generator"><div class="tool-emoji">📝</div><div><h4>Lorem Ipsum Generator</h4><span class="tag">Text Tools</span></div></a>
+        <a href="/word-counter" class="tool-card" data-tool="Word Counter"><div class="tool-emoji">📝</div><div><h4>Word Counter</h4><span class="tag">Text Tools</span></div></a>
+        <a href="/character-counter" class="tool-card" data-tool="Character Counter"><div class="tool-emoji">📝</div><div><h4>Character Counter</h4><span class="tag">Text Tools</span></div></a>
+        <a href="/case-converter" class="tool-card" data-tool="Case Converter"><div class="tool-emoji">📝</div><div><h4>Case Converter</h4><span class="tag">Text Tools</span></div></a>
+        <a href="/remove-duplicate-lines" class="tool-card" data-tool="Remove Duplicate Lines"><div class="tool-emoji">📝</div><div><h4>Remove Duplicate Lines</h4><span class="tag">Text Tools</span></div></a>
+        <a href="/text-compare-diff-checker" class="tool-card" data-tool="Text Compare (Diff Checker)"><div class="tool-emoji">📝</div><div><h4>Text Compare (Diff Checker)</h4><span class="tag">Text Tools</span></div></a>
+        <a href="/lorem-ipsum-generator" class="tool-card" data-tool="Lorem Ipsum Generator"><div class="tool-emoji">📝</div><div><h4>Lorem Ipsum Generator</h4><span class="tag">Text Tools</span></div></a>
         </div>
       </details>
       <details class="cat-card acc-card">
@@ -1000,19 +1021,19 @@ html[data-theme="dark"] .tt-gtd-panel{background:#050807;}
           <div class="cat-icon">💻</div>
           <h3>Developer Tools</h3>
           <p>JSON, Base64, password tools, and more.</p>
-          <div class="cat-foot"><span class="cat-count">10 tools</span><span class="cat-link">View All <svg class="acc-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+          <div class="cat-foot"><span class="cat-count">10 tools</span><a href="/developer-tools" class="cat-link" style="color:var(--primary); font-weight:700;">Explore Category <svg class="acc-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></a></div>
         </summary>
         <div class="tool-grid acc-grid">
-        <a href="password-generator.html" class="tool-card" data-tool="Password Generator"><div class="tool-emoji">💻</div><div><h4>Password Generator</h4><span class="tag">Developer Tools</span></div></a>
-        <a href="json-formatter.html" class="tool-card" data-tool="JSON Formatter"><div class="tool-emoji">💻</div><div><h4>JSON Formatter</h4><span class="tag">Developer Tools</span></div></a>
-        <a href="json-validator.html" class="tool-card" data-tool="JSON Validator"><div class="tool-emoji">💻</div><div><h4>JSON Validator</h4><span class="tag">Developer Tools</span></div></a>
-        <a href="base64-encoder-decoder.html" class="tool-card" data-tool="Base64 Encoder/Decoder"><div class="tool-emoji">💻</div><div><h4>Base64 Encoder/Decoder</h4><span class="tag">Developer Tools</span></div></a>
-        <a href="url-encoder-decoder.html" class="tool-card" data-tool="URL Encoder/Decoder"><div class="tool-emoji">💻</div><div><h4>URL Encoder/Decoder</h4><span class="tag">Developer Tools</span></div></a>
-        <a href="html-minifier.html" class="tool-card" data-tool="HTML Minifier"><div class="tool-emoji">💻</div><div><h4>HTML Minifier</h4><span class="tag">Developer Tools</span></div></a>
-        <a href="css-minifier.html" class="tool-card" data-tool="CSS Minifier"><div class="tool-emoji">💻</div><div><h4>CSS Minifier</h4><span class="tag">Developer Tools</span></div></a>
-        <a href="password-strength-checker.html" class="tool-card" data-tool="Password Strength Checker"><div class="tool-emoji">💻</div><div><h4>Password Strength Checker</h4><span class="tag">Developer Tools</span></div></a>
-        <a href="uuid-generator.html" class="tool-card" data-tool="UUID Generator"><div class="tool-emoji">💻</div><div><h4>UUID Generator</h4><span class="tag">Developer Tools</span></div></a>
-        <a href="color-picker.html" class="tool-card" data-tool="Color Picker"><div class="tool-emoji">💻</div><div><h4>Color Picker</h4><span class="tag">Developer Tools</span></div></a>
+        <a href="/password-generator" class="tool-card" data-tool="Password Generator"><div class="tool-emoji">💻</div><div><h4>Password Generator</h4><span class="tag">Developer Tools</span></div></a>
+        <a href="/json-formatter" class="tool-card" data-tool="JSON Formatter"><div class="tool-emoji">💻</div><div><h4>JSON Formatter</h4><span class="tag">Developer Tools</span></div></a>
+        <a href="/json-validator" class="tool-card" data-tool="JSON Validator"><div class="tool-emoji">💻</div><div><h4>JSON Validator</h4><span class="tag">Developer Tools</span></div></a>
+        <a href="/base64-encoder-decoder" class="tool-card" data-tool="Base64 Encoder/Decoder"><div class="tool-emoji">💻</div><div><h4>Base64 Encoder/Decoder</h4><span class="tag">Developer Tools</span></div></a>
+        <a href="/url-encoder-decoder" class="tool-card" data-tool="URL Encoder/Decoder"><div class="tool-emoji">💻</div><div><h4>URL Encoder/Decoder</h4><span class="tag">Developer Tools</span></div></a>
+        <a href="/html-minifier" class="tool-card" data-tool="HTML Minifier"><div class="tool-emoji">💻</div><div><h4>HTML Minifier</h4><span class="tag">Developer Tools</span></div></a>
+        <a href="/css-minifier" class="tool-card" data-tool="CSS Minifier"><div class="tool-emoji">💻</div><div><h4>CSS Minifier</h4><span class="tag">Developer Tools</span></div></a>
+        <a href="/password-strength-checker" class="tool-card" data-tool="Password Strength Checker"><div class="tool-emoji">💻</div><div><h4>Password Strength Checker</h4><span class="tag">Developer Tools</span></div></a>
+        <a href="/uuid-generator" class="tool-card" data-tool="UUID Generator"><div class="tool-emoji">💻</div><div><h4>UUID Generator</h4><span class="tag">Developer Tools</span></div></a>
+        <a href="/color-picker" class="tool-card" data-tool="Color Picker"><div class="tool-emoji">💻</div><div><h4>Color Picker</h4><span class="tag">Developer Tools</span></div></a>
         </div>
       </details>
       <details class="cat-card acc-card">
@@ -1020,11 +1041,11 @@ html[data-theme="dark"] .tt-gtd-panel{background:#050807;}
           <div class="cat-icon">🗂️</div>
           <h3>Productivity Tools</h3>
           <p>QR codes, barcodes and more.</p>
-          <div class="cat-foot"><span class="cat-count">2 tools</span><span class="cat-link">View All <svg class="acc-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+          <div class="cat-foot"><span class="cat-count">2 tools</span><a href="/productivity-tools" class="cat-link" style="color:var(--primary); font-weight:700;">Explore Category <svg class="acc-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></a></div>
         </summary>
         <div class="tool-grid acc-grid">
-        <a href="qr-code-generator.html" class="tool-card" data-tool="QR Code Generator"><div class="tool-emoji">🗂️</div><div><h4>QR Code Generator</h4><span class="tag">Productivity Tools</span></div></a>
-        <a href="barcode-generator.html" class="tool-card" data-tool="Barcode Generator"><div class="tool-emoji">🗂️</div><div><h4>Barcode Generator</h4><span class="tag">Productivity Tools</span></div></a>
+        <a href="/qr-code-generator" class="tool-card" data-tool="QR Code Generator"><div class="tool-emoji">🗂️</div><div><h4>QR Code Generator</h4><span class="tag">Productivity Tools</span></div></a>
+        <a href="/barcode-generator" class="tool-card" data-tool="Barcode Generator"><div class="tool-emoji">🗂️</div><div><h4>Barcode Generator</h4><span class="tag">Productivity Tools</span></div></a>
         </div>
       </details>
       <div class="cat-card" style="opacity:0.55;cursor:default;"><div class="cat-icon">📐</div><h3>Unit Converters</h3><p>Length, weight, speed, temperature.</p><div class="cat-foot"><span class="cat-count">Coming soon</span></div></div>
@@ -1169,7 +1190,7 @@ html[data-theme="dark"] .tt-gtd-panel{background:#050807;}
       </details>
       <details class="faq-item">
         <summary>Can businesses use TickmarkTools tools?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <p>Yes, tools are free for personal and professional use alike. See our <a href="terms-of-service.html" style="color:var(--primary);font-weight:600;">Terms of Service</a> for full usage details.</p>
+        <p>Yes, tools are free for personal and professional use alike. See our <a href="/terms-of-service" style="color:var(--primary);font-weight:600;">Terms of Service</a> for full usage details.</p>
       </details>
     </div>
   </div>
@@ -1195,56 +1216,56 @@ html[data-theme="dark"] .tt-gtd-panel{background:#050807;}
       </div>
       <div class="footer-col">
         <h5>Company</h5>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="blog.html">Blog</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="/blog">Blog</a>
       </div>
       <div class="footer-col">
         <h5>Legal</h5>
-        <a href="privacy-policy.html">Privacy Policy</a>
-        <a href="terms-of-service.html">Terms of Service</a>
-        <a href="disclaimer.html">Disclaimer</a>
-        <a href="sitemap.html">Sitemap</a>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms-of-service">Terms of Service</a>
+        <a href="/disclaimer">Disclaimer</a>
+        <a href="/sitemap">Sitemap</a>
       </div>
       <div class="footer-col">
         <h5>Categories</h5>
-        <a href="calculators.html">Calculators</a>
-        <a href="pdf-tools.html">PDF Tools</a>
-        <a href="image-tools.html">Image Tools</a>
+        <a href="/calculators">Calculators</a>
+        <a href="/pdf-tools">PDF Tools</a>
+        <a href="/image-tools">Image Tools</a>
       </div>
       <div class="footer-col">
         <h5>More</h5>
-        <a href="text-tools.html">Text Tools</a>
-        <a href="developer-tools.html">Developer Tools</a>
-        <a href="ai-tools.html">AI Tools</a>
+        <a href="/text-tools">Text Tools</a>
+        <a href="/developer-tools">Developer Tools</a>
+        <a href="/ai-tools">AI Tools</a>
       </div>
       <div class="footer-col">
         <h5>Resources</h5>
-        <a href="how-to-use-tools.html">Help Center</a>
-        <a href="productivity-tips.html">Productivity Tips</a>
-        <a href="contact.html">Report a Bug</a>
-        <a href="contact.html">Suggest a Tool</a>
+        <a href="/how-to-use-tools">Help Center</a>
+        <a href="/productivity-tips">Productivity Tips</a>
+        <a href="/contact">Report a Bug</a>
+        <a href="/contact">Suggest a Tool</a>
       </div>
       <div class="footer-col">
         <h5>Popular Tools</h5>
-        <a href="age-calculator.html">Age Calculator</a>
-        <a href="pdf-merge.html">PDF Merge</a>
-        <a href="image-compressor.html">Image Compressor</a>
-        <a href="password-generator.html">Password Generator</a>
+        <a href="/age-calculator">Age Calculator</a>
+        <a href="/pdf-merge">PDF Merge</a>
+        <a href="/image-compressor">Image Compressor</a>
+        <a href="/password-generator">Password Generator</a>
       </div>
       <div class="footer-col">
         <h5>Latest Tools</h5>
-        <a href="color-picker.html">Color Picker</a>
-        <a href="barcode-generator.html">Barcode Generator</a>
-        <a href="gpa-cgpa-calculator.html">GPA / CGPA Calculator</a>
-        <a href="retirement-calculator.html">Retirement Calculator</a>
+        <a href="/color-picker">Color Picker</a>
+        <a href="/barcode-generator">Barcode Generator</a>
+        <a href="/gpa-cgpa-calculator">GPA / CGPA Calculator</a>
+        <a href="/retirement-calculator">Retirement Calculator</a>
       </div>
       <div class="footer-col">
         <h5>Guides</h5>
-        <a href="best-pdf-tools.html">Best Free PDF Tools</a>
-        <a href="best-ai-tools.html">Best Free AI Tools</a>
-        <a href="best-calculators.html">Best Free Calculators</a>
-        <a href="how-to-use-tools.html">How to Use Tools Safely</a>
+        <a href="/best-pdf-tools">Best Free PDF Tools</a>
+        <a href="/best-ai-tools">Best Free AI Tools</a>
+        <a href="/best-calculators">Best Free Calculators</a>
+        <a href="/how-to-use-tools">How to Use Tools Safely</a>
       </div>
       <div class="footer-col">
         <h5>Developers</h5>
@@ -1447,6 +1468,11 @@ html[data-theme="dark"] .tt-gtd-panel{background:#050807;}
   function escapeRegExp(str){
     return str.replace(/[.*+?^${}()|[\]\\-]/g, '\\$&');
   }
+  function escapeHtml(str){
+    return String(str).replace(/[&<>"']/g, (c) => ({
+      '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+    }[c]));
+  }
   function highlight(text, qRaw){
     if(!qRaw) return text;
     try{
@@ -1494,7 +1520,7 @@ html[data-theme="dark"] .tt-gtd-panel{background:#050807;}
       const recents = getRecentSearches();
       if(recents.length){
         autocomplete.innerHTML = '<div class="ac-section-label">Recent searches</div>' +
-          recents.map(t=>`<div class="ac-item" data-fill="${t}"><span>${t}</span></div>`).join('');
+          recents.map(t=>`<div class="ac-item" data-fill="${escapeHtml(t)}"><span>${escapeHtml(t)}</span></div>`).join('');
         autocomplete.classList.add('show');
         autocomplete.querySelectorAll('[data-fill]').forEach(el=>{
           el.addEventListener('click', ()=>{ searchInput.value = el.getAttribute('data-fill'); searchInput.dispatchEvent(new Event('input')); });
@@ -1515,7 +1541,7 @@ html[data-theme="dark"] .tt-gtd-panel{background:#050807;}
     currentMatches = scored.map(x=>x.t);
     activeIndex = -1;
     if(currentMatches.length === 0){
-      autocomplete.innerHTML = `<div class="ac-empty">No tool found for "${qRaw}" — try a category like "pdf" or "image".</div>`;
+      autocomplete.innerHTML = `<div class="ac-empty">No tool found for "${escapeHtml(qRaw)}" — try a category like "pdf" or "image".</div>`;
       autocomplete.classList.add('show');
       return;
     }
@@ -1531,10 +1557,15 @@ html[data-theme="dark"] .tt-gtd-panel{background:#050807;}
 
   function goToTool(slug, qRaw){
     if(qRaw) saveRecentSearch(qRaw);
-    window.location.href = slug + '.html';
+    window.location.href = '/' + slug;
   }
 
-  searchInput.addEventListener('input', () => renderAutocomplete(searchInput.value.trim()));
+  let searchDebounceTimer = null;
+  searchInput.addEventListener('input', () => {
+    clearTimeout(searchDebounceTimer);
+    const val = searchInput.value.trim();
+    searchDebounceTimer = setTimeout(() => renderAutocomplete(val), 150);
+  });
   searchInput.addEventListener('focus', () => renderAutocomplete(searchInput.value.trim()));
   searchClear.addEventListener('click', () => { searchInput.value=''; searchInput.focus(); renderAutocomplete(''); });
 
