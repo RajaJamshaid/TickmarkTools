@@ -253,8 +253,18 @@
   .header-search-row .search-box{max-width:100%;margin-top:0;}
 
   /* HERO */
-  .hero{padding:40px 0 56px;}
+  .hero{padding:40px 0 56px;position:relative;}
   @media (max-width:560px){.hero{padding:20px 0 40px;}}
+  /* ---- Hero aurora: soft drifting color blobs behind the hero content ---- */
+  .tt-aurora{position:absolute;inset:-15% -5% auto -5%;height:620px;z-index:0;pointer-events:none;overflow:hidden;filter:blur(64px);opacity:.5;}
+  html[data-theme="dark"] .tt-aurora{opacity:.35;}
+  .tt-aurora span{position:absolute;border-radius:50%;display:block;}
+  .tt-aurora span:nth-child(1){width:420px;height:420px;top:-100px;left:-60px;background:radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--primary) 60%, transparent), transparent 70%);animation:tt-aurora-1 19s ease-in-out infinite;}
+  .tt-aurora span:nth-child(2){width:360px;height:360px;top:80px;right:-100px;background:radial-gradient(circle at 60% 40%, color-mix(in srgb, #FF6A4D 55%, transparent), transparent 70%);animation:tt-aurora-2 23s ease-in-out infinite;}
+  .tt-aurora span:nth-child(3){width:320px;height:320px;bottom:-140px;left:32%;background:radial-gradient(circle at 50% 50%, color-mix(in srgb, #6C3EC9 45%, transparent), transparent 70%);animation:tt-aurora-3 27s ease-in-out infinite;}
+  @keyframes tt-aurora-1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(50px,35px) scale(1.08);}}
+  @keyframes tt-aurora-2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-40px,45px) scale(.94);}}
+  @keyframes tt-aurora-3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(25px,-35px) scale(1.06);}}
   .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center;position:relative;z-index:1;}
   .tick-panel{position:relative;z-index:1;}
   @media (max-width:900px){.hero-grid{grid-template-columns:1fr;}}
@@ -381,11 +391,14 @@
   }
   .cat-card:hover{transform:translateY(-6px) scale(1.015);box-shadow:0 18px 40px -14px rgba(20,24,26,0.2);border-color:var(--primary);}
   .cat-icon{
-    width:52px;height:52px;border-radius:12px;background:color-mix(in srgb, var(--primary) 12%, transparent);color:var(--primary);
+    width:52px;height:52px;border-radius:14px;
+    background:var(--cat-grad, color-mix(in srgb, var(--primary) 12%, transparent));color:#fff;
     display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:26px;
-    transition:transform 0.25s ease;
+    transition:transform 0.25s ease, box-shadow .3s ease;position:relative;
+    box-shadow:0 6px 16px -6px var(--cat-shadow, transparent);
   }
-  .cat-card:hover .cat-icon{transform:scale(1.1) rotate(-4deg);}
+  .cat-icon::after{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg, rgba(255,255,255,.35), transparent 55%);pointer-events:none;}
+  .cat-card:hover .cat-icon{transform:scale(1.1) rotate(-4deg);box-shadow:0 10px 22px -6px var(--cat-shadow, transparent);}
   .cat-card h3{font-size:17px;font-weight:600;}
   .cat-card p{font-size:13.5px;color:var(--ink-soft);margin-top:6px;}
   .cat-foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;}
@@ -411,15 +424,26 @@
     padding:16px;background:var(--card-bg);transition:all 0.2s ease;position:relative;
   }
   .tool-card:hover{border-color:var(--primary);transform:translateY(-3px);box-shadow:0 10px 24px -12px rgba(20,24,26,0.18);}
-  .tool-emoji{font-size:24px;width:44px;height:44px;border-radius:10px;background:var(--surface);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .tool-emoji{
+    font-size:22px;width:50px;height:50px;border-radius:14px;
+    background:var(--cat-grad, var(--surface));display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;position:relative;box-shadow:0 4px 14px -5px var(--cat-shadow, transparent);
+  }
+  .tool-emoji::after{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg, rgba(255,255,255,.35), transparent 55%);pointer-events:none;}
   .tool-card h4{font-size:14.5px;font-weight:600;}
   .tool-card span.tag{font-size:11.5px;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;}
-  .badge-hot{background:#FFEDE8;color:#D94A2B;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:6px;margin-left:6px;}
-  .badge-trend{background:#EAF3F0;color:var(--primary);font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:6px;margin-left:6px;}
-  .badge-new{background:#EEF2FF;color:#4338CA;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:6px;margin-left:6px;}
+  .badge-hot{position:relative;background:#FFEDE8;color:#D94A2B;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:6px;margin-left:6px;}
+  .badge-trend{position:relative;background:#EAF3F0;color:var(--primary);font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:6px;margin-left:6px;}
+  .badge-new{position:relative;background:#EEF2FF;color:#4338CA;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:6px;margin-left:6px;}
   html[data-theme="dark"] .badge-hot{background:#3a2118;color:#ff9d7f;}
   html[data-theme="dark"] .badge-trend{background:#12332c;color:#5fd9bd;}
   html[data-theme="dark"] .badge-new{background:#1f2140;color:#a5b4fc;}
+  /* Subtle attention-pulse ring on trend/hot/new badges — pure CSS, respects reduced-motion globally */
+  .badge-hot::after,.badge-trend::after,.badge-new::after{
+    content:'';position:absolute;inset:-3px;border-radius:8px;border:1.5px solid currentColor;
+    opacity:0;animation:tt-badge-ping 2.6s ease-out infinite;pointer-events:none;
+  }
+  @keyframes tt-badge-ping{0%{opacity:.55;transform:scale(1);}100%{opacity:0;transform:scale(1.4);}}
 
   /* WHY CHOOSE */
   .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
@@ -690,7 +714,7 @@
     opacity:0; transition:opacity .35s ease; pointer-events:none;
   }
   .tool-card:hover::after{ opacity:1; }
-  .tool-emoji{ transition:transform .4s cubic-bezier(.34,1.56,.64,1); }
+  .tool-emoji{ transition:transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .4s ease; }
   .tool-card:hover .tool-emoji{ transform:scale(1.12) rotate(-3deg); }
   .tool-card:active{ transform:translateY(-2px) scale(.985); }
 
@@ -821,6 +845,7 @@ html[data-theme="dark"] .tt-gtd-panel{background:#050807;}
 <main id="main">
 
 <section class="hero">
+  <div class="tt-aurora" aria-hidden="true"><span></span><span></span><span></span></div>
   <div class="wrap hero-grid">
     <div class="hero-fade">
       <div class="eyebrow" id="liveToolBadge">
@@ -1356,6 +1381,20 @@ html[data-theme="dark"] .tt-gtd-panel{background:#050807;}
     themeToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
   });
 
+  /* ---------- Explore Category link fix ----------
+     "Explore Category" is a real <a> nested inside <summary> (native details/
+     summary toggle control). Clicking it should just navigate, but because the
+     click also bubbles up as the native trigger for opening/closing that
+     accordion, it could sometimes toggle/collapse the section first instead of reliably
+     following the link — this was the actual cause of Finance Tools and
+     Productivity Tools appearing to "jump to the top of the page" instead of
+     opening their category page. Stopping propagation here lets the link's
+     own default navigation happen without the parent <summary> intercepting
+     the click as a toggle. Markup/visual design is untouched. */
+  document.querySelectorAll('.cat-link').forEach(function(link){
+    link.addEventListener('click', function(e){ e.stopPropagation(); });
+  });
+
   /* ---------- Mobile hamburger menu toggle (additive) ---------- */
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const navLinksEl = document.getElementById('navLinks');
@@ -1508,6 +1547,40 @@ html[data-theme="dark"] .tt-gtd-panel{background:#050807;}
   }
 
   /* ---------- Live tools counter ---------- */
+  /* ---------- Per-category visual identity ----------
+     Each category gets its own signature gradient + glow, applied to both
+     the big category icons and every tool-card icon tile of that category.
+     This is a deliberate, deterministic design system (not real photos —
+     a generic "photo" doesn't meaningfully represent a tool like a JSON
+     Validator) that gives every card a distinct, premium, recognizable look. */
+  var CAT_STYLES = {
+    'Calculators':        { grad:'linear-gradient(135deg,#146356,#2FA98D)', shadow:'rgba(20,99,86,.45)' },
+    'Finance Tools':       { grad:'linear-gradient(135deg,#B7791F,#F2C94C)', shadow:'rgba(183,121,31,.4)' },
+    'PDF Tools':           { grad:'linear-gradient(135deg,#C0392B,#FF6A4D)', shadow:'rgba(192,57,43,.4)' },
+    'Image Tools':         { grad:'linear-gradient(135deg,#6C3EC9,#B98CF2)', shadow:'rgba(108,62,201,.4)' },
+    'Text Tools':          { grad:'linear-gradient(135deg,#1D6FA5,#54B8E8)', shadow:'rgba(29,111,165,.4)' },
+    'Developer Tools':     { grad:'linear-gradient(135deg,#2E3A59,#5C6BC0)', shadow:'rgba(46,58,89,.4)' },
+    'Productivity Tools':  { grad:'linear-gradient(135deg,#B23A6E,#F2779A)', shadow:'rgba(178,58,110,.4)' }
+  };
+  function applyCatStyle(el, cat){
+    if(!el) return;
+    var s = CAT_STYLES[cat];
+    if(!s) return;
+    el.style.setProperty('--cat-grad', s.grad);
+    el.style.setProperty('--cat-shadow', s.shadow);
+  }
+  function applyCategoryVisuals(root){
+    (root || document).querySelectorAll('.tool-card').forEach(function(card){
+      var tagEl = card.querySelector('.tag');
+      if(tagEl) applyCatStyle(card.querySelector('.tool-emoji'), tagEl.textContent.trim());
+    });
+    (root || document).querySelectorAll('.cat-card').forEach(function(card){
+      var h3 = card.querySelector('h3');
+      if(h3) applyCatStyle(card.querySelector('.cat-icon'), h3.textContent.trim());
+    });
+  }
+  applyCategoryVisuals();
+
   (function animateLiveCount(){
     const el = document.getElementById('liveToolCount');
     if(!el) return;
@@ -1650,6 +1723,7 @@ html[data-theme="dark"] .tt-gtd-panel{background:#050807;}
     grid.innerHTML = list.map(t =>
       `<a href="${t.href}" class="tool-card" data-tool="${t.name}"><div class="tool-emoji">${t.emoji}</div><div><h4>${t.name} <span class="badge-new">RECENT</span></h4><span class="tag">${t.tag}</span></div></a>`
     ).join('');
+    applyCategoryVisuals(grid);
     section.style.display = 'block';
     document.getElementById('clearRecentBtn').addEventListener('click', ()=>{
       localStorage.removeItem('tt_recent_tools');
