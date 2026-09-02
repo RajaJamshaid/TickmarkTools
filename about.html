@@ -1,31 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+(function(){
+  try{
+    var saved = localStorage.getItem('tickmarktools-theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if(saved === 'dark' || (!saved && prefersDark)){
+      document.documentElement.setAttribute('data-theme','dark');
+    }
+  }catch(e){}
+})();
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About TickmarkTools | TickmarkTools</title>
 <meta name="description" content="Learn what TickmarkTools is, our mission and vision, how we help users, and our future roadmap of free online tools.">
 <meta name="theme-color" content="#146356">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="canonical" href="https://tickmarktools.com/about">
 <meta property="og:type" content="website">
 <meta property="og:title" content="About TickmarkTools | TickmarkTools">
 <meta property="og:description" content="Learn what TickmarkTools is, our mission and vision, how we help users, and our future roadmap of free online tools.">
 <meta property="og:url" content="https://tickmarktools.com/about">
 <meta property="og:site_name" content="TickmarkTools">
+<meta property="og:image" content="https://tickmarktools.com/assets/og/about.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tickmarktools.com/assets/og/about.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://tickmarktools.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "About TickmarkTools",
+      "item": "https://tickmarktools.com/about"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <header class="site">
   <div class="wrap">
     <nav class="main">
-      <a href="index.html" class="logo">
-        <svg viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#146356"/><path d="M6 12.5L10 16.5L18 8" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        TickmarkTools
-      </a>
+      <a href="index.html" class="logo"><img src="logo.png" alt="TickmarkTools logo" width="26" height="26" loading="eager" decoding="async">TickmarkTools</a>
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="age-calculator.html">Calculators</a>
