@@ -1,0 +1,563 @@
+{
+  "categories": [
+    {
+      "id": "calculators",
+      "name": "Calculators",
+      "icon": "🧮",
+      "description": "Loan, age, BMI, percentage and more.",
+      "page": "calculators.html"
+    },
+    {
+      "id": "finance-tools",
+      "name": "Finance Tools",
+      "icon": "💰",
+      "description": "Currency, tax, invoicing and investment calculators.",
+      "page": null
+    },
+    {
+      "id": "pdf-tools",
+      "name": "PDF Tools",
+      "icon": "📄",
+      "description": "Merge, split, compress, convert PDFs.",
+      "page": "pdf-tools.html"
+    },
+    {
+      "id": "image-tools",
+      "name": "Image Tools",
+      "icon": "🖼️",
+      "description": "Compress, resize, convert, crop images.",
+      "page": "image-tools.html"
+    },
+    {
+      "id": "text-tools",
+      "name": "Text Tools",
+      "icon": "📝",
+      "description": "Word counter, case converter, diff checker.",
+      "page": "text-tools.html"
+    },
+    {
+      "id": "developer-tools",
+      "name": "Developer Tools",
+      "icon": "💻",
+      "description": "JSON, Base64, password tools, and more.",
+      "page": "developer-tools.html"
+    },
+    {
+      "id": "productivity-tools",
+      "name": "Productivity Tools",
+      "icon": "🗂️",
+      "description": "QR codes, barcodes and more.",
+      "page": null
+    }
+  ],
+  "tools": [
+    {
+      "slug": "age-calculator",
+      "title": "Age Calculator",
+      "category": "calculators",
+      "icon": "🧮",
+      "url": "/age-calculator.html",
+      "order": 0
+    },
+    {
+      "slug": "percentage-calculator",
+      "title": "Percentage Calculator",
+      "category": "calculators",
+      "icon": "🧮",
+      "url": "/percentage-calculator.html",
+      "order": 1
+    },
+    {
+      "slug": "bmi-calculator",
+      "title": "BMI Calculator",
+      "category": "calculators",
+      "icon": "🧮",
+      "url": "/bmi-calculator.html",
+      "order": 2
+    },
+    {
+      "slug": "emi-loan-calculator",
+      "title": "EMI / Loan Calculator",
+      "category": "calculators",
+      "icon": "🧮",
+      "url": "/emi-loan-calculator.html",
+      "order": 3
+    },
+    {
+      "slug": "mortgage-calculator",
+      "title": "Mortgage Calculator",
+      "category": "calculators",
+      "icon": "🧮",
+      "url": "/mortgage-calculator.html",
+      "order": 4
+    },
+    {
+      "slug": "compound-interest-calculator",
+      "title": "Compound Interest Calculator",
+      "category": "calculators",
+      "icon": "🧮",
+      "url": "/compound-interest-calculator.html",
+      "order": 5
+    },
+    {
+      "slug": "simple-interest-calculator",
+      "title": "Simple Interest Calculator",
+      "category": "calculators",
+      "icon": "🧮",
+      "url": "/simple-interest-calculator.html",
+      "order": 6
+    },
+    {
+      "slug": "sip-investment-calculator",
+      "title": "SIP Investment Calculator",
+      "category": "calculators",
+      "icon": "🧮",
+      "url": "/sip-investment-calculator.html",
+      "order": 7
+    },
+    {
+      "slug": "discount-calculator",
+      "title": "Discount Calculator",
+      "category": "calculators",
+      "icon": "🧮",
+      "url": "/discount-calculator.html",
+      "order": 8
+    },
+    {
+      "slug": "date-difference-calculator",
+      "title": "Date Difference Calculator",
+      "category": "calculators",
+      "icon": "🧮",
+      "url": "/date-difference-calculator.html",
+      "order": 9
+    },
+    {
+      "slug": "time-calculator",
+      "title": "Time Calculator",
+      "category": "calculators",
+      "icon": "🧮",
+      "url": "/time-calculator.html",
+      "order": 10
+    },
+    {
+      "slug": "calorie-calculator",
+      "title": "Calorie Calculator",
+      "category": "calculators",
+      "icon": "🧮",
+      "url": "/calorie-calculator.html",
+      "order": 11
+    },
+    {
+      "slug": "pregnancy-due-date-calculator",
+      "title": "Pregnancy Due Date Calculator",
+      "category": "calculators",
+      "icon": "🧮",
+      "url": "/pregnancy-due-date-calculator.html",
+      "order": 12
+    },
+    {
+      "slug": "fuel-cost-calculator",
+      "title": "Fuel Cost Calculator",
+      "category": "calculators",
+      "icon": "🧮",
+      "url": "/fuel-cost-calculator.html",
+      "order": 13
+    },
+    {
+      "slug": "electricity-bill-calculator",
+      "title": "Electricity Bill Calculator",
+      "category": "calculators",
+      "icon": "🧮",
+      "url": "/electricity-bill-calculator.html",
+      "order": 14
+    },
+    {
+      "slug": "gpa-cgpa-calculator",
+      "title": "GPA / CGPA Calculator",
+      "category": "calculators",
+      "icon": "🧮",
+      "url": "/gpa-cgpa-calculator.html",
+      "order": 15
+    },
+    {
+      "slug": "retirement-calculator",
+      "title": "Retirement Calculator",
+      "category": "calculators",
+      "icon": "🧮",
+      "url": "/retirement-calculator.html",
+      "order": 16
+    },
+    {
+      "slug": "currency-converter",
+      "title": "Currency Converter",
+      "category": "finance-tools",
+      "icon": "💰",
+      "url": "/currency-converter.html",
+      "order": 17
+    },
+    {
+      "slug": "gst-vat-calculator",
+      "title": "GST / VAT Calculator",
+      "category": "finance-tools",
+      "icon": "💰",
+      "url": "/gst-vat-calculator.html",
+      "order": 18
+    },
+    {
+      "slug": "income-tax-calculator",
+      "title": "Income Tax Calculator",
+      "category": "finance-tools",
+      "icon": "💰",
+      "url": "/income-tax-calculator.html",
+      "order": 19
+    },
+    {
+      "slug": "pdf-merge",
+      "title": "PDF Merge",
+      "category": "pdf-tools",
+      "icon": "📄",
+      "url": "/pdf-merge.html",
+      "order": 20
+    },
+    {
+      "slug": "pdf-to-word",
+      "title": "PDF to Word",
+      "category": "pdf-tools",
+      "icon": "📄",
+      "url": "/pdf-to-word.html",
+      "order": 21
+    },
+    {
+      "slug": "pdf-split",
+      "title": "PDF Split",
+      "category": "pdf-tools",
+      "icon": "📄",
+      "url": "/pdf-split.html",
+      "order": 22
+    },
+    {
+      "slug": "pdf-compress",
+      "title": "PDF Compress",
+      "category": "pdf-tools",
+      "icon": "📄",
+      "url": "/pdf-compress.html",
+      "order": 23
+    },
+    {
+      "slug": "pdf-to-jpg",
+      "title": "PDF to JPG",
+      "category": "pdf-tools",
+      "icon": "📄",
+      "url": "/pdf-to-jpg.html",
+      "order": 24
+    },
+    {
+      "slug": "word-to-pdf",
+      "title": "Word to PDF",
+      "category": "pdf-tools",
+      "icon": "📄",
+      "url": "/word-to-pdf.html",
+      "order": 25
+    },
+    {
+      "slug": "image-compressor",
+      "title": "Image Compressor",
+      "category": "image-tools",
+      "icon": "🖼️",
+      "url": "/image-compressor.html",
+      "order": 26
+    },
+    {
+      "slug": "image-resizer",
+      "title": "Image Resizer",
+      "category": "image-tools",
+      "icon": "🖼️",
+      "url": "/image-resizer.html",
+      "order": 27
+    },
+    {
+      "slug": "jpg-to-png",
+      "title": "JPG to PNG",
+      "category": "image-tools",
+      "icon": "🖼️",
+      "url": "/jpg-to-png.html",
+      "order": 28
+    },
+    {
+      "slug": "png-to-jpg",
+      "title": "PNG to JPG",
+      "category": "image-tools",
+      "icon": "🖼️",
+      "url": "/png-to-jpg.html",
+      "order": 29
+    },
+    {
+      "slug": "image-cropper",
+      "title": "Image Cropper",
+      "category": "image-tools",
+      "icon": "🖼️",
+      "url": "/image-cropper.html",
+      "order": 30
+    },
+    {
+      "slug": "image-converter",
+      "title": "Image Converter",
+      "category": "image-tools",
+      "icon": "🖼️",
+      "url": "/image-converter.html",
+      "order": 31
+    },
+    {
+      "slug": "word-counter",
+      "title": "Word Counter",
+      "category": "text-tools",
+      "icon": "📝",
+      "url": "/word-counter.html",
+      "order": 32
+    },
+    {
+      "slug": "character-counter",
+      "title": "Character Counter",
+      "category": "text-tools",
+      "icon": "📝",
+      "url": "/character-counter.html",
+      "order": 33
+    },
+    {
+      "slug": "case-converter",
+      "title": "Case Converter",
+      "category": "text-tools",
+      "icon": "📝",
+      "url": "/case-converter.html",
+      "order": 34
+    },
+    {
+      "slug": "remove-duplicate-lines",
+      "title": "Remove Duplicate Lines",
+      "category": "text-tools",
+      "icon": "📝",
+      "url": "/remove-duplicate-lines.html",
+      "order": 35
+    },
+    {
+      "slug": "text-compare-diff-checker",
+      "title": "Text Compare (Diff Checker)",
+      "category": "text-tools",
+      "icon": "📝",
+      "url": "/text-compare-diff-checker.html",
+      "order": 36
+    },
+    {
+      "slug": "lorem-ipsum-generator",
+      "title": "Lorem Ipsum Generator",
+      "category": "text-tools",
+      "icon": "📝",
+      "url": "/lorem-ipsum-generator.html",
+      "order": 37
+    },
+    {
+      "slug": "password-generator",
+      "title": "Password Generator",
+      "category": "developer-tools",
+      "icon": "💻",
+      "url": "/password-generator.html",
+      "order": 38
+    },
+    {
+      "slug": "json-formatter",
+      "title": "JSON Formatter",
+      "category": "developer-tools",
+      "icon": "💻",
+      "url": "/json-formatter.html",
+      "order": 39
+    },
+    {
+      "slug": "json-validator",
+      "title": "JSON Validator",
+      "category": "developer-tools",
+      "icon": "💻",
+      "url": "/json-validator.html",
+      "order": 40
+    },
+    {
+      "slug": "base64-encoder-decoder",
+      "title": "Base64 Encoder/Decoder",
+      "category": "developer-tools",
+      "icon": "💻",
+      "url": "/base64-encoder-decoder.html",
+      "order": 41
+    },
+    {
+      "slug": "url-encoder-decoder",
+      "title": "URL Encoder/Decoder",
+      "category": "developer-tools",
+      "icon": "💻",
+      "url": "/url-encoder-decoder.html",
+      "order": 42
+    },
+    {
+      "slug": "html-minifier",
+      "title": "HTML Minifier",
+      "category": "developer-tools",
+      "icon": "💻",
+      "url": "/html-minifier.html",
+      "order": 43
+    },
+    {
+      "slug": "css-minifier",
+      "title": "CSS Minifier",
+      "category": "developer-tools",
+      "icon": "💻",
+      "url": "/css-minifier.html",
+      "order": 44
+    },
+    {
+      "slug": "password-strength-checker",
+      "title": "Password Strength Checker",
+      "category": "developer-tools",
+      "icon": "💻",
+      "url": "/password-strength-checker.html",
+      "order": 45
+    },
+    {
+      "slug": "uuid-generator",
+      "title": "UUID Generator",
+      "category": "developer-tools",
+      "icon": "💻",
+      "url": "/uuid-generator.html",
+      "order": 46
+    },
+    {
+      "slug": "color-picker",
+      "title": "Color Picker",
+      "category": "developer-tools",
+      "icon": "💻",
+      "url": "/color-picker.html",
+      "order": 47
+    },
+    {
+      "slug": "qr-code-generator",
+      "title": "QR Code Generator",
+      "category": "productivity-tools",
+      "icon": "🗂️",
+      "url": "/qr-code-generator.html",
+      "order": 48
+    },
+    {
+      "slug": "barcode-generator",
+      "title": "Barcode Generator",
+      "category": "productivity-tools",
+      "icon": "🗂️",
+      "url": "/barcode-generator.html",
+      "order": 49
+    },
+    {
+      "slug": "invoice-generator",
+      "title": "Invoice Generator",
+      "category": "finance-tools",
+      "icon": "🧾",
+      "url": "/invoice-generator.html",
+      "order": 50,
+      "popular": true
+    },
+    {
+      "slug": "contractor-invoice-generator",
+      "title": "Contractor Invoice Generator",
+      "category": "finance-tools",
+      "icon": "🧾",
+      "url": "/contractor-invoice-generator.html",
+      "order": 51,
+      "pseo": true
+    },
+    {
+      "slug": "freelancer-invoice-generator",
+      "title": "Freelancer Invoice Generator",
+      "category": "finance-tools",
+      "icon": "🧾",
+      "url": "/freelancer-invoice-generator.html",
+      "order": 52,
+      "pseo": true
+    },
+    {
+      "slug": "cleaning-service-invoice-generator",
+      "title": "Cleaning Service Invoice Generator",
+      "category": "finance-tools",
+      "icon": "🧾",
+      "url": "/cleaning-service-invoice-generator.html",
+      "order": 53,
+      "pseo": true
+    },
+    {
+      "slug": "plumber-invoice-generator",
+      "title": "Plumber Invoice Generator",
+      "category": "finance-tools",
+      "icon": "🧾",
+      "url": "/plumber-invoice-generator.html",
+      "order": 54,
+      "pseo": true
+    },
+    {
+      "slug": "electrician-invoice-generator",
+      "title": "Electrician Invoice Generator",
+      "category": "finance-tools",
+      "icon": "🧾",
+      "url": "/electrician-invoice-generator.html",
+      "order": 55,
+      "pseo": true
+    },
+    {
+      "slug": "photographer-invoice-generator",
+      "title": "Photographer Invoice Generator",
+      "category": "finance-tools",
+      "icon": "🧾",
+      "url": "/photographer-invoice-generator.html",
+      "order": 56,
+      "pseo": true
+    },
+    {
+      "slug": "consultant-invoice-generator",
+      "title": "Consultant Invoice Generator",
+      "category": "finance-tools",
+      "icon": "🧾",
+      "url": "/consultant-invoice-generator.html",
+      "order": 57,
+      "pseo": true
+    },
+    {
+      "slug": "handyman-invoice-generator",
+      "title": "Handyman Invoice Generator",
+      "category": "finance-tools",
+      "icon": "🧾",
+      "url": "/handyman-invoice-generator.html",
+      "order": 58,
+      "pseo": true
+    },
+    {
+      "slug": "landscaping-invoice-generator",
+      "title": "Landscaping Invoice Generator",
+      "category": "finance-tools",
+      "icon": "🧾",
+      "url": "/landscaping-invoice-generator.html",
+      "order": 59,
+      "pseo": true
+    },
+    {
+      "slug": "web-designer-invoice-generator",
+      "title": "Web Designer Invoice Generator",
+      "category": "finance-tools",
+      "icon": "🧾",
+      "url": "/web-designer-invoice-generator.html",
+      "order": 60,
+      "pseo": true
+    },
+    {
+      "slug": "trucking-invoice-generator",
+      "title": "Trucking Invoice Generator",
+      "category": "finance-tools",
+      "icon": "🧾",
+      "url": "/trucking-invoice-generator.html",
+      "order": 61,
+      "pseo": true
+    }
+  ]
+}

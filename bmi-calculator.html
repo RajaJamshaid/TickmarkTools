@@ -2,38 +2,105 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BMI Calculator — Free Online Tool | TickmarkTools</title>
-<meta name="description" content="Free BMI Calculator — calculate your Body Mass Index and health category instantly using height and weight.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<!-- NOTE: "frame-ancestors" is intentionally omitted here. It has no effect when
+     delivered via a <meta> CSP tag — browsers only enforce frame-ancestors from a
+     real HTTP response header (Content-Security-Policy sent by the server). Real
+     clickjacking protection for this page must be configured at the server/CDN
+     level (e.g. an HTTP header or X-Frame-Options). -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self';">
+<title>Free Online BMI Calculator | TickmarkTools</title>
+<meta name="description" content="Free BMI Calculator — instantly find your Body Mass Index and health category using height and weight. No sign-up, 100% private.">
 <meta name="theme-color" content="#146356">
-<link rel="canonical" href="https://tickmarktools.com/bmi-calculator">
+<link rel="canonical" href="https://tickmarktools.com/bmi-calculator.html">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="BMI Calculator — Free Online Tool | TickmarkTools">
-<meta property="og:description" content="Free BMI Calculator — calculate your Body Mass Index and health category instantly using height and weight.">
-<meta property="og:url" content="https://tickmarktools.com/bmi-calculator">
+<meta property="og:title" content="Free Online BMI Calculator | TickmarkTools">
+<meta property="og:description" content="Free BMI Calculator — instantly find your Body Mass Index and health category using height and weight. No sign-up, 100% private.">
+<meta property="og:url" content="https://tickmarktools.com/bmi-calculator.html">
 <meta property="og:site_name" content="TickmarkTools">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://tickmarktools.com/assets/og/bmi-calculator.png">
+<!-- SEO/LAUNCH-BLOCKER: og:image:width/height below ASSUME the referenced asset is
+     exactly 1200x630 (the standard OG convention). This has NOT been verified against
+     the actual file on tickmarktools.com/assets/og/. Mismatched dimensions can cause
+     cropped or broken previews on Facebook/LinkedIn/Slack/etc. Confirm the real asset
+     dimensions (or regenerate the asset to 1200x630) before launch — do not treat
+     these values as verified. -->
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="BMI Calculator — TickmarkTools">
-<meta name="twitter:description" content="Free BMI Calculator — calculate your Body Mass Index and health category instantly using height and weight.">
+<meta name="twitter:title" content="Free BMI Calculator">
+<meta name="twitter:description" content="Free BMI Calculator — instantly find your Body Mass Index and health category using height and weight. No sign-up, 100% private.">
+<meta name="twitter:image" content="https://tickmarktools.com/assets/og/bmi-calculator.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
-
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap"></noscript>
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
+  "@type": ["WebApplication", "SoftwareApplication"],
   "name": "BMI Calculator",
   "applicationCategory": "UtilitiesApplication",
+  "browserRequirements": "Requires JavaScript. Requires HTML5.",
   "operatingSystem": "Any",
-  "url": "https://tickmarktools.com/bmi-calculator",
+  "url": "https://tickmarktools.com/bmi-calculator.html",
+  "inLanguage": "en-US",
+  "dateModified": "2026-08",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
-  "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "1200"}
+  "softwareVersion": "2.0",
+  "featureList": ["Medically standard formula","Instant results","No data stored","No sign-up required","No data uploaded","Runs entirely in the browser"]
 }
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "TickmarkTools",
+  "url": "https://tickmarktools.com/",
+  "logo": "https://tickmarktools.com/favicon.png"
+}
+</script>
+<!-- SEO: the SearchAction "target" below tells Google that sitemap.html accepts a
+     ?q= query parameter and returns matching results. This has NOT been verified from
+     this file alone — confirm sitemap.html actually reads ?q= and renders filtered
+     results (returning a real result set, not just the full sitemap) before relying
+     on this markup for a Sitelinks Search Box in search results. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "TickmarkTools",
+  "url": "https://tickmarktools.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://tickmarktools.com/sitemap.html?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use the BMI Calculator",
+  "totalTime": "PT20S",
+  "step": [
+    {"@type": "HowToStep", "name": "Enter height", "text": "Type in your height in centimeters."},
+    {"@type": "HowToStep", "name": "Enter weight", "text": "Type in your weight in kilograms."},
+    {"@type": "HowToStep", "name": "Calculate", "text": "Click Calculate BMI to instantly see your BMI value and health category."},
+    {"@type": "HowToStep", "name": "Copy or share your result", "text": "Use the Copy or Share buttons to save or send your result."}
+  ]
+}
+<!-- IMPORTANT: this schema MUST exactly match the visible <ol class="steps"> list in #how-to-use below. -->
 </script>
 <script type="application/ld+json">
 {
@@ -42,7 +109,7 @@
   "itemListElement": [
     {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://tickmarktools.com/"},
     {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://tickmarktools.com/#categories"},
-    {"@type": "ListItem", "position": 3, "name": "BMI Calculator", "item": "https://tickmarktools.com/bmi-calculator"}
+    {"@type": "ListItem", "position": 3, "name": "BMI Calculator", "item": "https://tickmarktools.com/bmi-calculator.html"}
   ]
 }
 </script>
@@ -51,21 +118,343 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type": "Question", "name": "Is it free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes."}},
-    {"@type": "Question", "name": "Does it store my health data?", "acceptedAnswer": {"@type": "Answer", "text": "No, calculations happen entirely in your browser."}},
-    {"@type": "Question", "name": "Is BMI accurate for everyone?", "acceptedAnswer": {"@type": "Answer", "text": "BMI is a general screening tool and may not account for muscle mass, age, or body composition — consult a doctor for personalized advice."}}
+    {"@type": "Question", "name": "Is this bmi calculator free to use?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, the BMI Calculator is completely free with no sign-up required."}},
+    {"@type": "Question", "name": "Does it store my health data?", "acceptedAnswer": {"@type": "Answer", "text": "No, calculations happen entirely in your browser and nothing is uploaded or logged."}},
+    {"@type": "Question", "name": "Is BMI accurate for everyone?", "acceptedAnswer": {"@type": "Answer", "text": "BMI is a general screening tool and may not account for muscle mass, age, or body composition — consult a doctor for personalized advice."}},
+    {"@type": "Question", "name": "What is a healthy BMI?", "acceptedAnswer": {"@type": "Answer", "text": "A BMI between 18.5 and 24.9 is generally considered a normal, healthy range for adults."}},
+    {"@type": "Question", "name": "Is BMI different for men and women?", "acceptedAnswer": {"@type": "Answer", "text": "The formula is the same, but healthy ranges can vary slightly based on age, muscle mass, and other factors."}},
+    {"@type": "Question", "name": "Does this tool store or upload my data?", "acceptedAnswer": {"@type": "Answer", "text": "No. All calculations run entirely in your browser, and nothing you enter is ever sent to a server or stored."}}
   ]
 }
+<!-- IMPORTANT: this schema MUST exactly match the visible #faq .faq-item content below (word-for-word). -->
 </script>
+
+<script>
+(function(){
+  try{
+    var saved = localStorage.getItem('tickmarktools-theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if(saved === 'dark' || (!saved && prefersDark)){
+      document.documentElement.setAttribute('data-theme','dark');
+    }
+  }catch(e){}
+})();
+</script>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}
+}
+html,body{max-width:100%;overflow-x:hidden;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+img,svg,video,canvas{max-width:100%;display:block;}
+button,input,select,textarea{font:inherit;color:inherit;}
+a{color:inherit;}
+ul,ol{padding-left:1.15em;}
+
+/* --ink-faint contrast (checked against WCAG AA 4.5:1): light #586460 on #ffffff = 6.16:1, on #F5F7F6 = 5.73:1 */
+:root{
+  --bg:#ffffff;--surface:#F5F7F6;--surface-2:#EEF2F0;--ink:#101615;--ink-soft:#5B6864;--ink-faint:#586460;
+  --teal:#146356;--teal-dark:#0C4137;--teal-tint:#E7F1EE;--laser:#E8402C;--laser-tint:#FDEBE7;
+  --line:#E1E6E3;--line-soft:#EEF1EF;--danger:#B4291A;--danger-tint:#FCEAE7;--on-teal:#ffffff;
+  --radius-lg:18px;--radius-md:12px;--radius-sm:8px;
+  --shadow-sm:0 1px 2px rgba(16,22,21,0.06);--shadow-md:0 8px 24px rgba(16,22,21,0.08);--shadow-lg:0 20px 48px rgba(16,22,21,0.14);
+  --font-display:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;--font-body:'Inter',ui-sans-serif,system-ui,sans-serif;--font-mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --header-h:60px;--jumpnav-h:56px;--sticky-bar-h:76px;
+}
+/* --ink-faint contrast (checked against WCAG AA 4.5:1): dark #8B978F on #0E1413 = 6.13:1, on #161D1B = 5.65:1 */
+[data-theme="dark"]{
+  --bg:#0E1413;--surface:#161D1B;--surface-2:#1D2523;--ink:#EEF3F1;--ink-soft:#A9B5B1;--ink-faint:#8B978F;
+  --teal:#3FB89E;--teal-dark:#2A8C77;--teal-tint:#152622;--laser:#FF6A50;--laser-tint:#2A1714;
+  --line:#28312E;--line-soft:#202826;--danger:#FF7A63;--danger-tint:#2C1815;--on-teal:#08211c;
+  --shadow-sm:0 1px 2px rgba(0,0,0,0.3);--shadow-md:0 8px 24px rgba(0,0,0,0.35);--shadow-lg:0 20px 48px rgba(0,0,0,0.45);
+}
+
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:clamp(14px,4vw,32px);}
+.tt-skip-link{position:absolute;left:-9999px;top:0;background:var(--teal);color:var(--on-teal);padding:10px 16px;border-radius:0 0 8px 0;z-index:1000;font-weight:600;}
+.tt-skip-link:focus{left:0;}
+:focus-visible{outline:2.5px solid var(--laser);outline-offset:2px;border-radius:4px;}
+
+header.site{position:sticky;top:0;z-index:70;background-color:var(--bg);background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line);}
+nav.main{display:flex;align-items:center;gap:20px;height:var(--header-h);}
+.logo{display:flex;align-items:center;gap:9px;font-family:var(--font-display);font-weight:700;font-size:17px;text-decoration:none;color:var(--ink);flex-shrink:0;}
+.logo img{width:26px;height:26px;flex-shrink:0;border-radius:6px;}
+.logo .word-tools{color:var(--teal);}
+.nav-links{display:flex;gap:4px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;}
+.nav-links::-webkit-scrollbar{display:none;}
+.nav-links a{white-space:nowrap;font-size:14px;font-weight:500;text-decoration:none;color:var(--ink-soft);padding:8px 10px;border-radius:8px;transition:background .15s,color .15s;}
+.nav-links a:hover{background:var(--surface);color:var(--ink);}
+.nav-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.theme-toggle{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--surface);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s,transform .1s;}
+.theme-toggle:hover{background:var(--surface-2);}
+.theme-toggle:active{transform:scale(.92);}
+.theme-toggle svg{width:18px;height:18px;color:var(--ink-soft);}
+.nav-cta{display:none;}
+@media(min-width:720px){.nav-cta{display:inline-flex;background:var(--teal);color:var(--on-teal);text-decoration:none;padding:9px 16px;border-radius:10px;font-weight:600;font-size:14px;transition:background .15s;}
+.nav-cta:hover{background:var(--teal-dark);}}
+
+.breadcrumb{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding-block:12px;font-size:12.5px;color:var(--ink-faint);}
+.breadcrumb a{text-decoration:none;color:var(--ink-faint);}
+.breadcrumb a:hover{color:var(--teal);}
+.breadcrumb .sep{opacity:.5;}
+.breadcrumb span:last-child{color:var(--ink-soft);font-weight:500;}
+
+.tt-hero{padding-block:28px 20px;}
+.tt-hero-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+.tt-icon{width:44px;height:44px;border-radius:12px;background:var(--teal-tint);display:flex;align-items:center;justify-content:center;font-size:22px;}
+.tt-cat-badge{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.02em;background:var(--surface);border:1px solid var(--line);padding:5px 10px;border-radius:20px;color:var(--ink-soft);}
+.tt-hero h1{font-family:var(--font-display);font-weight:700;font-size:clamp(28px,5.2vw,42px);letter-spacing:-0.02em;margin:0 0 12px;line-height:1.08;}
+.tt-desc{font-size:clamp(15px,2vw,17px);color:var(--ink-soft);max-width:66ch;margin:0 0 18px;}
+.tt-meta-row{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink-faint);margin-bottom:16px;}
+.tt-meta-row strong{color:var(--ink-soft);font-weight:600;}
+.tt-trust-row{display:flex;flex-wrap:wrap;gap:8px;}
+.tt-trust-chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;background:var(--teal-tint);color:var(--teal-dark);padding:8px 13px;border-radius:20px;}
+[data-theme="dark"] .tt-trust-chip{color:var(--teal);}
+.tt-trust-chip svg{width:14px;height:14px;flex-shrink:0;}
+
+.tt-jumpnav{position:sticky;top:var(--header-h);z-index:55;background:var(--bg);border-bottom:1px solid var(--line);}
+.tt-jumpnav-row{display:flex;gap:8px;overflow-x:auto;padding:10px 0;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.tt-jumpnav-row::-webkit-scrollbar{display:none;}
+.tt-jumpnav-row a{flex-shrink:0;min-height:40px;display:inline-flex;align-items:center;font-size:13px;font-weight:600;padding:0 14px;border-radius:20px;background:var(--surface);border:1px solid var(--line);color:var(--ink-soft);text-decoration:none;white-space:nowrap;transition:background .15s,color .15s,border-color .15s;}
+.tt-jumpnav-row a:hover{border-color:var(--teal);color:var(--teal-dark);}
+.tt-jumpnav-row a.tt-jump-active{background:var(--teal);border-color:var(--teal);color:var(--on-teal);}
+
+.tt-ad-wrap{margin-block:18px;}
+.tt-ad-slot{width:100%;display:flex;align-items:center;justify-content:center;background:var(--surface);border:1px dashed var(--line);border-radius:10px;color:var(--ink-faint);font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;content-visibility:auto;}
+.tt-ad-slot[data-size="leaderboard"]{min-height:90px;}
+.tt-ad-slot[data-size="banner"]{min-height:100px;}
+@media(min-width:600px){.tt-ad-slot[data-size="leaderboard"]{min-height:90px;}.tt-ad-slot[data-size="banner"]{min-height:120px;}}
+
+.tool-section{padding-block:34px;border-top:1px solid var(--line-soft);}
+.tool-section:first-of-type{border-top:none;}
+.tool-section h2{font-family:var(--font-display);font-size:clamp(20px,3vw,26px);font-weight:700;letter-spacing:-0.01em;margin:0 0 14px;}
+
+.tt-layout{display:grid;grid-template-columns:1fr;gap:24px;align-items:start;padding-top:4px;}
+@media(min-width:960px){.tt-layout{grid-template-columns:1fr 220px;}}
+
+.tt-panel{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius-lg);padding:18px;box-shadow:var(--shadow-sm);}
+@media(min-width:600px){.tt-panel{padding:26px;}}
+
+.tt-field-label{display:block;font-size:13px;font-weight:600;color:var(--ink-soft);margin-bottom:7px;}
+.field{width:100%;min-height:50px;padding:12px 14px;border:1.5px solid var(--line);border-radius:var(--radius-md);background:var(--surface);font-family:var(--font-mono);font-size:15px;color:var(--ink);transition:border-color .15s,box-shadow .15s,background .15s;}
+.field:hover{border-color:var(--ink-faint);}
+.field:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 4px var(--teal-tint);background:var(--bg);}
+.field[aria-invalid="true"]{border-color:var(--danger);}
+.field[aria-invalid="true"]:focus{box-shadow:0 0 0 4px var(--danger-tint);}
+
+.tt-error{display:none;align-items:flex-start;gap:9px;margin-top:14px;padding:12px 14px;border-radius:var(--radius-md);background:var(--danger-tint);color:var(--danger);font-size:13.5px;font-weight:500;}
+.tt-error.show{display:flex;animation:tt-shake .35s ease;}
+.tt-error svg{width:17px;height:17px;flex-shrink:0;margin-top:1px;}
+@keyframes tt-shake{10%,90%{transform:translateX(-1px);}20%,80%{transform:translateX(2px);}30%,50%,70%{transform:translateX(-3px);}40%,60%{transform:translateX(3px);}}
+
+.tt-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 22px;border-radius:var(--radius-md);font-weight:600;font-size:15px;border:none;cursor:pointer;transition:transform .08s ease,background .15s,box-shadow .15s,opacity .15s;-webkit-tap-highlight-color:transparent;}
+.tt-btn:active{transform:scale(.97);}
+.tt-btn-primary{background:var(--teal);color:var(--on-teal);width:100%;box-shadow:var(--shadow-sm);position:relative;overflow:hidden;}
+.tt-btn-primary:hover{background:var(--teal-dark);}
+[data-theme="dark"] .tt-btn-primary:hover,[data-theme="dark"] .nav-cta:hover{background:#1c6a55;color:#EEF3F1;}
+.tt-btn-primary:disabled{opacity:.75;cursor:progress;}
+.tt-btn-secondary{background:var(--surface);color:var(--ink);border:1.5px solid var(--line);}
+.tt-btn-secondary:hover{background:var(--surface-2);}
+
+.tt-empty-state{text-align:center;padding:22px 14px;border:1.5px dashed var(--line);border-radius:var(--radius-md);background:var(--surface);}
+.tt-empty-state .ico{font-size:26px;margin-bottom:6px;}
+.tt-empty-state h2{margin:0 0 4px;font-family:var(--font-display);font-size:15px;font-weight:600;}
+.tt-empty-state p{margin:0 0 14px;font-size:13.5px;color:var(--ink-soft);}
+.tt-example-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+.tt-example-chip{min-height:40px;padding:0 13px;border-radius:20px;border:1px solid var(--line);background:var(--bg);font-size:12.5px;font-weight:600;color:var(--ink-soft);cursor:pointer;transition:border-color .15s,color .15s,transform .08s;}
+.tt-example-chip:hover{border-color:var(--teal);color:var(--teal-dark);}
+.tt-example-chip:active{transform:scale(.96);}
+
+.tt-result{display:none;margin-top:20px;animation:tt-fade-up .35s ease both;}
+.tt-result.show{display:block;}
+.tt-result:focus{outline:none;}
+.tt-result:focus-visible{outline:2.5px solid var(--laser);outline-offset:4px;border-radius:8px;}
+@keyframes tt-fade-up{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+.tt-result-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px;}
+.tt-result-title{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;}
+.tt-check{width:20px;height:20px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;animation:tt-pop .4s cubic-bezier(.34,1.56,.64,1) both;}
+@keyframes tt-pop{0%{transform:scale(0);}70%{transform:scale(1.15);}100%{transform:scale(1);}}
+.tt-result-actions{display:flex;gap:6px;flex-wrap:wrap;}
+.tt-icon-btn{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border-radius:9px;border:1px solid var(--line);background:var(--bg);font-size:12.5px;font-weight:600;color:var(--ink-soft);cursor:pointer;transition:background .15s,border-color .15s,transform .08s,color .15s;}
+.tt-icon-btn svg{width:14px;height:14px;}
+.tt-icon-btn:hover{background:var(--surface);border-color:var(--ink-faint);}
+.tt-icon-btn:active{transform:scale(.95);}
+.tt-icon-btn.tt-success{background:var(--teal-tint);border-color:var(--teal);color:var(--teal-dark);}
+
+.tt-sticky-actions{display:none;position:fixed;left:0;right:0;bottom:0;z-index:70;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:var(--bg);border-top:1px solid var(--line);gap:10px;box-shadow:0 -6px 20px rgba(16,22,21,0.06);}
+.tt-sticky-actions.is-active{display:flex;}
+.tt-sticky-actions .tt-btn{margin:0;}
+.tt-sticky-actions .tt-btn-secondary{flex:0 0 auto;width:auto;padding:0 16px;}
+.tt-sticky-actions .tt-btn-primary{flex:1;}
+@media(min-width:720px){.tt-sticky-actions{display:none !important;}}
+body.tt-has-sticky-bar{padding-bottom:var(--sticky-bar-h);}
+@media(min-width:720px){body.tt-has-sticky-bar{padding-bottom:0;}}
+
+.tt-toc{display:none;}
+@media(min-width:960px){
+  .tt-toc{display:block;position:sticky;top:calc(var(--header-h) + var(--jumpnav-h) + 20px);max-height:calc(100vh - var(--header-h) - var(--jumpnav-h) - 40px);overflow-y:auto;border-left:1px solid var(--line);padding-left:16px;}
+  .tt-toc h2{margin:0 0 10px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;}
+  .tt-toc a{display:block;padding:6px 0;font-size:13.5px;color:var(--ink-soft);text-decoration:none;border-left:2px solid transparent;margin-left:-17px;padding-left:15px;transition:color .15s,border-color .15s;}
+  .tt-toc a:hover{color:var(--ink);}
+  .tt-toc a.tt-toc-active{color:var(--teal);border-color:var(--teal);font-weight:600;}
+}
+
+.tt-article h2{font-family:var(--font-display);font-size:clamp(19px,2.6vw,23px);font-weight:700;margin:28px 0 12px;}
+.tt-article h2:first-child{margin-top:0;}
+.tt-article h3{font-family:var(--font-display);font-size:16.5px;font-weight:600;margin:22px 0 8px;}
+.tt-article p{color:var(--ink-soft);margin:0 0 12px;}
+.tt-article ul:not([class]){color:var(--ink-soft);font-size:14.5px;margin:0 0 14px;display:grid;gap:6px;}
+.steps{margin:0;padding-left:0;list-style:none;counter-reset:tt-step;display:grid;gap:10px;}
+.steps li{counter-increment:tt-step;position:relative;padding:12px 14px 12px 46px;background:var(--surface);border-radius:var(--radius-md);font-size:14.5px;}
+.steps li::before{content:counter(tt-step);position:absolute;left:12px;top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:50%;background:var(--teal);color:var(--on-teal);font-family:var(--font-mono);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;}
+
+.tt-callout{display:flex;gap:12px;padding:14px 16px;border-radius:var(--radius-md);margin:16px 0;}
+.tt-callout-icon{font-size:18px;flex-shrink:0;}
+.tt-callout p{margin:0;font-size:13.5px;color:var(--ink);}
+.tt-tip{background:var(--teal-tint);}
+.tt-warn{background:var(--laser-tint);}
+.tt-target-result{font-size:13.5px;font-weight:600;color:var(--teal-dark);}
+[data-theme="dark"] .tt-target-result{color:var(--teal);}
+
+.tt-example-table{width:100%;border-collapse:collapse;margin-top:14px;font-size:13.5px;}
+.tt-example-table th,.tt-example-table td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);}
+.tt-example-table th{color:var(--ink-faint);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;font-weight:700;}
+.tt-example-table code{font-family:var(--font-mono);background:var(--surface);padding:2px 6px;border-radius:5px;font-size:12.5px;}
+.tt-example-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+
+.tt-format-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:4px;}
+.tt-format-icon{width:40px;height:40px;border-radius:10px;background:var(--teal-tint);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
+.tt-format-head h2{margin:0;}
+.tt-format-sub{margin:2px 0 0;font-size:13px;color:var(--ink-faint);font-family:var(--font-mono);}
+.tt-format-try{margin-left:auto;flex-shrink:0;}
+@media(max-width:560px){.tt-format-try{width:100%;margin-left:0;margin-top:6px;}}
+
+.tt-proscons{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px;}
+@media(max-width:640px){.tt-proscons{grid-template-columns:1fr;}}
+.tt-pros,.tt-cons{padding:14px 16px;border-radius:var(--radius-md);}
+.tt-pros{background:var(--teal-tint);}
+.tt-cons{background:var(--surface);}
+.tt-pros h4,.tt-cons h4{margin:0 0 8px;font-size:13px;font-weight:700;}
+.tt-pros ul,.tt-cons ul{margin:0;padding-left:18px;font-size:13.5px;color:var(--ink-soft);display:grid;gap:5px;}
+
+.tt-mistake-list{display:grid;gap:8px;margin:0 0 16px;padding:0;list-style:none;}
+.tt-mistake-list li{padding:10px 12px 10px 34px;position:relative;font-size:14px;color:var(--ink-soft);background:var(--surface);border-radius:9px;}
+.tt-mistake-list li::before{content:"✕";position:absolute;left:12px;color:var(--danger);font-weight:700;font-size:12px;top:11px;}
+
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;}
+.feature-card{background:var(--surface);border-radius:var(--radius-md);padding:16px;text-align:center;}
+.feature-card .ico{font-size:22px;margin-bottom:8px;}
+.feature-card h3{margin:0;font-size:13.5px;font-weight:600;}
+
+.tt-compare-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius-md);border:1px solid var(--line);margin-top:14px;}
+.tt-compare{width:100%;border-collapse:collapse;font-size:13.5px;min-width:520px;}
+.tt-compare th,.tt-compare td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line);}
+.tt-compare thead th{background:var(--surface);font-size:12px;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-faint);}
+.tt-compare tbody tr:last-child td{border-bottom:none;}
+.tt-highlight-col{background:var(--teal-tint);font-weight:600;color:var(--teal-dark);}
+.tt-compare .yes{color:var(--teal-dark);font-weight:700;}
+.tt-compare .no{color:var(--ink-faint);}
+.tt-compare-note{font-size:12px;color:var(--ink-faint);margin-top:8px;}
+
+.tt-trust-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:16px;}
+.tt-trust-item{display:flex;gap:12px;padding:14px;background:var(--surface);border-radius:var(--radius-md);}
+.tt-trust-item svg{width:20px;height:20px;color:var(--teal);flex-shrink:0;margin-top:2px;}
+.tt-trust-item h3{margin:0 0 3px;font-size:14px;font-weight:600;}
+.tt-trust-item p{margin:0;font-size:12.5px;color:var(--ink-soft);}
+
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-item:first-child{border-top:1px solid var(--line);}
+.faq-q{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 4px;cursor:pointer;font-weight:600;font-size:15px;min-height:48px;}
+.faq-q .chev{flex-shrink:0;transition:transform .2s;color:var(--ink-faint);}
+.faq-item.open .chev{transform:rotate(180deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.faq-item.open .faq-a{max-height:260px;}
+.faq-a p{margin:0 4px 16px;color:var(--ink-soft);font-size:14px;}
+
+.ai-panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:18px;}
+.ai-panel h2{margin:0;font-family:var(--font-display);font-size:16px;}
+.ai-q{margin-top:12px;padding:11px 13px;background:var(--bg);border:1px solid var(--line);border-radius:9px;font-size:13.5px;font-weight:600;cursor:pointer;}
+.ai-a{display:none;padding:10px 13px;font-size:13.5px;color:var(--ink-soft);}
+.ai-q.open + .ai-a{display:block;}
+.ai-input-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+.ai-input-row .field{flex:1;min-width:160px;}
+.ai-input-row .btn{min-height:48px;padding:0 18px;border-radius:var(--radius-md);border:none;background:var(--teal);color:var(--on-teal);font-weight:600;cursor:pointer;}
+#aiCustomAnswer{margin-top:10px;padding:11px 13px;background:var(--bg);border:1px solid var(--line);border-radius:9px;font-size:13.5px;color:var(--ink-soft);}
+
+.tt-request-cta{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--teal-dark);color:#fff;border-radius:var(--radius-lg);padding:22px;}
+[data-theme="dark"] .tt-request-cta{background:#103a30;}
+.tt-request-cta h2{margin:0 0 4px;font-family:var(--font-display);font-size:18px;}
+.tt-request-cta p{margin:0;font-size:13.5px;color:#CFE4DF;}
+.tt-request-cta .tt-btn{background:#fff;color:var(--teal-dark);width:auto;text-decoration:none;padding:0 20px;flex-shrink:0;}
+[data-theme="dark"] .tt-request-cta .tt-btn{color:#0C4137;}
+
+.tt-chip-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:thin;}
+.tt-tool-chip{flex-shrink:0;display:inline-flex;align-items:center;gap:7px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);padding:9px 14px;border-radius:20px;font-size:13.5px;font-weight:600;white-space:nowrap;transition:border-color .15s,transform .1s;}
+.tt-tool-chip:hover{border-color:var(--teal);}
+.tt-tool-chip .em{font-size:15px;}
+
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;}
+.related-card{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:var(--radius-md);padding:13px;transition:border-color .15s,transform .1s;}
+.related-card:hover{border-color:var(--teal);transform:translateY(-1px);}
+.related-emoji{font-size:20px;flex-shrink:0;}
+
+.comment-box{background:var(--surface);border-radius:var(--radius-md);padding:16px;}
+.comment-input-row{margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap;}
+.comment-input-row .field{flex:1;min-width:160px;}
+.comment-input-row .tt-btn{width:auto;flex:0 0 auto;padding:0 18px;min-height:48px;}
+.comment-list{display:grid;gap:10px;}
+.comment-item{display:flex;gap:10px;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:11px 13px;}
+.comment-body{flex:1;min-width:0;}
+.comment-delete{flex-shrink:0;align-self:flex-start;min-width:44px;min-height:44px;border:1px solid var(--line);background:var(--surface);color:var(--ink-faint);border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;line-height:1;transition:background .15s,color .15s,border-color .15s;}
+.comment-delete:hover{background:var(--danger-tint);color:var(--danger);border-color:var(--danger);}
+.comment-empty{font-size:13px;color:var(--ink-faint);padding:6px 2px;}
+.comment-avatar{width:30px;height:30px;border-radius:50%;background:var(--teal-tint);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px;}
+.comment-meta{font-size:11.5px;color:var(--ink-faint);margin-bottom:2px;}
+.comment-text{font-size:13.5px;}
+
+footer.compact-footer{border-top:1px solid var(--line);}
+.compact-footer-links{max-width:1120px;margin:0 auto;padding:22px clamp(14px,4vw,32px) 10px;display:flex;flex-wrap:wrap;gap:6px 4px;font-size:12.5px;justify-content:center;}
+.compact-footer-links a{text-decoration:none;color:var(--ink-faint);padding:4px 2px;}
+.compact-footer-links a:hover{color:var(--teal);}
+.compact-footer-links .sep{color:var(--line);}
+.compact-footer-copy{text-align:center;font-size:12px;color:var(--ink-faint);padding-bottom:22px;}
+
+.tt-reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;}
+.tt-reveal.tt-visible{opacity:1;transform:translateY(0);}
+@media (prefers-reduced-motion: reduce){.tt-reveal{opacity:1;transform:none;transition:none;}}
+.tt-visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+
+/* Print stylesheet: let users cleanly print/save a calculated result.
+   Hides nav, ads, footer, and educational sections; keeps the tool panel/result visible. */
+@media print{
+  header.site,.breadcrumb,.tt-jumpnav,.tt-ad-wrap,.tt-ad-slot,.tt-sticky-actions,
+  footer.compact-footer,.tt-toc,.tt-empty-state,.tt-print-hide,
+  #how-to-use,#section-a,#section-b,#section-c,#quick-reference,#features,
+  #comparison,#limitations,#faq,#ai-assistant,#related,#comments,
+  .tt-icon-btn,.tt-result-actions{display:none !important;}
+  body{padding-bottom:0 !important;background:#fff;color:#000;}
+  .tt-hero{padding-block:0 12px;}
+  .tt-trust-row,.tt-meta-row{display:none !important;}
+  .tt-panel{box-shadow:none;border:1px solid #000;}
+  .tt-result{display:block !important;}
+  .tt-check{background:#000;}
+}
+</style>
 </head>
 <body>
 
+<a href="#tt-main" class="tt-skip-link">Skip to tool</a>
+
 <header class="site">
   <div class="wrap">
-    <nav class="main">
+    <nav class="main" aria-label="Primary">
       <a href="index.html" class="logo">
-        <svg viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#146356"/><path d="M6 12.5L10 16.5L18 8" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        TickmarkTools
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGgAAABoCAMAAAAqwkWTAAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAAA/1BMVEVYqqHZ6Oe95eExopZafoB3y8IhP0E7X2BLgXykr6+wwL79/f0CRkYCNTkBKSwBl4YBiHkCPUEBdWkBpJIAZVoCWE4BbWEBRTsAGBkpZWVOua6Qp6YqWVQBjoBJjIWSuLXl6eluh4fO1tZKZ2eWwb2SysSsublQwLQBHiEqR0ja4+NQd3aGmJm3xsYmYVl0lJR6urNCW1zCzMwADg4AJR4AkH5KkIhke3yp1dAjOzw9cnF3w7qLoJ4vqJuQ1c214d0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACJl5X7AAAAQHRSTlP/////////////////////////////////////////////////////////////////////////////////////73leyQAABudJREFUeNq1mgl3mkwUhkmXb2PmAgqKQaNoY11r1iZN2ub//6uPWZkV8ITenNMmEufhvdtcyQShacfi6mXyLtuf5jtr2cCglBPUh2X7YtEAOr6gBPVl2WnhAS33qF/LCrn0QgEVqHfDL0u29iTbSdAnjP6AlWzxEy4F6KV3DsaTOY/SMRvvOWjSNwejqzsZe4zGJwba474xJ1FJixLj6mcWoxP+U5gqxTB54Uiz7thzbEqJWa6IHLzfsTqa9IpZLWXFHDCVM/jACrbAfXptLjG7FRA5WRx9pKBF1hMkqVZ9qtvOmskZxXEUvRFQX4ISDNNj3dBKwJVlgwEBXRLQpJfIECeVSt+cUk5KOBVoeBEGx344CaB1qLiNcFDK9ETD6HcYvLuGkoTcO6wWptvQaCBBl2EweU/0qy/M7FBjFisWHsmJhsNhGLzHY4ICSMmC5ZZwxpXbFM7wLXinyyy3ifAwPTHnDH8HZy4uv5EYDEq2hQULj8JhoM/BuWGhkEQFFQrn5OEMvwZnrE8Z1GeKHHSncJ54GlicjiC+PjWkqYGpOurwdFP1dATxmCS64ZqzUieqW13PYysoMaQgL0dNg8XU9pvkOEDUPVwNc5Sfc+jMGV4GFoVFAtUB8XAA1ipn28gxFJF88hpZR+XgYwNn1gRqxGg+o5w7h99EvlmCahBbqiOFcJZqvrVyJKhei7RkHhrM0diiGBye12nKOTOLI0By3armAaqZgv3AMAaougx/aR+0Vg+6Hh4gvyK6Nvp0KKdyVVsOuZHthcp5yll/4xuDcJxTkej5Cd4v+EAmUbaeH5qe0uTM/CAZB5jwd8+x2yo5kGjxKShnnMoACUEu19V5JXO28HL0PFjTPCCJMGoHifBgPK1XmIMTY3CWACYndnF4C5KeW1l7pQVS61Q0BKSBnKTLQM0F+DtsIFHOMTQKCGgiUI4AuUhfA33Q0D6xH8DE5OvQSGw6iWSVCRgzth2Ziurih0Jb6AQG5xDqCUdiBvsiKIr5fH5zczOn/5HvXl+vL1USB9XNRX+2UoLGKbWLdzQ39E1Wtd+Pxn6kCILceNseOIRw9tqlBc/ChQ90HTeAINedR+YNwbnVr9zmjuzwgr6aIICl/utTTsq3+q2faICMqDWClO3GdeO7hCvSb2BNOQ+rsBkUKa5T9zVwOG9JX92sXQHaLs4EqUmcg/Hu9cZK7HCV222iA8ioFtMfxcZIOFZB0BQgAhoo3cGhCOD+X+Mt5dbwpvuGmkHGTOh0nmnTvLmCBGgmSREFmR0N7veNKxxYgNZhJ1DEQUgfC8DVPJ2OK8PwHYoE6EfDAlsqaBv2AYL7ss1xy3aQ8gnJBglJ+V2j41oDZMcoSRz7KGltnrezXoqLnz+Lyn7qbeQ/+mJBt6cvQWwmg0PSBu7d1chKFeOHByBfOQ7tmXU8HpMpYmC5LnFKgp2DIzYhaVN9+xpndF+nw4o66ztiVJNchV/mkjOm/25NEOeI502cRF2H3SBXMS039MpYmq2IUsicEhugBHtBP3yZQILgBP2DBEYF0cdbDhAnbexiWgsO//Rmga7qqUuZ9ltAVS2ZVbmlnqswLBKEZIPqUTJSzAmSzrtfuVJbcCjJAikja2dQvtHzAVNBEkNIFmhUz+AzHdQgaLPR8oE1OZw1g9yCPIrqolX6A6/VsQrKGkDRGSDYKP2h1ASlDaC4O0iQNnV/EM1HVH7qBKWDM0FSE4j9ggkCJEFpCyg+F7S1BKVpF9Asas06DcQnVy6oCyh2u64dRLacC/4Dqjk9gVTS7XrNBhIARRAl+UGzriCVlOdse6CeSzXQtz5Btdmg97vOSUIqx6Hoe+opo3MVoTTVQcgHmnV3nQvF9YxGra4zQa9nuQ4zDAdlTclggq49IHCCENczkiRDkeI6I0bPwfSMGGUMM/CCrrygi6CEzhwsJpwuIJ30KwyODYqwIxXoznYu6PE1DMItdE0F5rmBlHRGC/pQgcquICQFKYq+deoMv8hflpcdg8QiJEDtihRJj9f0r/8r6KSodtzZoIgdM1h2SrmxIoj7rrmpzjRB9OCEHiUAd9/WnmV2ANVR+iVOOi0QtHGU1NZB3xpAXNPsgzxSdQTWdPwkpDlOiVE7KP6snN3iT57BJ2icmqD29I5n1HfxpXZIrPQy+MbKu5wJQo2KqjDFgXEa7WQ1HEUP31eNELWCVE59Gq3wkpDQcy4oiuMbx/m65XQD2D+PqJyuiqJn94nBQ/VJywwVcnG8oO+pyrnxHk1clFvYGGVq+42lN89vLyi62TUdtgzXT1OpCaMs00bT1ByCsnHmHPI/Xj63nOqkT7qPa/bYSNoXy6qX2CX9ocfzl+vr6+c318Od/wFTpYfaQscQkwAAAABJRU5ErkJggg==" width="26" height="26" alt="TickmarkTools logo" loading="eager">
+        <span>Tickmark<span class="word-tools">Tools</span></span>
       </a>
       <div class="nav-links">
         <a href="index.html">Home</a>
@@ -75,8 +464,8 @@
         <a href="word-counter.html">Text Tools</a>
       </div>
       <div class="nav-right">
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-          <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+          <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
         </button>
         <a href="index.html#categories" class="nav-cta">All Tools</a>
       </div>
@@ -84,229 +473,930 @@
   </div>
 </header>
 
-<div class="wrap breadcrumb">
+<nav class="wrap breadcrumb" aria-label="Breadcrumb">
   <a href="index.html">Home</a><span class="sep">/</span>
   <a href="index.html#categories">Calculators</a><span class="sep">/</span>
-  <span>BMI Calculator</span>
-</div>
+  <span aria-current="page">BMI Calculator</span>
+</nav>
 
-<section class="tool-hero">
+<section class="tt-hero">
   <div class="wrap">
-    <div class="cat-tag">🧮 Calculators</div>
-    <h1>BMI Calculator</h1>
-    <p class="lead">Calculate your Body Mass Index (BMI) and see which health category you fall into.</p>
+    <div class="tt-hero-top">
+      <div class="tt-icon" aria-hidden="true">&#9878;&#65039;</div>
+      <span class="tt-cat-badge">Calculators</span>
+    </div>
+    <h1>Free Online BMI Calculator</h1>
+    <p class="tt-desc">Calculate your Body Mass Index and see which health category you fall into — instantly, accurately, and 100% free.</p>
+
+    <div class="tt-meta-row">
+      <span>📖 <strong>4 minutes</strong> read</span>
+      <span>🏷️ Version <strong>2.0</strong></span>
+      <span>✍️ Written by <strong>TickmarkTools Team</strong></span>
+      <span>✅ Reviewed by <strong>TickmarkTools Editorial</strong></span>
+      <span>🕒 Updated <strong>August 2026</strong></span>
+    </div>
+    <!-- NOTE: reading-time text must always literally read "4 minutes read" per house rule — do not make it dynamic. -->
+
+    <div class="tt-trust-row">
+      <span class="tt-trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>100% Free</span>
+      <span class="tt-trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>Private — nothing uploaded</span>
+      <span class="tt-trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>No Sign-up</span>
+      <span class="tt-trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>Browser-based processing</span>
+      <span class="tt-trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>Works on Mobile</span>
+    </div>
   </div>
 </section>
 
-<div class="wrap">
-  <div class="tool-panel">
-    <div class="field-row">
-      <div><label class="field-label">Height (cm)</label><input type="number" id="bmiHeight" class="field" placeholder="e.g. 170"></div>
-      <div><label class="field-label">Weight (kg)</label><input type="number" id="bmiWeight" class="field" placeholder="e.g. 65"></div>
+<nav class="tt-jumpnav" aria-label="Jump to section">
+  <div class="wrap">
+    <div class="tt-jumpnav-row" id="jumpNavRow">
+      <a href="#tt-main" data-jump>BMI Calculator</a>
+      <a href="#section-a" data-jump>How It Works</a>
+      <a href="#section-b" data-jump>The Formula</a>
+      <a href="#section-c" data-jump>Healthy Ranges</a>
+      <a href="#faq" data-jump>FAQ</a>
     </div>
-    <div style="margin-top:18px;"><button class="btn btn-primary" id="bmiCalcBtn">Calculate BMI</button></div>
-    <div class="result-box" id="bmiResult">
-      <div class="result-item"><div class="num" id="bmiValue">0</div><div class="lbl">Your BMI</div></div>
-      <div style="margin-top:14px;font-weight:600;" id="bmiCategory"></div>
+  </div>
+</nav>
+
+<!--
+  MONETIZATION NOTE: Do not place an ad slot directly above <main>/the primary
+  tool card — on mobile this pushes the primary action below the first
+  viewport. Ad slots belong at natural content breaks: after the tool result,
+  between educational sections, and after the FAQ.
+-->
+
+<main id="tt-main">
+<div class="wrap tt-layout">
+  <div>
+  <!-- ============================================================
+       TOOL-SPECIFIC INPUT FIELDS — replace this block for each new tool.
+       Keep the surrounding .tt-panel / error box / empty-state / result
+       wiring below exactly as-is; only these input fields change.
+       ============================================================ -->
+    <div style="display:grid;grid-template-columns:1fr;gap:16px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div>
+          <label class="tt-field-label" for="toolHeight">Height (cm)</label>
+          <input type="number" inputmode="decimal" id="toolHeight" class="field" placeholder="e.g. 170" autocomplete="off" min="0" step="any" aria-describedby="toolErrorText">
+        </div>
+        <div>
+          <label class="tt-field-label" for="toolWeight">Weight (kg)</label>
+          <input type="number" inputmode="decimal" id="toolWeight" class="field" placeholder="e.g. 65" autocomplete="off" min="0" step="any" aria-describedby="toolErrorText">
+        </div>
+      </div>
     </div>
-    <div class="toolbar-row">
-      <button class="btn btn-secondary" onclick="resetTool()">↺ Reset</button>
-      <button class="btn btn-secondary" id="copyResultBtn" onclick="copyResult()">📋 Copy Result</button>
-      <button class="btn btn-secondary" onclick="shareTool()">🔗 Share Tool</button>
+
+    <div id="toolError" class="tt-error" role="alert">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>
+      <span id="toolErrorText">Something went wrong.</span>
+    </div>
+
+    <div style="margin-top:20px;">
+      <button class="tt-btn tt-btn-primary" id="toolGenBtn" type="button">Calculate BMI</button>
+    </div>
+
+    <div class="tt-empty-state" id="toolEmptyState" style="margin-top:20px;">
+      <div class="ico" aria-hidden="true">&#9878;&#65039;</div>
+      <h2>Enter your height and weight to get started</h2>
+      <p>Try an example, or enter your own values above.</p>
+      <div class="tt-example-chips">
+        <button class="tt-example-chip" data-height="170" data-weight="65" type="button">170cm, 65kg</button>
+        <button class="tt-example-chip" data-height="160" data-weight="55" type="button">160cm, 55kg</button>
+      </div>
+    </div>
+
+    <div class="tt-result" id="toolResult" tabindex="-1" aria-live="polite">
+      <div class="tt-result-head">
+        <div class="tt-result-title"><span class="tt-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span> Result ready</div>
+        <div class="tt-result-actions">
+          <button class="tt-icon-btn" id="toolCopyBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copy
+          </button>
+          <button class="tt-icon-btn" id="toolShareBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+            Share
+          </button>
+          <button class="tt-icon-btn" id="toolResetBtn" type="button">&#8630; Reset</button>
+        </div>
+      </div>
+      <div id="toolOutputArea"></div>
+      <div class="tt-ad-slot" id="toolResultAd" data-size="banner" role="complementary" aria-label="Advertisement" style="display:none;margin-top:16px;">Advertisement</div>
+    </div>  </div>
+
+  <nav class="tt-toc" aria-label="On this page">
+    <h2>On this page</h2>
+    <a href="#how-to-use" data-toc>How to use</a>
+    <a href="#section-a" data-toc>How It Works</a>
+    <a href="#section-b" data-toc>The Formula</a>
+    <a href="#section-c" data-toc>Healthy Ranges</a>
+    <a href="#quick-reference" data-toc>Quick Reference</a>
+    <a href="#comparison" data-toc>Comparison</a>
+    <a href="#limitations" data-toc>Accuracy &amp; limitations</a>
+    <a href="#faq" data-toc>FAQ</a>
+    <a href="#ai-assistant" data-toc>Quick Help</a>
+    <a href="#related" data-toc>Related tools</a>
+    <a href="#comments" data-toc>Comments</a>
+  </nav>
+</div>
+
+<div class="tt-sticky-actions" id="toolStickyActions">
+  <button class="tt-btn tt-btn-primary" id="toolStickyGen" type="button">Calculate</button>
+</div>
+
+<div class="wrap tt-ad-wrap"><div class="tt-ad-slot" data-size="banner" role="complementary" aria-label="Advertisement">Advertisement</div></div>
+
+<div class="wrap tool-section" id="how-to-use">
+  <div class="tt-article">
+    <h2>How to use the BMI Calculator</h2>
+    <!-- MUST exactly match the HowTo JSON-LD steps in <head>. -->
+    <ol class="steps">
+      <li>Type in your height in centimeters.</li>
+      <li>Type in your weight in kilograms.</li>
+      <li>Click Calculate BMI to instantly see your BMI value and health category.</li>
+      <li>Use the Copy or Share buttons to save or send your result.</li>
+    </ol>
+    <div class="tt-callout tt-tip">
+      <div class="tt-callout-icon" aria-hidden="true">💡</div>
+      <p><strong>Tip:</strong> BMI is a quick screening number, not a full health diagnosis — pair it with other measures like waist circumference for a fuller picture.</p>
+    </div>
+    <h3>Common mistakes to avoid</h3>
+    <ul class="tt-mistake-list">
+      <li>Entering height in feet/inches instead of centimeters.</li>
+      <li>Entering weight in pounds instead of kilograms.</li>
+      <li>Treating BMI as a diagnosis rather than a general screening number.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="wrap tt-ad-wrap"><div class="tt-ad-slot" data-size="leaderboard" role="complementary" aria-label="Advertisement">Advertisement</div></div>
+
+<div class="wrap tool-section" id="section-a">
+  <div class="tt-article">
+    <div class="tt-format-head">
+      <span class="tt-format-icon" aria-hidden="true">🎯</span>
+      <div>
+        <h2>BMI categories explained</h2>
+        <p class="tt-format-sub">The four standard adult ranges</p>
+      </div>
+    </div>
+    <p>The World Health Organization defines four standard adult BMI categories, used worldwide as a quick screening reference: Underweight (below 18.5), Normal weight (18.5–24.9), Overweight (25.0–29.9), and Obese (30.0 and above).</p>
+    <h3>When to use this tool</h3>
+    <p>BMI is commonly used by clinics, insurers, and fitness trackers as a fast first-pass screening number before deeper assessment.</p>
+    <div class="tt-proscons">
+      <div class="tt-pros">
+        <h4>✓ Pros</h4>
+        <ul><li>Works instantly, right in your browser</li><li>Uses the same formula doctors and clinics reference</li><li>No sign-up, no ads blocking the result</li></ul>
+      </div>
+      <div class="tt-cons">
+        <h4>✕ Limitations</h4>
+        <ul><li>Doesn’t account for muscle mass</li><li>Same ranges applied to all adults regardless of age</li><li>Not a medical diagnosis</li></ul>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="wrap tool-section">
-  <h2>How to Use BMI Calculator</h2>
-  <ol class="steps">
-      <li>Enter your height in centimeters.</li>
-      <li>Enter your weight in kilograms.</li>
-      <li>Click <strong>Calculate BMI</strong>.</li>
-      <li>View your BMI value and health category.</li>
-  </ol>
+<div class="wrap tool-section" id="section-b">
+  <div class="tt-article">
+    <div class="tt-format-head">
+      <span class="tt-format-icon" aria-hidden="true">🧮</span>
+      <div>
+        <h2>The BMI formula</h2>
+        <p class="tt-format-sub">The exact calculation used</p>
+      </div>
+    </div>
+    <p>BMI is calculated the same way for every adult, regardless of age or sex: BMI = weight (kg) ÷ height (m)². Example: a person who is 170cm (1.7m) tall and weighs 65kg has a BMI of 65 ÷ (1.7 × 1.7) = 22.5 — in the Normal weight range.</p>
+
+    <!-- OPTIONAL REUSABLE PATTERN: inline secondary mini-calculator embedded in an
+         article section (id="stack*" is just an example naming convention — rename
+         to match the tool). Delete this whole callout if the tool doesn't need a
+         second interactive example inline in the article body. -->
+    <div class="tt-callout tt-tip" style="display:block;">
+      <h3 style="margin:0 0 10px;">n/a</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:420px;">
+        <div>
+          <label class="tt-field-label" for="stackInput1">n/a</label>
+          <input type="number" inputmode="decimal" id="stackInput1" class="field" placeholder="n/a" autocomplete="off" min="0" step="any">
+        </div>
+        <div>
+          <label class="tt-field-label" for="stackInput2">n/a</label>
+          <input type="number" inputmode="decimal" id="stackInput2" class="field" placeholder="n/a" autocomplete="off" min="0" max="100" step="any">
+        </div>
+        <div>
+          <label class="tt-field-label" for="stackInput3">n/a</label>
+          <input type="number" inputmode="decimal" id="stackInput3" class="field" placeholder="n/a" autocomplete="off" min="0" max="100" step="any">
+        </div>
+        <div style="display:flex;align-items:flex-end;">
+          <button class="tt-btn tt-btn-secondary" id="stackCalcBtn" type="button" style="width:100%;">n/a</button>
+        </div>
+      </div>
+      <p id="stackResult" class="tt-target-result" style="margin:12px 0 0;font-size:13.5px;" aria-live="polite"></p>
+    </div>
+  </div>
 </div>
 
-<div class="wrap tool-section">
-  <h2>Features</h2>
+<div class="wrap tt-ad-wrap"><div class="tt-ad-slot" data-size="banner" role="complementary" aria-label="Advertisement">Advertisement</div></div>
+
+<div class="wrap tool-section" id="section-c">
+  <div class="tt-article">
+    <h2>Is a healthy BMI different for everyone?</h2>
+    <p>The BMI formula itself is identical for everyone, but what counts as a "healthy" number can vary slightly by age, sex, and muscle mass. Athletes, for example, often show a higher BMI despite low body fat, since muscle weighs more than fat. This is why BMI works best as a starting screening point rather than a final verdict — pairing it with waist circumference or a body composition check gives a fuller picture.</p>
+  </div>
+</div>
+
+<div class="wrap tool-section" id="quick-reference">
+  <div class="tt-article">
+    <h2>Quick BMI Reference</h2>
+    <p>See at a glance how common height/weight combinations map to a BMI value and category.</p>
+    <div class="tt-example-table-wrap">
+      <table class="tt-example-table">
+        <caption class="tt-visually-hidden">Example height and weight combinations with their resulting BMI and category</caption>
+        <thead><tr><th scope="col">Height / Weight</th><th scope="col">BMI</th><th scope="col">Category</th></tr></thead>
+        <tbody>
+          <tr><td><code>160cm, 50kg</code></td><td>19.5</td><td>Normal</td></tr>
+          <tr><td><code>170cm, 80kg</code></td><td>27.7</td><td>Overweight</td></tr>
+          <tr><td><code>180cm, 70kg</code></td><td>21.6</td><td>Normal</td></tr>
+          <!-- add 3-9 rows total; only ever use verified, real reference values, never invented ones -->
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:10px;font-size:13px;color:var(--ink-faint);">These are illustrative examples — enter your own exact height and weight above for a precise result.</p>
+  </div>
+</div>
+
+<div class="wrap tool-section" id="features">
+  <h2 style="margin-bottom:16px;">Features</h2>
   <div class="features-grid">
-      <div class="feature-card"><div class="ico">🎯</div><h4>Medically standard formula</h4></div>
-      <div class="feature-card"><div class="ico">⚡</div><h4>Instant results</h4></div>
-      <div class="feature-card"><div class="ico">🔒</div><h4>Private</h4></div>
-      <div class="feature-card"><div class="ico">📱</div><h4>Mobile friendly</h4></div>
+    <div class="feature-card"><div class="ico" aria-hidden="true">&#127919;</div><h3>Medically standard formula</h3></div>
+    <div class="feature-card"><div class="ico" aria-hidden="true">&#9889;</div><h3>Instant results</h3></div>
+    <div class="feature-card"><div class="ico" aria-hidden="true">🔒</div><h3>No data stored</h3></div>
+    <div class="feature-card"><div class="ico" aria-hidden="true">📱</div><h3>Mobile friendly</h3></div>
   </div>
 </div>
 
-<div class="wrap tool-section">
-  <h2>Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q"><span>Is it free?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-        <div class="faq-a"><p>Yes.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q"><span>Does it store my health data?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-        <div class="faq-a"><p>No, calculations happen entirely in your browser.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q"><span>Is BMI accurate for everyone?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-        <div class="faq-a"><p>BMI is a general screening tool and may not account for muscle mass, age, or body composition — consult a doctor for personalized advice.</p></div>
-      </div>
+<div class="wrap tool-section" id="comparison">
+  <h2>How TickmarkTools compares</h2>
+  <p style="color:var(--ink-soft);font-size:14.5px;">An honest, feature-by-feature look at browser-based calculator tools.</p>
+  <div class="tt-compare-wrap">
+    <table class="tt-compare">
+      <caption class="tt-visually-hidden">Feature comparison between TickmarkTools, typical free sites, and premium suites</caption>
+      <thead><tr><th scope="col">Feature</th><th scope="col" class="tt-highlight-col">TickmarkTools</th><th scope="col">Typical free sites</th><th scope="col">Premium suites</th></tr></thead>
+      <tbody>
+        <tr><td>Price</td><td class="tt-highlight-col">Free</td><td>Free / freemium</td><td>Free tier + paid plans</td></tr>
+        <tr><td>Sign-up required</td><td class="tt-highlight-col">No</td><td class="no">Often yes</td><td class="no">Yes</td></tr>
+        <tr><td>Data leaves your device</td><td class="tt-highlight-col">Never</td><td class="no">Usually</td><td class="no">Usually</td></tr>
+        <tr><td>Watermark on export</td><td class="tt-highlight-col">None</td><td class="no">Sometimes</td><td class="no">On free tier</td></tr>
+        <tr><td>Mobile friendly</td><td class="tt-highlight-col yes">✓</td><td>Varies</td><td class="yes">✓</td></tr>
+        <tr><td>Works without account</td><td class="tt-highlight-col yes">✓</td><td>Varies</td><td class="no">✗</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tt-compare-note">These are general, illustrative observations about common patterns across free online calculator tools as a category — not verified or benchmarked data about any specific named competitor or product. Individual sites vary and may differ from what's shown here.</p>
 </div>
 
 <div class="wrap tool-section">
+  <h2 style="margin-bottom:4px;">Why you can trust this tool</h2>
+  <div class="tt-trust-grid">
+    <div class="tt-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg><div><h3>No data stored</h3><p>Your input is never saved or logged.</p></div></div>
+    <div class="tt-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg><div><h3>Secure processing</h3><p>All processing happens client-side in your browser.</p></div></div>
+    <div class="tt-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><div><h3>Fast processing</h3><p>Results render in milliseconds, no waiting.</p></div></div>
+    <div class="tt-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg><div><h3>Mobile friendly</h3><p>Use this tool from any device.</p></div></div>
+    <div class="tt-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><div><h3>No sign-up</h3><p>No account, no email, no watermark.</p></div></div>
+    <div class="tt-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v20M2 12h20"/></svg><div><h3>Works offline*</h3><p>Once loaded, this tool needs no internet connection.</p></div></div>
+  </div>
+</div>
+
+<div class="wrap tool-section" id="limitations">
+  <div class="tt-article">
+    <h2>Accuracy &amp; limitations</h2>
+    <p>This calculator is built for speed and accuracy, but it's worth understanding what it does and doesn't account for:</p>
+    <ul>
+      <li><strong>Doesn't distinguish muscle from fat.</strong> Very muscular people can show a high BMI despite low body fat.</li>
+      <li><strong>Not adjusted for age or sex.</strong> The same ranges are applied to all adults, though body composition naturally varies.</li>
+      <li><strong>Not diagnostic.</strong> BMI is a screening tool, not a substitute for a medical assessment — consult a doctor for personalized advice.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="wrap tool-section" id="faq">
+  <h2>BMI Calculator FAQ</h2>
+  <!-- MUST exactly match the FAQPage JSON-LD in <head>, word-for-word. -->
+  <div class="faq-item">
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Is this bmi calculator free to use?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></div>
+    <div class="faq-a"><p>Yes, the BMI Calculator is completely free with no sign-up required.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Does it store my health data?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></div>
+    <div class="faq-a"><p>No, calculations happen entirely in your browser and nothing is uploaded or logged.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Is BMI accurate for everyone?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></div>
+    <div class="faq-a"><p>BMI is a general screening tool and may not account for muscle mass, age, or body composition — consult a doctor for personalized advice.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>What is a healthy BMI?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></div>
+    <div class="faq-a"><p>A BMI between 18.5 and 24.9 is generally considered a normal, healthy range for adults.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Is BMI different for men and women?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></div>
+    <div class="faq-a"><p>The formula is the same, but healthy ranges can vary slightly based on age, muscle mass, and other factors.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false"><span>Does this tool store or upload my data?</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></div>
+    <div class="faq-a"><p>No. All calculations run entirely in your browser, and nothing you enter is ever sent to a server or stored.</p></div>
+  </div>
+</div>
+
+<div class="wrap tt-ad-wrap"><div class="tt-ad-slot" data-size="banner" role="complementary" aria-label="Advertisement">Advertisement</div></div>
+
+<div class="wrap tool-section" id="ai-assistant">
   <div class="ai-panel">
-    <h3>🤖 Ask AI about this tool</h3>
-    <p style="font-size:13.5px;color:var(--ink-soft);margin-top:4px;">Tap a question for an instant answer. Full conversational AI is coming soon.</p>
-    <div class="ai-q">How do I calculate BMI?</div><div class="ai-a">BMI = weight (kg) ÷ height (m)². This tool does that calculation for you automatically.</div>
-    <div class="ai-q">What is a healthy BMI?</div><div class="ai-a">A BMI between 18.5 and 24.9 is generally considered a normal healthy range for adults.</div>
-    <div class="ai-q">Is BMI different for men and women?</div><div class="ai-a">The BMI formula is the same, but healthy ranges can vary slightly based on age, muscle mass, and other factors.</div>
+    <h2>💡 Quick Help</h2>
+    <p style="font-size:13.5px;color:var(--ink-soft);margin-top:4px;">Tap a common question below for an instant, pre-written answer. This is a deterministic help widget, not a live AI assistant.</p>
+    <!-- 4-6 short deterministic Q&A pairs relevant to THIS tool. Keep the "not a live AI" honesty line above unchanged. -->
+    <div class="ai-q" role="button" tabindex="0">How do I calculate BMI?</div><div class="ai-a">BMI = weight (kg) ÷ height (m)². This tool does that automatically.</div>
+    <div class="ai-q" role="button" tabindex="0">What is a healthy BMI?</div><div class="ai-a">A BMI between 18.5 and 24.9 is generally considered a normal healthy range for adults.</div>
+    <div class="ai-q" role="button" tabindex="0">Is BMI different for men and women?</div><div class="ai-a">The formula is the same, but healthy ranges can vary slightly based on age, muscle mass, and other factors.</div>
+    <div class="ai-q" role="button" tabindex="0">Does this tool store my health data?</div><div class="ai-a">No, calculations happen entirely in your browser and nothing is uploaded or logged.</div>
+    <div class="ai-q" role="button" tabindex="0">Does this tool store or upload my data?</div><div class="ai-a">No. All calculations run entirely in your browser, and nothing you enter is ever sent to a server or stored.</div>
     <div class="ai-input-row">
-      <input type="text" class="field" placeholder="Ask your own question...">
-      <button class="btn btn-primary">Ask</button>
+      <label class="tt-visually-hidden" for="aiCustomQ">Search common questions</label>
+      <input type="text" id="aiCustomQ" class="field" placeholder="Type a keyword, e.g. &quot;stacked&quot; or &quot;tax&quot;...">
+      <button class="btn" type="button" id="aiAskBtn">Search</button>
     </div>
+    <div id="aiCustomAnswer" style="display:none;" aria-live="polite"></div>
   </div>
 </div>
 
-<div class="wrap tool-section">
-  <h2>Related Tools</h2>
+<div class="wrap tt-ad-wrap"><div class="tt-ad-slot" data-size="leaderboard" role="complementary" aria-label="Advertisement">Advertisement</div></div>
+
+<div class="wrap tool-section tt-print-hide">
+  <div class="tt-request-cta">
+    <div>
+      <h2>Can't find the tool you need?</h2>
+      <p>Tell us what to build next — we ship new tools regularly.</p>
+    </div>
+    <a href="contact.html" class="tt-btn">Request a tool →</a>
+  </div>
+</div>
+
+<div class="wrap tool-section tt-print-hide">
+  <h2 style="margin-bottom:12px;">Trending right now</h2>
+  <div class="tt-chip-row">
+    <a href="age-calculator.html" class="tt-tool-chip"><span class="em">🧮</span>Age Calculator</a>
+    <a href="bmi-calculator.html" class="tt-tool-chip"><span class="em">🧮</span>BMI Calculator</a>
+    <a href="percentage-calculator.html" class="tt-tool-chip"><span class="em">📊</span>Percentage Calculator</a>
+  </div>
+</div>
+
+<div class="wrap tool-section" id="related">
+  <h2>Related tools</h2>
+  <!-- TODO (launch blocker): verify ALL internal tool links referenced on this page
+       (this grid + "Trending right now" chips + "You may also like" below) resolve
+       to live, 200-status pages before launch. Pick 3 genuinely related tools. -->
   <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🎂</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
-      </a>
-      <a href="calorie-calculator.html" class="related-card">
-        <div class="related-emoji">🔥</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Calorie Calculator</h4></div>
-      </a>
-      <a href="pregnancy-due-date-calculator.html" class="related-card">
-        <div class="related-emoji">🤰</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Pregnancy Due Date Calculator</h4></div>
-      </a>
+    <a href="age-calculator.html" class="related-card"><div class="related-emoji" aria-hidden="true">&#127874;</div><h3 style="font-size:14.5px;font-weight:600;margin:0;">Age Calculator</h3></a>
+    <a href="calorie-calculator.html" class="related-card"><div class="related-emoji" aria-hidden="true">&#128293;</div><h3 style="font-size:14.5px;font-weight:600;margin:0;">Calorie Calculator</h3></a>
+    <a href="pregnancy-due-date-calculator.html" class="related-card"><div class="related-emoji" aria-hidden="true">&#129830;</div><h3 style="font-size:14.5px;font-weight:600;margin:0;">Pregnancy Due Date Calculator</h3></a>
   </div>
 </div>
 
-<div class="wrap tool-section">
-  <h2>Popular Calculators</h2>
+<div class="wrap tool-section tt-print-hide" style="border-bottom:1px solid var(--line);">
+  <h2>You may also like</h2>
   <div class="related-grid">
-      <a href="age-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Age Calculator</h4></div>
-      </a>
-      <a href="percentage-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Percentage Calculator</h4></div>
-      </a>
-      <a href="emi-loan-calculator.html" class="related-card">
-        <div class="related-emoji">🧮</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">EMI / Loan Calculator</h4></div>
-      </a>
+    <a href="word-counter.html" class="related-card"><div class="related-emoji" aria-hidden="true">📝</div><h3 style="font-size:14.5px;font-weight:600;margin:0;">Word Counter</h3></a>
+    <a href="image-compressor.html" class="related-card"><div class="related-emoji" aria-hidden="true">🖼️</div><h3 style="font-size:14.5px;font-weight:600;margin:0;">Image Compressor</h3></a>
+    <a href="pdf-merge.html" class="related-card"><div class="related-emoji" aria-hidden="true">📄</div><h3 style="font-size:14.5px;font-weight:600;margin:0;">PDF Merge</h3></a>
   </div>
 </div>
 
-<div class="wrap tool-section">
-  <h2>You May Also Like</h2>
-  <div class="related-grid">
-      <a href="word-counter.html" class="related-card">
-        <div class="related-emoji">📝</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Word Counter</h4></div>
-      </a>
-      <a href="image-compressor.html" class="related-card">
-        <div class="related-emoji">🖼️</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">Image Compressor</h4></div>
-      </a>
-      <a href="pdf-merge.html" class="related-card">
-        <div class="related-emoji">📄</div>
-        <div><h4 style="font-size:14.5px;font-weight:600;">PDF Merge</h4></div>
-      </a>
-  </div>
-</div>
-
-<div class="wrap tool-section" style="border-bottom:1px solid var(--border);">
+<div class="wrap tool-section" id="comments">
   <h2>Comments</h2>
   <div class="comment-box">
+    <p style="margin:0 0 12px;font-size:12.5px;color:var(--ink-faint);">Comments are stored locally in this browser only — they are not public and are not visible to other visitors.</p>
     <div class="comment-input-row">
-      <input type="text" id="commentInput" class="field" placeholder="Write a comment and press Enter...">
+      <label class="tt-visually-hidden" for="commentInput">Write a comment</label>
+      <input type="text" id="commentInput" class="field" placeholder="Write a comment and press Enter..." maxlength="500">
+      <button class="tt-btn tt-btn-secondary" id="commentPostBtn" type="button">Post</button>
     </div>
-    <div id="commentList" class="comment-list"></div>
+    <div id="commentList" class="comment-list" aria-live="polite"></div>
   </div>
 </div>
 
-<script src="assets/country-detector.js"></script>
-<script src="assets/tool-localization.js"></script>
-<script src="assets/main.js"></script>
-<script>
-document.getElementById('bmiCalcBtn').addEventListener('click', () => {
-  const hVal = parseFloat(document.getElementById('bmiHeight').value);
-  const wVal = parseFloat(document.getElementById('bmiWeight').value);
+</main>
 
-  if (isNaN(hVal) || isNaN(wVal) || hVal <= 0 || wVal <= 0) {
-    alert('Please enter valid positive numbers for height and weight');
-    return;
-  }
-
-  const h = hVal / 100;
-  const bmi = wVal / (h * h);
-
-  let cat, color;
-  if (bmi < 18.5) {
-    cat = 'Underweight';
-    color = '#3B82F6';
-  } else if (bmi < 25) {
-    cat = 'Normal weight';
-    color = '#146356';
-  } else if (bmi < 30) {
-    cat = 'Overweight';
-    color = '#F59E0B';
-  } else {
-    cat = 'Obese';
-    color = '#EF4444';
-  }
-
-  document.getElementById('bmiValue').textContent = bmi.toFixed(1);
-  const catEl = document.getElementById('bmiCategory');
-  catEl.textContent = cat;
-  catEl.style.color = color;
-  document.getElementById('bmiResult').classList.add('show');
-});
-
-window.resetTool = function() {
-  document.getElementById('bmiHeight').value = '';
-  document.getElementById('bmiWeight').value = '';
-  document.getElementById('bmiValue').textContent = '0';
-  const catEl = document.getElementById('bmiCategory');
-  catEl.textContent = '';
-  catEl.style.color = '';
-  document.getElementById('bmiResult').classList.remove('show');
-};
-</script>
-<script>
-function postComment(){
-  const input = document.getElementById('commentInput');
-  const text = input.value.trim();
-  if(!text) return;
-  const list = document.getElementById('commentList');
-  const item = document.createElement('div');
-  item.className = 'comment-item';
-  item.innerHTML = `<div class="comment-avatar">🙂</div><div><div class="comment-meta">Guest • just now</div><div class="comment-text"></div></div>`;
-  item.querySelector('.comment-text').textContent = text;
-  list.prepend(item);
-  input.value = '';
-}
-document.getElementById('commentInput').addEventListener('keydown', (e)=>{
-  if(e.key === 'Enter') postComment();
-});
-</script>
-
-<div class="compact-footer">
-  <div class="compact-footer-links">
+<footer class="compact-footer">
+  <nav class="compact-footer-links" aria-label="Footer">
     <a href="about.html">About Us</a><span class="sep">|</span>
     <a href="sitemap.html">Sitemap</a><span class="sep">|</span>
     <a href="terms-of-service.html">Terms of Use</a><span class="sep">|</span>
     <a href="privacy-policy.html">Privacy Policy</a><span class="sep">|</span>
     <a href="contact.html">Contact</a><span class="sep">|</span>
-    <a href="disclaimer.html">Disclaimer</a>
-  </div>
-</div>
-<div class="compact-footer-copy">© 2026 <a href="index.html" style="color:var(--ink-soft);text-decoration:underline;">TickmarkTools</a>. All rights reserved.</div>
+    <a href="disclaimer.html">Disclaimer</a><span class="sep">|</span>
+    <a href="contact.html">Report Bug</a><span class="sep">|</span>
+    <a href="contact.html">Request Tool</a>
+  </nav>
+  <p class="compact-footer-copy">© 2026 <a href="index.html" style="color:var(--ink-soft);text-decoration:underline;">TickmarkTools</a>. All rights reserved.</p>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  var root = document.documentElement;
+
+  /* Single reusable reduced-motion guard. Any JS-driven scroll/animation in this
+     file should check this before using 'smooth' behavior or CSS transitions. */
+  function prefersReducedMotion(){
+    return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }
+
+  var themeBtn = document.getElementById('theme-toggle');
+  if(themeBtn){
+    themeBtn.setAttribute('aria-pressed', root.getAttribute('data-theme') === 'dark' ? 'true' : 'false');
+    themeBtn.addEventListener('click', function(){
+      var isDark = root.getAttribute('data-theme') === 'dark';
+      if(isDark){ root.removeAttribute('data-theme'); themeBtn.setAttribute('aria-pressed','false'); }
+      else{ root.setAttribute('data-theme','dark'); themeBtn.setAttribute('aria-pressed','true'); }
+      try{ localStorage.setItem('tickmarktools-theme', isDark ? 'light' : 'dark'); }catch(e){}
+    });
+  }
+
+  window.addEventListener('storage', function(e){
+    if(e.key !== 'tickmarktools-theme') return;
+    var isDark = e.newValue === 'dark';
+    if(isDark){ root.setAttribute('data-theme','dark'); } else { root.removeAttribute('data-theme'); }
+    if(themeBtn) themeBtn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+  });
+
+  var toastEl = null;
+  var toastTimer = null;
+  function showToast(message){
+    if(!toastEl){
+      toastEl = document.createElement('div');
+      toastEl.setAttribute('role','status');
+      toastEl.setAttribute('aria-live','polite');
+      toastEl.style.cssText = 'position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(12px);' +
+        'background:var(--ink);color:var(--bg);font-size:13.5px;font-weight:600;padding:11px 18px;border-radius:10px;' +
+        'box-shadow:var(--shadow-md);z-index:1000;opacity:0;transition:opacity .2s ease,transform .2s ease;pointer-events:none;max-width:90vw;text-align:center;';
+      document.body.appendChild(toastEl);
+    }
+    toastEl.textContent = message;
+    window.clearTimeout(toastTimer);
+    requestAnimationFrame(function(){
+      toastEl.style.opacity = '1';
+      toastEl.style.transform = 'translateX(-50%) translateY(0)';
+    });
+    toastTimer = window.setTimeout(function(){
+      toastEl.style.opacity = '0';
+      toastEl.style.transform = 'translateX(-50%) translateY(12px)';
+    }, 2400);
+  }
+
+  function copyToClipboard(text){
+    if(navigator.clipboard && window.isSecureContext){
+      return navigator.clipboard.writeText(text).then(function(){ return true; }).catch(function(){
+        return legacyCopy(text);
+      });
+    }
+    return Promise.resolve(legacyCopy(text));
+  }
+  function legacyCopy(text){
+    try{
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly','');
+      ta.style.position = 'fixed';
+      ta.style.top = '-9999px';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, text.length);
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return !!ok;
+    }catch(e){
+      return false;
+    }
+  }
+  function wireCopyButton(btn, getText){
+    if(!btn) return;
+    btn.addEventListener('click', function(){
+      var text = getText();
+      if(!text) return;
+      var original = btn.innerHTML;
+      copyToClipboard(text).then(function(ok){
+        if(ok){
+          btn.classList.add('tt-success');
+          btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" width="15" height="15" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg> Copied!';
+        } else {
+          btn.innerHTML = "Couldn't copy — try again";
+          showToast("Couldn't copy to clipboard. Please copy manually.");
+        }
+        window.setTimeout(function(){ btn.classList.remove('tt-success'); btn.innerHTML = original; }, 1600);
+      });
+    });
+  }
+
+  function isMobile(){ return window.innerWidth < 720; }
+  var stickyActions = document.getElementById('toolStickyActions');
+  var stickyGen = document.getElementById('toolStickyGen');
+  var hasResult = false;
+
+  function syncStickyBar(){
+    if(!stickyActions) return;
+    if(!isMobile()){ stickyActions.classList.remove('is-active'); document.body.classList.remove('tt-has-sticky-bar'); return; }
+    stickyActions.classList.add('is-active');
+    document.body.classList.add('tt-has-sticky-bar');
+    if(stickyGen) stickyGen.textContent = hasResult ? 'Recalculate' : 'Calculate';
+  }
+  window.addEventListener('resize', syncStickyBar);
+  syncStickyBar();
+
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    var q = item.querySelector('.faq-q');
+    if(!q) return;
+    function toggle(){
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(i){ if(i!==item){ i.classList.remove('open'); i.querySelector('.faq-q').setAttribute('aria-expanded','false'); } });
+      item.classList.toggle('open', !isOpen);
+      q.setAttribute('aria-expanded', String(!isOpen));
+    }
+    q.addEventListener('click', toggle);
+    q.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
+  });
+
+  document.querySelectorAll('.ai-q').forEach(function(q){
+    function toggle(){ q.classList.toggle('open'); }
+    q.addEventListener('click', toggle);
+    q.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
+  });
+
+  var aiCustomQ = document.getElementById('aiCustomQ');
+  var aiAskBtn = document.getElementById('aiAskBtn');
+  var aiCustomAnswer = document.getElementById('aiCustomAnswer');
+
+  /* This is a deterministic keyword-match helper, NOT a live AI system.
+     It never fabricates answers — it only surfaces one of the fixed
+     Q&A entries above (or the FAQ) when a keyword matches, and is
+     honest when nothing matches. */
+  /* TOOL-SPECIFIC: replace keywords/answers below with entries relevant to this tool.
+     Keep the last two generic entries (free/sign-up, store/save/private) as-is —
+     they are true for every TickmarkTools tool. */
+  var quickHelpEntries = [
+    { keywords: ['bmi', 'calculate', 'formula'], answer: 'BMI = weight (kg) ÷ height (m)². This tool does that automatically.' },
+    { keywords: ['healthy', 'normal', 'range'], answer: 'A BMI between 18.5 and 24.9 is generally considered a normal healthy range for adults.' },
+    { keywords: ['men', 'women', 'sex', 'gender'], answer: 'The formula is the same, but healthy ranges can vary slightly based on age, muscle mass, and other factors.' },
+    { keywords: ['accurate', 'muscle', 'athlete'], answer: 'No, calculations happen entirely in your browser and nothing is uploaded or logged.' },
+    { keywords: ['free','cost','sign up','signup','account'], answer: 'Yes, this BMI Calculator is completely free with no sign-up required.' },
+    { keywords: ['store','save','private','upload','server'], answer: 'No. All calculations run entirely in your browser, and nothing you enter is ever sent to a server or stored.' }
+  ];
+
+  function handleAskCustom(){
+    if(!aiCustomQ || !aiCustomAnswer) return;
+    var raw = aiCustomQ.value.trim();
+    if(!raw){ aiCustomQ.focus(); return; }
+    var q = raw.toLowerCase();
+    var match = null;
+    for(var i = 0; i < quickHelpEntries.length; i++){
+      var entry = quickHelpEntries[i];
+      for(var j = 0; j < entry.keywords.length; j++){
+        if(q.indexOf(entry.keywords[j]) !== -1){ match = entry; break; }
+      }
+      if(match) break;
+    }
+    aiCustomAnswer.style.display = 'block';
+    if(match){
+      aiCustomAnswer.textContent = match.answer;
+    } else {
+      aiCustomAnswer.textContent = 'No matching pre-written answer was found for "' + raw + '". This is a simple keyword-based help widget, not a live AI assistant, so it can only answer topics covered above or in the FAQ section below. Try a keyword like "stacked," "tax," or "reverse."';
+    }
+  }
+  if(aiAskBtn) aiAskBtn.addEventListener('click', handleAskCustom);
+  if(aiCustomQ) aiCustomQ.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); handleAskCustom(); } });
+
+  /* Local-only comment system. Comments are NOT sent to any server and
+     are NOT visible to other visitors — they persist only in this
+     browser's localStorage, scoped to this specific tool page. All
+     rendering uses textContent (never innerHTML) so stored or entered
+     text can never execute as HTML/JS. */
+  var COMMENTS_KEY = 'tt-comments:bmi-calculator';
+  var COMMENTS_MAX = 50;
+  var COMMENT_MAX_LEN = 500;
+
+  function loadComments(){
+    var raw;
+    try{ raw = localStorage.getItem(COMMENTS_KEY); }catch(e){ return []; }
+    if(!raw) return [];
+    try{
+      var parsed = JSON.parse(raw);
+      if(!Array.isArray(parsed)) return [];
+      return parsed.filter(function(c){
+        return c && typeof c === 'object' && typeof c.text === 'string' && typeof c.id === 'string';
+      }).map(function(c){
+        return { id: c.id, text: String(c.text).slice(0, COMMENT_MAX_LEN), time: typeof c.time === 'number' ? c.time : Date.now() };
+      });
+    }catch(e){
+      /* Malformed/corrupted localStorage data — reset safely rather than breaking the page. */
+      try{ localStorage.removeItem(COMMENTS_KEY); }catch(e2){}
+      return [];
+    }
+  }
+
+  function saveComments(comments){
+    try{ localStorage.setItem(COMMENTS_KEY, JSON.stringify(comments.slice(0, COMMENTS_MAX))); }catch(e){ /* storage unavailable/full — fail silently, UI still works this session */ }
+  }
+
+  function relativeTime(ts){
+    var diff = Math.max(0, Date.now() - ts);
+    var mins = Math.floor(diff / 60000);
+    if(mins < 1) return 'just now';
+    if(mins < 60) return mins + (mins === 1 ? ' minute ago' : ' minutes ago');
+    var hrs = Math.floor(mins / 60);
+    if(hrs < 24) return hrs + (hrs === 1 ? ' hour ago' : ' hours ago');
+    var days = Math.floor(hrs / 24);
+    return days + (days === 1 ? ' day ago' : ' days ago');
+  }
+
+  function renderComments(){
+    var list = document.getElementById('commentList');
+    if(!list) return;
+    var comments = loadComments();
+    list.textContent = '';
+    if(!comments.length){
+      var empty = document.createElement('p');
+      empty.className = 'comment-empty';
+      empty.textContent = 'No comments yet in this browser. Be the first to add one.';
+      list.appendChild(empty);
+      return;
+    }
+    comments.slice().sort(function(a,b){ return b.time - a.time; }).forEach(function(c){
+      var item = document.createElement('div');
+      item.className = 'comment-item';
+
+      var avatar = document.createElement('div');
+      avatar.className = 'comment-avatar';
+      avatar.setAttribute('aria-hidden', 'true');
+      avatar.textContent = '🙂';
+
+      var body = document.createElement('div');
+      body.className = 'comment-body';
+      var meta = document.createElement('div');
+      meta.className = 'comment-meta';
+      meta.textContent = 'You (this browser) • ' + relativeTime(c.time);
+      var textEl = document.createElement('div');
+      textEl.className = 'comment-text';
+      textEl.textContent = c.text; /* textContent only — never innerHTML — prevents HTML/script injection */
+      body.appendChild(meta);
+      body.appendChild(textEl);
+
+      var delBtn = document.createElement('button');
+      delBtn.type = 'button';
+      delBtn.className = 'comment-delete';
+      delBtn.setAttribute('aria-label', 'Delete this comment');
+      delBtn.textContent = '✕';
+      delBtn.addEventListener('click', function(){
+        var remaining = loadComments().filter(function(x){ return x.id !== c.id; });
+        saveComments(remaining);
+        renderComments();
+      });
+
+      item.appendChild(avatar);
+      item.appendChild(body);
+      item.appendChild(delBtn);
+      list.appendChild(item);
+    });
+  }
+
+  function makeCommentId(){
+    return 'c' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+  }
+
+  function postComment(){
+    var input = document.getElementById('commentInput');
+    if(!input) return;
+    var text = input.value.trim().slice(0, COMMENT_MAX_LEN);
+    if(!text){ input.focus(); return; }
+    var comments = loadComments();
+    comments.unshift({ id: makeCommentId(), text: text, time: Date.now() });
+    saveComments(comments);
+    renderComments();
+    input.value = '';
+    input.focus();
+  }
+  var commentInput = document.getElementById('commentInput');
+  var commentPostBtn = document.getElementById('commentPostBtn');
+  if(commentInput) commentInput.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); postComment(); } });
+  if(commentPostBtn) commentPostBtn.addEventListener('click', postComment);
+  renderComments();
+
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('tt-visible'); io.unobserve(e.target); } });
+    }, {threshold:0.1});
+    document.querySelectorAll('.tool-section').forEach(function(el){ el.classList.add('tt-reveal'); io.observe(el); });
+  } else {
+    document.querySelectorAll('.tool-section').forEach(function(el){ el.classList.add('tt-visible'); });
+  }
+
+  var tocLinks = document.querySelectorAll('[data-toc]');
+  var jumpLinks = document.querySelectorAll('[data-jump]');
+  var allSectionIds = ['tt-main','section-a','section-b','section-c','quick-reference','comparison','limitations','faq','ai-assistant','related','comments','how-to-use'];
+  var sectionEls = allSectionIds.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+
+  function setActive(id){
+    var hash = '#' + id;
+    tocLinks.forEach(function(l){
+      var active = l.getAttribute('href') === hash;
+      l.classList.toggle('tt-toc-active', active);
+      if(active){ l.setAttribute('aria-current','true'); } else { l.removeAttribute('aria-current'); }
+    });
+    jumpLinks.forEach(function(l){
+      var active = l.getAttribute('href') === hash;
+      l.classList.toggle('tt-jump-active', active);
+      if(active){ l.setAttribute('aria-current','true'); } else { l.removeAttribute('aria-current'); }
+    });
+  }
+
+  if('IntersectionObserver' in window && sectionEls.length){
+    var sectionIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ setActive(entry.target.id); }
+      });
+    }, {rootMargin:'-35% 0px -55% 0px'});
+    sectionEls.forEach(function(t){ sectionIO.observe(t); });
+  }
+
+  // ============================================================
+  // TOOL-SPECIFIC COMPUTE LOGIC — everything below down to the closing
+  // IIFE preserves the reusable wiring pattern (validation, aria-invalid,
+  // empty-state, result rendering, sticky bar, copy/CSV/share, reveal
+  // scroll, currency re-render, remember-inputs). Only the actual formula
+  // inside computeResult() and the field IDs/labels are tool-specific.
+  // ============================================================
+
+  var genBtn = document.getElementById('toolGenBtn');
+  var heightInput = document.getElementById('toolHeight');
+  var weightInput = document.getElementById('toolWeight');
+  var resultBox = document.getElementById('toolResult');
+  var errorBox = document.getElementById('toolError');
+  var errorText = document.getElementById('toolErrorText');
+  var emptyState = document.getElementById('toolEmptyState');
+  var outputArea = document.getElementById('toolOutputArea');
+  var resultAdEl = document.getElementById('toolResultAd');
+  var lastResult = null;
+
+  function showError(msg){
+    errorText.textContent = msg;
+    errorBox.classList.add('show');
+    resultBox.classList.remove('show');
+    emptyState.style.display = 'block';
+    if(resultAdEl) resultAdEl.style.display = 'none';
+    hasResult = false;
+    lastResult = null;
+    syncStickyBar();
+  }
+  function hideError(){
+    errorBox.classList.remove('show');
+    heightInput.removeAttribute('aria-invalid');
+    weightInput.removeAttribute('aria-invalid');
+  }
+
+  function bmiCategory(bmi){
+    if(bmi < 18.5) return { name: 'Underweight', color: 'var(--laser)' };
+    if(bmi < 25) return { name: 'Normal weight', color: 'var(--teal-dark)' };
+    if(bmi < 30) return { name: 'Overweight', color: '#B5750A' };
+    return { name: 'Obese', color: 'var(--danger)' };
+  }
+
+  function runTool(){
+    hideError();
+    var h = parseFloat(heightInput.value);
+    var w = parseFloat(weightInput.value);
+
+    if(!heightInput.value.trim() || !weightInput.value.trim() || isNaN(h) || isNaN(w)){
+      showError('Please enter both your height and weight.');
+      heightInput.setAttribute('aria-invalid', 'true');
+      weightInput.setAttribute('aria-invalid', 'true');
+      (isNaN(h) ? heightInput : weightInput).focus();
+      return;
+    }
+    if(h <= 0 || w <= 0 || !isFinite(h) || !isFinite(w)){
+      showError('Please enter realistic positive values for height and weight.');
+      heightInput.setAttribute('aria-invalid', 'true');
+      weightInput.setAttribute('aria-invalid', 'true');
+      return;
+    }
+
+    emptyState.style.display = 'none';
+    resultBox.classList.remove('show');
+
+    try{
+      var hMeters = h / 100;
+      var bmi = w / (hMeters * hMeters);
+      var cat = bmiCategory(bmi);
+      lastResult = { height: h, weight: w, bmi: bmi, category: cat.name };
+
+      outputArea.textContent = '';
+
+      var bmiBox = document.createElement('div');
+      bmiBox.style.cssText = 'background:var(--teal-tint);border-radius:var(--radius-md);padding:20px;text-align:center;';
+      var bmiValue = document.createElement('div');
+      bmiValue.style.cssText = 'font-family:var(--font-display);font-size:clamp(28px,7vw,36px);font-weight:700;color:var(--teal-dark);';
+      bmiValue.textContent = bmi.toFixed(1);
+      var bmiLabel = document.createElement('div');
+      bmiLabel.style.cssText = 'font-size:12.5px;color:var(--ink-soft);margin-top:4px;font-weight:600;';
+      bmiLabel.textContent = 'Your BMI';
+      bmiBox.appendChild(bmiValue);
+      bmiBox.appendChild(bmiLabel);
+
+      var catBox = document.createElement('div');
+      catBox.style.cssText = 'margin-top:14px;text-align:center;font-family:var(--font-display);font-size:18px;font-weight:700;';
+      catBox.style.color = cat.color;
+      catBox.textContent = cat.name;
+
+      var summary = document.createElement('p');
+      summary.style.cssText = 'margin:14px 0 0;font-size:13px;color:var(--ink-soft);text-align:center;';
+      summary.textContent = h + 'cm, ' + w + 'kg';
+
+      outputArea.appendChild(bmiBox);
+      outputArea.appendChild(catBox);
+      outputArea.appendChild(summary);
+
+      resultBox.classList.add('show');
+      if(resultAdEl) resultAdEl.style.display = 'flex';
+      hasResult = true;
+      syncStickyBar();
+      resultBox.focus({preventScroll:true});
+    }catch(e){
+      showError('Could not calculate BMI. Please check your values and try again.');
+    }
+  }
+
+  if(genBtn) genBtn.addEventListener('click', runTool);
+  if(stickyGen) stickyGen.addEventListener('click', runTool);
+  [heightInput, weightInput].forEach(function(el){
+    if(el) el.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); runTool(); } });
+  });
+
+  function resetTool(){
+    heightInput.value = '';
+    weightInput.value = '';
+    outputArea.textContent = '';
+    lastResult = null;
+    resultBox.classList.remove('show');
+    emptyState.style.display = 'block';
+    if(resultAdEl) resultAdEl.style.display = 'none';
+    hideError();
+    hasResult = false;
+    syncStickyBar();
+    heightInput.focus();
+  }
+  var resetBtn = document.getElementById('toolResetBtn');
+  if(resetBtn) resetBtn.addEventListener('click', resetTool);
+
+  var copyBtn = document.getElementById('toolCopyBtn');
+  wireCopyButton(copyBtn, function(){
+    if(!lastResult) return '';
+    return 'Height: ' + lastResult.height + 'cm | Weight: ' + lastResult.weight + 'kg | BMI: ' + lastResult.bmi.toFixed(1) + ' (' + lastResult.category + ')';
+  });
+
+  var CANONICAL_URL = 'https://tickmarktools.com/bmi-calculator.html';
+  function buildShareText(){
+    if(lastResult){
+      return 'BMI Calculator Result\n' +
+        'Height: ' + lastResult.height + 'cm\n' +
+        'Weight: ' + lastResult.weight + 'kg\n' +
+        'BMI: ' + lastResult.bmi.toFixed(1) + ' (' + lastResult.category + ')';
+    }
+    return 'Check out this free BMI Calculator on TickmarkTools.';
+  }
+  var shareBtn = document.getElementById('toolShareBtn');
+  if(shareBtn){
+    shareBtn.addEventListener('click', function(){
+      var shareText = buildShareText();
+      if(navigator.share){
+        navigator.share({ title: 'BMI Calculator \u2014 TickmarkTools', text: shareText, url: CANONICAL_URL }).catch(function(err){
+          if(err && err.name === 'AbortError') return;
+        });
+        return;
+      }
+      copyToClipboard(shareText + '\n\nShare URL:\n' + CANONICAL_URL).then(function(ok){
+        showToast(ok ? 'Result and link copied to clipboard!' : 'Unable to copy \u2014 please copy the link manually.');
+      });
+    });
+  }
+
+  document.querySelectorAll('.tt-example-chip[data-height]').forEach(function(el){
+    el.addEventListener('click', function(){
+      heightInput.value = el.dataset.height;
+      weightInput.value = el.dataset.weight;
+      runTool();
+      document.getElementById('tt-main').scrollIntoView({behavior: prefersReducedMotion() ? 'auto' : 'smooth', block:'start'});
+    });
+  });
+})();
+</script>
 </body>
 </html>

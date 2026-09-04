@@ -1,68 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script>
-(function(){
-  try{
-    var saved = localStorage.getItem('tickmarktools-theme');
-    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if(saved === 'dark' || (!saved && prefersDark)){
-      document.documentElement.setAttribute('data-theme','dark');
-    }
-  }catch(e){}
-})();
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About TickmarkTools | TickmarkTools</title>
 <meta name="description" content="Learn what TickmarkTools is, our mission and vision, how we help users, and our future roadmap of free online tools.">
 <meta name="theme-color" content="#146356">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="canonical" href="https://tickmarktools.com/about">
 <meta property="og:type" content="website">
 <meta property="og:title" content="About TickmarkTools | TickmarkTools">
 <meta property="og:description" content="Learn what TickmarkTools is, our mission and vision, how we help users, and our future roadmap of free online tools.">
 <meta property="og:url" content="https://tickmarktools.com/about">
 <meta property="og:site_name" content="TickmarkTools">
-<meta property="og:image" content="https://tickmarktools.com/assets/og/about.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://tickmarktools.com/assets/og/about.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://tickmarktools.com/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "About TickmarkTools",
-      "item": "https://tickmarktools.com/about"
-    }
-  ]
-}
-</script>
 </head>
 <body>
-<header class="site tt-tpl">
+<header class="site">
   <div class="wrap">
     <nav class="main" aria-label="Primary">
       <a href="index.html" class="logo">
-        <img src="logo.png" width="26" height="26" alt="TickmarkTools logo" loading="eager" decoding="async">
+        <img src="data:image/png;base64,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" width="26" height="26" alt="TickmarkTools logo" loading="eager">
         <span>Tickmark<span class="word-tools">Tools</span></span>
       </a>
       <div class="nav-links">

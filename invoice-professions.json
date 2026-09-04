@@ -1,0 +1,302 @@
+{
+  "professions": [
+    {
+      "key": "contractor",
+      "slug": "contractor-invoice-generator",
+      "label": "Contractor",
+      "pageTitle": "Free Contractor Invoice Generator | TickmarkTools",
+      "metaDescription": "Create a professional contractor invoice free, separating labor, materials and equipment rental. No sign-up, nothing uploaded — runs in your browser.",
+      "h1": "Free Contractor Invoice Generator",
+      "heroDesc": "Bill labor and materials separately, reference the job address, and add equipment rental — built for how general and specialty contractors actually invoice.",
+      "intro": "Contractor invoices usually need to separate two very different cost types — labor and materials — because customers, lenders and sometimes local permitting authorities want to see them itemized rather than lumped into one number. This tool keeps that split simple: add a labor line at your hourly or flat rate, add materials as their own line, and mark whichever ones are taxable in your area (materials are commonly taxed; labor sometimes isn't, depending on your state or province).",
+      "guidance": [
+        "Put the job address and a short project reference in the Notes field so the customer can match the invoice to the right property.",
+        "Break out equipment rental (scaffolding, dumpster, generator) as its own line rather than folding it into labor — it makes disputes easier to resolve.",
+        "For multi-phase jobs, consider one invoice per milestone (foundation, framing, finishing) rather than a single invoice at the very end."
+      ],
+      "mistakes": [
+        "Combining labor and materials into a single line item, which makes it hard for the customer to see what they're paying for.",
+        "Forgetting to note the job address when you have multiple active job sites for the same customer.",
+        "Leaving retainage or holdback terms out of the notes on larger jobs where a percentage is withheld until completion."
+      ],
+      "presetKey": "contractor",
+      "faqs": [
+        { "q": "Should materials be taxed on a contractor invoice?", "a": "That depends entirely on your state, province or country — some tax materials but not labor, others tax the whole job. Enter the rate that applies to you; this tool doesn't look it up automatically." },
+        { "q": "Can I bill a job in multiple invoices by phase?", "a": "Yes — there's nothing stopping you from creating a separate invoice for each milestone (e.g. foundation, framing, finish work). Just give each one a distinct invoice number and reference the same PO or job number in the notes." },
+        { "q": "How do I show a materials markup separately from cost?", "a": "Enter your marked-up per-unit price directly as the materials line's unit price — the tool totals what you enter, it doesn't calculate markup automatically." }
+      ],
+      "relatedProfessions": ["handyman", "electrician", "landscaping"]
+    },
+    {
+      "key": "freelancer",
+      "slug": "freelancer-invoice-generator",
+      "label": "Freelancer",
+      "pageTitle": "Free Freelancer Invoice Generator | TickmarkTools",
+      "metaDescription": "Create a professional freelance invoice free — bill by the hour or by milestone. No sign-up, nothing uploaded, runs entirely in your browser.",
+      "h1": "Free Freelancer Invoice Generator",
+      "heroDesc": "Bill hourly work or fixed-price milestones with a clean, professional invoice — ready to print or save as a PDF in minutes.",
+      "intro": "Most freelance work is billed one of two ways: hourly, or against fixed milestones agreed upfront in a contract or statement of work. This tool handles both — add an hourly line with your rate and hours worked, or add a flat milestone amount with quantity 1. Many freelancers outside the US either don't charge sales tax at all or handle it differently (e.g. reverse-charge VAT for cross-border clients), so every item defaults to taxable but can be unchecked per line.",
+      "guidance": [
+        "For milestone billing, name each line item after the deliverable (e.g. \"Milestone 2: first draft\") rather than a vague description like \"work\".",
+        "If you bill internationally, uncheck \"Taxed\" on items where your client handles VAT/reverse charge themselves, and note that arrangement in Notes.",
+        "Use the PO / reference number field for the client's internal project or contract reference — many companies won't process an invoice without one."
+      ],
+      "mistakes": [
+        "Invoicing a lump sum for a project with multiple milestones, making it hard for the client's accounts team to match payment to deliverable.",
+        "Leaving out a due date, which quietly extends how long clients take to pay.",
+        "Not referencing the contract or PO number, which can delay processing at larger companies."
+      ],
+      "presetKey": "freelancer",
+      "faqs": [
+        { "q": "Do freelancers need to charge sales tax?", "a": "It depends on your country, your business structure, and sometimes your client's location — freelance tax treatment varies widely and isn't something this tool determines for you. Check with a local tax professional or authority." },
+        { "q": "How should I invoice a client in another country?", "a": "You can still use this tool — just uncheck \"Taxed\" on line items where tax doesn't apply (e.g. reverse-charge VAT arrangements), and use the currency selector that matches what you've agreed to bill in." },
+        { "q": "Can I show partial milestone payments already received?", "a": "Yes — use the \"Amount already paid\" field. It calculates the remaining balance due and updates the payment status badge automatically." }
+      ],
+      "relatedProfessions": ["consultant", "webdesigner", "photographer"]
+    },
+    {
+      "key": "cleaning",
+      "slug": "cleaning-service-invoice-generator",
+      "label": "Cleaning Service",
+      "pageTitle": "Free Cleaning Service Invoice Generator | TickmarkTools",
+      "metaDescription": "Create a professional cleaning service invoice free, for one-off visits or recurring service. No sign-up, nothing uploaded, runs in your browser.",
+      "h1": "Free Cleaning Service Invoice Generator",
+      "heroDesc": "Bill a single visit or a recurring cleaning contract, with supplies itemized separately when you charge for them.",
+      "intro": "Cleaning services are typically billed one of two ways — a flat fee per visit, or an hourly rate for the time on-site — and many cleaners also pass through the cost of supplies as its own line rather than folding it into the service fee. This tool supports both patterns, and since this is usually a repeat customer relationship, the payment-terms field defaults to Net 30 but works equally well set to \"Due on receipt\" for one-off residential jobs.",
+      "guidance": [
+        "Note the recurrence (weekly, bi-weekly, monthly) directly in the item description if it's a standing contract, since the invoice itself doesn't track a recurring schedule.",
+        "Separate supplies from labor if you charge for them — some customers provide their own supplies and expect that line removed.",
+        "For commercial contracts, use the PO / reference number field, since many businesses require one before releasing payment."
+      ],
+      "mistakes": [
+        "Charging a flat visit fee that doesn't reflect a larger or unusually dirty job, without a note explaining the variance to a regular customer.",
+        "Forgetting to itemize supplies separately when a customer specifically asked to see that cost broken out.",
+        "Not noting which unit (per visit, per hour) a recurring line item refers to."
+      ],
+      "presetKey": "cleaning",
+      "faqs": [
+        { "q": "How do I bill for a recurring cleaning contract?", "a": "Create a new invoice for each billing period and note the frequency (e.g. \"bi-weekly cleaning — visit 3 of 4\") in the item description. This tool creates individual invoices; it doesn't automate recurring billing yet." },
+        { "q": "Should I charge tax on cleaning services?", "a": "That depends on your state, province or country — some tax cleaning/janitorial services, others don't. Enter whatever rate applies to your business; the tool won't look it up for you." },
+        { "q": "Can I show a discount for a long-term contract customer?", "a": "Yes — use the Discount field with either a percentage or a fixed amount off the invoice." }
+      ],
+      "relatedProfessions": ["landscaping", "handyman", "contractor"]
+    },
+    {
+      "key": "plumber",
+      "slug": "plumber-invoice-generator",
+      "label": "Plumber",
+      "pageTitle": "Free Plumber Invoice Generator | TickmarkTools",
+      "metaDescription": "Create a professional plumbing invoice free, with a service call fee, labor, parts and an emergency-rate option. No sign-up, nothing uploaded.",
+      "h1": "Free Plumber Invoice Generator",
+      "heroDesc": "Bill a service call fee, labor and parts as separate lines, and add an after-hours or emergency rate when it applies.",
+      "intro": "Plumbing invoices typically separate three things: a flat service call or dispatch fee, labor at an hourly rate, and parts at cost or with a markup. Emergency or after-hours calls often carry a separate surcharge line rather than a higher blended rate, since customers generally want to see exactly what the emergency premium cost them.",
+      "guidance": [
+        "Keep the service call fee as its own line so the customer can see it even if no repair was ultimately needed.",
+        "List parts individually rather than as one \"materials\" line when the job involved several distinct components — it reduces billing disputes.",
+        "If you charge an after-hours or emergency premium, add it as a clearly labeled separate line rather than inflating your normal hourly rate."
+      ],
+      "mistakes": [
+        "Rolling the service call fee into the labor line, which hides it if the customer later disputes the charge.",
+        "Not noting which fixture or area of the property a repair applied to on multi-issue jobs.",
+        "Applying an emergency rate without a labeled line explaining why the total is higher than a standard call."
+      ],
+      "presetKey": "plumber",
+      "faqs": [
+        { "q": "Should I itemize parts separately from labor?", "a": "It's generally clearer to customers and reduces disputes if parts and labor are separate line items, especially on larger repairs. This tool makes that easy — just add each as its own row." },
+        { "q": "How do I bill for an emergency or after-hours call?", "a": "Add a separate line item labeled clearly (e.g. \"After-hours emergency surcharge\") rather than blending it into your standard hourly rate, so the customer can see exactly what the premium covered." },
+        { "q": "Is a dispatch/service-call fee taxable?", "a": "That depends on your local tax rules for services versus goods — check with your tax authority or professional. You can mark the service call line as taxable or not, independently of the rest of the invoice." }
+      ],
+      "relatedProfessions": ["electrician", "handyman", "contractor"]
+    },
+    {
+      "key": "electrician",
+      "slug": "electrician-invoice-generator",
+      "label": "Electrician",
+      "pageTitle": "Free Electrician Invoice Generator | TickmarkTools",
+      "metaDescription": "Create a professional electrician invoice free, separating labor, materials and a service-call fee. No sign-up, nothing uploaded, runs in your browser.",
+      "h1": "Free Electrician Invoice Generator",
+      "heroDesc": "Separate labor, materials and a service-call fee for anything from a quick repair to a multi-day panel upgrade or rewiring project.",
+      "intro": "Electrical work spans quick single-visit repairs and multi-day projects like panel upgrades or full rewiring jobs, so invoices need to flex between the two. For a short call, a service-call fee plus one labor line and a materials line usually covers it. For a project-based job, it's often clearer to break labor into a few lines representing distinct phases (rough-in, finish, inspection prep) so the customer can see progress reflected in the bill.",
+      "guidance": [
+        "For panel upgrades or larger projects, consider one line per phase of work rather than a single lump labor line.",
+        "List major materials (breaker panels, wire runs, fixtures) individually rather than bundling them, especially on inspected work where the customer may need the detail for permits or insurance.",
+        "Note any permit or inspection fees you're passing through as their own line, since they're a pass-through cost rather than your labor or margin."
+      ],
+      "mistakes": [
+        "Bundling a permit fee into a labor line, which makes it look like a markup rather than a pass-through government cost.",
+        "Quoting a single project total with no phase breakdown on a multi-day job, leaving the customer unsure what's been completed.",
+        "Forgetting the service-call fee on a job that turned out to need no repair."
+      ],
+      "presetKey": "electrician",
+      "faqs": [
+        { "q": "How do I invoice a multi-day electrical project?", "a": "Break labor into phase-based line items (e.g. rough-in, finish work) rather than one lump total, or invoice per phase as separate invoices tied to the same job/PO reference." },
+        { "q": "Should permit fees be marked up?", "a": "That's a business decision, but many electricians pass permit fees through at cost and list them as their own non-marked-up line so it's clearly a government fee, not labor or profit." },
+        { "q": "Can I show a materials warranty note on the invoice?", "a": "Yes — add it to the Notes / payment instructions field, which appears on the printed or PDF invoice below the totals." }
+      ],
+      "relatedProfessions": ["plumber", "contractor", "handyman"]
+    },
+    {
+      "key": "photographer",
+      "slug": "photographer-invoice-generator",
+      "label": "Photographer",
+      "pageTitle": "Free Photographer Invoice Generator | TickmarkTools",
+      "metaDescription": "Create a professional photography invoice free — session or package fee, editing and travel. No sign-up, nothing uploaded, runs in your browser.",
+      "h1": "Free Photographer Invoice Generator",
+      "heroDesc": "Bill a session or package fee, add editing and retouching as its own line, and include travel when a shoot is off-location.",
+      "intro": "Photography invoices usually center on a session or package fee — a fixed amount for a defined shoot — with editing/retouching and travel added as optional extras rather than baked into the base price. That structure lets you offer a clear starting price while still capturing the real cost of add-on work like extensive retouching or a distant location shoot.",
+      "guidance": [
+        "Keep your base session/package fee as one clear line, then add extras (extra edited images, travel, prints) as separate lines so the client can see what drove the total above the base package.",
+        "If you charge per edited image, use quantity for the number of images and unit price for your per-image rate.",
+        "Note the shoot date in either the invoice notes or the item description, since \"session fee\" alone doesn't tell the client which shoot it refers to if they've booked more than one."
+      ],
+      "mistakes": [
+        "Quoting one flat number that includes everything, which makes it hard to explain the price if a client asks for fewer edited images next time.",
+        "Leaving out the shoot date, which matters for clients who book recurring sessions (e.g. seasonal family photos).",
+        "Not separating travel fees, which can look like an arbitrary price increase if it's buried in the session fee."
+      ],
+      "presetKey": "photographer",
+      "faqs": [
+        { "q": "How do I bill for extra edited photos beyond the package?", "a": "Add a line item with the number of extra images as the quantity and your per-image editing rate as the unit price — it'll total automatically." },
+        { "q": "Should travel fees be taxed the same as the session fee?", "a": "That depends on your local tax rules — some jurisdictions treat reimbursed travel differently from the service fee itself. You can mark the travel line as taxable or not independently." },
+        { "q": "Can I show a retainer or deposit already paid?", "a": "Yes — enter it in \"Amount already paid.\" The tool calculates the remaining balance due and updates the payment status automatically." }
+      ],
+      "relatedProfessions": ["freelancer", "webdesigner", "consultant"]
+    },
+    {
+      "key": "consultant",
+      "slug": "consultant-invoice-generator",
+      "label": "Consultant",
+      "pageTitle": "Free Consultant Invoice Generator | TickmarkTools",
+      "metaDescription": "Create a professional consulting invoice free — hourly or day rate, with expenses itemized separately. No sign-up, nothing uploaded.",
+      "h1": "Free Consultant Invoice Generator",
+      "heroDesc": "Bill by the hour or by day rate, and keep reimbursable expenses as their own clearly itemized line.",
+      "intro": "Consulting invoices are usually built around a time-based rate — hourly or daily — with any reimbursable expenses (travel, materials, third-party costs) itemized separately so the client's finance team can tell billable time apart from pass-through costs. Many consulting engagements are also cross-border or business-to-business, where tax treatment differs from typical retail sales, so every line item can be marked taxable or not independently.",
+      "guidance": [
+        "Keep expenses as a distinct line (or several) from your time-based fee — most finance departments process them differently internally.",
+        "For day-rate engagements, use quantity for number of days and unit price for your day rate rather than converting everything to hours.",
+        "Reference the engagement letter, SOW or PO number in the dedicated field — larger organizations frequently reject invoices missing one."
+      ],
+      "mistakes": [
+        "Blending reimbursable expenses into the hourly fee, which complicates the client's expense reporting and can raise tax questions.",
+        "Omitting the SOW/PO reference on invoices to larger companies, causing processing delays.",
+        "Not noting the specific engagement or project when billing multiple concurrent projects for the same client."
+      ],
+      "presetKey": "consultant",
+      "faqs": [
+        { "q": "How should I itemize reimbursable expenses?", "a": "Add them as their own line items, separate from your hourly or day-rate fee, and consider marking them non-taxable if that matches your arrangement and local tax rules." },
+        { "q": "Should I bill hourly or by day rate?", "a": "That's a business decision based on your agreement with the client — this tool supports either; just use quantity and unit price to represent whichever unit you're billing (hours or days)." },
+        { "q": "Can I reference a statement of work on the invoice?", "a": "Yes — use the PO / reference number field, or add more detail in the Notes section, which appears on the printed or PDF invoice." }
+      ],
+      "relatedProfessions": ["freelancer", "webdesigner", "photographer"]
+    },
+    {
+      "key": "handyman",
+      "slug": "handyman-invoice-generator",
+      "label": "Handyman",
+      "pageTitle": "Free Handyman Invoice Generator | TickmarkTools",
+      "metaDescription": "Create a professional handyman invoice free — labor, materials and a travel or service-call fee. No sign-up, nothing uploaded, runs in your browser.",
+      "h1": "Free Handyman Invoice Generator",
+      "heroDesc": "Combine labor and materials under one clear job description, and add a travel or service-call fee for smaller jobs.",
+      "intro": "Handyman work covers a lot of ground in a single visit — a few small repairs, some materials, maybe a supply run — so invoices tend to combine labor and materials under a plain job description rather than the heavier phase-by-phase breakdown a larger contractor job might use. A small flat travel or service-call fee is common for jobs that don't justify a full hourly minimum.",
+      "guidance": [
+        "For a multi-task visit (e.g. \"fix cabinet hinge, patch drywall, replace faucet\"), either list each task as its own line or summarize them together with a total labor line — whichever matches how you quoted the job.",
+        "Add a flat travel or service-call fee as its own line for smaller jobs rather than inflating the labor rate to cover it.",
+        "Note the property address in Notes if you handle multiple properties for the same landlord or property manager."
+      ],
+      "mistakes": [
+        "Combining a travel fee into labor, which makes it look like a higher hourly rate than what was quoted.",
+        "Vague single-line descriptions like \"handyman work\" that don't hold up if a customer disputes the invoice later.",
+        "Not noting the property address for customers who own or manage several properties."
+      ],
+      "presetKey": "handyman",
+      "faqs": [
+        { "q": "Should I list every small task separately?", "a": "It's optional — some handymen list each task as its own line, others summarize the visit as one labor line with a longer description. Either works with this tool; pick whichever is clearer for the customer." },
+        { "q": "How do I bill a minimum service-call fee?", "a": "Add it as its own line item (e.g. \"Service call — minimum 1 hour\") so it's clear even on a very small job." },
+        { "q": "Can I show materials I supplied versus customer-supplied materials?", "a": "Yes — only add materials you supplied as line items; anything the customer provided themselves simply isn't billed." }
+      ],
+      "relatedProfessions": ["contractor", "plumber", "landscaping"]
+    },
+    {
+      "key": "landscaping",
+      "slug": "landscaping-invoice-generator",
+      "label": "Landscaping",
+      "pageTitle": "Free Landscaping Invoice Generator | TickmarkTools",
+      "metaDescription": "Create a professional landscaping invoice free, for one-off jobs or recurring lawn care. No sign-up, nothing uploaded, runs in your browser.",
+      "h1": "Free Landscaping Invoice Generator",
+      "heroDesc": "Bill a one-off landscaping project or a recurring lawn care visit, with materials like mulch and plants itemized separately.",
+      "intro": "Landscaping billing splits into two common patterns: a one-off project (a new bed, sod installation, hardscaping) priced with labor and materials as separate lines, and recurring service (weekly or bi-weekly mowing) usually billed as a flat per-visit or per-month rate. Materials for larger jobs — mulch, plants, pavers — are typically itemized so the customer can see the cost breakdown, especially on higher-ticket projects.",
+      "guidance": [
+        "For recurring lawn care, note the frequency in the item description (e.g. \"Lawn mowing — weekly, visit 6 of 12\") since the invoice itself doesn't track a schedule.",
+        "Itemize materials individually on larger design/install jobs (mulch, plants, pavers) rather than a single \"materials\" line, especially when a customer has asked to see the breakdown.",
+        "Seasonal work (spring cleanup, fall leaf removal) is often clearer as its own invoice rather than folded into a standing lawn care contract."
+      ],
+      "mistakes": [
+        "Billing a seasonal one-off job on the same invoice as a standing recurring contract, which confuses the payment schedule.",
+        "Not itemizing plant and material costs on larger design/install jobs where customers expect to see the breakdown.",
+        "Leaving off which visit number a recurring invoice represents, making it hard to track against the season's contract."
+      ],
+      "presetKey": "landscaping",
+      "faqs": [
+        { "q": "How do I bill for a recurring lawn care contract?", "a": "Create a separate invoice per billing period and note the visit or period in the description (e.g. \"bi-weekly service — May\"). This tool generates individual invoices; it doesn't automate a recurring schedule." },
+        { "q": "Should I separate materials from labor on a landscaping design job?", "a": "Generally yes, especially for larger design/install projects — customers commonly expect to see plants, mulch and hardscaping materials broken out from labor." },
+        { "q": "Is landscaping labor taxable?", "a": "That depends on your state, province or country's rules for services versus goods — check with your local tax authority. You can mark labor and materials lines as taxable independently." }
+      ],
+      "relatedProfessions": ["cleaning", "handyman", "contractor"]
+    },
+    {
+      "key": "webdesigner",
+      "slug": "web-designer-invoice-generator",
+      "label": "Web Designer",
+      "pageTitle": "Free Web Designer Invoice Generator | TickmarkTools",
+      "metaDescription": "Create a professional web design invoice free — design, development and maintenance milestones. No sign-up, nothing uploaded, runs in your browser.",
+      "h1": "Free Web Designer Invoice Generator",
+      "heroDesc": "Bill design and development as separate milestones, and add an ongoing maintenance retainer as its own recurring line.",
+      "intro": "Web design and development projects are usually billed in milestones — design, then development, then launch — often across multiple invoices tied to a single project. Many designers also bill an ongoing monthly maintenance or hosting-support retainer separately from the original project, since it's a distinct, recurring service rather than part of the build.",
+      "guidance": [
+        "Name each milestone specifically (e.g. \"Milestone 2: homepage and 3 inner page designs\") rather than a vague \"design work\" line — it matches how most contracts define deliverables.",
+        "Bill a maintenance retainer as its own invoice or clearly separated line item from one-time project work, since it's typically a different service and billing cadence.",
+        "Reference the project name or contract in the PO / reference field if you manage multiple concurrent client projects."
+      ],
+      "mistakes": [
+        "Invoicing an entire project as a single line, which makes it hard to track partial payment against specific milestones.",
+        "Mixing a monthly maintenance charge into a one-time project invoice, which confuses the recurring billing relationship.",
+        "Leaving out the project name when a client has more than one active engagement with you."
+      ],
+      "presetKey": "webdesigner",
+      "faqs": [
+        { "q": "How do I bill a project across multiple milestones?", "a": "Either add each milestone as its own line item on one invoice, or create a separate invoice per milestone as it's completed — whichever matches your contract's payment schedule." },
+        { "q": "Should maintenance retainers be on the same invoice as project work?", "a": "It's usually clearer to keep them separate, since maintenance is typically a different, recurring billing relationship from one-time project work." },
+        { "q": "Can I bill in a different currency for an international client?", "a": "Yes — use the currency selector. It changes formatting only; it doesn't convert an amount you've already entered in a different currency." }
+      ],
+      "relatedProfessions": ["freelancer", "consultant", "photographer"]
+    },
+    {
+      "key": "trucking",
+      "slug": "trucking-invoice-generator",
+      "label": "Trucking",
+      "pageTitle": "Free Trucking Invoice Generator | TickmarkTools",
+      "metaDescription": "Create a professional trucking invoice free — load, mileage and accessorial charges. No sign-up, nothing uploaded, runs in your browser.",
+      "h1": "Free Trucking Invoice Generator",
+      "heroDesc": "Bill a load by flat rate or mileage, and itemize accessorial charges like detention or fuel surcharge separately.",
+      "intro": "Trucking and freight invoices are usually built around the load itself — either a flat agreed rate or a per-mile rate — with accessorial charges (detention time, fuel surcharge, layover, lumper fees) itemized separately, since brokers and shippers typically want those broken out from the base linehaul rate for their own accounting.",
+      "guidance": [
+        "Reference the load or reference number (often a broker-assigned number) in the PO / reference field — freight brokers commonly require it to process payment.",
+        "Keep the fuel surcharge and any accessorial charges (detention, layover, lumper fees) as separate lines from the base linehaul rate.",
+        "For mileage-based billing, use quantity for miles driven and unit price for your per-mile rate."
+      ],
+      "mistakes": [
+        "Blending fuel surcharge into the base rate, which most brokers and shippers expect itemized separately.",
+        "Missing the load or reference number, which is one of the most common reasons a freight invoice gets held up.",
+        "Not documenting detention time as its own line when it applies, since it's often disputed if it isn't clearly itemized."
+      ],
+      "presetKey": "trucking",
+      "faqs": [
+        { "q": "How do I bill for detention time?", "a": "Add it as its own line item (e.g. \"Detention fee — 2 hrs\") separate from the base load rate, since brokers and shippers typically expect it itemized and it's easier to dispute-proof that way." },
+        { "q": "Should I bill by flat rate or by the mile?", "a": "That depends on how the load was booked — this tool supports either; use quantity/unit price for per-mile billing, or a single line with quantity 1 for a flat rate." },
+        { "q": "Where do I put the load or broker reference number?", "a": "Use the PO / reference number field — most brokers require a load or reference number to process payment, and it will also appear on the printed or PDF invoice." }
+      ],
+      "presetKey": "trucking",
+      "relatedProfessions": ["contractor", "consultant", "freelancer"]
+    }
+  ]
+}
