@@ -87,6 +87,7 @@
   }
 }
 </script>
+<!-- IMPORTANT: this schema MUST exactly match the visible <ol class="steps"> list in #how-to-use below. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -100,7 +101,6 @@
     {"@type": "HowToStep", "name": "Copy or share your result", "text": "Use the Copy or Share buttons to save or send your result."}
   ]
 }
-<!-- IMPORTANT: this schema MUST exactly match the visible <ol class="steps"> list in #how-to-use below. -->
 </script>
 <script type="application/ld+json">
 {
@@ -113,6 +113,7 @@
   ]
 }
 </script>
+<!-- IMPORTANT: this schema MUST exactly match the visible #faq .faq-item content below (word-for-word). -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -126,7 +127,6 @@
     {"@type": "Question", "name": "Does this tool store or upload my data?", "acceptedAnswer": {"@type": "Answer", "text": "No. All calculations run entirely in your browser, and nothing you enter is ever sent to a server or stored."}}
   ]
 }
-<!-- IMPORTANT: this schema MUST exactly match the visible #faq .faq-item content below (word-for-word). -->
 </script>
 
 <script>
@@ -667,32 +667,6 @@ footer.compact-footer{border-top:1px solid var(--line);}
       </div>
     </div>
     <p>BMI is calculated the same way for every adult, regardless of age or sex: BMI = weight (kg) ÷ height (m)². Example: a person who is 170cm (1.7m) tall and weighs 65kg has a BMI of 65 ÷ (1.7 × 1.7) = 22.5 — in the Normal weight range.</p>
-
-    <!-- OPTIONAL REUSABLE PATTERN: inline secondary mini-calculator embedded in an
-         article section (id="stack*" is just an example naming convention — rename
-         to match the tool). Delete this whole callout if the tool doesn't need a
-         second interactive example inline in the article body. -->
-    <div class="tt-callout tt-tip" style="display:block;">
-      <h3 style="margin:0 0 10px;">n/a</h3>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:420px;">
-        <div>
-          <label class="tt-field-label" for="stackInput1">n/a</label>
-          <input type="number" inputmode="decimal" id="stackInput1" class="field" placeholder="n/a" autocomplete="off" min="0" step="any">
-        </div>
-        <div>
-          <label class="tt-field-label" for="stackInput2">n/a</label>
-          <input type="number" inputmode="decimal" id="stackInput2" class="field" placeholder="n/a" autocomplete="off" min="0" max="100" step="any">
-        </div>
-        <div>
-          <label class="tt-field-label" for="stackInput3">n/a</label>
-          <input type="number" inputmode="decimal" id="stackInput3" class="field" placeholder="n/a" autocomplete="off" min="0" max="100" step="any">
-        </div>
-        <div style="display:flex;align-items:flex-end;">
-          <button class="tt-btn tt-btn-secondary" id="stackCalcBtn" type="button" style="width:100%;">n/a</button>
-        </div>
-      </div>
-      <p id="stackResult" class="tt-target-result" style="margin:12px 0 0;font-size:13.5px;" aria-live="polite"></p>
-    </div>
   </div>
 </div>
 
