@@ -8,7 +8,7 @@ Homepage for https://tickmarktools.com. Vite + React + TypeScript + Tailwind CSS
 | --- | --- |
 | Homepage layout, nav, mobile menu, sections | Functional (static) |
 | Hero tools preview | Visual illustration only |
-| 5 featured tool cards | Visual placeholders. Buttons are disabled; **no tool is built yet** |
+| 5 featured tool cards | Visual placeholders. Buttons are disabled; **no tool or tool landing page is built yet** |
 | Pricing ($1.99) | Planned price only. Checkout is **not** implemented |
 | Privacy Policy, Terms, Contact | Not written. Footer shows "coming soon" text |
 | Language selector, Login, search | Not implemented, intentionally omitted |
@@ -29,7 +29,14 @@ Requires Node 20+ (`.nvmrc` is set to 20). No environment variables are needed y
 
 ## CI
 
-A ready-to-use workflow is in `docs/ci.yml.example`. Copy it to `.github/workflows/ci.yml` (it runs install, typecheck, tests, build, and an output check). After the first local `npm install`, commit `package-lock.json`, then switch the workflow to `npm ci` with `cache: npm`.
+A ready-to-use workflow is in `docs/ci.yml.example`. To enable it, copy it to `.github/workflows/ci.yml` and push (the automated GitHub connector used for early work cannot write to that folder):
+
+```bash
+mkdir -p .github/workflows && cp docs/ci.yml.example .github/workflows/ci.yml
+git add .github/workflows/ci.yml && git commit -m "Enable CI" && git push
+```
+
+It runs `npm ci`, typecheck, tests, build, and checks the build output. CI is not active until that file exists and has run.
 
 ## Cloudflare Pages
 
@@ -40,7 +47,8 @@ Set these in the Pages project (Settings -> Builds): build command `npm run buil
 - Fonts missing: the page loads Google Fonts; it falls back to system fonts if blocked.
 - CSP errors after adding scripts, APIs, or other font/image hosts: update `public/_headers`.
 - Build error about a missing lucide icon: check the icon name against the installed `lucide-react` version.
+- `npm audit` findings: run `npm audit --omit=dev` to see only production dependencies. Do not use `npm audit fix --force` without reviewing the changes.
 
 ## Not yet done
 
-ESLint is not configured. Tests currently cover only the tool data. No `package-lock.json` yet.
+ESLint is not configured. Tests currently cover only the tool data. Tool landing pages, legal pages, and an OG image are not created.
