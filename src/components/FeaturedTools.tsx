@@ -55,10 +55,10 @@ export default function FeaturedTools() {
           5 Tools Launching First
         </h2>
         <p className="mt-2 text-slate-600">
-          Real problems. Practical solutions. Intended price: {formatPrice(PRICE_USD)} each.
+          Real problems. Practical solutions. Planned price: {formatPrice(PRICE_USD)} one-time per use.
         </p>
         <p className="mt-1 text-sm text-slate-500">
-          All five are in development. Buttons stay disabled until each tool actually works.
+          All five are in development. Buttons stay disabled until each tool and its page actually work.
         </p>
 
         <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
@@ -81,11 +81,14 @@ export default function FeaturedTools() {
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{tool.description}</p>
                 <p className={`mt-5 font-heading text-xl font-bold ${s.price}`}>{formatPrice(tool.price)}</p>
                 <p className="text-xs text-slate-500">Planned one-time payment</p>
+                <p className="mt-3 text-xs text-slate-500">
+                  Planned action: <span className="font-medium text-slate-700">{tool.intendedCta}</span>
+                </p>
                 <button
                   type="button"
                   disabled
                   aria-label={`${tool.intendedCta}: coming soon`}
-                  className={`mt-4 w-full cursor-not-allowed rounded-xl border bg-white/70 px-4 py-2.5 text-sm font-semibold ${s.button}`}
+                  className={`mt-2 w-full cursor-not-allowed rounded-xl border bg-white/70 px-4 py-2.5 text-sm font-semibold ${s.button}`}
                 >
                   Coming soon
                 </button>
