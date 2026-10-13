@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import Logo from './Logo'
 
@@ -12,6 +12,15 @@ const NAV = [
 
 export default function Header() {
   const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open])
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-100 bg-white/90 backdrop-blur">
@@ -37,7 +46,7 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <a
             href="#tools"
-            className="hidden rounded-xl bg-gradient-to-r from-accent to-cyan-brand px-5 py-2.5 text-sm font-semibold text-white shadow-glow transition hover:brightness-110 sm:inline-block"
+            className="hidden rounded-xl bg-gradient-to-r from-accent to-sky-700 px-5 py-2.5 text-sm font-semibold text-white shadow-glow transition hover:brightness-110 sm:inline-block"
           >
             Get Started
           </a>
@@ -72,7 +81,7 @@ export default function Header() {
               <a
                 href="#tools"
                 onClick={() => setOpen(false)}
-                className="block rounded-xl bg-gradient-to-r from-accent to-cyan-brand px-4 py-3 text-center font-semibold text-white"
+                className="block rounded-xl bg-gradient-to-r from-accent to-sky-700 px-4 py-3 text-center font-semibold text-white"
               >
                 Get Started
               </a>

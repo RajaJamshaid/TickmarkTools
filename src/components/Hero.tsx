@@ -14,12 +14,12 @@ export default function Hero() {
       <div aria-hidden="true" className="pointer-events-none absolute -left-24 top-0 h-80 w-80 rounded-full bg-cyan-brand/10 blur-3xl" />
       <div className="mx-auto grid max-w-7xl items-center gap-6 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-20">
         <div>
-          <p className="inline-flex items-center rounded-full border border-accent/20 bg-white px-3 py-1 text-xs font-medium text-accent">
+          <p className="inline-block rounded-2xl border border-accent/20 bg-white px-3 py-1 text-xs font-medium text-accent">
             20 Practical Tools Planned. Launching One at a Time.
           </p>
           <h1 className="mt-5 text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
             Solve Real Problems.
-            <span className="block bg-gradient-to-r from-cyan-brand via-accent to-accent bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-sky-600 to-accent bg-clip-text text-transparent">
               Get More Done.
             </span>
           </h1>
@@ -39,7 +39,7 @@ export default function Hero() {
 
           <a
             href="#tools"
-            className="mt-8 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-accent to-cyan-brand px-7 py-3.5 font-semibold text-white shadow-glow transition hover:brightness-110"
+            className="mt-8 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-accent to-sky-700 px-7 py-3.5 font-semibold text-white shadow-glow transition hover:brightness-110"
           >
             Explore the Tools <ArrowRight className="h-5 w-5" />
           </a>

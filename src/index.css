@@ -16,7 +16,7 @@
     @apply font-heading text-navy;
   }
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-accent;
+    @apply outline outline-2 outline-offset-2 outline-accent;
   }
 }
 

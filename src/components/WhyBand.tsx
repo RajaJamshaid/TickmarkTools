@@ -23,7 +23,7 @@ export default function WhyBand() {
           </p>
           <a
             href="#tools"
-            className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-accent to-cyan-brand px-6 py-3 font-semibold text-white transition hover:brightness-110"
+            className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-accent to-sky-700 px-6 py-3 font-semibold text-white transition hover:brightness-110"
           >
             See the Tools <ArrowRight className="h-5 w-5" />
           </a>

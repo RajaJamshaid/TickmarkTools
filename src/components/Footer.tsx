@@ -24,11 +24,11 @@ export default function Footer() {
             <a key={l.label} href={l.href} className="hover:text-white">{l.label}</a>
           ))}
           {PENDING.map((l) => (
-            <span key={l} className="text-slate-500">{l} (coming soon)</span>
+            <span key={l} className="text-slate-400">{l} (coming soon)</span>
           ))}
         </nav>
       </div>
-      <p className="border-t border-white/10 px-4 py-4 text-center text-xs text-slate-500">
+      <p className="border-t border-white/10 px-4 py-4 text-center text-xs text-slate-400">
         © {new Date().getFullYear()} TickmarkTools
       </p>
     </footer>

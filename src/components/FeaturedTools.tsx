@@ -1,6 +1,6 @@
 import { Car, FilePlus2, HardHat, ReceiptText, Shirt } from 'lucide-react'
 import type { ReactNode } from 'react'
-import { FEATURED_TOOLS, formatPrice } from '../data/tools'
+import { FEATURED_TOOLS, formatPrice, PRICE_USD } from '../data/tools'
 import type { Accent, ToolId } from '../data/tools'
 
 const ICONS: Record<ToolId, ReactNode> = {
@@ -55,7 +55,7 @@ export default function FeaturedTools() {
           5 Tools Launching First
         </h2>
         <p className="mt-2 text-slate-600">
-          Real problems. Practical solutions. Intended price: {formatPrice(1.99)} each.
+          Real problems. Practical solutions. Intended price: {formatPrice(PRICE_USD)} each.
         </p>
         <p className="mt-1 text-sm text-slate-500">
           All five are in development. Buttons stay disabled until each tool actually works.

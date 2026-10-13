@@ -34,7 +34,7 @@ const TILES: { label: string; icon: ReactNode; tone: string }[] = [
 /** Decorative illustration only. Nothing here is interactive or functional. */
 export default function ToolsPreview() {
   return (
-    <figure className="relative mx-auto w-full max-w-xl px-3 pb-10 pt-8 sm:px-6" aria-label="Illustration of the planned TickmarkTools catalog">
+    <figure className="relative mx-auto w-full max-w-xl px-3 pb-12 pt-14 sm:px-6 sm:pt-10">
       <div aria-hidden="true" className="pointer-events-none absolute -right-6 top-10 h-64 w-64 rounded-full bg-aqua/20 blur-3xl" />
       <div aria-hidden="true" className="pointer-events-none absolute -left-6 bottom-6 h-56 w-56 rounded-full bg-accent/15 blur-3xl" />
 
@@ -45,35 +45,35 @@ export default function ToolsPreview() {
             <i className="h-2 w-2 rounded-full bg-amber-300" />
             <i className="h-2 w-2 rounded-full bg-aqua" />
           </span>
-          <span className="scale-75 origin-right"><Logo /></span>
+          <span className="inline-block origin-right scale-75"><Logo /></span>
         </div>
         <p className="font-heading text-lg font-bold text-navy">Hey there!</p>
         <p className="mb-3 text-xs text-slate-500">Choose a tool, solve your problem, get it done.</p>
         <div className="mb-4 rounded-xl border border-slate-100 bg-slate-50 px-3 py-2 text-xs text-slate-400">Search tools...</div>
-        <div className="grid grid-cols-5 gap-2">
+        <div className="grid grid-cols-5 gap-1.5 sm:gap-2">
           {TILES.map((t) => (
-            <div key={t.label} className="flex flex-col items-center rounded-xl border border-slate-100 bg-white p-1.5 text-center">
+            <div key={t.label} className="flex flex-col items-center rounded-xl border border-slate-100 bg-white p-1 text-center sm:p-1.5">
               <span className={`flex h-8 w-8 items-center justify-center rounded-lg sm:h-9 sm:w-9 [&>svg]:h-4 [&>svg]:w-4 ${t.tone}`}>{t.icon}</span>
-              <span className="mt-1 text-[8px] leading-tight text-slate-500 sm:text-[9px]">{t.label}</span>
+              <span className="mt-1 break-words text-[8px] leading-tight text-slate-500 sm:text-[9px]">{t.label}</span>
             </div>
           ))}
         </div>
       </div>
 
-      <div aria-hidden="true" className="absolute left-0 top-2 flex -rotate-6 items-center gap-2 rounded-2xl bg-gradient-to-r from-accent to-cyan-brand px-3 py-2 text-xs font-semibold text-white shadow-glow sm:left-2">
+      <div aria-hidden="true" className="absolute left-1 top-3 flex -rotate-6 items-center gap-2 rounded-2xl bg-gradient-to-r from-accent to-sky-700 px-3 py-2 text-xs font-semibold text-white shadow-glow sm:left-2">
         <Zap className="h-4 w-4" /> Practical Tools
       </div>
-      <div aria-hidden="true" className="absolute right-0 top-0 flex rotate-6 items-center gap-2 rounded-2xl bg-teal-deep px-3 py-2 text-xs font-semibold text-white shadow-card sm:right-2">
-        <Check className="h-4 w-4" strokeWidth={3} /> Smart Tools. Real Solutions.
+      <div aria-hidden="true" className="absolute right-1 top-1 flex max-w-[10rem] rotate-6 items-center gap-2 rounded-2xl bg-teal-deep px-3 py-2 text-xs font-semibold leading-tight text-white shadow-card sm:right-2 sm:max-w-none">
+        <Check className="h-4 w-4 shrink-0" strokeWidth={3} /> Smart Tools. Real Solutions.
       </div>
       <div aria-hidden="true" className="absolute -left-1 top-1/2 hidden -rotate-6 items-center gap-2 rounded-2xl border border-slate-100 bg-white px-3 py-2 text-xs font-semibold text-navy shadow-card sm:flex">
         <Tag className="h-4 w-4 text-accent" />
         <span>One-time payment<br /><span className="text-slate-500">{formatPrice(PRICE_USD)} planned per tool</span></span>
       </div>
-      <div aria-hidden="true" className="absolute bottom-2 right-0 flex items-center gap-2 rounded-2xl bg-navy px-3 py-2 text-xs font-semibold text-white shadow-card sm:right-2">
+      <div aria-hidden="true" className="absolute bottom-2 right-1 flex items-center gap-2 rounded-2xl bg-navy px-3 py-2 text-xs font-semibold text-white shadow-card sm:right-2">
         <InfinityIcon className="h-4 w-4 text-aqua" /> No subscriptions
       </div>
-      <figcaption className="sr-only">Decorative preview. Tools shown are planned and not yet available.</figcaption>
+      <figcaption className="sr-only">Decorative preview of the planned TickmarkTools catalog. Tools shown are not yet available.</figcaption>
     </figure>
   )
 }
