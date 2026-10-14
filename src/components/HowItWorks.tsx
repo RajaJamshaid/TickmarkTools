@@ -26,8 +26,8 @@ export default function HowItWorks() {
           <div aria-hidden="true" className="flow-line absolute left-[17%] right-[17%] top-[3.25rem] hidden md:block" />
           {STEPS.map((s, i) => (
             <li key={s.title} className="relative z-10">
-              <Reveal delay={i * 120} className="h-full">
-                <div className="h-full rounded-3xl border border-slate-100 bg-white/90 p-6 shadow-card backdrop-blur transition hover:-translate-y-1">
+              <Reveal delay={i * 70} className="h-full">
+                <div className="h-full rounded-3xl border border-slate-100 bg-white p-6 shadow-card transition hover:-translate-y-1">
                   <span
                     className="icon-tile mx-auto bg-gradient-to-br from-accent to-sky-700"
                     style={{ '--accent': '#4F46E5' } as CSSProperties}

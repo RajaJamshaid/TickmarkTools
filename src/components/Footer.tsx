@@ -28,7 +28,10 @@ export default function Footer() {
           ))}
         </nav>
       </div>
-      <p className="border-t border-white/10 px-4 py-4 text-center text-xs text-slate-400">
+      <p className="border-t border-white/10 px-4 pt-4 text-center text-xs text-slate-400">
+        Informational tools only. Not legal, medical, or financial advice.
+      </p>
+      <p className="px-4 pb-4 pt-1 text-center text-xs text-slate-400">
         © {new Date().getFullYear()} TickmarkTools
       </p>
     </footer>

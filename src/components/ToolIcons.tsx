@@ -1,10 +1,14 @@
 import type { ReactNode } from 'react'
 
-function Svg({ children }: { children: ReactNode }) {
+interface IconProps {
+  className?: string
+}
+
+function Svg({ children, className = 'h-8 w-8' }: { children: ReactNode; className?: string }) {
   return (
     <svg
       viewBox="0 0 48 48"
-      className="h-8 w-8"
+      className={className}
       fill="none"
       stroke="currentColor"
       strokeWidth="2.5"
@@ -18,7 +22,7 @@ function Svg({ children }: { children: ReactNode }) {
 }
 
 /** Magnifier with a pulsing sparkle and an orbiting highlight. Decorative only. */
-export function SmartSearchIcon({ className = 'h-6 w-6' }: { className?: string }) {
+export function SmartSearchIcon({ className = 'h-6 w-6' }: IconProps) {
   return (
     <svg
       viewBox="0 0 48 48"
@@ -44,9 +48,9 @@ export function SmartSearchIcon({ className = 'h-6 w-6' }: { className?: string 
 }
 
 /** Document with a scanning line. Decorative only. */
-export function MedicalIcon() {
+export function MedicalIcon({ className }: IconProps) {
   return (
-    <Svg>
+    <Svg className={className}>
       <path d="M13 6h16l8 8v28a2 2 0 0 1-2 2H13a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" />
       <path d="M29 6v8h8" />
       <path d="M24 24v10M19 29h10" />
@@ -56,9 +60,9 @@ export function MedicalIcon() {
 }
 
 /** Receipt whose lines draw themselves. */
-export function InvoiceIcon() {
+export function InvoiceIcon({ className }: IconProps) {
   return (
-    <Svg>
+    <Svg className={className}>
       <path d="M12 6h24a2 2 0 0 1 2 2v34l-4-3-4 3-4-3-4 3-4-3-4 3V8a2 2 0 0 1 2-2z" />
       <path className="ico-draw" pathLength={30} d="M17 16h14" />
       <path className="ico-draw ico-d2" pathLength={30} d="M17 23h14" />
@@ -68,9 +72,9 @@ export function InvoiceIcon() {
 }
 
 /** Car with spinning wheels. */
-export function CarIcon() {
+export function CarIcon({ className }: IconProps) {
   return (
-    <Svg>
+    <Svg className={className}>
       <g className="ico-bob">
         <path d="M7 31v-5l4-9a3 3 0 0 1 3-2h20a3 3 0 0 1 3 2l4 9v5" />
         <path d="M7 31h34" />
@@ -89,9 +93,9 @@ export function CarIcon() {
 }
 
 /** Hard hat with a twinkling spark. */
-export function ContractorIcon() {
+export function ContractorIcon({ className }: IconProps) {
   return (
-    <Svg>
+    <Svg className={className}>
       <g className="ico-bob">
         <path d="M9 31a15 15 0 0 1 30 0" />
         <path d="M6 31h36v5H6z" />
@@ -103,9 +107,9 @@ export function ContractorIcon() {
 }
 
 /** Image frame that resizes in a loop. */
-export function ResizerIcon() {
+export function ResizerIcon({ className }: IconProps) {
   return (
-    <Svg>
+    <Svg className={className}>
       <rect x="8" y="8" width="32" height="32" rx="4" />
       <rect className="ico-resize" x="15" y="15" width="18" height="18" rx="2" fill="currentColor" fillOpacity="0.3" />
       <path d="M30 10h8v8M18 38h-8v-8" strokeWidth="2" />

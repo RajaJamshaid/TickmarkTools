@@ -14,9 +14,8 @@ const NAV = [
 function focusSearch() {
   const el = document.getElementById('smart-search')
   if (!el) return
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' })
-  window.setTimeout(() => el.focus({ preventScroll: true }), 400)
+  el.scrollIntoView({ behavior: 'auto', block: 'center' })
+  el.focus({ preventScroll: true })
 }
 
 export default function Header() {
@@ -32,7 +31,7 @@ export default function Header() {
   }, [open])
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200/60 bg-white/75 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-slate-200/70 bg-white/95">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <a href="#main" aria-label="TickmarkTools home">
           <Logo />
@@ -60,7 +59,7 @@ export default function Header() {
               setOpen(false)
               focusSearch()
             }}
-            className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white/70 text-accent transition hover:bg-white hover:shadow-card"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-accent transition hover:shadow-card"
           >
             <SmartSearchIcon className="h-6 w-6" />
           </button>

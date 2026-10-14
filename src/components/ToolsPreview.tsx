@@ -1,33 +1,79 @@
-import type { CSSProperties } from 'react'
-import { Zap, Tag, Check, Ellipsis, FilePlus2, FileSearch, FileText, Landmark, Pencil, PenTool, ReceiptText, Car, Shirt } from 'lucide-react'
-import type { ReactNode } from 'react'
-import { formatPrice, PRICE_USD } from '../data/tools'
+import { useEffect, useState } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
+import { Check, Tag, Zap } from 'lucide-react'
+import { FEATURED_TOOLS, formatPrice, PRICE_USD } from '../data/tools'
+import type { ToolId } from '../data/tools'
 import Logo from './Logo'
-import { SmartSearchIcon } from './ToolIcons'
+import { CarIcon, ContractorIcon, InvoiceIcon, MedicalIcon, ResizerIcon, SmartSearchIcon } from './ToolIcons'
+import { LOOK } from './toolLook'
 
-const TILES: { label: string; icon: ReactNode; tone: string }[] = [
-  { label: 'Medical Bill', icon: <FilePlus2 />, tone: 'bg-rose-100 text-rose-600' },
-  { label: 'Invoice Kit', icon: <ReceiptText />, tone: 'bg-emerald-100 text-emerald-700' },
-  { label: 'Car Quote', icon: <Car />, tone: 'bg-blue-100 text-blue-700' },
-  { label: 'Contracts', icon: <FileSearch />, tone: 'bg-cyan-brand/15 text-sky-700' },
-  { label: 'Resizer', icon: <Shirt />, tone: 'bg-violet-100 text-violet-700' },
-  { label: 'Worksheets', icon: <Pencil />, tone: 'bg-amber-100 text-amber-700' },
-  { label: 'Vectorizer', icon: <PenTool />, tone: 'bg-teal-deep/15 text-teal-deep' },
-  { label: 'PDF Data', icon: <FileText />, tone: 'bg-blue-100 text-blue-700' },
-  { label: 'Tax Notice', icon: <Landmark />, tone: 'bg-indigo-100 text-accent' },
-  { label: 'More', icon: <Ellipsis />, tone: 'bg-slate-100 text-slate-600' },
-]
+const TEXT = 'TickmarkTools.com'
+
+const SHORT: Record<ToolId, string> = {
+  'medical-bill-checker': 'Medical Bill',
+  'overdue-invoice-recovery-kit': 'Invoice Kit',
+  'car-repair-quote-checker': 'Car Quote',
+  'home-contractor-quote-checker': 'Contractor',
+  'ecommerce-asset-auto-resizer': 'Resizer',
+}
+
+const ICON: Record<ToolId, ReactNode> = {
+  'medical-bill-checker': <MedicalIcon className="h-5 w-5" />,
+  'overdue-invoice-recovery-kit': <InvoiceIcon className="h-5 w-5" />,
+  'car-repair-quote-checker': <CarIcon className="h-5 w-5" />,
+  'home-contractor-quote-checker': <ContractorIcon className="h-5 w-5" />,
+  'ecommerce-asset-auto-resizer': <ResizerIcon className="h-5 w-5" />,
+}
 
 const style = (vars: Record<string, string | number>) => vars as CSSProperties
 
+/** Loop: type the site name, reveal the tools one by one, hold, reset. */
+function useDemo() {
+  const [typed, setTyped] = useState(0)
+  const [show, setShow] = useState(false)
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setTyped(TEXT.length)
+      setShow(true)
+      return
+    }
+    let timer = 0
+    let i = 0
+    const type = () => {
+      if (i <= TEXT.length) {
+        setTyped(i)
+        i += 1
+        timer = window.setTimeout(type, 85)
+        return
+      }
+      setShow(true)
+      timer = window.setTimeout(() => {
+        setShow(false)
+        timer = window.setTimeout(() => {
+          i = 0
+          setTyped(0)
+          timer = window.setTimeout(type, 500)
+        }, 600)
+      }, 4200)
+    }
+    timer = window.setTimeout(type, 600)
+    return () => window.clearTimeout(timer)
+  }, [])
+
+  return { typed, show }
+}
+
 /** Decorative illustration only. Nothing here is interactive or functional. */
 export default function ToolsPreview() {
+  const { typed, show } = useDemo()
+
   return (
-    <figure className="relative mx-auto w-full max-w-xl px-3 pb-12 pt-14 sm:px-6 sm:pt-12 lg:pt-10">
+    <figure className="relative mx-auto w-full max-w-xl px-3 pb-12 pt-14 sm:px-6 sm:pt-12">
       <div className="float" style={style({ '--dur': '9s' })}>
         <div
           aria-hidden="true"
-          className="relative overflow-hidden rounded-3xl border border-white bg-white/80 p-4 shadow-card backdrop-blur sm:p-5"
+          className="relative overflow-hidden rounded-3xl border border-white bg-white/90 p-4 shadow-card sm:p-5"
         >
           <div className="scan-beam" />
           <div className="relative mb-3 flex items-center justify-between">
@@ -39,20 +85,30 @@ export default function ToolsPreview() {
             <span className="inline-block origin-right scale-75"><Logo /></span>
           </div>
           <p className="relative font-heading text-lg font-bold text-navy">Hey there!</p>
-          <div className="relative mb-4 mt-2 flex items-center gap-2 rounded-xl border border-slate-100 bg-slate-50 px-3 py-2 text-xs text-slate-400">
-            <SmartSearchIcon className="h-4 w-4 text-accent" /> Smart search...
+
+          <div className="relative mb-4 mt-2 flex h-10 items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm">
+            <SmartSearchIcon className="h-4 w-4 shrink-0 text-accent" />
+            <span className="font-medium text-navy">{TEXT.slice(0, typed)}</span>
+            <span className="caret" />
+            {typed === 0 && <span className="text-slate-400">Smart search...</span>}
           </div>
-          <div className="relative grid grid-cols-5 gap-1.5 sm:gap-2">
-            {TILES.map((t, i) => (
-              <div
-                key={t.label}
-                className="tile flex flex-col items-center rounded-xl border border-slate-100 bg-white p-1 text-center sm:p-1.5"
-                style={style({ '--i': i })}
-              >
-                <span className={`flex h-8 w-8 items-center justify-center rounded-lg sm:h-9 sm:w-9 [&>svg]:h-4 [&>svg]:w-4 ${t.tone}`}>{t.icon}</span>
-                <span className="mt-1 break-words text-[8px] leading-tight text-slate-500 sm:text-[9px]">{t.label}</span>
-              </div>
-            ))}
+
+          <div className={`relative grid grid-cols-5 gap-1.5 sm:gap-2 ${show ? 'demo-on' : ''}`}>
+            {FEATURED_TOOLS.map((t, i) => {
+              const look = LOOK[t.accent]
+              return (
+                <div
+                  key={t.id}
+                  className="demo-tile flex flex-col items-center rounded-xl border bg-white p-1.5 text-center"
+                  style={{ '--i': i, borderColor: look.edge } as CSSProperties}
+                >
+                  <span className={`flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br text-white ${look.tile}`}>
+                    {ICON[t.id]}
+                  </span>
+                  <span className="mt-1 break-words text-[9px] font-medium leading-tight text-slate-600">{SHORT[t.id]}</span>
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>

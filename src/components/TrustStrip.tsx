@@ -13,7 +13,7 @@ export default function TrustStrip() {
       {PILLS.map((p) => (
         <li
           key={p.label}
-          className="flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3.5 py-1.5 text-sm font-medium text-slate-700 shadow-sm backdrop-blur"
+          className="flex items-center gap-2 rounded-full border border-slate-200 bg-white/90 px-3.5 py-1.5 text-sm font-medium text-slate-700 shadow-sm"
         >
           <span className="text-accent">{p.icon}</span>
           {p.label}

@@ -1,6 +1,27 @@
 import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties, ReactNode } from 'react'
 
+/** One shared observer for every Reveal keeps scrolling and clicks responsive. */
+const callbacks = new WeakMap<Element, () => void>()
+let observer: IntersectionObserver | null = null
+
+function getObserver(): IntersectionObserver {
+  if (!observer) {
+    observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue
+          callbacks.get(entry.target)?.()
+          callbacks.delete(entry.target)
+          observer?.unobserve(entry.target)
+        }
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -5% 0px' },
+    )
+  }
+  return observer
+}
+
 /** Fades and lifts content in once when it scrolls into view. */
 export default function Reveal({
   children,
@@ -21,17 +42,13 @@ export default function Reveal({
       setShown(true)
       return
     }
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShown(true)
-          io.disconnect()
-        }
-      },
-      { threshold: 0.12 },
-    )
+    callbacks.set(el, () => setShown(true))
+    const io = getObserver()
     io.observe(el)
-    return () => io.disconnect()
+    return () => {
+      io.unobserve(el)
+      callbacks.delete(el)
+    }
   }, [])
 
   return (

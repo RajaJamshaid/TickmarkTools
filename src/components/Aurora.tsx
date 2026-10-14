@@ -20,15 +20,15 @@ const DARK: Blob[] = [
   { size: '32rem', pos: { left: '30%', bottom: '-16rem' }, color: 'rgba(0,214,201,0.24)', dur: '24s', delay: '-4s' },
 ]
 
-/** Decorative animated wallpaper: drifting color glows plus a faint grid. */
-export default function Aurora({ variant }: { variant: 'light' | 'dark' }) {
+/** Decorative wallpaper: color glows plus a faint grid. Only animates when `animated` is set. */
+export default function Aurora({ variant, animated = false }: { variant: 'light' | 'dark'; animated?: boolean }) {
   const blobs = variant === 'dark' ? DARK : LIGHT
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
       {blobs.map((b, i) => (
         <div
           key={i}
-          className="aurora-blob"
+          className={`aurora-blob ${animated ? 'aurora-anim' : ''}`}
           style={{
             width: b.size,
             height: b.size,

@@ -15,10 +15,17 @@ const ICONS: Record<ToolId, ReactNode> = {
   'ecommerce-asset-auto-resizer': <ResizerIcon />,
 }
 
+let raf = 0
 function track(e: ReactPointerEvent<HTMLElement>) {
-  const r = e.currentTarget.getBoundingClientRect()
-  e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`)
-  e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`)
+  const el = e.currentTarget
+  const x = e.clientX
+  const y = e.clientY
+  cancelAnimationFrame(raf)
+  raf = requestAnimationFrame(() => {
+    const r = el.getBoundingClientRect()
+    el.style.setProperty('--mx', `${x - r.left}px`)
+    el.style.setProperty('--my', `${y - r.top}px`)
+  })
 }
 
 export default function FeaturedTools() {
@@ -32,11 +39,11 @@ export default function FeaturedTools() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="text-center">
-            <p className="inline-block rounded-full border border-accent/20 bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent backdrop-blur">
+            <p className="inline-block rounded-full border border-accent/20 bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent">
               Featured
             </p>
             <h2 id="tools-heading" className="mt-3 text-4xl font-bold sm:text-5xl">
-              5 Tools. <span className="text-shimmer">Launching First.</span>
+              5 Tools. <span className="text-gradient">Launching First.</span>
             </h2>
             <p className="mt-2 text-slate-600">Planned at {formatPrice(PRICE_USD)} each, one-time.</p>
           </div>
@@ -49,7 +56,7 @@ export default function FeaturedTools() {
             const look = LOOK[tool.accent]
             return (
               <li key={tool.id}>
-                <Reveal delay={i * 110} className="h-full">
+                <Reveal delay={i * 60} className="h-full">
                   <article
                     id={`tool-${tool.id}`}
                     className="spot flex h-full flex-col p-5"

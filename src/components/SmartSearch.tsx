@@ -9,8 +9,7 @@ const SUGGESTIONS = ['hospital bill', 'unpaid invoice', 'mechanic quote', 'resiz
 function goTo(id: string) {
   const el = document.getElementById(`tool-${id}`)
   if (!el) return
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' })
+  el.scrollIntoView({ behavior: 'auto', block: 'center' })
   el.classList.remove('card-ping')
   void el.offsetWidth
   el.classList.add('card-ping')
@@ -36,7 +35,7 @@ export default function SmartSearch() {
 
   return (
     <div className="relative z-30 mx-auto mt-8 max-w-2xl">
-      <div className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white/85 p-2 pr-4 shadow-card backdrop-blur focus-within:border-accent/40 focus-within:ring-4 focus-within:ring-accent/15">
+      <div className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-2 pr-4 shadow-card focus-within:border-accent/40 focus-within:ring-4 focus-within:ring-accent/15">
         <span
           className="icon-tile icon-tile-sm shrink-0 bg-gradient-to-br from-accent to-sky-700"
           style={{ '--accent': '#4F46E5' } as CSSProperties}
@@ -66,7 +65,7 @@ export default function SmartSearch() {
               <button
                 type="button"
                 onClick={() => setQuery(s)}
-                className="rounded-full border border-slate-200 bg-white/70 px-3 py-1 text-xs font-medium text-slate-600 transition hover:border-accent/40 hover:text-accent"
+                className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600 transition hover:border-accent/40 hover:text-accent"
               >
                 {s}
               </button>
