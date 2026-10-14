@@ -42,12 +42,23 @@ It runs `npm ci`, typecheck, tests, build, and checks the build output. CI is no
 
 Set these in the Pages project (Settings -> Builds): build command `npm run build`, output directory `dist`, Node 20+. Do not commit secrets; set them as Pages environment variables. `public/_headers` adds security headers and a CSP. `public/404.html` makes unknown URLs return a real 404 (this is a single-page site).
 
+## Dependency audit (known findings)
+
+Checked after upgrading to Vite 6 and Vitest 4. `npm audit --omit=dev` reports 0 vulnerabilities (nothing shipped to visitors is affected). `npm audit` still reports 7 findings (5 high, 2 moderate), all in Tailwind CSS 3's build-time dependency chain:
+
+- `braces` (GHSA-vfj7-8cjw-p6xm, high): stack-exhaustion denial of service from deeply nested brace patterns. npm lists no patched version of `braces` (affected range `*`).
+- `postcss-selector-parser` below 7.1.6 (GHSA-rj75-hqrm-r3gf, moderate): CPU exhaustion from crafted selectors. Tailwind 3 requires the 6.x line.
+- `micromatch`, `fast-glob`, `chokidar`, `postcss-nested`, `tailwindcss`: flagged only because they depend on the two packages above.
+
+Why this is accepted for now: these run only on a developer machine or CI during the build, and only process this repository's own files and Tailwind config, not untrusted input. npm's only automatic fix is `npm audit fix --force`, which installs Tailwind CSS 4 (a breaking change to config and CSS directives). Do not run that casually.
+
+Planned resolution: migrate to Tailwind CSS 4 as its own task, verifying the design against the reference afterwards. Re-run `npm audit` after any dependency change; do not add `overrides` or suppress findings to make the report look clean.
+
 ## Troubleshooting
 
 - Fonts missing: the page loads Google Fonts; it falls back to system fonts if blocked.
 - CSP errors after adding scripts, APIs, or other font/image hosts: update `public/_headers`.
 - Build error about a missing lucide icon: check the icon name against the installed `lucide-react` version.
-- `npm audit` findings: run `npm audit --omit=dev` to see only production dependencies. Do not use `npm audit fix --force` without reviewing the changes.
 
 ## Not yet done
 
