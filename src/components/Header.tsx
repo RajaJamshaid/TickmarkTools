@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import Logo from './Logo'
 import { SmartSearchIcon } from './ToolIcons'
+import { focusSmartSearch } from '../lib/searchFocus'
 
 const NAV = [
   { label: 'Home', href: '#main' },
@@ -10,13 +11,6 @@ const NAV = [
   { label: 'Pricing', href: '#pricing' },
   { label: 'About', href: '#about' },
 ] as const
-
-function focusSearch() {
-  const el = document.getElementById('smart-search')
-  if (!el) return
-  el.scrollIntoView({ behavior: 'auto', block: 'center' })
-  el.focus({ preventScroll: true })
-}
 
 export default function Header() {
   const [open, setOpen] = useState(false)
@@ -57,7 +51,7 @@ export default function Header() {
             aria-label="Smart search"
             onClick={() => {
               setOpen(false)
-              focusSearch()
+              focusSmartSearch()
             }}
             className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-accent transition hover:shadow-card"
           >

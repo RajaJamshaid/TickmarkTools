@@ -1,6 +1,5 @@
 import type { CSSProperties } from 'react'
 import { ClipboardCheck, FileDown, Upload } from 'lucide-react'
-import Aurora from './Aurora'
 import Reveal from './Reveal'
 
 const STEPS = [
@@ -11,12 +10,7 @@ const STEPS = [
 
 export default function HowItWorks() {
   return (
-    <section
-      id="how-it-works"
-      aria-labelledby="how-heading"
-      className="relative overflow-hidden bg-gradient-to-b from-indigo-50/50 via-white to-sky-50 py-16 sm:py-24"
-    >
-      <Aurora variant="light" />
+    <section id="how-it-works" aria-labelledby="how-heading" className="relative py-16 sm:py-24">
       <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
         <Reveal>
           <h2 id="how-heading" className="text-4xl font-bold sm:text-5xl">How It Works</h2>
@@ -27,7 +21,7 @@ export default function HowItWorks() {
           {STEPS.map((s, i) => (
             <li key={s.title} className="relative z-10">
               <Reveal delay={i * 70} className="h-full">
-                <div className="h-full rounded-3xl border border-slate-100 bg-white p-6 shadow-card transition hover:-translate-y-1">
+                <div className="h-full rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_20px_40px_-22px_rgba(7,27,53,0.3)] transition hover:-translate-y-1">
                   <span
                     className="icon-tile mx-auto bg-gradient-to-br from-accent to-sky-700"
                     style={{ '--accent': '#4F46E5' } as CSSProperties}

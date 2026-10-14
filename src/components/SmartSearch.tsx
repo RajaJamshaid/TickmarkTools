@@ -3,6 +3,7 @@ import type { CSSProperties, KeyboardEvent } from 'react'
 import { SmartSearchIcon } from './ToolIcons'
 import { LOOK } from './toolLook'
 import { searchTools } from '../data/search'
+import { keepSearchVisible } from '../lib/searchFocus'
 
 const SUGGESTIONS = ['hospital bill', 'unpaid invoice', 'mechanic quote', 'resize product photos']
 
@@ -34,7 +35,7 @@ export default function SmartSearch() {
   }
 
   return (
-    <div className="relative z-30 mx-auto mt-8 max-w-2xl">
+    <div id="smart-search-box" className="relative z-30 mx-auto mt-8 max-w-2xl">
       <div className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-2 pr-4 shadow-card focus-within:border-accent/40 focus-within:ring-4 focus-within:ring-accent/15">
         <span
           className="icon-tile icon-tile-sm shrink-0 bg-gradient-to-br from-accent to-sky-700"
@@ -52,6 +53,9 @@ export default function SmartSearch() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={onKeyDown}
+          onFocus={() => {
+            if (window.matchMedia('(max-width: 767px)').matches) keepSearchVisible()
+          }}
           placeholder="Describe your problem, e.g. hospital bill too high"
           aria-controls={active ? listId : undefined}
           className="min-w-0 flex-1 bg-transparent py-2 text-base text-navy placeholder:text-slate-400 focus:outline-none"

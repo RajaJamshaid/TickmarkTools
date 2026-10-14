@@ -20,7 +20,8 @@
   }
   a[href],
   button:not(:disabled),
-  input {
+  input,
+  textarea {
     touch-action: manipulation;
   }
 }
@@ -32,7 +33,7 @@ button:not(:disabled):active,
   transition-duration: 0.08s;
 }
 
-/* ---------- Wallpaper (only the hero animates, to stay fast) ---------- */
+/* ---------- Wallpaper ---------- */
 .aurora-blob {
   position: absolute;
   border-radius: 9999px;
@@ -60,6 +61,12 @@ button:not(:disabled):active,
   background-image:
     linear-gradient(to right, rgba(7, 27, 53, 0.06) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(7, 27, 53, 0.06) 1px, transparent 1px);
+}
+.wallpaper-grid-page {
+  background-size: 56px 56px;
+  background-image:
+    linear-gradient(to right, rgba(7, 27, 53, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(7, 27, 53, 0.035) 1px, transparent 1px);
 }
 
 /* ---------- Text and buttons ---------- */
@@ -168,15 +175,15 @@ button:not(:disabled):active,
   50% { background-position: 100% 50%; }
 }
 
-/* ---------- Tool cards (light, tinted per tool) ---------- */
+/* ---------- Tool cards: solid white so they stand apart from the wallpaper ---------- */
 .spot {
   position: relative;
   isolation: isolate;
   overflow: hidden;
   border-radius: 1.5rem;
-  border: 1px solid var(--edge, rgba(7, 27, 53, 0.12));
-  background: linear-gradient(165deg, var(--tint, rgba(23, 185, 245, 0.1)) 0%, rgba(255, 255, 255, 0.95) 55%);
-  box-shadow: 0 18px 40px -30px var(--glow-strong, rgba(7, 27, 53, 0.35));
+  border: 1.5px solid var(--edge, rgba(7, 27, 53, 0.15));
+  background: linear-gradient(180deg, var(--tint, rgba(23, 185, 245, 0.14)) 0%, #ffffff 42%);
+  box-shadow: 0 1px 2px rgba(7, 27, 53, 0.06), 0 22px 40px -18px rgba(7, 27, 53, 0.3);
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .spot::before {
@@ -194,14 +201,15 @@ button:not(:disabled):active,
   left: 12%;
   right: 12%;
   top: 0;
-  height: 2px;
+  height: 3px;
+  border-radius: 0 0 3px 3px;
   background: linear-gradient(90deg, transparent, var(--accent, #17b9f5), transparent);
 }
 .spot:hover,
 .spot:focus-within {
   transform: translateY(-5px);
   border-color: var(--accent, #17b9f5);
-  box-shadow: 0 30px 56px -30px var(--glow-strong, rgba(23, 185, 245, 0.45));
+  box-shadow: 0 1px 2px rgba(7, 27, 53, 0.06), 0 34px 56px -22px var(--glow-strong, rgba(23, 185, 245, 0.45));
 }
 .spot:hover::before,
 .spot:focus-within::before {

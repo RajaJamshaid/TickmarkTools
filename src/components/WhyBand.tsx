@@ -1,5 +1,4 @@
 import { ArrowRight, BadgeDollarSign, Lock, ShieldCheck, UserX } from 'lucide-react'
-import Aurora from './Aurora'
 import Reveal from './Reveal'
 
 const ITEMS = [
@@ -11,12 +10,7 @@ const ITEMS = [
 
 export default function WhyBand() {
   return (
-    <section
-      id="about"
-      aria-labelledby="about-heading"
-      className="relative overflow-hidden bg-gradient-to-b from-indigo-50/50 via-sky-50 to-white"
-    >
-      <Aurora variant="light" />
+    <section id="about" aria-labelledby="about-heading" className="relative">
       <div className="relative mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-24 lg:px-8">
         <Reveal>
           <h2 id="about-heading" className="text-4xl font-bold sm:text-5xl">

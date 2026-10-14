@@ -1,5 +1,4 @@
 import type { CSSProperties, PointerEvent as ReactPointerEvent, ReactNode } from 'react'
-import Aurora from './Aurora'
 import Reveal from './Reveal'
 import SmartSearch from './SmartSearch'
 import { CarIcon, ContractorIcon, InvoiceIcon, MedicalIcon, ResizerIcon } from './ToolIcons'
@@ -30,16 +29,11 @@ function track(e: ReactPointerEvent<HTMLElement>) {
 
 export default function FeaturedTools() {
   return (
-    <section
-      id="tools"
-      aria-labelledby="tools-heading"
-      className="relative overflow-hidden bg-gradient-to-b from-sky-50 via-white to-indigo-50/50 py-16 sm:py-24"
-    >
-      <Aurora variant="light" />
+    <section id="tools" aria-labelledby="tools-heading" className="relative py-16 sm:py-24">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="text-center">
-            <p className="inline-block rounded-full border border-accent/20 bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent">
+            <p className="inline-block rounded-full border border-accent/20 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent">
               Featured
             </p>
             <h2 id="tools-heading" className="mt-3 text-4xl font-bold sm:text-5xl">

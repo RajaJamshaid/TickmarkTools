@@ -1,39 +1,75 @@
 import Logo from './Logo'
 
-const LINKS = [
-  { label: 'Home', href: '#main' },
+const PRODUCT = [
   { label: 'Tools', href: '#tools' },
   { label: 'How It Works', href: '#how-it-works' },
   { label: 'Pricing', href: '#pricing' },
-  { label: 'About', href: '#about' },
+  { label: 'Share a Problem', href: '#share' },
 ]
+const COMPANY = [{ label: 'About', href: '#about' }]
 
-// Legal and contact pages are not written yet; shown as plain text, not links.
-const PENDING = ['Privacy Policy', 'Terms of Service', 'Contact']
+// These pages are not written yet. They are shown as plain text, never as broken links.
+const COMPANY_PENDING = ['Contact']
+const LEGAL_PENDING = ['Privacy Policy', 'Terms of Service', 'Refund Policy', 'Disclaimer', 'Cookie Policy']
+
+function Soon({ label }: { label: string }) {
+  return (
+    <li className="flex items-center gap-2 text-slate-400">
+      {label}
+      <span className="rounded-full border border-white/15 px-1.5 text-[10px] uppercase tracking-wide">Soon</span>
+    </li>
+  )
+}
+
+function Links({ items }: { items: { label: string; href: string }[] }) {
+  return (
+    <>
+      {items.map((l) => (
+        <li key={l.label}>
+          <a href={l.href} className="transition hover:text-white">{l.label}</a>
+        </li>
+      ))}
+    </>
+  )
+}
 
 export default function Footer() {
   return (
     <footer className="border-t border-white/10 bg-navy text-slate-300">
-      <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-10 sm:px-6 md:flex-row md:items-start md:justify-between lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr_1fr] lg:px-8">
         <div>
           <Logo light />
           <p className="mt-3 text-sm">Small Tools. Big Solutions.</p>
+          <p className="mt-1 max-w-xs text-sm text-slate-400">One-time tools for everyday problems.</p>
         </div>
-        <nav aria-label="Footer" className="grid grid-cols-2 gap-x-10 gap-y-2 text-sm">
-          {LINKS.map((l) => (
-            <a key={l.label} href={l.href} className="hover:text-white">{l.label}</a>
-          ))}
-          {PENDING.map((l) => (
-            <span key={l} className="text-slate-400">{l} (coming soon)</span>
-          ))}
+        <nav aria-label="Product">
+          <h2 className="font-heading text-sm font-bold text-white">Product</h2>
+          <ul className="mt-3 space-y-2 text-sm">
+            <Links items={PRODUCT} />
+          </ul>
+        </nav>
+        <nav aria-label="Company">
+          <h2 className="font-heading text-sm font-bold text-white">Company</h2>
+          <ul className="mt-3 space-y-2 text-sm">
+            <Links items={COMPANY} />
+            {COMPANY_PENDING.map((l) => (
+              <Soon key={l} label={l} />
+            ))}
+          </ul>
+        </nav>
+        <nav aria-label="Legal">
+          <h2 className="font-heading text-sm font-bold text-white">Legal</h2>
+          <ul className="mt-3 space-y-2 text-sm">
+            {LEGAL_PENDING.map((l) => (
+              <Soon key={l} label={l} />
+            ))}
+          </ul>
         </nav>
       </div>
-      <p className="border-t border-white/10 px-4 pt-4 text-center text-xs text-slate-400">
-        Informational tools only. Not legal, medical, or financial advice.
-      </p>
-      <p className="px-4 pb-4 pt-1 text-center text-xs text-slate-400">
-        © {new Date().getFullYear()} TickmarkTools
-      </p>
+      <div className="border-t border-white/10 px-4 py-5 text-center text-xs text-slate-400">
+        <p>Informational tools only. Not legal, medical, or financial advice. Prices are in US dollars (USD).</p>
+        <p className="mt-1">© {new Date().getFullYear()} TickmarkTools. All rights reserved.</p>
+      </div>
     </footer>
   )
 }
