@@ -1,51 +1,48 @@
-import { ArrowRight, BadgeDollarSign, Lock, Repeat2 } from 'lucide-react'
-import { formatPrice, PRICE_USD } from '../data/tools'
+import { ArrowRight } from 'lucide-react'
+import Aurora from './Aurora'
+import Reveal from './Reveal'
 import ToolsPreview from './ToolsPreview'
-
-const POINTS = [
-  { icon: <Lock className="h-5 w-5" />, label: 'Privacy First' },
-  { icon: <BadgeDollarSign className="h-5 w-5" />, label: 'Transparent Pricing' },
-  { icon: <Repeat2 className="h-5 w-5" />, label: 'No Subscriptions' },
-]
+import TrustStrip from './TrustStrip'
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-sky-50 via-white to-indigo-50/40">
-      <div aria-hidden="true" className="pointer-events-none absolute -left-24 top-0 h-80 w-80 rounded-full bg-cyan-brand/10 blur-3xl" />
-      <div className="mx-auto grid max-w-7xl items-center gap-6 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-20">
+    <section className="relative overflow-hidden bg-gradient-to-b from-sky-50 via-white to-indigo-50/50">
+      <Aurora variant="light" />
+      <div className="relative mx-auto grid max-w-7xl items-center gap-4 px-4 pb-10 pt-12 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:px-8 lg:pb-20 lg:pt-20">
         <div>
-          <p className="inline-block rounded-2xl border border-accent/20 bg-white px-3 py-1 text-xs font-medium text-accent">
-            20 Practical Tools Planned. Launching One at a Time.
-          </p>
-          <h1 className="mt-5 text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
-            Solve Real Problems.
-            <span className="block bg-gradient-to-r from-sky-600 to-accent bg-clip-text text-transparent">
-              Get More Done.
-            </span>
-          </h1>
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-600">
-            TickmarkTools is building focused online tools to simplify everyday tasks and decisions, all in one place. No subscriptions.
-            The planned price is a one-time payment of {formatPrice(PRICE_USD)} per tool.
-          </p>
-
-          <ul className="mt-7 flex flex-wrap gap-x-6 gap-y-3">
-            {POINTS.map((p) => (
-              <li key={p.label} className="flex items-center gap-2 text-sm font-medium text-slate-700">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-cyan-brand/15 text-sky-700">{p.icon}</span>
-                {p.label}
-              </li>
-            ))}
-          </ul>
-
-          <a
-            href="#tools"
-            className="mt-8 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-accent to-sky-700 px-7 py-3.5 font-semibold text-white shadow-glow transition hover:brightness-110"
-          >
-            Explore the Tools <ArrowRight className="h-5 w-5" />
-          </a>
+          <Reveal>
+            <p className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-white/80 px-3 py-1 text-xs font-semibold text-accent backdrop-blur">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-aqua" />
+              20 tools. Launching one by one.
+            </p>
+          </Reveal>
+          <Reveal delay={100}>
+            <h1 className="mt-5 text-5xl font-bold leading-[1.05] sm:text-6xl lg:text-7xl">
+              Solve Real Problems.
+              <span className="text-shimmer block">Get More Done.</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={200}>
+            <p className="mt-5 max-w-md text-lg text-slate-600">
+              Simple one-time tools for everyday problems. No subscriptions.
+            </p>
+          </Reveal>
+          <Reveal delay={300} className="mt-6">
+            <TrustStrip />
+          </Reveal>
+          <Reveal delay={400}>
+            <a
+              href="#tools"
+              className="btn-shine mt-8 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-accent to-sky-700 px-8 py-4 font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:brightness-110"
+            >
+              Explore Tools <ArrowRight className="h-5 w-5" />
+            </a>
+          </Reveal>
         </div>
 
-        <ToolsPreview />
+        <Reveal delay={250}>
+          <ToolsPreview />
+        </Reveal>
       </div>
     </section>
   )

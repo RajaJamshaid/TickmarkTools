@@ -23,7 +23,7 @@ export default function Header() {
   }, [open])
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-100 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-slate-200/60 bg-white/75 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <a href="#main" aria-label="TickmarkTools home">
           <Logo />
@@ -46,7 +46,7 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <a
             href="#tools"
-            className="hidden rounded-xl bg-gradient-to-r from-accent to-sky-700 px-5 py-2.5 text-sm font-semibold text-white shadow-glow transition hover:brightness-110 sm:inline-block"
+            className="btn-shine hidden rounded-xl bg-gradient-to-r from-accent to-sky-700 px-5 py-2.5 text-sm font-semibold text-white shadow-glow transition hover:brightness-110 sm:inline-block"
           >
             Get Started
           </a>

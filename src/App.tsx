@@ -1,7 +1,6 @@
 import Header from './components/Header'
 import Hero from './components/Hero'
 import FeaturedTools from './components/FeaturedTools'
-import TrustStrip from './components/TrustStrip'
 import HowItWorks from './components/HowItWorks'
 import Pricing from './components/Pricing'
 import WhyBand from './components/WhyBand'
@@ -20,7 +19,6 @@ export default function App() {
       <main id="main">
         <Hero />
         <FeaturedTools />
-        <TrustStrip />
         <HowItWorks />
         <Pricing />
         <WhyBand />

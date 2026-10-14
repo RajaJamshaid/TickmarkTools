@@ -1,97 +1,78 @@
-import { Car, FilePlus2, HardHat, ReceiptText, Shirt } from 'lucide-react'
-import type { ReactNode } from 'react'
+import type { CSSProperties, PointerEvent as ReactPointerEvent, ReactNode } from 'react'
+import Aurora from './Aurora'
+import Reveal from './Reveal'
+import { CarIcon, ContractorIcon, InvoiceIcon, MedicalIcon, ResizerIcon } from './ToolIcons'
 import { FEATURED_TOOLS, formatPrice, PRICE_USD } from '../data/tools'
 import type { Accent, ToolId } from '../data/tools'
 
 const ICONS: Record<ToolId, ReactNode> = {
-  'medical-bill-checker': <FilePlus2 className="h-7 w-7" />,
-  'overdue-invoice-recovery-kit': <ReceiptText className="h-7 w-7" />,
-  'car-repair-quote-checker': <Car className="h-7 w-7" />,
-  'home-contractor-quote-checker': <HardHat className="h-7 w-7" />,
-  'ecommerce-asset-auto-resizer': <Shirt className="h-7 w-7" />,
+  'medical-bill-checker': <MedicalIcon />,
+  'overdue-invoice-recovery-kit': <InvoiceIcon />,
+  'car-repair-quote-checker': <CarIcon />,
+  'home-contractor-quote-checker': <ContractorIcon />,
+  'ecommerce-asset-auto-resizer': <ResizerIcon />,
 }
 
-const STYLES: Record<Accent, { card: string; icon: string; price: string; button: string }> = {
-  cyan: {
-    card: 'border-cyan-brand/30 from-cyan-brand/10',
-    icon: 'from-cyan-brand to-sky-600',
-    price: 'text-sky-700',
-    button: 'border-sky-600/40 text-sky-800',
-  },
-  teal: {
-    card: 'border-teal-deep/30 from-teal-deep/10',
-    icon: 'from-aqua to-teal-deep',
-    price: 'text-teal-deep',
-    button: 'border-teal-deep/40 text-teal-deep',
-  },
-  blue: {
-    card: 'border-blue-500/30 from-blue-500/10',
-    icon: 'from-blue-500 to-blue-700',
-    price: 'text-blue-700',
-    button: 'border-blue-600/40 text-blue-800',
-  },
-  amber: {
-    card: 'border-amber-500/30 from-amber-400/10',
-    icon: 'from-amber-400 to-amber-600',
-    price: 'text-amber-700',
-    button: 'border-amber-600/40 text-amber-800',
-  },
-  indigo: {
-    card: 'border-accent/30 from-accent/10',
-    icon: 'from-indigo-500 to-accent',
-    price: 'text-accent',
-    button: 'border-accent/40 text-accent',
-  },
+const LOOK: Record<Accent, { tile: string; accent: string; glow: string; strong: string }> = {
+  cyan: { tile: 'from-cyan-brand to-sky-600', accent: '#17B9F5', glow: 'rgba(23,185,245,0.28)', strong: 'rgba(23,185,245,0.55)' },
+  teal: { tile: 'from-aqua to-teal-deep', accent: '#00D6C9', glow: 'rgba(0,214,201,0.26)', strong: 'rgba(0,214,201,0.5)' },
+  blue: { tile: 'from-blue-400 to-blue-700', accent: '#60A5FA', glow: 'rgba(96,165,250,0.28)', strong: 'rgba(96,165,250,0.5)' },
+  amber: { tile: 'from-amber-400 to-amber-600', accent: '#FBBF24', glow: 'rgba(251,191,36,0.24)', strong: 'rgba(251,191,36,0.45)' },
+  indigo: { tile: 'from-indigo-400 to-accent', accent: '#818CF8', glow: 'rgba(129,140,248,0.3)', strong: 'rgba(129,140,248,0.55)' },
+}
+
+function track(e: ReactPointerEvent<HTMLElement>) {
+  const r = e.currentTarget.getBoundingClientRect()
+  e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`)
+  e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`)
 }
 
 export default function FeaturedTools() {
   return (
-    <section id="tools" aria-labelledby="tools-heading" className="bg-white py-14 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <p className="inline-block rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-accent">
-          Featured Tools
-        </p>
-        <h2 id="tools-heading" className="mt-3 text-3xl font-bold sm:text-4xl">
-          5 Tools Launching First
-        </h2>
-        <p className="mt-2 text-slate-600">
-          Real problems. Practical solutions. Planned price: {formatPrice(PRICE_USD)} one-time per use.
-        </p>
-        <p className="mt-1 text-sm text-slate-500">
-          All five are in development. Buttons stay disabled until each tool and its page actually work.
-        </p>
+    <section id="tools" aria-labelledby="tools-heading" className="relative overflow-hidden bg-navy py-16 sm:py-24">
+      <Aurora variant="dark" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Reveal>
+          <p className="inline-block rounded-full border border-cyan-brand/30 bg-cyan-brand/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-cyan-brand">
+            Featured
+          </p>
+          <h2 id="tools-heading" className="mt-3 text-4xl font-bold text-white sm:text-5xl">
+            5 Tools. <span className="text-aqua">Launching First.</span>
+          </h2>
+          <p className="mt-2 text-slate-300">Planned at {formatPrice(PRICE_USD)} each, one-time.</p>
+        </Reveal>
 
-        <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {FEATURED_TOOLS.map((tool) => {
-            const s = STYLES[tool.accent]
+        <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {FEATURED_TOOLS.map((tool, i) => {
+            const look = LOOK[tool.accent]
             return (
-              <li
-                key={tool.id}
-                className={`flex flex-col rounded-3xl border bg-gradient-to-b to-white p-5 shadow-card ${s.card}`}
-              >
-                <div className="flex items-start justify-between">
-                  <span className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br text-white shadow-card ${s.icon}`}>
-                    {ICONS[tool.id]}
-                  </span>
-                  <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-600">
-                    In development
-                  </span>
-                </div>
-                <h3 className="mt-5 text-lg font-bold leading-snug">{tool.name}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{tool.description}</p>
-                <p className={`mt-5 font-heading text-xl font-bold ${s.price}`}>{formatPrice(tool.price)}</p>
-                <p className="text-xs text-slate-500">Planned one-time payment</p>
-                <p className="mt-3 text-xs text-slate-500">
-                  Planned action: <span className="font-medium text-slate-700">{tool.intendedCta}</span>
-                </p>
-                <button
-                  type="button"
-                  disabled
-                  aria-label={`${tool.intendedCta}: coming soon`}
-                  className={`mt-2 w-full cursor-not-allowed rounded-xl border bg-white/70 px-4 py-2.5 text-sm font-semibold ${s.button}`}
-                >
-                  Coming soon
-                </button>
+              <li key={tool.id}>
+                <Reveal delay={i * 110} className="h-full">
+                  <article
+                    className="spot flex h-full flex-col p-5"
+                    onPointerMove={track}
+                    style={{ '--accent': look.accent, '--glow': look.glow, '--glow-strong': look.strong } as CSSProperties}
+                  >
+                    <div className="flex items-start justify-between">
+                      <span className={`icon-tile bg-gradient-to-br ${look.tile}`}>{ICONS[tool.id]}</span>
+                      <span className="rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[11px] font-medium text-slate-300">
+                        Soon
+                      </span>
+                    </div>
+                    <h3 className="mt-5 text-lg font-bold leading-snug text-white">{tool.name}</h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-300">{tool.description}</p>
+                    <p className="mt-5 font-heading text-2xl font-bold text-white">{formatPrice(tool.price)}</p>
+                    <p className="text-[11px] text-slate-400">planned, one-time</p>
+                    <button
+                      type="button"
+                      disabled
+                      aria-label={`${tool.intendedCta}: coming soon`}
+                      className="mt-4 w-full cursor-not-allowed rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-300"
+                    >
+                      Coming soon
+                    </button>
+                  </article>
+                </Reveal>
               </li>
             )
           })}

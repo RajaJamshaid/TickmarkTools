@@ -1,41 +1,47 @@
 import { ArrowRight, BadgeDollarSign, Lock, ShieldCheck, UserX } from 'lucide-react'
+import Aurora from './Aurora'
+import Reveal from './Reveal'
 
 const ITEMS = [
-  { icon: <UserX className="h-6 w-6" />, label: 'No Account Required' },
+  { icon: <UserX className="h-6 w-6" />, label: 'No Account Needed' },
   { icon: <BadgeDollarSign className="h-6 w-6" />, label: 'One-Time Payment' },
   { icon: <Lock className="h-6 w-6" />, label: 'Privacy First' },
-  { icon: <ShieldCheck className="h-6 w-6" />, label: 'Transparent Pricing' },
+  { icon: <ShieldCheck className="h-6 w-6" />, label: 'Clear Pricing' },
 ]
 
 export default function WhyBand() {
   return (
     <section id="about" aria-labelledby="about-heading" className="relative overflow-hidden bg-navy text-white">
-      <div aria-hidden="true" className="pointer-events-none absolute -bottom-24 left-1/3 h-64 w-[60rem] rounded-[100%] bg-accent/30 blur-3xl" />
-      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-20">
-        <div>
-          <p className="inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-brand">
-            Why TickmarkTools?
-          </p>
-          <h2 id="about-heading" className="mt-3 text-3xl font-bold !text-white sm:text-4xl">Simple Tools. Big Impact.</h2>
-          <p className="mt-3 max-w-lg text-slate-300">
-            Designed for people who want practical solutions without the complexity, subscriptions or hidden costs.
-            Small Tools. Big Solutions.
-          </p>
-          <a
-            href="#tools"
-            className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-accent to-sky-700 px-6 py-3 font-semibold text-white transition hover:brightness-110"
-          >
-            See the Tools <ArrowRight className="h-5 w-5" />
-          </a>
-        </div>
-        <ul className="grid grid-cols-2 gap-6 self-center sm:grid-cols-4">
-          {ITEMS.map((i) => (
-            <li key={i.label} className="flex flex-col items-center text-center">
-              <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/10 text-aqua">{i.icon}</span>
-              <span className="mt-3 text-sm font-medium">{i.label}</span>
+      <Aurora variant="dark" />
+      <div className="relative mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-24 lg:px-8">
+        <Reveal>
+          <h2 id="about-heading" className="text-4xl font-bold text-white sm:text-5xl">
+            Simple Tools. <span className="text-aqua">Big Impact.</span>
+          </h2>
+          <p className="mt-3 font-heading text-slate-300">Small Tools. Big Solutions.</p>
+        </Reveal>
+        <ul className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4">
+          {ITEMS.map((item, i) => (
+            <li key={item.label}>
+              <Reveal delay={i * 100}>
+                <div className="group flex flex-col items-center">
+                  <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white/15 bg-white/5 text-aqua backdrop-blur transition duration-300 group-hover:-translate-y-1 group-hover:border-aqua/50 group-hover:bg-aqua/10">
+                    {item.icon}
+                  </span>
+                  <span className="mt-3 text-sm font-medium">{item.label}</span>
+                </div>
+              </Reveal>
             </li>
           ))}
         </ul>
+        <Reveal delay={300}>
+          <a
+            href="#tools"
+            className="btn-shine mt-10 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-accent to-sky-700 px-7 py-3.5 font-semibold text-white transition hover:-translate-y-0.5 hover:brightness-110"
+          >
+            See the Tools <ArrowRight className="h-5 w-5" />
+          </a>
+        </Reveal>
       </div>
     </section>
   )

@@ -1,32 +1,30 @@
-import { Check } from 'lucide-react'
+import Aurora from './Aurora'
+import Reveal from './Reveal'
 import { formatPrice, PRICE_USD } from '../data/tools'
-
-const POINTS = [
-  'One-time payment. No subscription.',
-  'Each tool has its own offer. A payment for one tool does not unlock others.',
-  'Medical Bill Checker: the planned price covers its full advertised report package.',
-]
 
 export default function Pricing() {
   return (
-    <section id="pricing" aria-labelledby="pricing-heading" className="bg-white py-14 sm:py-20">
+    <section id="pricing" aria-labelledby="pricing-heading" className="relative bg-slate-50 py-16 sm:py-24">
       <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
-        <h2 id="pricing-heading" className="text-3xl font-bold sm:text-4xl">One Payment. Practical Solutions.</h2>
-        <p className="mt-2 text-slate-600">No subscriptions. Clear pricing. Pay only for the service you need.</p>
-        <div className="mt-8 rounded-3xl bg-navy p-8 text-left text-white shadow-card">
-          <p className="font-heading text-4xl font-bold">{formatPrice(PRICE_USD)}</p>
-          <p className="text-sm text-slate-300">Planned one-time price per tool</p>
-          <ul className="mt-5 space-y-2">
-            {POINTS.map((p) => (
-              <li key={p} className="flex gap-2 text-sm text-slate-200">
-                <Check className="mt-0.5 h-4 w-4 shrink-0 text-aqua" /> {p}
-              </li>
-            ))}
-          </ul>
-          <p className="mt-5 rounded-xl bg-white/10 px-4 py-3 text-sm text-slate-200">
-            Checkout is not live yet. Prices are final only once each tool launches.
-          </p>
-        </div>
+        <Reveal>
+          <h2 id="pricing-heading" className="text-4xl font-bold sm:text-5xl">
+            One Payment. <span className="text-shimmer">Practical Solutions.</span>
+          </h2>
+        </Reveal>
+        <Reveal delay={120} className="mt-10">
+          <div className="animated-border rounded-[2rem] bg-gradient-to-r from-cyan-brand via-accent to-aqua p-[1.5px]">
+            <div className="relative overflow-hidden rounded-[calc(2rem-1.5px)] bg-navy px-6 py-10 text-white">
+              <Aurora variant="dark" />
+              <div className="relative">
+                <p className="font-heading text-6xl font-bold">{formatPrice(PRICE_USD)}</p>
+                <p className="mt-1 text-slate-300">One-time. No subscription.</p>
+                <p className="mx-auto mt-6 max-w-md rounded-xl bg-white/10 px-4 py-3 text-sm text-slate-200">
+                  Planned price. Checkout is not live yet, and each tool is sold separately.
+                </p>
+              </div>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   )

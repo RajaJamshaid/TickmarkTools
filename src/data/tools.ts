@@ -32,8 +32,7 @@ export const FEATURED_TOOLS: readonly Tool[] = [
   {
     id: 'medical-bill-checker',
     name: 'Medical Bill Checker',
-    description:
-      'Review medical bills, spot questionable charges, and organize items to verify with your provider or insurer.',
+    description: 'Spot questionable charges and organize items to verify.',
     intendedCta: 'Check My Medical Bill',
     path: '/tools/medical-bill-checker',
     accent: 'cyan',
@@ -43,8 +42,7 @@ export const FEATURED_TOOLS: readonly Tool[] = [
   {
     id: 'overdue-invoice-recovery-kit',
     name: 'Overdue Invoice Recovery Kit',
-    description:
-      'Prepare professional payment reminders, escalation messages, and a follow-up plan for overdue invoices. Built for freelancers and businesses.',
+    description: 'Payment reminders and a follow-up plan for overdue invoices.',
     intendedCta: 'Recover My Payment',
     path: '/tools/overdue-invoice-recovery-kit',
     accent: 'teal',
@@ -54,8 +52,7 @@ export const FEATURED_TOOLS: readonly Tool[] = [
   {
     id: 'car-repair-quote-checker',
     name: 'Car Repair Quote Checker',
-    description:
-      'Review repair estimates, understand listed charges, and find items worth asking your mechanic about.',
+    description: 'Understand repair estimates and know what to ask.',
     intendedCta: 'Check Repair Quote',
     path: '/tools/car-repair-quote-checker',
     accent: 'blue',
@@ -65,8 +62,7 @@ export const FEATURED_TOOLS: readonly Tool[] = [
   {
     id: 'home-contractor-quote-checker',
     name: 'Home Contractor Quote Checker',
-    description:
-      'Review contractor estimates, compare listed work and costs, and prepare questions to ask before approving a job.',
+    description: 'Compare quote items and prepare questions before approving.',
     intendedCta: 'Review My Quote',
     path: '/tools/home-contractor-quote-checker',
     accent: 'amber',
@@ -76,8 +72,7 @@ export const FEATURED_TOOLS: readonly Tool[] = [
   {
     id: 'ecommerce-asset-auto-resizer',
     name: 'E-Commerce Product Asset Auto-Resizer',
-    description:
-      'Prepare and resize product images for supported marketplaces and social commerce platforms.',
+    description: 'Resize product images for marketplaces and social shops.',
     intendedCta: 'Resize Product Images',
     path: '/tools/ecommerce-asset-auto-resizer',
     accent: 'indigo',

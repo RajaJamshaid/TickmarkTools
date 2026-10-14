@@ -1,38 +1,40 @@
+import type { CSSProperties } from 'react'
 import { ClipboardCheck, FileDown, Upload } from 'lucide-react'
+import Aurora from './Aurora'
+import Reveal from './Reveal'
 
 const STEPS = [
-  {
-    icon: <Upload className="h-6 w-6" />,
-    title: 'Upload Your Document',
-    text: 'Most document tools start with a file upload. Some tools use simple inputs instead.',
-  },
-  {
-    icon: <ClipboardCheck className="h-6 w-6" />,
-    title: 'Review the Analysis',
-    text: 'See what the tool found and what still needs confirmation.',
-  },
-  {
-    icon: <FileDown className="h-6 w-6" />,
-    title: 'Get Your Report and Next Steps',
-    text: 'Receive a clear report and practical questions or messages you can use.',
-  },
+  { icon: <Upload className="h-7 w-7" />, title: 'Upload', text: 'Add your document.' },
+  { icon: <ClipboardCheck className="h-7 w-7" />, title: 'Review', text: 'See what stands out.' },
+  { icon: <FileDown className="h-7 w-7" />, title: 'Get Your Report', text: 'Clear next steps.' },
 ]
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" aria-labelledby="how-heading" className="bg-slate-50 py-14 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 id="how-heading" className="text-3xl font-bold sm:text-4xl">How It Works</h2>
-        <p className="mt-2 text-sm text-slate-500">Planned flow. Tools are not yet available.</p>
-        <ol className="mt-8 grid gap-6 md:grid-cols-3">
+    <section id="how-it-works" aria-labelledby="how-heading" className="relative overflow-hidden bg-white py-16 sm:py-24">
+      <Aurora variant="light" />
+      <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+        <Reveal>
+          <h2 id="how-heading" className="text-4xl font-bold sm:text-5xl">How It Works</h2>
+          <p className="mt-2 text-sm text-slate-500">Planned flow</p>
+        </Reveal>
+        <ol className="relative mt-12 grid gap-6 md:grid-cols-3">
+          <div aria-hidden="true" className="flow-line absolute left-[17%] right-[17%] top-[3.25rem] hidden md:block" />
           {STEPS.map((s, i) => (
-            <li key={s.title} className="relative rounded-3xl bg-white p-6 shadow-card">
-              <span className="absolute -top-3 left-6 flex h-7 w-7 items-center justify-center rounded-full bg-accent text-sm font-bold text-white">
-                {i + 1}
-              </span>
-              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-brand/15 text-sky-700">{s.icon}</span>
-              <h3 className="mt-4 text-lg font-bold">{s.title}</h3>
-              <p className="mt-1 text-sm text-slate-600">{s.text}</p>
+            <li key={s.title} className="relative z-10">
+              <Reveal delay={i * 120} className="h-full">
+                <div className="h-full rounded-3xl border border-slate-100 bg-white/90 p-6 shadow-card backdrop-blur transition hover:-translate-y-1">
+                  <span
+                    className="icon-tile mx-auto bg-gradient-to-br from-accent to-sky-700"
+                    style={{ '--accent': '#4F46E5' } as CSSProperties}
+                  >
+                    {s.icon}
+                  </span>
+                  <p className="mt-4 font-heading text-xs font-bold tracking-widest text-accent">STEP {i + 1}</p>
+                  <h3 className="mt-1 text-xl font-bold">{s.title}</h3>
+                  <p className="mt-1 text-sm text-slate-600">{s.text}</p>
+                </div>
+              </Reveal>
             </li>
           ))}
         </ol>
