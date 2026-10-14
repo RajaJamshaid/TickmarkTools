@@ -17,6 +17,32 @@ function Svg({ children }: { children: ReactNode }) {
   )
 }
 
+/** Magnifier with a pulsing sparkle and an orbiting highlight. Decorative only. */
+export function SmartSearchIcon({ className = 'h-6 w-6' }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 48 48"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="21" cy="21" r="13" />
+      <path d="M31 31l11 11" />
+      <path
+        className="ico-spark"
+        d="M21 14.5c.6 4.4 2.1 5.9 6.5 6.5-4.4.6-5.9 2.1-6.5 6.5-.6-4.4-2.1-5.9-6.5-6.5 4.4-.6 5.9-2.1 6.5-6.5z"
+        fill="currentColor"
+        strokeWidth="1.2"
+      />
+      <circle className="ico-orbit" cx="21" cy="21" r="13" strokeDasharray="5 77" strokeWidth="3.4" stroke="#fff" />
+    </svg>
+  )
+}
+
 /** Document with a scanning line. Decorative only. */
 export function MedicalIcon() {
   return (
@@ -24,7 +50,7 @@ export function MedicalIcon() {
       <path d="M13 6h16l8 8v28a2 2 0 0 1-2 2H13a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" />
       <path d="M29 6v8h8" />
       <path d="M24 24v10M19 29h10" />
-      <line className="ico-scan" x1="14" y1="16" x2="34" y2="16" stroke="#00D6C9" strokeWidth="2.2" />
+      <line className="ico-scan" x1="14" y1="16" x2="34" y2="16" stroke="#fff" strokeWidth="2.2" />
     </Svg>
   )
 }
@@ -71,7 +97,7 @@ export function ContractorIcon() {
         <path d="M6 31h36v5H6z" />
         <path d="M24 16v15M18 18v13M30 18v13" strokeWidth="2" />
       </g>
-      <path className="ico-spark" d="M40 9v7M36.5 12.5h7" strokeWidth="2" stroke="#00D6C9" />
+      <path className="ico-spark" d="M40 9v7M36.5 12.5h7" strokeWidth="2" stroke="#fff" />
     </Svg>
   )
 }

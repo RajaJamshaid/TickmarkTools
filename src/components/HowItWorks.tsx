@@ -11,7 +11,11 @@ const STEPS = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" aria-labelledby="how-heading" className="relative overflow-hidden bg-white py-16 sm:py-24">
+    <section
+      id="how-it-works"
+      aria-labelledby="how-heading"
+      className="relative overflow-hidden bg-gradient-to-b from-indigo-50/50 via-white to-sky-50 py-16 sm:py-24"
+    >
       <Aurora variant="light" />
       <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
         <Reveal>

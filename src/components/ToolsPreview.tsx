@@ -3,13 +3,14 @@ import { Zap, Tag, Check, Ellipsis, FilePlus2, FileSearch, FileText, Landmark, P
 import type { ReactNode } from 'react'
 import { formatPrice, PRICE_USD } from '../data/tools'
 import Logo from './Logo'
+import { SmartSearchIcon } from './ToolIcons'
 
 const TILES: { label: string; icon: ReactNode; tone: string }[] = [
-  { label: 'Medical Bill', icon: <FilePlus2 />, tone: 'bg-cyan-brand/15 text-sky-700' },
-  { label: 'Invoice Kit', icon: <ReceiptText />, tone: 'bg-teal-deep/15 text-teal-deep' },
+  { label: 'Medical Bill', icon: <FilePlus2 />, tone: 'bg-rose-100 text-rose-600' },
+  { label: 'Invoice Kit', icon: <ReceiptText />, tone: 'bg-emerald-100 text-emerald-700' },
   { label: 'Car Quote', icon: <Car />, tone: 'bg-blue-100 text-blue-700' },
   { label: 'Contracts', icon: <FileSearch />, tone: 'bg-cyan-brand/15 text-sky-700' },
-  { label: 'Resizer', icon: <Shirt />, tone: 'bg-indigo-100 text-accent' },
+  { label: 'Resizer', icon: <Shirt />, tone: 'bg-violet-100 text-violet-700' },
   { label: 'Worksheets', icon: <Pencil />, tone: 'bg-amber-100 text-amber-700' },
   { label: 'Vectorizer', icon: <PenTool />, tone: 'bg-teal-deep/15 text-teal-deep' },
   { label: 'PDF Data', icon: <FileText />, tone: 'bg-blue-100 text-blue-700' },
@@ -22,7 +23,7 @@ const style = (vars: Record<string, string | number>) => vars as CSSProperties
 /** Decorative illustration only. Nothing here is interactive or functional. */
 export default function ToolsPreview() {
   return (
-    <figure className="relative mx-auto w-full max-w-xl px-3 pb-12 pt-14 sm:px-6 sm:pt-10">
+    <figure className="relative mx-auto w-full max-w-xl px-3 pb-12 pt-14 sm:px-6 sm:pt-12 lg:pt-10">
       <div className="float" style={style({ '--dur': '9s' })}>
         <div
           aria-hidden="true"
@@ -38,7 +39,9 @@ export default function ToolsPreview() {
             <span className="inline-block origin-right scale-75"><Logo /></span>
           </div>
           <p className="relative font-heading text-lg font-bold text-navy">Hey there!</p>
-          <div className="relative mb-4 mt-2 rounded-xl border border-slate-100 bg-slate-50 px-3 py-2 text-xs text-slate-400">Search tools...</div>
+          <div className="relative mb-4 mt-2 flex items-center gap-2 rounded-xl border border-slate-100 bg-slate-50 px-3 py-2 text-xs text-slate-400">
+            <SmartSearchIcon className="h-4 w-4 text-accent" /> Smart search...
+          </div>
           <div className="relative grid grid-cols-5 gap-1.5 sm:gap-2">
             {TILES.map((t, i) => (
               <div

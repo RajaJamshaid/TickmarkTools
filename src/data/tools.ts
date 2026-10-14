@@ -9,7 +9,8 @@ export type ToolId =
   | 'home-contractor-quote-checker'
   | 'ecommerce-asset-auto-resizer'
 
-export type Accent = 'cyan' | 'teal' | 'blue' | 'amber' | 'indigo'
+/** Each tool has its own identity color. */
+export type Accent = 'rose' | 'emerald' | 'blue' | 'amber' | 'violet'
 
 /** Only 'coming-soon' exists today: no tool or landing page is functional yet. */
 export type ToolStatus = 'coming-soon'
@@ -35,7 +36,7 @@ export const FEATURED_TOOLS: readonly Tool[] = [
     description: 'Spot questionable charges and organize items to verify.',
     intendedCta: 'Check My Medical Bill',
     path: '/tools/medical-bill-checker',
-    accent: 'cyan',
+    accent: 'rose',
     status: 'coming-soon',
     price: PRICE_USD,
   },
@@ -45,7 +46,7 @@ export const FEATURED_TOOLS: readonly Tool[] = [
     description: 'Payment reminders and a follow-up plan for overdue invoices.',
     intendedCta: 'Recover My Payment',
     path: '/tools/overdue-invoice-recovery-kit',
-    accent: 'teal',
+    accent: 'emerald',
     status: 'coming-soon',
     price: PRICE_USD,
   },
@@ -75,7 +76,7 @@ export const FEATURED_TOOLS: readonly Tool[] = [
     description: 'Resize product images for marketplaces and social shops.',
     intendedCta: 'Resize Product Images',
     path: '/tools/ecommerce-asset-auto-resizer',
-    accent: 'indigo',
+    accent: 'violet',
     status: 'coming-soon',
     price: PRICE_USD,
   },

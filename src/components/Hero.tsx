@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-sky-50 via-white to-indigo-50/50">
       <Aurora variant="light" />
-      <div className="relative mx-auto grid max-w-7xl items-center gap-4 px-4 pb-10 pt-12 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:px-8 lg:pb-20 lg:pt-20">
+      <div className="relative mx-auto grid max-w-7xl items-start gap-2 px-4 pb-10 pt-12 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:gap-6 lg:px-8 lg:pb-20 lg:pt-20">
         <div>
           <Reveal>
             <p className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-white/80 px-3 py-1 text-xs font-semibold text-accent backdrop-blur">
@@ -40,7 +40,7 @@ export default function Hero() {
           </Reveal>
         </div>
 
-        <Reveal delay={250}>
+        <Reveal delay={250} className="lg:mt-10">
           <ToolsPreview />
         </Reveal>
       </div>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import Logo from './Logo'
+import { SmartSearchIcon } from './ToolIcons'
 
 const NAV = [
   { label: 'Home', href: '#main' },
@@ -9,6 +10,14 @@ const NAV = [
   { label: 'Pricing', href: '#pricing' },
   { label: 'About', href: '#about' },
 ] as const
+
+function focusSearch() {
+  const el = document.getElementById('smart-search')
+  if (!el) return
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' })
+  window.setTimeout(() => el.focus({ preventScroll: true }), 400)
+}
 
 export default function Header() {
   const [open, setOpen] = useState(false)
@@ -44,6 +53,17 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <button
+            type="button"
+            aria-label="Smart search"
+            onClick={() => {
+              setOpen(false)
+              focusSearch()
+            }}
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white/70 text-accent transition hover:bg-white hover:shadow-card"
+          >
+            <SmartSearchIcon className="h-6 w-6" />
+          </button>
           <a
             href="#tools"
             className="btn-shine hidden rounded-xl bg-gradient-to-r from-accent to-sky-700 px-5 py-2.5 text-sm font-semibold text-white shadow-glow transition hover:brightness-110 sm:inline-block"
