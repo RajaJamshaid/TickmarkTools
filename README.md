@@ -6,21 +6,21 @@ Homepage for https://tickmarktools.com. Vite + React + TypeScript + Tailwind CSS
 
 | Area | State |
 | --- | --- |
-| Homepage layout, nav, mobile menu, sections | Functional (static) |
+| Homepage layout, floating nav bar, mobile menu, sections | Functional (static) |
 | Smart search | Functional. Keyword matching in the browser (not an AI model); nothing is sent anywhere |
-| "Share a problem" form | Functional once deployed with the KV binding below. Stores a message plus an optional email |
+| "Share a problem" form | Functional. Stores a message plus an optional email (see below) |
+| "Sign up" | **Early-access list only.** Collects an email; real accounts (passwords, login, sessions) are NOT built yet |
 | Hero tools preview | Visual illustration only |
 | 5 featured tool cards | Visual placeholders. Buttons are disabled; **no tool or tool landing page is built yet** |
-| Pricing ($1.99) | Planned price only. Checkout is **not** implemented |
+| Pricing ($1.99) | Planned price only, for customers worldwide. Checkout is **not** implemented |
 | Privacy Policy, Terms, Refund Policy, Disclaimer, Cookie Policy, Contact | Not written. Footer shows "Soon" text, not links |
-| Language selector, Login | Not implemented, intentionally omitted |
 | OG image | Not created yet (no `og:image` tag) |
 
 ## Setup
 
 ```bash
 npm install
-npm run dev        # local dev server (the /api/problem function does not run here)
+npm run dev        # local dev server (the /api functions do not run here)
 npm run typecheck  # TypeScript
 npm test           # Vitest
 npm run build      # typecheck + production build to dist/
@@ -29,11 +29,12 @@ npm run preview
 
 Requires Node 20+ (`.nvmrc` is set to 20). No environment variables are needed.
 
-## Share-a-problem form (Cloudflare Pages Function)
+## Cloudflare Pages Functions
 
-`functions/api/problem.js` handles `POST /api/problem`. It validates input (10 to 600 characters, optional email), ignores a hidden honeypot field, limits each visitor to 5 messages per hour (hashed IP, 1 hour expiry), and stores the message in a KV namespace bound as `PROBLEMS`. Only the message, optional email and a timestamp are stored.
+- `functions/api/problem.js` handles `POST /api/problem` (share-a-problem form).
+- `functions/api/signup.js` handles `POST /api/signup` (early-access email list).
 
-The KV namespace is `tickmarktools-problems` and is bound to the Pages project (preview and production) as `PROBLEMS`. If the binding is missing the form shows a friendly "not available" message and nothing is stored.
+Both validate input, ignore a hidden honeypot field, limit each visitor to 5 requests per hour (hashed IP, 1 hour expiry), only accept same-site requests, and store records in the KV namespace `tickmarktools-problems`, bound to the Pages project (preview and production) as `PROBLEMS`. Stored: the message or email plus a timestamp. Keys: `p:` (problems), `s:` (sign-ups), `rl:`/`rls:` (rate limits). If the binding is missing the forms show a friendly "not available" message and nothing is stored.
 
 Before promoting this publicly, publish a real Privacy Policy that describes this data (what is stored, why, retention, how to request deletion).
 
@@ -60,8 +61,8 @@ Build command `npm run build`, output directory `dist`, Node 20+. Do not commit 
 
 - Fonts missing: the page loads Google Fonts and falls back to system fonts if blocked.
 - CSP errors after adding scripts, APIs, or other font/image hosts: update `public/_headers`.
-- Form says sharing is unavailable: check the `PROBLEMS` KV binding in the Pages project settings.
+- A form says it is unavailable: check the `PROBLEMS` KV binding in the Pages project settings.
 
 ## Not yet done
 
-ESLint is not configured. Tests cover only the tool data and smart search. Tool landing pages, legal pages, contact details and an OG image are not created.
+ESLint is not configured. Tests cover only the tool data and smart search. Real user accounts, tool landing pages, legal pages, contact details, checkout and an OG image are not created.

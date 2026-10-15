@@ -63,8 +63,8 @@ export default function ShareProblem() {
   }
 
   return (
-    <section id="share" aria-labelledby="share-heading" className="relative py-16 sm:py-24">
-      <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 sm:px-6 md:grid-cols-2 lg:px-8">
+    <section id="share" aria-labelledby="share-heading" className="relative py-8 sm:py-12">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-4 sm:px-6 md:grid-cols-2 lg:px-8">
         <Reveal>
           <div>
             <span

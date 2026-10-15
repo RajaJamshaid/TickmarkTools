@@ -7,9 +7,9 @@ const PILLS = [
 ]
 
 /** Short trust pills shown under the hero text. */
-export default function TrustStrip() {
+export default function TrustStrip({ centered = false }: { centered?: boolean }) {
   return (
-    <ul aria-label="Our principles" className="flex flex-wrap gap-1.5 sm:gap-2.5">
+    <ul aria-label="Our principles" className={`flex flex-wrap gap-1.5 sm:gap-2.5 ${centered ? 'justify-center' : ''}`}>
       {PILLS.map((p) => (
         <li
           key={p.label}

@@ -10,13 +10,13 @@ const STEPS = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" aria-labelledby="how-heading" className="relative py-16 sm:py-24">
+    <section id="how-it-works" aria-labelledby="how-heading" className="relative py-8 sm:py-12">
       <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
         <Reveal>
           <h2 id="how-heading" className="text-4xl font-bold sm:text-5xl">How It Works</h2>
           <p className="mt-2 text-sm text-slate-500">Planned flow</p>
         </Reveal>
-        <ol className="relative mt-12 grid gap-6 md:grid-cols-3">
+        <ol className="relative mt-8 grid gap-6 md:grid-cols-3">
           <div aria-hidden="true" className="flow-line absolute left-[17%] right-[17%] top-[3.25rem] hidden md:block" />
           {STEPS.map((s, i) => (
             <li key={s.title} className="relative z-10">

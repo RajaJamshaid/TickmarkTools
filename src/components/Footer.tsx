@@ -67,7 +67,7 @@ export default function Footer() {
         </nav>
       </div>
       <div className="border-t border-white/10 px-4 py-5 text-center text-xs text-slate-400">
-        <p>Informational tools only. Not legal, medical, or financial advice. Prices are in US dollars (USD).</p>
+        <p>Informational tools only. Not legal, medical, or financial advice. Built for customers worldwide.</p>
         <p className="mt-1">© {new Date().getFullYear()} TickmarkTools. All rights reserved.</p>
       </div>
     </footer>

@@ -29,7 +29,7 @@ function track(e: ReactPointerEvent<HTMLElement>) {
 
 export default function FeaturedTools() {
   return (
-    <section id="tools" aria-labelledby="tools-heading" className="relative py-16 sm:py-24">
+    <section id="tools" aria-labelledby="tools-heading" className="relative pb-8 pt-6 sm:pb-12 sm:pt-8">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="text-center">
@@ -45,7 +45,7 @@ export default function FeaturedTools() {
 
         <SmartSearch />
 
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {FEATURED_TOOLS.map((tool, i) => {
             const look = LOOK[tool.accent]
             return (
