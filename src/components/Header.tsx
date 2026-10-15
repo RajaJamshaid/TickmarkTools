@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
-import { ArrowRight, Menu, X } from 'lucide-react'
+import { Home, Info, ListChecks, LogIn, Menu, MessageSquarePlus, Tag, UserPlus, Wrench, X } from 'lucide-react'
 import Logo from './Logo'
 import SignupModal from './SignupModal'
+import type { AccountMode } from './SignupModal'
 import { SmartSearchIcon } from './ToolIcons'
 import { focusSmartSearch } from '../lib/searchFocus'
 
@@ -14,6 +15,15 @@ const NAV = [
   { label: 'About', href: '#about', id: 'about' },
 ]
 const SPY = ['tools', 'how-it-works', 'pricing', 'about']
+
+const MENU = [
+  { label: 'Home', href: '#main', Icon: Home },
+  { label: 'Tools', href: '#tools', Icon: Wrench },
+  { label: 'How It Works', href: '#how-it-works', Icon: ListChecks },
+  { label: 'Pricing', href: '#pricing', Icon: Tag },
+  { label: 'About', href: '#about', Icon: Info },
+  { label: 'Share a Problem', href: '#share', Icon: MessageSquarePlus },
+]
 
 /** Which section is currently in the middle band of the screen. */
 function useActive() {
@@ -37,14 +47,14 @@ function useActive() {
 
 export default function Header() {
   const [open, setOpen] = useState(false)
-  const [signup, setSignup] = useState(false)
+  const [modal, setModal] = useState<AccountMode | null>(null)
   const [hover, setHover] = useState<string | null>(null)
   const [bar, setBar] = useState<{ x: number; w: number } | null>(null)
   const navRef = useRef<HTMLDivElement>(null)
   const progress = useRef<HTMLSpanElement>(null)
   const active = useActive()
   const target = hover ?? active
-  const closeSignup = useCallback(() => setSignup(false), [])
+  const closeModal = useCallback(() => setModal(null), [])
 
   // Slide the highlight pill to the hovered (or current) item.
   useLayoutEffect(() => {
@@ -89,10 +99,25 @@ export default function Header() {
     return () => window.removeEventListener('keydown', onKey)
   }, [open])
 
+  const openModal = (mode: AccountMode) => {
+    setOpen(false)
+    setModal(mode)
+  }
+
   return (
     <>
       <header className="sticky top-2 z-40 px-2 sm:px-4">
-        <div className="header-ring mx-auto max-w-6xl rounded-full p-[1.5px] shadow-[0_18px_40px_-18px_rgba(7,27,53,0.45)]">
+        {open && (
+          <button
+            type="button"
+            aria-label="Close menu"
+            tabIndex={-1}
+            onClick={() => setOpen(false)}
+            className="fixed inset-0 z-30 bg-navy/25 backdrop-blur-md"
+          />
+        )}
+
+        <div className="header-ring relative z-40 mx-auto max-w-6xl rounded-full p-[1.5px] shadow-[0_18px_40px_-18px_rgba(7,27,53,0.45)]">
           <div className="relative flex h-14 items-center justify-between overflow-hidden rounded-full bg-white px-3 sm:px-5">
             <a href="#main" aria-label="TickmarkTools home">
               <Logo />
@@ -133,21 +158,11 @@ export default function Header() {
               </button>
               <button
                 type="button"
-                onClick={() => {
-                  setOpen(false)
-                  setSignup(true)
-                }}
-                className="btn-shine rounded-full bg-gradient-to-r from-navy via-navy-700 to-accent px-4 py-2 text-sm font-semibold text-white shadow-glow ring-1 ring-[#E9C46A]/80 transition hover:brightness-110 sm:px-5"
-              >
-                Sign up
-              </button>
-              <button
-                type="button"
-                className="rounded-full p-2 text-navy lg:hidden"
-                aria-expanded={open}
-                aria-controls="mobile-menu"
                 aria-label={open ? 'Close menu' : 'Open menu'}
+                aria-expanded={open}
+                aria-controls="site-menu"
                 onClick={() => setOpen((v) => !v)}
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-[#E9C46A]/70 bg-white text-navy transition hover:shadow-card"
               >
                 {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>
@@ -158,25 +173,42 @@ export default function Header() {
         </div>
 
         {open && (
-          <nav id="mobile-menu" aria-label="Mobile" className="mx-auto mt-2 max-w-6xl rounded-3xl border border-slate-200 bg-white p-3 shadow-xl lg:hidden">
-            <ul>
-              {[...NAV, { label: 'Share a Problem', href: '#share', id: 'share' }].map((item, i) => (
-                <li key={item.id} className="menu-item" style={{ '--i': i } as CSSProperties}>
-                  <a
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className="flex items-center justify-between rounded-2xl px-4 py-3 text-base font-semibold text-slate-700 transition hover:bg-slate-50"
-                  >
-                    {item.label}
-                    <ArrowRight className="h-4 w-4 text-accent" />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          <div className="mx-auto max-w-6xl">
+            <nav
+              id="site-menu"
+              aria-label="Menu"
+              className="relative z-40 ml-auto mt-2 w-full rounded-3xl border border-[#E9C46A]/50 bg-white p-4 shadow-2xl sm:max-w-lg"
+            >
+              <div className="grid grid-cols-2 gap-3">
+                <button type="button" onClick={() => openModal('login')} className="lux-box w-full justify-center">
+                  <LogIn className="h-4 w-4 text-accent" /> Log in
+                </button>
+                <button
+                  type="button"
+                  onClick={() => openModal('signup')}
+                  className="btn-shine flex w-full items-center justify-center gap-2 rounded-[1.25rem] bg-gradient-to-r from-navy via-navy-700 to-accent px-4 py-3 font-semibold text-white shadow-glow ring-1 ring-[#E9C46A]/80"
+                >
+                  <UserPlus className="h-4 w-4" /> Sign up
+                </button>
+              </div>
+
+              <ul className="mt-4 grid grid-cols-2 gap-3">
+                {MENU.map(({ label, href, Icon }, i) => (
+                  <li key={label} className="menu-item" style={{ '--i': i } as CSSProperties}>
+                    <a href={href} onClick={() => setOpen(false)} className="lux-box">
+                      <span className="lux-icon">
+                        <Icon className="h-[1.15rem] w-[1.15rem]" />
+                      </span>
+                      <span className="text-sm">{label}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
         )}
       </header>
-      <SignupModal open={signup} onClose={closeSignup} />
+      <SignupModal open={modal !== null} mode={modal ?? 'signup'} onClose={closeModal} />
     </>
   )
 }

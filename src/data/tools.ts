@@ -9,8 +9,8 @@ export type ToolId =
   | 'home-contractor-quote-checker'
   | 'ecommerce-asset-auto-resizer'
 
-/** Each tool has its own identity color. */
-export type Accent = 'rose' | 'emerald' | 'blue' | 'amber' | 'violet'
+/** Card color family, matched to each tool's sticker. */
+export type Accent = 'teal' | 'sky' | 'orange' | 'gold' | 'violet'
 
 /** Only 'coming-soon' exists today: no tool or landing page is functional yet. */
 export type ToolStatus = 'coming-soon'
@@ -36,7 +36,7 @@ export const FEATURED_TOOLS: readonly Tool[] = [
     description: 'Spot questionable charges and organize items to verify.',
     intendedCta: 'Check My Medical Bill',
     path: '/tools/medical-bill-checker',
-    accent: 'rose',
+    accent: 'teal',
     status: 'coming-soon',
     price: PRICE_USD,
   },
@@ -46,7 +46,7 @@ export const FEATURED_TOOLS: readonly Tool[] = [
     description: 'Payment reminders and a follow-up plan for overdue invoices.',
     intendedCta: 'Recover My Payment',
     path: '/tools/overdue-invoice-recovery-kit',
-    accent: 'emerald',
+    accent: 'sky',
     status: 'coming-soon',
     price: PRICE_USD,
   },
@@ -56,7 +56,7 @@ export const FEATURED_TOOLS: readonly Tool[] = [
     description: 'Understand repair estimates and know what to ask.',
     intendedCta: 'Check Repair Quote',
     path: '/tools/car-repair-quote-checker',
-    accent: 'blue',
+    accent: 'orange',
     status: 'coming-soon',
     price: PRICE_USD,
   },
@@ -66,7 +66,7 @@ export const FEATURED_TOOLS: readonly Tool[] = [
     description: 'Compare quote items and prepare questions before approving.',
     intendedCta: 'Review My Quote',
     path: '/tools/home-contractor-quote-checker',
-    accent: 'amber',
+    accent: 'gold',
     status: 'coming-soon',
     price: PRICE_USD,
   },

@@ -1,0 +1,74 @@
+/* ---------- Tool stickers ---------- */
+.sticker-wrap {
+  display: inline-block;
+  animation: sbob 4.5s ease-in-out infinite;
+  animation-delay: var(--sd, 0s);
+}
+@keyframes sbob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-4px) rotate(-1.5deg); }
+}
+.sticker {
+  display: block;
+  border-radius: 22%;
+  box-shadow: 0 10px 22px -10px rgba(7, 27, 53, 0.4);
+  transition: transform 0.25s ease;
+}
+.spot:hover .sticker,
+.spot:focus-within .sticker {
+  transform: scale(1.07) rotate(-2deg);
+}
+
+/* ---------- Menu boxes ---------- */
+.lux-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  padding: 0.85rem 1rem;
+  font-weight: 600;
+  color: #071b35;
+  background: linear-gradient(160deg, #ffffff 0%, #f1f5ff 100%);
+  border: 1px solid rgba(201, 162, 75, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 12px 24px -16px rgba(7, 27, 53, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.lux-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 35%, rgba(233, 196, 106, 0.38) 50%, transparent 65%);
+  transform: translateX(-120%);
+  transition: transform 0.6s ease;
+}
+.lux-box:hover,
+.lux-box:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(201, 162, 75, 0.95);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 18px 30px -16px rgba(7, 27, 53, 0.5);
+}
+.lux-box:hover::after {
+  transform: translateX(120%);
+}
+.lux-icon {
+  display: flex;
+  height: 2.25rem;
+  width: 2.25rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.8rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, #071b35, #12335c 60%, #4f46e5);
+  box-shadow: 0 0 0 1px rgba(233, 196, 106, 0.8);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sticker-wrap { animation: none; }
+  .sticker,
+  .lux-box,
+  .lux-box::after { transition: none; }
+}

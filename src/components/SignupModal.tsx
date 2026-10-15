@@ -2,20 +2,32 @@ import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties, FormEvent } from 'react'
 import { Check, Sparkles, X } from 'lucide-react'
 
+export type AccountMode = 'signup' | 'login'
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
 const style = (vars: Record<string, string | number>) => vars as CSSProperties
 
-/** Early-access sign up. Real accounts are not live yet, and this says so plainly. */
-export default function SignupModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+/** Early-access list. Real accounts are not live yet, and this says so plainly. */
+export default function SignupModal({
+  open,
+  mode,
+  onClose,
+}: {
+  open: boolean
+  mode: AccountMode
+  onClose: () => void
+}) {
   const [email, setEmail] = useState('')
   const [trap, setTrap] = useState('')
   const [status, setStatus] = useState<Status>('idle')
   const [message, setMessage] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
+  const login = mode === 'login'
 
   useEffect(() => {
     if (!open) return
+    setStatus('idle')
+    setMessage('')
     const prev = document.body.style.overflow
     document.body.style.overflow = 'hidden'
     const t = window.setTimeout(() => inputRef.current?.focus(), 60)
@@ -55,7 +67,7 @@ export default function SignupModal({ open, onClose }: { open: boolean; onClose:
       setStatus('error')
       if (res.status === 429) setMessage('Too many attempts from this device. Please try again later.')
       else if (res.status === 400) setMessage('Please check your email address and try again.')
-      else setMessage('Sign up is not available right now. Please try again later.')
+      else setMessage('This is not available right now. Please try again later.')
     } catch {
       setStatus('error')
       setMessage('Network problem. Please check your connection and try again.')
@@ -65,7 +77,7 @@ export default function SignupModal({ open, onClose }: { open: boolean; onClose:
   if (!open) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center p-3 sm:items-center" role="dialog" aria-modal="true" aria-labelledby="signup-title">
+    <div className="fixed inset-0 z-50 flex items-end justify-center p-3 sm:items-center" role="dialog" aria-modal="true" aria-labelledby="account-title">
       <button type="button" aria-label="Close" tabIndex={-1} onClick={onClose} className="absolute inset-0 bg-navy/60" />
       <div className="modal-in relative w-full max-w-md rounded-3xl border border-white/30 bg-white p-6 shadow-2xl">
         <button
@@ -97,13 +109,19 @@ export default function SignupModal({ open, onClose }: { open: boolean; onClose:
             <span className="icon-tile bg-gradient-to-br from-accent to-sky-700" style={style({ '--accent': '#4F46E5' })}>
               <Sparkles className="h-7 w-7" />
             </span>
-            <h2 id="signup-title" className="mt-4 text-2xl font-bold">Create your free account</h2>
-            <p className="mt-1 text-slate-600">Accounts open soon. Reserve your spot and get early access to member features.</p>
+            <h2 id="account-title" className="mt-4 text-2xl font-bold">
+              {login ? 'Log in' : 'Create your free account'}
+            </h2>
+            <p className="mt-1 text-slate-600">
+              {login
+                ? 'Log in is not available yet. Join the early access list and we will email you when it opens.'
+                : 'Accounts open soon. Reserve your spot and get early access to member features.'}
+            </p>
             <p className="mt-1 text-sm text-slate-500">You never need an account to use our tools.</p>
 
-            <label htmlFor="signup-email" className="mt-5 block text-sm font-semibold text-navy">Email</label>
+            <label htmlFor="account-email" className="mt-5 block text-sm font-semibold text-navy">Email</label>
             <input
-              id="signup-email"
+              id="account-email"
               ref={inputRef}
               type="email"
               autoComplete="email"
@@ -114,8 +132,8 @@ export default function SignupModal({ open, onClose }: { open: boolean; onClose:
             />
 
             <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
-              <label htmlFor="signup-website">Leave this field empty</label>
-              <input id="signup-website" tabIndex={-1} autoComplete="off" value={trap} onChange={(e) => setTrap(e.target.value)} />
+              <label htmlFor="account-website">Leave this field empty</label>
+              <input id="account-website" tabIndex={-1} autoComplete="off" value={trap} onChange={(e) => setTrap(e.target.value)} />
             </div>
 
             <button
@@ -123,7 +141,7 @@ export default function SignupModal({ open, onClose }: { open: boolean; onClose:
               disabled={status === 'sending'}
               className="btn-shine mt-4 w-full rounded-xl bg-gradient-to-r from-navy via-navy-700 to-accent px-6 py-3.5 font-semibold text-white shadow-glow ring-1 ring-[#E9C46A]/70 transition hover:brightness-110 disabled:opacity-70"
             >
-              {status === 'sending' ? 'Sending...' : 'Reserve my spot'}
+              {status === 'sending' ? 'Sending...' : login ? 'Notify me' : 'Reserve my spot'}
             </button>
 
             <p role="status" aria-live="polite" className={`mt-3 min-h-[1.25rem] text-sm ${status === 'error' ? 'text-rose-600' : 'text-transparent'}`}>

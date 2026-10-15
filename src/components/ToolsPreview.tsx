@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
-import type { CSSProperties, ReactNode } from 'react'
+import type { CSSProperties } from 'react'
 import { Check, Tag, Zap } from 'lucide-react'
 import { FEATURED_TOOLS, formatPrice, PRICE_USD } from '../data/tools'
 import type { ToolId } from '../data/tools'
 import Logo from './Logo'
-import { CarIcon, ContractorIcon, InvoiceIcon, MedicalIcon, ResizerIcon, SmartSearchIcon } from './ToolIcons'
+import ToolSticker from './ToolSticker'
+import { SmartSearchIcon } from './ToolIcons'
 import { LOOK } from './toolLook'
 
 const TEXT = 'TickmarkTools.com'
@@ -15,14 +16,6 @@ const SHORT: Record<ToolId, string> = {
   'car-repair-quote-checker': 'Car Quote',
   'home-contractor-quote-checker': 'Contractor',
   'ecommerce-asset-auto-resizer': 'Resizer',
-}
-
-const ICON: Record<ToolId, ReactNode> = {
-  'medical-bill-checker': <MedicalIcon className="h-5 w-5" />,
-  'overdue-invoice-recovery-kit': <InvoiceIcon className="h-5 w-5" />,
-  'car-repair-quote-checker': <CarIcon className="h-5 w-5" />,
-  'home-contractor-quote-checker': <ContractorIcon className="h-5 w-5" />,
-  'ecommerce-asset-auto-resizer': <ResizerIcon className="h-5 w-5" />,
 }
 
 const style = (vars: Record<string, string | number>) => vars as CSSProperties
@@ -101,9 +94,7 @@ export default function ToolsPreview() {
                 className="demo-tile flex flex-col items-center rounded-lg border bg-white p-1 text-center sm:rounded-xl sm:p-1.5"
                 style={{ '--i': i, borderColor: look.edge } as CSSProperties}
               >
-                <span className={`flex h-7 w-7 items-center justify-center rounded-md bg-gradient-to-br text-white sm:h-9 sm:w-9 sm:rounded-lg [&_svg]:h-4 [&_svg]:w-4 sm:[&_svg]:h-5 sm:[&_svg]:w-5 ${look.tile}`}>
-                  {ICON[t.id]}
-                </span>
+                <ToolSticker id={t.id} size={40} className="h-8 w-8 sm:h-10 sm:w-10" still eager />
                 <span className="mt-0.5 break-words text-[8px] font-medium leading-tight text-slate-600 sm:mt-1 sm:text-[9px]">{SHORT[t.id]}</span>
               </div>
             )
