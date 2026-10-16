@@ -20,6 +20,9 @@ const SHORT: Record<ToolId, string> = {
 
 const style = (vars: Record<string, string | number>) => vars as CSSProperties
 
+const CHIP =
+  'float absolute hidden items-center gap-2 rounded-full bg-gradient-to-r from-navy via-navy-700 to-accent px-3 py-2 text-xs font-semibold text-white shadow-card ring-1 ring-[#E9C46A]/80 sm:flex'
+
 /** Loop: type the site name, reveal the tools one by one, hold, reset. */
 function useDemo() {
   const [typed, setTyped] = useState(0)
@@ -62,7 +65,7 @@ export default function ToolsPreview() {
   const { typed, show } = useDemo()
 
   return (
-    <figure className="relative mx-auto w-full max-w-xl pb-0 pt-9 sm:px-6 sm:pt-12">
+    <figure className="relative mx-auto w-full max-w-xl pb-0 pt-0 sm:px-6 sm:pt-8">
       <div
         aria-hidden="true"
         className="relative overflow-hidden rounded-2xl border border-white bg-white p-2.5 shadow-card sm:rounded-3xl sm:p-5"
@@ -80,9 +83,11 @@ export default function ToolsPreview() {
 
         <div className="relative mb-2.5 mt-1.5 flex h-8 items-center gap-1.5 overflow-hidden whitespace-nowrap rounded-lg border border-slate-200 bg-slate-50 px-2 text-[11px] sm:mb-4 sm:mt-2 sm:h-10 sm:gap-2 sm:rounded-xl sm:px-3 sm:text-sm">
           <SmartSearchIcon className="h-3.5 w-3.5 shrink-0 text-accent sm:h-4 sm:w-4" />
-          <span className="font-medium text-navy">{TEXT.slice(0, typed)}</span>
-          <span className="caret" />
-          {typed === 0 && <span className="text-slate-400">Smart search...</span>}
+          <span className="relative min-w-0 flex-1 font-medium">
+            <span className="invisible block truncate">{TEXT}</span>
+            <span className="absolute inset-y-0 left-0 flex items-center text-navy">{TEXT.slice(0, typed)}</span>
+            {typed === 0 && <span className="absolute inset-y-0 left-0 flex items-center font-normal text-slate-400">Smart search...</span>}
+          </span>
         </div>
 
         <div className={`relative grid grid-cols-3 gap-1.5 sm:grid-cols-5 sm:gap-2 ${show ? 'demo-on' : ''}`}>
@@ -102,13 +107,13 @@ export default function ToolsPreview() {
         </div>
       </div>
 
-      <div aria-hidden="true" className="float absolute right-1 top-1 hidden items-center gap-2 rounded-2xl bg-teal-deep px-3 py-2 text-xs font-semibold text-white shadow-card sm:right-2 sm:flex" style={style({ '--r': '6deg', '--dur': '6s' })}>
+      <div aria-hidden="true" className={`${CHIP} right-1 top-1 sm:right-2`} style={style({ '--r': '6deg', '--dur': '6s' })}>
         <Check className="h-4 w-4" strokeWidth={3} /> Smart Tools
       </div>
-      <div aria-hidden="true" className="float absolute left-1 top-3 hidden items-center gap-2 rounded-2xl bg-gradient-to-r from-accent to-sky-700 px-3 py-2 text-xs font-semibold text-white shadow-card sm:left-2 sm:flex" style={style({ '--r': '-6deg', '--dur': '7s' })}>
+      <div aria-hidden="true" className={`${CHIP} left-1 top-2 sm:left-2`} style={style({ '--r': '-6deg', '--dur': '7s' })}>
         <Zap className="h-4 w-4" /> {formatPrice(PRICE_USD)} planned
       </div>
-      <div aria-hidden="true" className="float absolute -bottom-3 right-1 hidden items-center gap-2 rounded-2xl bg-navy px-3 py-2 text-xs font-semibold text-white shadow-card sm:right-2 sm:flex" style={style({ '--r': '3deg', '--dur': '8s' })}>
+      <div aria-hidden="true" className={`${CHIP} -bottom-3 right-1 sm:right-2`} style={style({ '--r': '3deg', '--dur': '8s' })}>
         <Tag className="h-4 w-4 text-aqua" /> No subscriptions
       </div>
       <figcaption className="sr-only">Decorative preview of the planned TickmarkTools catalog. Tools shown are not yet available.</figcaption>

@@ -57,7 +57,7 @@ export default function FeaturedTools() {
                       type="button"
                       disabled
                       aria-label={`${tool.intendedCta}: coming soon`}
-                      className={`mt-4 w-full cursor-not-allowed rounded-xl border px-4 py-2.5 text-sm font-semibold ${look.button}`}
+                      className="btn-primary mt-4 w-full"
                     >
                       Coming soon
                     </button>

@@ -10,7 +10,7 @@ import PageBackground from './components/PageBackground'
 
 export default function App() {
   return (
-    <div className="relative isolate overflow-x-clip bg-gradient-to-b from-sky-50 via-slate-50 to-indigo-50">
+    <div className="relative isolate overflow-x-clip bg-gradient-to-br from-sky-50 via-white to-indigo-50">
       <PageBackground />
       <a
         href="#main"

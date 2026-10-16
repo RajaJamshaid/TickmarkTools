@@ -32,11 +32,8 @@ export default function WhyBand() {
             </li>
           ))}
         </ul>
-        <Reveal delay={180}>
-          <a
-            href="#tools"
-            className="btn-shine mt-8 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-accent to-sky-700 px-7 py-3.5 font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:brightness-110"
-          >
+        <Reveal delay={180} className="mt-8 flex justify-center">
+          <a href="#tools" className="btn-primary">
             See the Tools <ArrowRight className="h-5 w-5" />
           </a>
         </Reveal>

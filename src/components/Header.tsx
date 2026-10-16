@@ -90,13 +90,30 @@ export default function Header() {
     }
   }, [])
 
+  // While the menu is open the page behind it stays completely still.
   useEffect(() => {
     if (!open) return
+    const html = document.documentElement
+    const prevHtml = html.style.overflow
+    const prevBody = document.body.style.overflow
+    html.style.overflow = 'hidden'
+    document.body.style.overflow = 'hidden'
+    const stop = (e: Event) => {
+      if (!(e.target as HTMLElement | null)?.closest('#site-menu')) e.preventDefault()
+    }
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setOpen(false)
     }
+    document.addEventListener('touchmove', stop, { passive: false })
+    document.addEventListener('wheel', stop, { passive: false })
     window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    return () => {
+      html.style.overflow = prevHtml
+      document.body.style.overflow = prevBody
+      document.removeEventListener('touchmove', stop)
+      document.removeEventListener('wheel', stop)
+      window.removeEventListener('keydown', onKey)
+    }
   }, [open])
 
   const openModal = (mode: AccountMode) => {
@@ -107,15 +124,7 @@ export default function Header() {
   return (
     <>
       <header className="sticky top-2 z-40 px-2 sm:px-4">
-        {open && (
-          <button
-            type="button"
-            aria-label="Close menu"
-            tabIndex={-1}
-            onClick={() => setOpen(false)}
-            className="fixed inset-0 z-30 bg-navy/25 backdrop-blur-md"
-          />
-        )}
+        {open && <div aria-hidden="true" className="fixed inset-0 z-30 bg-navy/25 backdrop-blur-md" />}
 
         <div className="header-ring relative z-40 mx-auto max-w-6xl rounded-full p-[1.5px] shadow-[0_18px_40px_-18px_rgba(7,27,53,0.45)]">
           <div className="relative flex h-14 items-center justify-between overflow-hidden rounded-full bg-white px-3 sm:px-5">
@@ -177,22 +186,9 @@ export default function Header() {
             <nav
               id="site-menu"
               aria-label="Menu"
-              className="relative z-40 ml-auto mt-2 w-full rounded-3xl border border-[#E9C46A]/50 bg-white p-4 shadow-2xl sm:max-w-lg"
+              className="relative z-40 ml-auto mt-2 max-h-[calc(100dvh-6rem)] w-full overflow-y-auto rounded-3xl border border-[#E9C46A]/50 bg-white p-4 shadow-2xl sm:max-w-lg"
             >
-              <div className="grid grid-cols-2 gap-3">
-                <button type="button" onClick={() => openModal('login')} className="lux-box w-full justify-center">
-                  <LogIn className="h-4 w-4 text-accent" /> Log in
-                </button>
-                <button
-                  type="button"
-                  onClick={() => openModal('signup')}
-                  className="btn-shine flex w-full items-center justify-center gap-2 rounded-[1.25rem] bg-gradient-to-r from-navy via-navy-700 to-accent px-4 py-3 font-semibold text-white shadow-glow ring-1 ring-[#E9C46A]/80"
-                >
-                  <UserPlus className="h-4 w-4" /> Sign up
-                </button>
-              </div>
-
-              <ul className="mt-4 grid grid-cols-2 gap-3">
+              <ul className="grid grid-cols-2 gap-3">
                 {MENU.map(({ label, href, Icon }, i) => (
                   <li key={label} className="menu-item" style={{ '--i': i } as CSSProperties}>
                     <a href={href} onClick={() => setOpen(false)} className="lux-box">
@@ -204,6 +200,15 @@ export default function Header() {
                   </li>
                 ))}
               </ul>
+
+              <div className="mt-4 grid grid-cols-2 gap-3 border-t border-slate-100 pt-4">
+                <button type="button" onClick={() => openModal('login')} className="btn-secondary">
+                  <LogIn className="h-4 w-4" /> Log in
+                </button>
+                <button type="button" onClick={() => openModal('signup')} className="btn-primary">
+                  <UserPlus className="h-4 w-4" /> Sign up
+                </button>
+              </div>
             </nav>
           </div>
         )}

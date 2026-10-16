@@ -11,16 +11,15 @@ interface Blob {
 const LIGHT: Blob[] = [
   { size: '42rem', pos: { left: '-12rem', top: '-14rem' }, color: 'rgba(23,185,245,0.30)', dur: '20s', delay: '0s' },
   { size: '36rem', pos: { right: '-10rem', top: '2rem' }, color: 'rgba(79,70,229,0.20)', dur: '24s', delay: '-6s' },
-  { size: '30rem', pos: { left: '35%', bottom: '-16rem' }, color: 'rgba(0,214,201,0.22)', dur: '22s', delay: '-3s' },
 ]
 
 const DARK: Blob[] = [
   { size: '40rem', pos: { left: '-12rem', top: '-12rem' }, color: 'rgba(23,185,245,0.35)', dur: '22s', delay: '0s' },
   { size: '36rem', pos: { right: '-10rem', top: '20%' }, color: 'rgba(79,70,229,0.38)', dur: '26s', delay: '-8s' },
-  { size: '32rem', pos: { left: '30%', bottom: '-16rem' }, color: 'rgba(0,214,201,0.24)', dur: '24s', delay: '-4s' },
+  { size: '32rem', pos: { left: '30%', bottom: '-16rem' }, color: 'rgba(79,70,229,0.24)', dur: '24s', delay: '-4s' },
 ]
 
-/** Decorative wallpaper: color glows plus a faint grid. Only animates when `animated` is set. */
+/** Decorative blobs plus a faint grid, used inside the navy price box. Only animates when `animated` is set. */
 export default function Aurora({ variant, animated = false }: { variant: 'light' | 'dark'; animated?: boolean }) {
   const blobs = variant === 'dark' ? DARK : LIGHT
   return (

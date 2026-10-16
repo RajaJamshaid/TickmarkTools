@@ -8,13 +8,12 @@ interface Blob {
   dur?: string
 }
 
+// One direction: cyan glow top-left flowing to indigo glow bottom-right (same as the button gradient).
 const BLOBS: Blob[] = [
-  { size: '44rem', pos: { left: '-14rem', top: '-8rem' }, color: 'rgba(23,185,245,0.28)', anim: true, dur: '22s' },
-  { size: '38rem', pos: { right: '-12rem', top: '4rem' }, color: 'rgba(79,70,229,0.18)', anim: true, dur: '26s' },
-  { size: '34rem', pos: { left: '30%', top: '22%' }, color: 'rgba(0,214,201,0.16)' },
-  { size: '40rem', pos: { right: '-14rem', top: '38%' }, color: 'rgba(79,70,229,0.14)' },
-  { size: '36rem', pos: { left: '-12rem', top: '58%' }, color: 'rgba(23,185,245,0.16)' },
-  { size: '34rem', pos: { right: '-8rem', top: '82%' }, color: 'rgba(0,214,201,0.16)' },
+  { size: '46rem', pos: { left: '-16rem', top: '-10rem' }, color: 'rgba(23,185,245,0.26)', anim: true, dur: '22s' },
+  { size: '38rem', pos: { left: '-14rem', top: '30%' }, color: 'rgba(23,185,245,0.14)' },
+  { size: '40rem', pos: { right: '-14rem', top: '50%' }, color: 'rgba(79,70,229,0.14)' },
+  { size: '46rem', pos: { right: '-16rem', top: '80%' }, color: 'rgba(79,70,229,0.2)' },
 ]
 
 /** One continuous wallpaper behind the whole page, so there are no seams between sections. */

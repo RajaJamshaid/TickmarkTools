@@ -12,7 +12,7 @@ export default function Pricing() {
           </h2>
         </Reveal>
         <Reveal delay={80} className="mt-8">
-          <div className="animated-border rounded-[2rem] bg-gradient-to-r from-cyan-brand via-accent to-aqua p-[1.5px] shadow-[0_30px_60px_-28px_rgba(7,27,53,0.55)]">
+          <div className="animated-border rounded-[2rem] bg-gradient-to-r from-[#E9C46A] via-cyan-brand to-accent p-[1.5px] shadow-[0_30px_60px_-28px_rgba(7,27,53,0.55)]">
             <div className="relative overflow-hidden rounded-[calc(2rem-1.5px)] bg-navy-800 px-6 py-10">
               <Aurora variant="dark" />
               <div className="relative">

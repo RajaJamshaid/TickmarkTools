@@ -48,7 +48,7 @@ export default function SmartSearch() {
     <div id="smart-search-box" className="relative z-30 mx-auto mt-4 max-w-2xl" onBlur={onBlur}>
       <div className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-2 pr-4 shadow-card focus-within:border-accent/40 focus-within:ring-4 focus-within:ring-accent/15">
         <span
-          className="icon-tile icon-tile-sm shrink-0 bg-gradient-to-br from-accent to-sky-700"
+          className="icon-tile icon-tile-sm shrink-0 bg-gradient-to-br from-navy via-navy-700 to-accent"
           style={{ '--accent': '#4F46E5' } as CSSProperties}
         >
           <SmartSearchIcon className="h-6 w-6" />
