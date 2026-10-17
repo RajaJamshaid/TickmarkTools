@@ -1,0 +1,3 @@
+# Serve the single-page app for the tool route. (A top-level 404.html disables Pages' automatic SPA fallback.)
+/tools/medical-bill-checker /index.html 200
+/tools/medical-bill-checker/ /index.html 200
