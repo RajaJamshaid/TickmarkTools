@@ -91,22 +91,18 @@ export default function SignupModal({
 
         {status === 'sent' ? (
           <div className="py-6 text-center" role="status">
-            <span className="icon-tile mx-auto bg-gradient-to-br from-emerald-400 to-emerald-600" style={style({ '--accent': '#10B981' })}>
+            <span className="icon-tile mx-auto bg-gradient-to-br from-navy via-navy-700 to-accent" style={style({ '--accent': '#4F46E5' })}>
               <Check className="h-7 w-7" strokeWidth={3} />
             </span>
             <p className="mt-5 font-heading text-2xl font-bold text-navy">You are on the list!</p>
             <p className="mt-1 text-slate-600">We will email you when accounts open.</p>
-            <button
-              type="button"
-              onClick={onClose}
-              className="mt-6 rounded-xl border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-accent/40 hover:text-accent"
-            >
+            <button type="button" onClick={onClose} className="btn-secondary mt-6">
               Close
             </button>
           </div>
         ) : (
           <form onSubmit={onSubmit} noValidate>
-            <span className="icon-tile bg-gradient-to-br from-accent to-sky-700" style={style({ '--accent': '#4F46E5' })}>
+            <span className="icon-tile bg-gradient-to-br from-navy via-navy-700 to-accent" style={style({ '--accent': '#4F46E5' })}>
               <Sparkles className="h-7 w-7" />
             </span>
             <h2 id="account-title" className="mt-4 text-2xl font-bold">
@@ -136,11 +132,7 @@ export default function SignupModal({
               <input id="account-website" tabIndex={-1} autoComplete="off" value={trap} onChange={(e) => setTrap(e.target.value)} />
             </div>
 
-            <button
-              type="submit"
-              disabled={status === 'sending'}
-              className="btn-shine mt-4 w-full rounded-xl bg-gradient-to-r from-navy via-navy-700 to-accent px-6 py-3.5 font-semibold text-white shadow-glow ring-1 ring-[#E9C46A]/70 transition hover:brightness-110 disabled:opacity-70"
-            >
+            <button type="submit" disabled={status === 'sending'} className="btn-primary mt-4 w-full">
               {status === 'sending' ? 'Sending...' : login ? 'Notify me' : 'Reserve my spot'}
             </button>
 
