@@ -5,8 +5,11 @@
   "type": "module",
   "engines": { "node": ">=20" },
   "scripts": {
+    "ocr:assets": "node scripts/copy-ocr-assets.mjs",
+    "predev": "npm run ocr:assets",
     "dev": "vite",
     "typecheck": "tsc --noEmit",
+    "prebuild": "npm run ocr:assets",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "vitest run"

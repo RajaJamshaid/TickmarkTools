@@ -2,6 +2,20 @@ import { parseMoneyToCents, parseQuantity } from './money'
 import { MAX_PAGES } from './pages'
 import type { BillData, BillTotals, LineItem, TotalsKey } from './types'
 
+/** Where a value came from when it was read from a scan. Scanned values start unchecked. */
+export interface FieldOrigin {
+  page: number | null
+  /** The exact text the reader produced for this line. */
+  raw: string
+  /** Lowest word confidence on the line (0-100), or null if unavailable. */
+  confidence: number | null
+  /** True once the user has confirmed or edited the value. Unchecked values are never treated as verified. */
+  checked: boolean
+}
+
+/** Below this reader confidence a value is called out as low. Advisory only. */
+export const LOW_CONFIDENCE = 80
+
 export interface LineItemForm {
   id: string
   description: string
@@ -10,6 +24,7 @@ export interface LineItemForm {
   quantity: string
   unit: string
   amount: string
+  origin?: FieldOrigin
 }
 
 export type MoneyFieldKey = 'gross' | 'adjustments' | 'insurance' | 'patient' | 'credits' | 'previous' | 'balance'
@@ -27,6 +42,8 @@ export interface BillForm {
   lineItemsComplete: boolean
   pagesExpected: string
   items: LineItemForm[]
+  /** Origins for scanned totals, keyed by field name (money keys and 'statementDate'). */
+  fieldOrigins: Partial<Record<string, FieldOrigin>>
 }
 
 export const MONEY_FIELDS: ReadonlyArray<{ key: MoneyFieldKey; totals: TotalsKey; label: string }> = [
@@ -63,6 +80,7 @@ export const emptyForm = (): BillForm => ({
   lineItemsComplete: false,
   pagesExpected: '',
   items: [newItemForm()],
+  fieldOrigins: {},
 })
 
 export function isValidIsoDate(s: string): boolean {
@@ -75,7 +93,7 @@ export function isValidIsoDate(s: string): boolean {
   return y >= 1990 && y <= 2100 && dt.getUTCFullYear() === y && dt.getUTCMonth() === mo - 1 && dt.getUTCDate() === d
 }
 
-const isBlankRow = (r: LineItemForm): boolean =>
+export const isBlankRow = (r: LineItemForm): boolean =>
   !r.description.trim() && !r.code.trim() && !r.serviceDate.trim() && !r.quantity.trim() && !r.unit.trim() && !r.amount.trim()
 
 const MONEY_ERROR = "Couldn't read this amount. Use a format like 125.40 (up to 2 decimals)."
@@ -83,12 +101,14 @@ const MONEY_ERROR = "Couldn't read this amount. Use a format like 125.40 (up to 
 export type BuildResult = { ok: true; bill: BillData } | { ok: false; errors: FormErrors }
 
 /**
- * Converts what the user typed into BillData. Blank = not provided (null). Anything that cannot be
- * read exactly is reported as an error rather than guessed. A line with no amount is kept but
- * marked "needs review" so it is excluded from confirmed checks.
+ * Converts what the user typed (or what OCR drafted) into BillData. Blank = not provided (null).
+ * Anything that cannot be read exactly is an error, never a guess. A line with no amount, or a
+ * scanned line the user has not checked, is kept but marked "needs review" so it is excluded from
+ * confirmed checks. Scanned totals the user has not checked are reported as unreadable.
  */
 export function buildBill(form: BillForm, pagesScanned: number): BuildResult {
   const errors: FormErrors = { fields: {}, items: {} }
+  const unreadable: TotalsKey[] = []
   const totals: BillTotals = {
     grossChargesCents: null,
     adjustmentsCents: null,
@@ -103,8 +123,13 @@ export function buildBill(form: BillForm, pagesScanned: number): BuildResult {
     const raw = form[f.key]
     if (raw.trim() === '') continue
     const v = parseMoneyToCents(raw)
-    if (v === null) errors.fields[f.key] = MONEY_ERROR
-    else totals[f.totals] = v
+    if (v === null) {
+      errors.fields[f.key] = MONEY_ERROR
+      continue
+    }
+    totals[f.totals] = v
+    const origin = form.fieldOrigins[f.key]
+    if (origin && !origin.checked) unreadable.push(f.totals)
   }
 
   const statementDate = form.statementDate.trim()
@@ -147,16 +172,17 @@ export function buildBill(form: BillForm, pagesScanned: number): BuildResult {
       errors.items[row.id] = rowErrors
       continue
     }
+    const unchecked = !!row.origin && !row.origin.checked
     lineItems.push({
       id: row.id,
-      page: null,
+      page: row.origin?.page ?? null,
       description: row.description.trim(),
       code: row.code.trim() === '' ? null : row.code.trim(),
       serviceDate: date === '' ? null : date,
       quantity,
       unitCents,
       amountCents,
-      needsReview: amountCents === null,
+      needsReview: amountCents === null || unchecked,
     })
   }
 
@@ -169,7 +195,7 @@ export function buildBill(form: BillForm, pagesScanned: number): BuildResult {
       pagesScanned,
       pagesExpected,
       lineItemsComplete: form.lineItemsComplete,
-      unreadableFields: [],
+      unreadableFields: unreadable,
       lineItems,
       totals,
     },
