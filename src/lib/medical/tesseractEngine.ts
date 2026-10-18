@@ -11,6 +11,9 @@ import { extractOcrResult } from './ocrExtract'
 
 const BASE = '/ocr'
 
+/** If the worker has not finished loading by then, report a load failure instead of waiting forever. */
+export const LOAD_TIMEOUT_MS = 90_000
+
 interface MinimalWorker {
   recognize(image: Blob, options: object, output: object): Promise<{ data: unknown }>
   terminate(): Promise<unknown>
@@ -20,7 +23,21 @@ export const loadTesseractEngine: OcrEngineLoader = async () => {
   const { createWorker } = await import('tesseract.js')
   let listener: ((fraction: number) => void) | null = null
 
-  const worker = (await createWorker('eng', 1, {
+  // Tesseract.js reports worker/network errors through `errorHandler` (its default rethrows as an uncaught
+  // error and leaves createWorker pending forever). We turn them into a rejected promise instead.
+  let fail: (e: Error) => void = () => undefined
+  const failed = new Promise<never>((_, reject) => {
+    fail = reject
+  })
+  failed.catch(() => undefined)
+
+  let timer: ReturnType<typeof setTimeout> | undefined
+  const timeout = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => reject(new Error('load-timeout')), LOAD_TIMEOUT_MS)
+  })
+  timeout.catch(() => undefined)
+
+  const creating = createWorker('eng', 1, {
     workerPath: `${BASE}/worker.min.js`,
     corePath: `${BASE}/core`,
     langPath: `${BASE}/lang`,
@@ -30,7 +47,20 @@ export const loadTesseractEngine: OcrEngineLoader = async () => {
     logger: (m: { status: string; progress: number }) => {
       if (m.status === 'recognizing text' && listener) listener(m.progress)
     },
-  })) as unknown as MinimalWorker
+    errorHandler: () => fail(new Error('worker-error')),
+  })
+  creating.catch(() => undefined)
+
+  let worker: MinimalWorker
+  try {
+    worker = (await Promise.race([creating, failed, timeout])) as unknown as MinimalWorker
+  } catch (err) {
+    // If the worker does finish loading later, shut it down so it does not linger.
+    void creating.then((w) => (w as unknown as MinimalWorker).terminate()).catch(() => undefined)
+    throw err
+  } finally {
+    clearTimeout(timer)
+  }
 
   let terminated = false
   const terminate = async (): Promise<void> => {
@@ -57,8 +87,8 @@ export const loadTesseractEngine: OcrEngineLoader = async () => {
       })
       try {
         const job = worker.recognize(image, {}, { text: true, blocks: true })
-        job.catch(() => undefined) // avoid an unhandled rejection if cancellation wins the race
-        const result = await Promise.race([job, aborted])
+        job.catch(() => undefined) // avoid an unhandled rejection if cancellation or an error wins the race
+        const result = await Promise.race([job, aborted, failed])
         return extractOcrResult(result.data)
       } finally {
         listener = null
