@@ -12,7 +12,10 @@
     "prebuild": "npm run ocr:assets",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "e2e:install": "playwright install --with-deps chromium",
+    "e2e": "playwright test",
+    "e2e:dev": "E2E_MODE=dev playwright test"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",
@@ -21,6 +24,7 @@
     "tesseract.js": "^6.0.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.56.0",
     "@tesseract.js-data/eng": "^1.0.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
