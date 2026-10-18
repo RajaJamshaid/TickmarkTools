@@ -1,0 +1,82 @@
+name: e2e
+
+on:
+  push:
+    branches: [feature/medical-bill-checker]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: e2e-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install 2>&1 | tee install.log
+
+      - name: Commit regenerated lockfile
+        run: |
+          if ! git diff --quiet package-lock.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add package-lock.json
+            git commit -m "chore: update lockfile (CI)"
+            git push
+          fi
+
+      - name: Typecheck
+        continue-on-error: true
+        run: npm run typecheck 2>&1 | tee typecheck.log
+
+      - name: Unit tests
+        continue-on-error: true
+        run: npm test 2>&1 | tee unit.log
+
+      - name: Audit (production)
+        continue-on-error: true
+        run: npm audit --omit=dev 2>&1 | tee audit-prod.log
+
+      - name: Audit (all)
+        continue-on-error: true
+        run: npm audit 2>&1 | tee audit-all.log
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium 2>&1 | tee pw-install.log
+
+      - name: Playwright browser tests
+        continue-on-error: true
+        env:
+          CI: 'true'
+          PLAYWRIGHT_JSON_OUTPUT_NAME: e2e-results.json
+        run: npx playwright test --reporter=list,json 2>&1 | tee e2e.log
+
+      - name: Publish results to ci-results branch
+        if: always()
+        run: |
+          mkdir -p out
+          cp ./*.log out/ 2>/dev/null || true
+          cp e2e-results.json out/ 2>/dev/null || true
+          if [ -d test-results ]; then
+            find test-results -type f \( -name '*.png' -o -name '*.json' -o -name '*.md' \) -exec cp --parents {} out/ \;
+          fi
+          echo "commit=$GITHUB_SHA run=$GITHUB_RUN_ID finished=$(date -u +%FT%TZ)" > out/meta.txt
+          cd out
+          git init -q -b ci-results
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -qm "e2e results for $GITHUB_SHA"
+          git remote add origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+          git push -f origin ci-results
