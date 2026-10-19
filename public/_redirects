@@ -1,3 +1,4 @@
-# Serve the single-page app for the tool route. (A top-level 404.html disables Pages' automatic SPA fallback.)
-/tools/medical-bill-checker /index.html 200
-/tools/medical-bill-checker/ /index.html 200
+# Intentionally no rewrite rules.
+# /tools/medical-bill-checker/ is a real static page (dist/tools/medical-bill-checker/index.html, built from
+# tools/medical-bill-checker/index.html), so Cloudflare Pages and Netlify serve it directly. The previous rule
+# rewrote the route to the homepage's index.html, which also gave the tool page the homepage's canonical URL.

@@ -14,6 +14,11 @@ const ICONS: Record<ToolId, ReactNode> = {
   'ecommerce-asset-auto-resizer': <ResizerIcon />,
 }
 
+// Tools whose preview page exists. Everything else stays "Soon". The order of FEATURED_TOOLS is unchanged.
+const PREVIEW_LINKS: Partial<Record<ToolId, string>> = {
+  'medical-bill-checker': '/tools/medical-bill-checker/',
+}
+
 let raf = 0
 function track(e: ReactPointerEvent<HTMLElement>) {
   const el = e.currentTarget
@@ -48,6 +53,7 @@ export default function FeaturedTools() {
         <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {FEATURED_TOOLS.map((tool, i) => {
             const look = LOOK[tool.accent]
+            const preview = PREVIEW_LINKS[tool.id]
             return (
               <li key={tool.id}>
                 <Reveal delay={i * 60} className="h-full">
@@ -67,20 +73,30 @@ export default function FeaturedTools() {
                   >
                     <div className="flex items-start justify-between">
                       <span className={`icon-tile bg-gradient-to-br ${look.tile}`}>{ICONS[tool.id]}</span>
-                      <span className={`rounded-full border px-2.5 py-1 text-[11px] font-semibold ${look.badge}`}>Soon</span>
+                      <span className={`rounded-full border px-2.5 py-1 text-[11px] font-semibold ${look.badge}`}>{preview ? 'Preview' : 'Soon'}</span>
                     </div>
                     <h3 className="mt-5 text-lg font-bold leading-snug">{tool.name}</h3>
                     <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{tool.description}</p>
                     <p className={`mt-5 font-heading text-2xl font-bold ${look.price}`}>{formatPrice(tool.price)}</p>
                     <p className="text-[11px] text-slate-500">planned, one-time</p>
-                    <button
-                      type="button"
-                      disabled
-                      aria-label={`${tool.intendedCta}: coming soon`}
-                      className={`mt-4 w-full cursor-not-allowed rounded-xl border px-4 py-2.5 text-sm font-semibold ${look.button}`}
-                    >
-                      Coming soon
-                    </button>
+                    {preview ? (
+                      <a
+                        href={preview}
+                        aria-label={`Try the ${tool.name} preview`}
+                        className={`mt-4 block w-full rounded-xl border px-4 py-2.5 text-center text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-brand ${look.button}`}
+                      >
+                        Try the free preview
+                      </a>
+                    ) : (
+                      <button
+                        type="button"
+                        disabled
+                        aria-label={`${tool.intendedCta}: coming soon`}
+                        className={`mt-4 w-full cursor-not-allowed rounded-xl border px-4 py-2.5 text-sm font-semibold ${look.button}`}
+                      >
+                        Coming soon
+                      </button>
+                    )}
                   </article>
                 </Reveal>
               </li>
