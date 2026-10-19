@@ -1,0 +1,750 @@
+{
+  "config": {
+    "argv": [
+      "/opt/hostedtoolcache/node/22.23.3/x64/bin/node",
+      "/home/runner/work/TickmarkTools/TickmarkTools/node_modules/.bin/playwright",
+      "test",
+      "--reporter=list,json"
+    ],
+    "configFile": "/home/runner/work/TickmarkTools/TickmarkTools/playwright.config.ts",
+    "rootDir": "/home/runner/work/TickmarkTools/TickmarkTools/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "ci": {
+        "commitHref": "https://github.com/RajaJamshaid/TickmarkTools/commit/d44c530ebd3870953467956c314fd41fb095bda3",
+        "commitHash": "d44c530ebd3870953467956c314fd41fb095bda3",
+        "buildHref": "https://github.com/RajaJamshaid/TickmarkTools/actions/runs/39206323783"
+      },
+      "gitCommit": {
+        "shortHash": "d44c530",
+        "hash": "d44c530ebd3870953467956c314fd41fb095bda3",
+        "subject": "feat: Medical Bill Checker (camera scan, on-device OCR, analysis, results, e2e tests) (#3)",
+        "body": "feat: Medical Bill Checker (camera scan, on-device OCR, analysis, results, e2e tests) (#3)\n\n* feat(medical-bill): pure analysis core, camera/page/OCR-adapter libs, route helper, tests; allow camera in Permissions-Policy\n\n* wip placeholder\n\n* feat(medical-bill): landing page, camera scanner, multi-page capture, manual entry, basic findings, route\n\n* feat(medical-bill): Tesseract.js engine adapter, OCR text parser, letter and CSV builders, asset copy script\n\n* feat(medical-bill): on-device OCR flow, draft verification, results dashboard, letter and CSV export, docs\n\n* fix(medical-bill): declare tesseract.js deps, require all four core files, update stale page copy, add engine wiring tests, correct docs\n\n* test(e2e): Playwright suite for the Medical Bill Checker (routing, layout, manual flow, upload, camera, on-device OCR, privacy)\n\n* Add e2e workflow for feature branch testing\n\n* Rename e2e.yml to e2e.yml\n\n* chore: update lockfile (CI)\n\n* fix(ocr): reject on Tesseract worker errors/timeouts instead of hanging on 'Preparing the reader'; add regression tests\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+        "author": {
+          "name": "RajaJamshaid",
+          "email": "168198886+RajaJamshaid@users.noreply.github.com",
+          "time": 1792332705000
+        },
+        "committer": {
+          "name": "GitHub",
+          "email": "noreply@github.com",
+          "time": 1792332705000
+        },
+        "branch": "main"
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/runner/work/TickmarkTools/TickmarkTools/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/RajaJamshaid/TickmarkTools/commit/d44c530ebd3870953467956c314fd41fb095bda3",
+            "commitHash": "d44c530ebd3870953467956c314fd41fb095bda3",
+            "buildHref": "https://github.com/RajaJamshaid/TickmarkTools/actions/runs/39206323783"
+          },
+          "gitCommit": {
+            "shortHash": "d44c530",
+            "hash": "d44c530ebd3870953467956c314fd41fb095bda3",
+            "subject": "feat: Medical Bill Checker (camera scan, on-device OCR, analysis, results, e2e tests) (#3)",
+            "body": "feat: Medical Bill Checker (camera scan, on-device OCR, analysis, results, e2e tests) (#3)\n\n* feat(medical-bill): pure analysis core, camera/page/OCR-adapter libs, route helper, tests; allow camera in Permissions-Policy\n\n* wip placeholder\n\n* feat(medical-bill): landing page, camera scanner, multi-page capture, manual entry, basic findings, route\n\n* feat(medical-bill): Tesseract.js engine adapter, OCR text parser, letter and CSV builders, asset copy script\n\n* feat(medical-bill): on-device OCR flow, draft verification, results dashboard, letter and CSV export, docs\n\n* fix(medical-bill): declare tesseract.js deps, require all four core files, update stale page copy, add engine wiring tests, correct docs\n\n* test(e2e): Playwright suite for the Medical Bill Checker (routing, layout, manual flow, upload, camera, on-device OCR, privacy)\n\n* Add e2e workflow for feature branch testing\n\n* Rename e2e.yml to e2e.yml\n\n* chore: update lockfile (CI)\n\n* fix(ocr): reject on Tesseract worker errors/timeouts instead of hanging on 'Preparing the reader'; add regression tests\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+            "author": {
+              "name": "RajaJamshaid",
+              "email": "168198886+RajaJamshaid@users.noreply.github.com",
+              "time": 1792332705000
+            },
+            "committer": {
+              "name": "GitHub",
+              "email": "noreply@github.com",
+              "time": 1792332705000
+            },
+            "branch": "main"
+          },
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/runner/work/TickmarkTools/TickmarkTools/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/home/runner/work/TickmarkTools/TickmarkTools/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/RajaJamshaid/TickmarkTools/commit/d44c530ebd3870953467956c314fd41fb095bda3",
+            "commitHash": "d44c530ebd3870953467956c314fd41fb095bda3",
+            "buildHref": "https://github.com/RajaJamshaid/TickmarkTools/actions/runs/39206323783"
+          },
+          "gitCommit": {
+            "shortHash": "d44c530",
+            "hash": "d44c530ebd3870953467956c314fd41fb095bda3",
+            "subject": "feat: Medical Bill Checker (camera scan, on-device OCR, analysis, results, e2e tests) (#3)",
+            "body": "feat: Medical Bill Checker (camera scan, on-device OCR, analysis, results, e2e tests) (#3)\n\n* feat(medical-bill): pure analysis core, camera/page/OCR-adapter libs, route helper, tests; allow camera in Permissions-Policy\n\n* wip placeholder\n\n* feat(medical-bill): landing page, camera scanner, multi-page capture, manual entry, basic findings, route\n\n* feat(medical-bill): Tesseract.js engine adapter, OCR text parser, letter and CSV builders, asset copy script\n\n* feat(medical-bill): on-device OCR flow, draft verification, results dashboard, letter and CSV export, docs\n\n* fix(medical-bill): declare tesseract.js deps, require all four core files, update stale page copy, add engine wiring tests, correct docs\n\n* test(e2e): Playwright suite for the Medical Bill Checker (routing, layout, manual flow, upload, camera, on-device OCR, privacy)\n\n* Add e2e workflow for feature branch testing\n\n* Rename e2e.yml to e2e.yml\n\n* chore: update lockfile (CI)\n\n* fix(ocr): reject on Tesseract worker errors/timeouts instead of hanging on 'Preparing the reader'; add regression tests\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+            "author": {
+              "name": "RajaJamshaid",
+              "email": "168198886+RajaJamshaid@users.noreply.github.com",
+              "time": 1792332705000
+            },
+            "committer": {
+              "name": "GitHub",
+              "email": "noreply@github.com",
+              "time": 1792332705000
+            },
+            "branch": "main"
+          },
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "/home/runner/work/TickmarkTools/TickmarkTools/e2e",
+        "snapshotDir": "/home/runner/work/TickmarkTools/TickmarkTools/e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 60000,
+        "use": {
+          "baseURL": "http://localhost:4173",
+          "screenshot": "only-on-failure",
+          "trace": "retain-on-failure",
+          "permissions": [
+            "camera"
+          ],
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium",
+          "launchOptions": {
+            "args": [
+              "--use-fake-device-for-media-stream",
+              "--use-fake-ui-for-media-stream"
+            ]
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run build && npm run preview -- --port 4173 --strictPort",
+      "url": "http://localhost:4173/tools/medical-bill-checker",
+      "reuseExistingServer": false,
+      "timeout": 240000
+    }
+  },
+  "suites": [
+    {
+      "title": "medical-bill.spec.ts",
+      "file": "medical-bill.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "routing",
+          "file": "medical-bill.spec.ts",
+          "line": 11,
+          "column": 6,
+          "specs": [
+            {
+              "title": "loads the tool (not the homepage or a 404) and survives a refresh",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 553,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-19T05:47:41.979Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "184324df48b88a021a36-656d1240fc34d8616579",
+              "file": "medical-bill.spec.ts",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "the homepage still loads and is not the tool",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 420,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-19T05:47:42.709Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "184324df48b88a021a36-f76a28b010aa4a265914",
+              "file": "medical-bill.spec.ts",
+              "line": 23,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "responsive layout",
+          "file": "medical-bill.spec.ts",
+          "line": 30,
+          "column": 6,
+          "specs": [
+            {
+              "title": "no horizontal overflow at mobile 375x812",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 730,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-19T05:47:43.141Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "184324df48b88a021a36-db578ceca11f7832a9fe",
+              "file": "medical-bill.spec.ts",
+              "line": 36,
+              "column": 5
+            },
+            {
+              "title": "no horizontal overflow at tablet 768x1024",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1649,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-19T05:47:43.880Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "184324df48b88a021a36-24c4c2422eb1591fc456",
+              "file": "medical-bill.spec.ts",
+              "line": 36,
+              "column": 5
+            },
+            {
+              "title": "no horizontal overflow at desktop 1280x800",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1045,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-19T05:47:45.539Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "184324df48b88a021a36-33f637128cacbf9c9041",
+              "file": "medical-bill.spec.ts",
+              "line": 36,
+              "column": 5
+            }
+          ]
+        },
+        {
+          "title": "manual entry, validation, analysis, letter, export",
+          "file": "medical-bill.spec.ts",
+          "line": 51,
+          "column": 6,
+          "specs": [
+            {
+              "title": "rejects unreadable amounts, then produces evidence-linked findings",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1696,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-19T05:47:46.592Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "184324df48b88a021a36-60500f54847ef63369be",
+              "file": "medical-bill.spec.ts",
+              "line": 52,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "image upload and multi-page handling",
+          "file": "medical-bill.spec.ts",
+          "line": 108,
+          "column": 6,
+          "specs": [
+            {
+              "title": "adds pages, warns about a near-duplicate, supports keep/discard and delete",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 591,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-19T05:47:48.294Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "184324df48b88a021a36-be1dc3794e6c080738eb",
+              "file": "medical-bill.spec.ts",
+              "line": 109,
+              "column": 3
+            },
+            {
+              "title": "rejects unsupported files with a clear message",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 341,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-19T05:47:49.136Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "184324df48b88a021a36-35fbe4e4f7ae7db4a303",
+              "file": "medical-bill.spec.ts",
+              "line": 132,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "camera",
+          "file": "medical-bill.spec.ts",
+          "line": 139,
+          "column": 6,
+          "specs": [
+            {
+              "title": "opens a (fake) camera, captures a page, and stops every track",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 919,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-19T05:47:49.483Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "184324df48b88a021a36-8b8eecc517f1c862e8e4",
+              "file": "medical-bill.spec.ts",
+              "line": 140,
+              "column": 3
+            },
+            {
+              "title": "closing the camera stops its tracks",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 908,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-19T05:47:50.408Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "184324df48b88a021a36-b10ab604f3e415945294",
+              "file": "medical-bill.spec.ts",
+              "line": 158,
+              "column": 3
+            },
+            {
+              "title": "permission denial shows a helpful message with fallbacks (simulated NotAllowedError)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 712,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-19T05:47:51.322Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "184324df48b88a021a36-698a8d5fafd59671f984",
+              "file": "medical-bill.spec.ts",
+              "line": 176,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "OCR in the browser (real Tesseract.js, synthetic bill)",
+          "file": "medical-bill.spec.ts",
+          "line": 190,
+          "column": 6,
+          "specs": [
+            {
+              "title": "reads the sample bill on-device, drafts unchecked values, and never treats them as verified",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2047,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-19T05:47:52.041Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "ocr-actual-vs-expected.json",
+                          "contentType": "application/json",
+                          "body": "ewogICJleHBlY3RlZCI6IHsKICAgICJzdGF0ZW1lbnREYXRlIjogIjIwMjYtMDMtMTUiLAogICAgImdyb3NzIjogIjE5NS4wMCIsCiAgICAiaW5zdXJhbmNlIjogIjEwMC4wMCIsCiAgICAiYWRqdXN0bWVudHMiOiAiMjAuMDAiLAogICAgImJhbGFuY2UiOiAiNzUuMDAiLAogICAgIml0ZW1zIjogWwogICAgICB7CiAgICAgICAgImRlc2NyaXB0aW9uIjogIk9mZmljZSB2aXNpdCIsCiAgICAgICAgImNvZGUiOiAiOTkyMTMiLAogICAgICAgICJzZXJ2aWNlRGF0ZSI6ICIyMDI2LTAzLTAxIiwKICAgICAgICAicXVhbnRpdHkiOiAiMSIsCiAgICAgICAgInVuaXQiOiAiMTUwLjAwIiwKICAgICAgICAiYW1vdW50IjogIjE1MC4wMCIKICAgICAgfSwKICAgICAgewogICAgICAgICJkZXNjcmlwdGlvbiI6ICJMYWIgcGFuZWwiLAogICAgICAgICJjb2RlIjogIjgwMDUzIiwKICAgICAgICAic2VydmljZURhdGUiOiAiMjAyNi0wMy0wMSIsCiAgICAgICAgInF1YW50aXR5IjogIiIsCiAgICAgICAgInVuaXQiOiAiIiwKICAgICAgICAiYW1vdW50IjogIjQ1LjAwIgogICAgICB9CiAgICBdCiAgfSwKICAiYWN0dWFsIjogewogICAgInN0YXRlbWVudERhdGUiOiAiMjAyNi0wMy0xNSIsCiAgICAiZ3Jvc3MiOiAiMTk1LjAwIiwKICAgICJhZGp1c3RtZW50cyI6ICIyMC4wMCIsCiAgICAiaW5zdXJhbmNlIjogIjEwMC4wMCIsCiAgICAiYmFsYW5jZSI6ICI3NS4wMCIsCiAgICAiaXRlbXMiOiBbCiAgICAgIHsKICAgICAgICAiZGVzY3JpcHRpb24iOiAiT2ZmaWNlIHZpc2l0IiwKICAgICAgICAiY29kZSI6ICI5OTIxMyIsCiAgICAgICAgInNlcnZpY2VEYXRlIjogIjIwMjYtMDMtMDEiLAogICAgICAgICJxdWFudGl0eSI6ICIxIiwKICAgICAgICAidW5pdCI6ICIxNTAuMDAiLAogICAgICAgICJhbW91bnQiOiAiMTUwLjAwIgogICAgICB9LAogICAgICB7CiAgICAgICAgImRlc2NyaXB0aW9uIjogIkxhYiBwYW5lbCIsCiAgICAgICAgImNvZGUiOiAiODAwNTMiLAogICAgICAgICJzZXJ2aWNlRGF0ZSI6ICIyMDI2LTAzLTAxIiwKICAgICAgICAicXVhbnRpdHkiOiAiIiwKICAgICAgICAidW5pdCI6ICIiLAogICAgICAgICJhbW91bnQiOiAiNDUuMDAiCiAgICAgIH0KICAgIF0KICB9Cn0="
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "184324df48b88a021a36-b69639da0719877b8ac3",
+              "file": "medical-bill.spec.ts",
+              "line": 193,
+              "column": 3
+            },
+            {
+              "title": "cancel stops reading and returns to the pages screen",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1985,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-19T05:47:54.093Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "184324df48b88a021a36-9afddc36409182517b18",
+              "file": "medical-bill.spec.ts",
+              "line": 259,
+              "column": 3
+            },
+            {
+              "title": "shows an error when the language data cannot load, and retry succeeds",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 540000,
+                  "annotations": [
+                    {
+                      "type": "slow",
+                      "location": {
+                        "file": "/home/runner/work/TickmarkTools/TickmarkTools/e2e/medical-bill.spec.ts",
+                        "line": 272,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1674,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-19T05:47:56.083Z",
+                      "annotations": [
+                        {
+                          "type": "slow",
+                          "location": {
+                            "file": "/home/runner/work/TickmarkTools/TickmarkTools/e2e/medical-bill.spec.ts",
+                            "line": 272,
+                            "column": 10
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "184324df48b88a021a36-16369855551745eeb36e",
+              "file": "medical-bill.spec.ts",
+              "line": 271,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-19T05:47:36.718Z",
+    "duration": 21112.157,
+    "expected": 14,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

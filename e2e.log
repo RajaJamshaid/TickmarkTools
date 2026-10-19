@@ -1,0 +1,19 @@
+
+Running 14 tests using 1 worker
+
+  ✓   1 [chromium] › e2e/medical-bill.spec.ts:12:3 › routing › loads the tool (not the homepage or a 404) and survives a refresh (553ms)
+  ✓   2 [chromium] › e2e/medical-bill.spec.ts:23:3 › routing › the homepage still loads and is not the tool (420ms)
+  ✓   3 [chromium] › e2e/medical-bill.spec.ts:36:5 › responsive layout › no horizontal overflow at mobile 375x812 (730ms)
+  ✓   4 [chromium] › e2e/medical-bill.spec.ts:36:5 › responsive layout › no horizontal overflow at tablet 768x1024 (1.6s)
+  ✓   5 [chromium] › e2e/medical-bill.spec.ts:36:5 › responsive layout › no horizontal overflow at desktop 1280x800 (1.0s)
+  ✓   6 [chromium] › e2e/medical-bill.spec.ts:52:3 › manual entry, validation, analysis, letter, export › rejects unreadable amounts, then produces evidence-linked findings (1.7s)
+  ✓   7 [chromium] › e2e/medical-bill.spec.ts:109:3 › image upload and multi-page handling › adds pages, warns about a near-duplicate, supports keep/discard and delete (591ms)
+  ✓   8 [chromium] › e2e/medical-bill.spec.ts:132:3 › image upload and multi-page handling › rejects unsupported files with a clear message (341ms)
+  ✓   9 [chromium] › e2e/medical-bill.spec.ts:140:3 › camera › opens a (fake) camera, captures a page, and stops every track (919ms)
+  ✓  10 [chromium] › e2e/medical-bill.spec.ts:158:3 › camera › closing the camera stops its tracks (908ms)
+  ✓  11 [chromium] › e2e/medical-bill.spec.ts:176:3 › camera › permission denial shows a helpful message with fallbacks (simulated NotAllowedError) (712ms)
+  ✓  12 [chromium] › e2e/medical-bill.spec.ts:193:3 › OCR in the browser (real Tesseract.js, synthetic bill) › reads the sample bill on-device, drafts unchecked values, and never treats them as verified (2.0s)
+  ✓  13 [chromium] › e2e/medical-bill.spec.ts:259:3 › OCR in the browser (real Tesseract.js, synthetic bill) › cancel stops reading and returns to the pages screen (2.0s)
+  ✓  14 [chromium] › e2e/medical-bill.spec.ts:271:3 › OCR in the browser (real Tesseract.js, synthetic bill) › shows an error when the language data cannot load, and retry succeeds (1.7s)
+
+  14 passed (21.1s)
