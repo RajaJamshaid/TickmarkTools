@@ -3,6 +3,7 @@ import type { CSSProperties, FocusEvent, KeyboardEvent } from 'react'
 import { SmartSearchIcon } from './ToolIcons'
 import ToolSticker from './ToolSticker'
 import { searchTools } from '../data/search'
+import { PREVIEW_LINKS } from '../data/preview'
 import { FEATURED_TOOLS } from '../data/tools'
 import { keepSearchVisible } from '../lib/searchFocus'
 
@@ -97,7 +98,7 @@ export default function SmartSearch() {
                       <span className="block truncate text-sm font-semibold text-navy">{tool.name}</span>
                       <span className="block truncate text-xs text-slate-500">{tool.description}</span>
                     </span>
-                    <span className="shrink-0 text-[11px] font-medium text-slate-400">Coming soon</span>
+                    <span className="shrink-0 text-[11px] font-medium text-slate-400">{PREVIEW_LINKS[tool.id] ? 'Preview' : 'Coming soon'}</span>
                   </button>
                 </li>
               ))}
