@@ -3,6 +3,7 @@ import { EXPECTED } from './sample'
 import type { Page } from '@playwright/test'
 
 const TOOL = '/tools/medical-bill-checker'
+const H1 = 'Understand Your Medical Bill. Question Charges With Confidence.'
 
 const upload = (page: Page, buffer: Buffer, name = 'bill.png') => page.locator('input[type=file]').setInputFiles({ name, mimeType: 'image/png', buffer })
 const row = (page: Page, n: number) => page.locator('#scanner li').filter({ has: page.getByText(`Line ${n}`, { exact: true }) })
@@ -12,18 +13,18 @@ test.describe('routing', () => {
   test('loads the tool (not the homepage or a 404) and survives a refresh', async ({ page }) => {
     const res = await page.goto(TOOL)
     expect(res?.status()).toBe(200)
-    await expect(page.locator('h1')).toHaveText('Understand Your Medical Bill Before You Pay.')
+    await expect(page.locator('h1')).toHaveText(H1)
     await expect(page).toHaveTitle(/Medical Bill Checker/)
     await page.reload()
-    await expect(page.locator('h1')).toHaveText('Understand Your Medical Bill Before You Pay.')
+    await expect(page.locator('h1')).toHaveText(H1)
     await page.goto(`${TOOL}/`)
-    await expect(page.locator('h1')).toHaveText('Understand Your Medical Bill Before You Pay.')
+    await expect(page.locator('h1')).toHaveText(H1)
   })
 
   test('the homepage still loads and is not the tool', async ({ page }) => {
     await page.goto('/')
     await expect(page).not.toHaveTitle(/Medical Bill Checker/)
-    await expect(page.getByText('Understand Your Medical Bill Before You Pay.')).toHaveCount(0)
+    await expect(page.getByText(H1)).toHaveCount(0)
   })
 })
 
