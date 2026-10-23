@@ -175,7 +175,7 @@ export default function MedicalBillPage() {
                 Understand Your Medical Bill. <span className="text-[#146356]">Question Charges With Confidence.</span>
               </h1>
               <p className={`mt-5 max-w-xl ${lead}`}>
-                Review medical bills, organize charges, and flag items that may deserve a closer look\u2014before you contact your healthcare provider or insurer.
+                Review medical bills, organize charges, and flag items that may deserve a closer look—before you contact your healthcare provider or insurer.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <button type="button" onClick={start} className={btnPrimary}>
@@ -186,7 +186,7 @@ export default function MedicalBillPage() {
                 </a>
               </div>
               <p className="mt-6 max-w-xl text-sm leading-relaxed text-[#5B647A]">
-                Designed with privacy in mind \u00b7 Review before you share \u00b7 No guaranteed savings claims
+                Designed with privacy in mind · Review before you share · No guaranteed savings claims
               </p>
             </div>
             <SampleBillCard />
