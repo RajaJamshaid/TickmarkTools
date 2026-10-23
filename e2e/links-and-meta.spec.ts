@@ -12,7 +12,7 @@ test.describe('homepage link, page metadata, and sitemap', () => {
     await expect(link).toHaveAttribute('href', TOOL_SLASH)
     await link.click()
     await expect(page).toHaveURL(new RegExp(`${TOOL_SLASH}$`))
-    await expect(page.locator('h1')).toHaveText('Understand Your Medical Bill Before You Pay.')
+    await expect(page.locator('h1')).toHaveText('Understand Your Medical Bill. Question Charges With Confidence.')
     // the other four cards are still disabled "Coming soon"
     await page.goto('/')
     await expect(page.getByRole('button', { name: /coming soon/i })).toHaveCount(4)
